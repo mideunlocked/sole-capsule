@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "588397169853",
+    "project_id": "sole-capsule",
+    "storage_bucket": "sole-capsule.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588397169853:android:62e9389fbc47372d22bbd4",
+        "android_client_info": {
+          "package_name": "com.example.sole_capsule"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCA7eZlnBDO4pr-IVxJf8ubPpGl9F2ONEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
