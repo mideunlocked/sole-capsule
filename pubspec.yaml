@@ -12,6 +12,7 @@ dependencies:
 
   sizer: ^2.0.15
   flutter_svg: ^2.0.9
+  encrypt: ^5.0.3
 
   #state management
   provider: ^6.1.1

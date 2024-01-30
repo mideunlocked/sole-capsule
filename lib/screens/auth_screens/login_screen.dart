@@ -88,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 20.h),
                 CustomButton(
                   onTap: () {
-                    showCustomLoader(context: context);
+                    showCustomLoader();
                   },
                   label: 'Login',
                 ),

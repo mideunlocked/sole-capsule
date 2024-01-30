@@ -14,9 +14,11 @@ class CustomTextField extends StatefulWidget {
     this.inputType = TextInputType.name,
     this.isObscure = false,
     this.isVisibilityShown = false,
+    this.onChanged,
   });
 
   final TextEditingController controller;
+  final Function(String)? onChanged;
   final TextInputType inputType;
   final TextInputAction inputAction;
   final String title;
@@ -122,8 +124,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
             if (widget.title.contains('Email') && !value.contains('.com')) {
               return 'Email is incorrect';
             }
+
             return null;
           },
+          onChanged: widget.onChanged,
         ),
       ],
     );

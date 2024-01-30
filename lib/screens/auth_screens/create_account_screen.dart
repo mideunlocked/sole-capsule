@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../models/users.dart';
+import '../../provider/auth_provider.dart';
 import '../../widgets/general_widget/custom_back_button.dart';
 import '../../widgets/general_widget/custom_button.dart';
 import '../../widgets/general_widget/custom_text_field.dart';
@@ -46,10 +49,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
     var sizedBox3 = SizedBox(height: 3.h);
 
-    return ScaffoldMessenger(
-      key: _scaffoldKey,
-      child: Scaffold(
-        body: SafeArea(
+    return Scaffold(
+      body: ScaffoldMessenger(
+        key: _scaffoldKey,
+        child: SafeArea(
           child: PaddedScreenWidget(
             child: SingleChildScrollView(
               child: Form(
@@ -134,17 +137,43 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     );
   }
 
-  void createNewUser() {
+  void createNewUser() async {
     final isValid = _formKey.currentState!.validate();
 
     if (isValid == false) {
       return;
     } else {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        '/SetUpScreen',
-        (route) => false,
+      final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
+      Users user = Users(
+        id: '',
+        email: emailController.text.trim(),
+        devices: [],
+        fullName: fullNameController.text.trim(),
+        password: passwordController.text.trim(),
+        username: '',
+        profileImage: '',
       );
+
+      final response = await authProvider.createUserEmailPassword(
+        user: user,
+        scaffoldKey: _scaffoldKey,
+      );
+
+      if (response == true) {
+        if (mounted) {
+          Navigator.pop(context);
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            '/SetUpScreen',
+            (route) => false,
+          );
+        }
+      } else {
+        if (mounted) {
+          Navigator.pop(context);
+        }
+      }
     }
   }
 }

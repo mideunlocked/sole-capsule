@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:sole_capsule/widgets/general_widget/custom_text_field.dart';
 
 import '../../helpers/app_contants.dart';
-import '../../widgets/general_widget/custom_back_button.dart';
+import '../../provider/auth_provider.dart';
 import '../../widgets/general_widget/custom_button.dart';
+import '../../widgets/general_widget/custom_text_field.dart';
 import '../../widgets/general_widget/padded_screen_widget.dart';
 
 class SetUpScreen extends StatefulWidget {
@@ -18,6 +19,22 @@ class SetUpScreen extends StatefulWidget {
 }
 
 class _SetUpScreenState extends State<SetUpScreen> {
+  bool usernameAvailable = false;
+  bool isLoading = false;
+  bool isChecked = false;
+
+  final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
+      GlobalKey<ScaffoldMessengerState>();
+
+  final usernameController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    usernameController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var sizedBox = SizedBox(height: 5.h);
@@ -34,9 +51,8 @@ class _SetUpScreenState extends State<SetUpScreen> {
               children: [
                 SizedBox(height: 2.h),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    const CustomBackButton(),
                     TextButton(
                       onPressed: () {
                         Navigator.pushReplacementNamed(context, '/LoginScreen');
@@ -85,11 +101,58 @@ class _SetUpScreenState extends State<SetUpScreen> {
                   ),
                 ),
                 sizedBox,
-                CustomTextField(
-                  controller: TextEditingController(),
-                  title: 'Username',
-                  hint: 'example',
-                ),
+                Consumer<AuthProvider>(builder: (ctx, provider, child) {
+                  return CustomTextField(
+                    controller: usernameController,
+                    title: 'Username',
+                    hint: 'example',
+                    inputAction: TextInputAction.done,
+                    onChanged: (value) async {
+                      setState(() {
+                        isChecked = true;
+                      });
+
+                      usernameAvailable = await provider.checkUsername(
+                        username: value,
+                      );
+                      print(usernameAvailable);
+                    },
+                  );
+                }),
+                SizedBox(height: 0.5.h),
+                !isChecked
+                    ? const SizedBox()
+                    : Row(
+                        children: [
+                          Visibility(
+                            visible: isLoading,
+                            replacement: Icon(
+                              !usernameAvailable
+                                  ? Icons.check_circle_rounded
+                                  : Icons.cancel_rounded,
+                              color: Colors.red,
+                            ),
+                            child: SizedBox(
+                              height: 1.5.h,
+                              width: 3.w,
+                              child: CircularProgressIndicator(
+                                color: Colors.grey.shade300,
+                                backgroundColor: Colors.grey.shade200,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 2.w),
+                          Text(
+                            usernameAvailable
+                                ? 'username available'
+                                : 'username already in use',
+                            style: textTheme.bodySmall?.copyWith(
+                                color: usernameAvailable
+                                    ? Colors.green
+                                    : Colors.red),
+                          ),
+                        ],
+                      ),
                 SizedBox(height: 20.h),
                 CustomButton(
                   onTap: () {},
@@ -100,6 +163,22 @@ class _SetUpScreenState extends State<SetUpScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  void searchUsername(String username) async {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
+    await authProvider.checkUsername(username: username);
+  }
+
+  void continueUserSetUp() async {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
+    authProvider.updateUserInfo(
+      scaffoldKey: _scaffoldKey,
+      profileImage: '',
+      username: usernameController.text.trim(),
     );
   }
 }

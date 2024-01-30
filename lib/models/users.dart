@@ -29,9 +29,9 @@ class Users {
     );
   }
 
-  Map<String, dynamic> toJson({required Users user}) {
+  Map<String, dynamic> toJson(String? uid, {required Users user}) {
     return {
-      'id': user.id,
+      'id': uid,
       'email': user.email,
       'devices': user.devices,
       'fullName': user.fullName,
