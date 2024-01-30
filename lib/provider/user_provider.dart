@@ -10,7 +10,7 @@ class UserProvider with ChangeNotifier {
   Users _user = const Users(
     id: '',
     email: '',
-    devices: '',
+    devices: [],
     fullName: '',
     password: '',
     username: '',

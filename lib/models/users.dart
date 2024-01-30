@@ -1,7 +1,7 @@
 class Users {
   final String id;
   final String email;
-  final dynamic devices;
+  final List<dynamic> devices;
   final String username;
   final String fullName;
   final String password;
@@ -21,7 +21,7 @@ class Users {
     return Users(
       id: json['id'] as String,
       email: json['email'] as String,
-      devices: json['devices'] as String,
+      devices: json['devices'] as List<dynamic>,
       fullName: json['fullName'] as String,
       password: json['password'] as String,
       username: json['username'] as String,

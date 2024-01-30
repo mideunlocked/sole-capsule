@@ -108,14 +108,14 @@ class _SetUpScreenState extends State<SetUpScreen> {
                     hint: 'example',
                     inputAction: TextInputAction.done,
                     onChanged: (value) async {
-                      setState(() {
-                        isChecked = true;
-                      });
-
-                      usernameAvailable = await provider.checkUsername(
+                      bool isAvailable = await provider.checkUsername(
                         username: value,
                       );
-                      print(usernameAvailable);
+
+                      setState(() {
+                        isChecked = true;
+                        usernameAvailable = isAvailable;
+                      });
                     },
                   );
                 }),
@@ -127,10 +127,11 @@ class _SetUpScreenState extends State<SetUpScreen> {
                           Visibility(
                             visible: isLoading,
                             replacement: Icon(
-                              !usernameAvailable
+                              usernameAvailable
                                   ? Icons.check_circle_rounded
                                   : Icons.cancel_rounded,
-                              color: Colors.red,
+                              color:
+                                  usernameAvailable ? Colors.green : Colors.red,
                             ),
                             child: SizedBox(
                               height: 1.5.h,
@@ -155,7 +156,7 @@ class _SetUpScreenState extends State<SetUpScreen> {
                       ),
                 SizedBox(height: 20.h),
                 CustomButton(
-                  onTap: () {},
+                  onTap: continueUserSetUp,
                   label: 'Complete Sign Up',
                 )
               ],
@@ -175,10 +176,25 @@ class _SetUpScreenState extends State<SetUpScreen> {
   void continueUserSetUp() async {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
-    authProvider.updateUserInfo(
+    final response = await authProvider.updateUserInfo(
       scaffoldKey: _scaffoldKey,
       profileImage: '',
       username: usernameController.text.trim(),
     );
+
+    if (response == true) {
+      if (mounted) {
+        Navigator.pop(context);
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          '/',
+          (route) => false,
+        );
+      }
+    } else {
+      if (mounted) {
+        Navigator.pop(context);
+      }
+    }
   }
 }

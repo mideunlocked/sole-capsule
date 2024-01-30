@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../provider/auth_provider.dart';
 import '../../widgets/general_widget/custom_back_button.dart';
 import '../../widgets/general_widget/custom_button.dart';
 import '../../widgets/general_widget/custom_text_field.dart';
@@ -24,6 +26,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
     emailController.dispose();
   }
+
+  final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
+      GlobalKey<ScaffoldMessengerState>();
 
   @override
   Widget build(BuildContext context) {
@@ -57,12 +62,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   title: 'Email',
                   hint: 'example@email.com',
                   inputType: TextInputType.emailAddress,
+                  inputAction: TextInputAction.done,
                 ),
                 SizedBox(height: 30.h),
                 CustomButton(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/ResetPasswordScreen');
-                  },
+                  onTap: sendResetEmail,
                   label: 'Submit',
                 ),
                 sizedBox,
@@ -72,5 +76,18 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         ),
       ),
     );
+  }
+
+  Future<dynamic> sendResetEmail() async {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
+    await authProvider.resetPassword(
+      email: emailController.text.trim(),
+      scaffoldKey: _scaffoldKey,
+    );
+
+    if (mounted) {
+      Navigator.pop(context);
+    }
   }
 }

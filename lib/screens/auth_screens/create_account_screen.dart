@@ -160,17 +160,15 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         scaffoldKey: _scaffoldKey,
       );
 
-      if (response == true) {
-        if (mounted) {
+      if (mounted) {
+        if (response == true) {
           Navigator.pop(context);
           Navigator.pushNamedAndRemoveUntil(
             context,
             '/SetUpScreen',
             (route) => false,
           );
-        }
-      } else {
-        if (mounted) {
+        } else {
           Navigator.pop(context);
         }
       }
