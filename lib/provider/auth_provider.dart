@@ -7,7 +7,7 @@ import '../helpers/firebase_constants.dart';
 import '../helpers/get_user_id.dart';
 import '../helpers/scaffold_messenger_helper.dart';
 import '../models/users.dart';
-import '../widgets/general_widget/loader_widget.dart';
+import '../widgets/general_widgets/loader_widget.dart';
 
 class AuthProvider with ChangeNotifier {
   Future<dynamic> createUserEmailPassword({

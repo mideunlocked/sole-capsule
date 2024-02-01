@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../general_widget/custom_button.dart';
-import '../general_widget/padded_screen_widget.dart';
+import '../general_widgets/custom_button.dart';
+import '../general_widgets/padded_screen_widget.dart';
 
 class ResetSuccessfullSheet extends StatelessWidget {
   const ResetSuccessfullSheet({

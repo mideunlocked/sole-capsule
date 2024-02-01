@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../widgets/general_widget/app_name.dart';
+import '../../widgets/general_widgets/app_name.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/SplashScreen';

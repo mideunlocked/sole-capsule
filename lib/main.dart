@@ -39,11 +39,23 @@ class MainApp extends StatelessWidget {
           navigatorKey: navigatorKey,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
+            scaffoldBackgroundColor: Colors.white,
             textTheme: TextTheme(
               titleMedium: TextStyle(
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w600,
                 fontSize: 22.sp,
+                color: Colors.black,
+              ),
+              titleSmall: TextStyle(
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w600,
+                fontSize: 20.sp,
+                color: Colors.black,
+              ),
+              bodyLarge: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 16.sp,
                 color: Colors.black,
               ),
               bodyMedium: TextStyle(

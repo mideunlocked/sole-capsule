@@ -4,9 +4,9 @@ import 'package:sizer/sizer.dart';
 
 import '../../helpers/app_colors.dart';
 import '../../helpers/app_contants.dart';
-import '../../widgets/general_widget/app_name.dart';
-import '../../widgets/general_widget/custom_button.dart';
-import '../../widgets/general_widget/padded_screen_widget.dart';
+import '../../widgets/general_widgets/app_name.dart';
+import '../../widgets/general_widgets/custom_button.dart';
+import '../../widgets/general_widgets/padded_screen_widget.dart';
 
 class WelcomeScreen extends StatelessWidget {
   static const routeName = '/WelcomeScreen';

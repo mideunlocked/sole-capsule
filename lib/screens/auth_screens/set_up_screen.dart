@@ -5,9 +5,9 @@ import 'package:sizer/sizer.dart';
 
 import '../../helpers/app_contants.dart';
 import '../../provider/auth_provider.dart';
-import '../../widgets/general_widget/custom_button.dart';
-import '../../widgets/general_widget/custom_text_field.dart';
-import '../../widgets/general_widget/padded_screen_widget.dart';
+import '../../widgets/general_widgets/custom_button.dart';
+import '../../widgets/general_widgets/custom_text_field.dart';
+import '../../widgets/general_widgets/padded_screen_widget.dart';
 
 class SetUpScreen extends StatefulWidget {
   static const routeName = '/SetUpScreen';

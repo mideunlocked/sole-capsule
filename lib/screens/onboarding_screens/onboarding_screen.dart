@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../helpers/onboarding_data.dart';
-import '../../widgets/general_widget/app_name.dart';
-import '../../widgets/general_widget/custom_button.dart';
-import '../../widgets/general_widget/padded_screen_widget.dart';
+import '../../widgets/general_widgets/app_name.dart';
+import '../../widgets/general_widgets/custom_button.dart';
+import '../../widgets/general_widgets/padded_screen_widget.dart';
 import '../../widgets/onboarding_widgets/onboarding_indicator.dart';
 import '../../widgets/onboarding_widgets/onboarding_widget.dart';
 
