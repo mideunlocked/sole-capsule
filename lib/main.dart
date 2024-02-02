@@ -4,9 +4,12 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import 'firebase_options.dart';
+import 'helpers/auth_helper.dart';
 import 'helpers/routes.dart';
 import 'provider/auth_provider.dart';
 import 'provider/user_provider.dart';
+import 'screens/app.dart';
+import 'screens/onboarding_screens/onboarding_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,14 +17,25 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const MainApp());
+  final Auth auth = Auth();
+  final bool isLogged = auth.isLogged();
+  final MainApp mainApp = MainApp(
+    initialRoute: isLogged ? App.rouetName : OnboardingScreen.routeName,
+  );
+
+  runApp(mainApp);
 }
 
 class MainApp extends StatelessWidget {
+  const MainApp({
+    super.key,
+    required this.initialRoute,
+  });
+
+  final String initialRoute;
+
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
-
-  const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +87,7 @@ class MainApp extends StatelessWidget {
               backgroundColor: Color(0xFF000218),
             ),
           ),
-          initialRoute: '/SplashScreen',
+          initialRoute: initialRoute,
           routes: routes,
         ),
       ),

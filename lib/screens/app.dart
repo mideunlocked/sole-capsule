@@ -1,13 +1,12 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:sole_capsule/widgets/general_widgets/padded_screen_widget.dart';
 
 import '../provider/user_provider.dart';
+import '../widgets/bottom_nav_widgets/bottom_nav_item.dart';
 import 'bottom_nav_screens/home_screen.dart';
+import 'bottom_nav_screens/shop_screen.dart';
 
 class App extends StatefulWidget {
   static const rouetName = '/';
@@ -50,6 +49,7 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           Expanded(
@@ -59,9 +59,7 @@ class _AppState extends State<App> {
               onPageChanged: changeScreen,
               children: const [
                 HomeSceen(),
-                Center(
-                  child: Text('SHOP'),
-                ),
+                ShopScreen(),
                 Center(
                   child: Text('PROFILE'),
                 ),
@@ -69,7 +67,7 @@ class _AppState extends State<App> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(bottom: 2.h),
+            padding: EdgeInsets.symmetric(vertical: 2.h),
             child: PaddedScreenWidget(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -116,50 +114,5 @@ class _AppState extends State<App> {
     setState(() {
       isLoading = false;
     });
-  }
-}
-
-class BottomNavItem extends StatelessWidget {
-  const BottomNavItem({
-    super.key,
-    required this.label,
-    required this.icon,
-    required this.currentIndex,
-    required this.index,
-    required this.function,
-  });
-
-  final String label;
-  final String icon;
-  final int index;
-  final int currentIndex;
-  final Function(int) function;
-
-  @override
-  Widget build(BuildContext context) {
-    bool isCurrent = currentIndex == index;
-    Color color = isCurrent ? Colors.black : const Color(0xFF6A6A6A);
-
-    return InkWell(
-      onTap: () => function(index),
-      child: Row(
-        children: [
-          SvgPicture.asset(
-            'assets/icons/$icon',
-            color: color,
-            height: 3.h,
-            width: 3.w,
-          ),
-          SizedBox(width: 3.w),
-          Text(
-            label,
-            style: TextStyle(
-              color: color,
-              fontSize: 9.sp,
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }
