@@ -1,21 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../general_widgets/custom_button.dart';
-import '../general_widgets/padded_screen_widget.dart';
+import 'custom_button.dart';
+import 'padded_screen_widget.dart';
 
-class ResetSuccessfullSheet extends StatelessWidget {
-  const ResetSuccessfullSheet({
+void showSuccesfullSheet({
+  required BuildContext context,
+  required Widget successMessage,
+  required String buttonTitle,
+  required Function buttonFunction,
+}) async {
+  showModalBottomSheet(
+    context: context,
+    isDismissible: false,
+    enableDrag: false,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20),
+    ),
+    backgroundColor: Colors.transparent,
+    builder: (ctx) => WillPopScope(
+      onWillPop: () {
+        throw 0;
+      },
+      child: SuccessfullSheet(
+        successMesssage: successMessage,
+        buttonFunction: buttonFunction,
+        buttonTitle: buttonTitle,
+      ),
+    ),
+  );
+}
+
+class SuccessfullSheet extends StatelessWidget {
+  const SuccessfullSheet({
     super.key,
+    required this.successMesssage,
+    required this.buttonTitle,
+    required this.buttonFunction,
   });
+
+  final Widget successMesssage;
+  final String buttonTitle;
+  final Function buttonFunction;
 
   @override
   Widget build(BuildContext context) {
-    var of = Theme.of(context);
-    var textTheme = of.textTheme;
-    var titleMedium = textTheme.titleMedium;
-
     var sizedBox = SizedBox(height: 5.h);
+
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -35,23 +66,13 @@ class ResetSuccessfullSheet extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
-                  'Password Reset Done!',
-                  style: titleMedium?.copyWith(fontSize: 20.sp),
-                ),
-                SizedBox(height: 0.5.h),
-                const Text(
-                  'Your password has been reset successfully, you can now login with your new password.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.black54),
-                ),
+                successMesssage,
                 sizedBox,
                 CustomButton(
                   onTap: () {
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, '/LoginScreen', (route) => false);
+                    buttonFunction();
                   },
-                  label: 'Login',
+                  label: buttonTitle,
                 ),
                 sizedBox,
               ],

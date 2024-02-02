@@ -5,7 +5,7 @@ import '../../widgets/general_widgets/custom_back_button.dart';
 import '../../widgets/general_widgets/custom_button.dart';
 import '../../widgets/general_widgets/custom_text_field.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
-import '../../widgets/reset_widgets/reset_successfull_sheet.dart';
+import '../../widgets/general_widgets/successfull_sheet.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   static const routeName = '/ResetPasswordScreen';
@@ -67,7 +67,28 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 SizedBox(height: 30.h),
                 CustomButton(
                   onTap: () {
-                    showResetSuccesfullSheet();
+                    showSuccesfullSheet(
+                      context: context,
+                      buttonTitle: 'Login',
+                      buttonFunction: () {
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, '/LoginScreen', (route) => false);
+                      },
+                      successMessage: Column(
+                        children: [
+                          Text(
+                            'Password Reset Done!',
+                            style: titleMedium?.copyWith(fontSize: 20.sp),
+                          ),
+                          SizedBox(height: 0.5.h),
+                          const Text(
+                            'Your password has been reset successfully, you can now login with your new password.',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.black54),
+                          ),
+                        ],
+                      ),
+                    );
                   },
                   label: 'Submit',
                 ),
@@ -77,23 +98,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           ),
         ),
       ),
-    );
-  }
-
-  void showResetSuccesfullSheet() async {
-    showModalBottomSheet(
-      context: context,
-      isDismissible: false,
-      enableDrag: false,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      backgroundColor: Colors.transparent,
-      builder: (ctx) => WillPopScope(
-          onWillPop: () {
-            throw 0;
-          },
-          child: const ResetSuccessfullSheet()),
     );
   }
 }
