@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import 'delete_box_sheet.dart';
+
 class DeleteBoxButton extends StatelessWidget {
   const DeleteBoxButton({
     super.key,
@@ -23,7 +25,7 @@ class DeleteBoxButton extends StatelessWidget {
             color: Colors.red,
           ),
         ),
-        onPressed: () {},
+        onPressed: () => showDeleteBoxSheet(context: context),
       ),
     );
   }

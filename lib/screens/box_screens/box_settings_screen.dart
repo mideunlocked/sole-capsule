@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:sole_capsule/widgets/general_widgets/custom_app_bar.dart';
-import 'package:sole_capsule/widgets/general_widgets/custom_button.dart';
-import 'package:sole_capsule/widgets/general_widgets/custom_text_field.dart';
-import 'package:sole_capsule/widgets/general_widgets/padded_screen_widget.dart';
 
 import '../../widgets/box_widgets/delete_box_button.dart';
+import '../../widgets/general_widgets/custom_app_bar.dart';
+import '../../widgets/general_widgets/custom_button.dart';
+import '../../widgets/general_widgets/custom_text_field.dart';
+import '../../widgets/general_widgets/padded_screen_widget.dart';
 
 class BoxSettingsScreen extends StatefulWidget {
   static const routeName = '/BoxSettingsScreen';
