@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../main.dart';
+import 'custom_progress_inidicator.dart';
 
 void showCustomLoader() {
   final context = MainApp.navigatorKey.currentState?.overlay?.context;
@@ -34,11 +35,7 @@ class LoaderWidget extends StatelessWidget {
         ),
         insetPadding: EdgeInsets.symmetric(horizontal: 39.w, vertical: 43.h),
         child: const Center(
-          child: CircularProgressIndicator(
-            color: Colors.black,
-            backgroundColor: Colors.black38,
-            strokeWidth: 4,
-          ),
+          child: CustomProgressIndicator(),
         ),
       ),
     );

@@ -12,6 +12,7 @@ import '../screens/home_screens/add_box_screen.dart';
 import '../screens/onboarding_screens/onboarding_screen.dart';
 import '../screens/onboarding_screens/splash_screen.dart';
 import '../screens/onboarding_screens/welcome_screen.dart';
+import '../screens/profile_screens/edit_profile_screen.dart';
 
 Map<String, Widget Function(BuildContext)> routes = {
   App.rouetName: (ctx) => const App(),
@@ -26,4 +27,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   AddBoxScreen.routeName: (ctx) => const AddBoxScreen(),
   CheckOutScreen.routeName: (ctx) => const CheckOutScreen(),
   CartScreen.routeName: (ctx) => const CartScreen(),
+  EditProfileScreen.routeName: (ctx) => const EditProfileScreen(),
 };

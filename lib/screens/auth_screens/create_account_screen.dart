@@ -153,6 +153,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         password: passwordController.text.trim(),
         username: '',
         profileImage: '',
+        phoneNumber: '',
       );
 
       final response = await authProvider.createUserEmailPassword(

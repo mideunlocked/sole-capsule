@@ -15,6 +15,7 @@ class UserProvider with ChangeNotifier {
     password: '',
     username: '',
     profileImage: '',
+    phoneNumber: '',
   );
 
   Users get user => _user;

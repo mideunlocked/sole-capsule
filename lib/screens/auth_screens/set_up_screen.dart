@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../helpers/app_contants.dart';
 import '../../provider/auth_provider.dart';
 import '../../widgets/general_widgets/custom_button.dart';
 import '../../widgets/general_widgets/custom_text_field.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
+import '../../widgets/general_widgets/profile_image_selector.dart';
 
 class SetUpScreen extends StatefulWidget {
   static const routeName = '/SetUpScreen';
@@ -75,31 +74,7 @@ class _SetUpScreenState extends State<SetUpScreen> {
                   style: TextStyle(color: Colors.black54),
                 ),
                 sizedBox,
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 3.h),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: const Color(0xFFB7B7B7),
-                    ),
-                  ),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 25.sp,
-                        backgroundColor: Colors.grey.shade300,
-                        child: SvgPicture.asset(AppConstants.personIcon),
-                      ),
-                      SizedBox(width: 3.w),
-                      const Text(
-                        'Click to upload profile picture',
-                        style: TextStyle(
-                          color: Colors.black54,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                const SelectProfileImageWidget(),
                 sizedBox,
                 Consumer<AuthProvider>(builder: (ctx, provider, child) {
                   return CustomTextField(
