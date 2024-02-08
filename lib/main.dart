@@ -54,7 +54,18 @@ class MainApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             scaffoldBackgroundColor: Colors.white,
+            appBarTheme: AppBarTheme(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              toolbarHeight: 10.h,
+            ),
             textTheme: TextTheme(
+              titleLarge: TextStyle(
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.bold,
+                fontSize: 35.sp,
+                color: Colors.black,
+              ),
               titleMedium: TextStyle(
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w600,

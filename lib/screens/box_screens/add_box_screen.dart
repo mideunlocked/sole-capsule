@@ -65,7 +65,10 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
                       style: titleMedium?.copyWith(fontSize: 20.sp),
                     ),
                     buttonTitle: 'View',
-                    buttonFunction: () {},
+                    buttonFunction: () => Navigator.pushReplacementNamed(
+                      context,
+                      '/BoxScreen',
+                    ),
                   );
                 },
                 label: 'Add +',
