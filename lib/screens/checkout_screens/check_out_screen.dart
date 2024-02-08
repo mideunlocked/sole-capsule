@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../widgets/checkout_widgets/order_details_sheet.dart';
 import '../../widgets/general_widgets/custom_app_bar.dart';
 import '../../widgets/general_widgets/custom_button.dart';
 import '../../widgets/general_widgets/custom_icon.dart';
@@ -107,7 +108,7 @@ class CheckOutScreen extends StatelessWidget {
               sizedBox2,
               CustomButton(
                 label: 'Checkout',
-                onTap: () {},
+                onTap: () => showOrderDetailsSheet(context: context),
               ),
               sizedBox,
             ],
