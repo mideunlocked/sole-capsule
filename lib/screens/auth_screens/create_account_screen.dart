@@ -148,7 +148,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       Users user = Users(
         id: '',
         email: emailController.text.trim(),
-        devices: [],
+        boxes: [],
         fullName: fullNameController.text.trim(),
         password: passwordController.text.trim(),
         username: '',

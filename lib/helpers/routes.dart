@@ -8,7 +8,7 @@ import '../screens/auth_screens/set_up_screen.dart';
 import '../screens/app.dart';
 import '../screens/cart_screens/cart_screen.dart';
 import '../screens/check_out_screen.dart';
-import '../screens/home_screens/add_box_screen.dart';
+import '../screens/box_screens/add_box_screen.dart';
 import '../screens/onboarding_screens/onboarding_screen.dart';
 import '../screens/onboarding_screens/splash_screen.dart';
 import '../screens/onboarding_screens/welcome_screen.dart';
