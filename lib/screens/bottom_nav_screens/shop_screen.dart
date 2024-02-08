@@ -39,30 +39,7 @@ class _ShopScreenState extends State<ShopScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 2.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Shop',
-                  style: bodyLarge,
-                ),
-                InkWell(
-                  onTap: () => Navigator.pushNamed(
-                    context,
-                    '/CartScreen',
-                  ),
-                  child: CircleAvatar(
-                    maxRadius: 15.sp,
-                    backgroundColor: const Color(0xFFD9D9D9),
-                    child: SvgPicture.asset(
-                      'assets/icons/cart.svg',
-                      height: 3.h,
-                      width: 3.w,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            const ShoppingScreenAppBar(),
             sizedBox,
             SearchTextField(
               searchController: searchController,
@@ -105,6 +82,45 @@ class _ShopScreenState extends State<ShopScreen> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class ShoppingScreenAppBar extends StatelessWidget {
+  const ShoppingScreenAppBar({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    var of = Theme.of(context);
+    var textTheme = of.textTheme;
+
+    var bodyLarge = textTheme.bodyLarge;
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          'Shop',
+          style: bodyLarge,
+        ),
+        InkWell(
+          onTap: () => Navigator.pushNamed(
+            context,
+            '/CartScreen',
+          ),
+          child: CircleAvatar(
+            maxRadius: 15.sp,
+            backgroundColor: const Color(0xFFD9D9D9),
+            child: SvgPicture.asset(
+              'assets/icons/cart.svg',
+              height: 3.h,
+              width: 3.w,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

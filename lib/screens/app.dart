@@ -6,6 +6,7 @@ import 'package:sole_capsule/widgets/general_widgets/padded_screen_widget.dart';
 import '../provider/user_provider.dart';
 import '../widgets/bottom_nav_widgets/bottom_nav_item.dart';
 import 'bottom_nav_screens/home_screen.dart';
+import 'bottom_nav_screens/profile_screen.dart';
 import 'bottom_nav_screens/shop_screen.dart';
 
 class App extends StatefulWidget {
@@ -60,9 +61,7 @@ class _AppState extends State<App> {
               children: const [
                 HomeSceen(),
                 ShopScreen(),
-                Center(
-                  child: Text('PROFILE'),
-                ),
+                ProfileScreen(),
               ],
             ),
           ),
