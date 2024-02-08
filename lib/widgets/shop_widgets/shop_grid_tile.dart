@@ -41,10 +41,10 @@ class ShopGridTile extends StatelessWidget {
                 'Autumn And Winter Casual cotton-padded jacket',
               ),
               SizedBox(height: 1.h),
-              const Text(
+              Text(
                 '₹499',
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
+                style: textTheme.labelMedium?.copyWith(
+                  fontSize: 11.sp,
                 ),
               ),
             ],

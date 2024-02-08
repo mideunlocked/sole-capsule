@@ -60,6 +60,11 @@ class MainApp extends StatelessWidget {
               toolbarHeight: 10.h,
             ),
             textTheme: TextTheme(
+              labelMedium: TextStyle(
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w600,
+                fontSize: 14.sp,
+              ),
               titleLarge: TextStyle(
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.bold,

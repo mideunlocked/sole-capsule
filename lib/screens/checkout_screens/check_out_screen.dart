@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../widgets/general_widgets/custom_app_bar.dart';
-import '../widgets/general_widgets/custom_button.dart';
-import '../widgets/general_widgets/custom_icon.dart';
-import '../widgets/general_widgets/padded_screen_widget.dart';
-import '../widgets/shopping_cart_widgets/shopping_cart_widget.dart';
+import '../../widgets/general_widgets/custom_app_bar.dart';
+import '../../widgets/general_widgets/custom_button.dart';
+import '../../widgets/general_widgets/custom_icon.dart';
+import '../../widgets/general_widgets/padded_screen_widget.dart';
+import '../../widgets/shopping_cart_widgets/shopping_cart_widget.dart';
 
 class CheckOutScreen extends StatelessWidget {
   static const routeName = '/CheckOutScreen';
@@ -88,7 +88,10 @@ class CheckOutScreen extends StatelessWidget {
                                 ),
                               ),
                               IconButton(
-                                onPressed: () {},
+                                onPressed: () => Navigator.pushNamed(
+                                  context,
+                                  '/CheckOutDetailsScreen',
+                                ),
                                 icon: const CustomIcon(icon: 'edit'),
                               ),
                             ],
