@@ -11,6 +11,7 @@ class PaddedScreenWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 5.w,
+        vertical: 0,
       ),
       child: child,
     );
