@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:sole_capsule/models/box.dart';
 
+import '../../provider/box_provider.dart';
 import '../../widgets/add_box_widgets/connect_blue_button.dart';
 import '../../widgets/general_widgets/custom_app_bar.dart';
 import '../../widgets/general_widgets/custom_button.dart';
@@ -19,6 +22,13 @@ class AddBoxScreen extends StatefulWidget {
 
 class _AddBoxScreenState extends State<AddBoxScreen> {
   final boxNameCtr = TextEditingController();
+
+  Box box = Box(
+    id: '',
+    name: '',
+    isOpen: false,
+    isLightOn: false,
+  );
 
   @override
   void dispose() {
@@ -58,6 +68,8 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
                   var textTheme = of.textTheme;
                   var titleMedium = textTheme.titleMedium;
 
+                  addNewBox();
+
                   showSuccesfullSheet(
                     context: context,
                     successMessage: Text(
@@ -68,6 +80,7 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
                     buttonFunction: () => Navigator.pushReplacementNamed(
                       context,
                       '/BoxScreen',
+                      arguments: box,
                     ),
                   );
                 },
@@ -78,6 +91,21 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  void addNewBox() {
+    var boxProvider = Provider.of<BoxProvider>(context, listen: false);
+
+    box = Box(
+      id: boxProvider.boxes.length.toString(),
+      name: boxNameCtr.text.trim(),
+      isOpen: false,
+      isLightOn: false,
+    );
+
+    boxProvider.addNewBox(
+      box: box,
     );
   }
 }

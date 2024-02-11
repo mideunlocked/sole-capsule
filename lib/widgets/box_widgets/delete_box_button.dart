@@ -6,7 +6,10 @@ import 'delete_box_sheet.dart';
 class DeleteBoxButton extends StatelessWidget {
   const DeleteBoxButton({
     super.key,
+    required this.boxId,
   });
+
+  final String boxId;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,10 @@ class DeleteBoxButton extends StatelessWidget {
             color: Colors.red,
           ),
         ),
-        onPressed: () => showDeleteBoxSheet(context: context),
+        onPressed: () => showDeleteBoxSheet(
+          context: context,
+          boxId: boxId,
+        ),
       ),
     );
   }

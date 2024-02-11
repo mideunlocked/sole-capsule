@@ -44,7 +44,9 @@ class _BoxSettingsScreenState extends State<BoxSettingsScreen> {
                 hint: 'Enter box name',
               ),
               SizedBox(height: 4.h),
-              const DeleteBoxButton(),
+              const DeleteBoxButton(
+                boxId: '',
+              ),
               const Spacer(),
               CustomButton(
                 onTap: () {},

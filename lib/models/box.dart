@@ -1,10 +1,10 @@
 class Box {
   final String id;
-  final String name;
-  final bool isOpen;
-  final bool isLightOn;
+  String name;
+  bool isOpen;
+  bool isLightOn;
 
-  const Box({
+  Box({
     required this.id,
     required this.name,
     required this.isOpen,
@@ -29,5 +29,17 @@ class Box {
       'isOpen': box.isOpen,
       'isLightOn': box.isLightOn,
     };
+  }
+
+  void toggleLight() {
+    isLightOn = !isLightOn;
+  }
+
+  void toggleBoxOpen() {
+    isOpen = !isOpen;
+  }
+
+  void changeBoxName(String newName) {
+    name = newName;
   }
 }

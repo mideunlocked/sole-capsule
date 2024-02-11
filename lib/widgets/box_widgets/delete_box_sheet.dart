@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../provider/box_provider.dart';
 import '../general_widgets/padded_screen_widget.dart';
 
 void showDeleteBoxSheet({
   required BuildContext context,
+  required String boxId,
 }) async {
   showModalBottomSheet(
     context: context,
@@ -13,14 +16,19 @@ void showDeleteBoxSheet({
       borderRadius: BorderRadius.circular(20),
     ),
     backgroundColor: Colors.transparent,
-    builder: (ctx) => const DeleteBoxSheet(),
+    builder: (ctx) => DeleteBoxSheet(
+      boxId: boxId,
+    ),
   );
 }
 
 class DeleteBoxSheet extends StatelessWidget {
   const DeleteBoxSheet({
     super.key,
+    required this.boxId,
   });
+
+  final String boxId;
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +68,17 @@ class DeleteBoxSheet extends StatelessWidget {
                       label: 'Cancel',
                       onTap: () => Navigator.pop(context),
                     ),
-                    DeleteBoxSheetButton(
-                      label: 'Delete',
-                      isInverted: true,
-                      onTap: () {},
-                    ),
+                    Consumer<BoxProvider>(builder: (context, boxPvr, _) {
+                      return DeleteBoxSheetButton(
+                        label: 'Delete',
+                        isInverted: true,
+                        onTap: () {
+                          boxPvr.deleteBox(id: boxId);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
+                      );
+                    }),
                   ],
                 ),
                 sizedBox,

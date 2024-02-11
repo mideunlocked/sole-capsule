@@ -1,30 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-class BoxTile extends StatefulWidget {
+import '../../models/box.dart';
+import '../../provider/box_provider.dart';
+
+class BoxTile extends StatelessWidget {
   const BoxTile({
     super.key,
+    required this.box,
   });
 
-  @override
-  State<BoxTile> createState() => _BoxTileState();
-}
-
-class _BoxTileState extends State<BoxTile> {
-  bool _toggleBox = false;
-
-  void toggleBox(bool newToggle) {
-    setState(() {
-      _toggleBox = newToggle;
-    });
-  }
+  final Box box;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.pushNamed(context, '/BoxScreen'),
+      onTap: () => Navigator.pushNamed(
+        context,
+        '/BoxScreen',
+        arguments: box,
+      ),
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
@@ -42,11 +40,24 @@ class _BoxTileState extends State<BoxTile> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Box 1'),
-                CupertinoSwitch(
-                  value: _toggleBox,
-                  activeColor: Colors.black,
-                  onChanged: toggleBox,
+                SizedBox(
+                  width: 15.w,
+                  child: Text(
+                    box.name,
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Consumer<BoxProvider>(
+                  builder: (context, boxPrv, child) {
+                    return CupertinoSwitch(
+                      value: box.isOpen,
+                      activeColor: Colors.black,
+                      onChanged: (_) => boxPrv.toggleBoxOpen(
+                        id: box.id,
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

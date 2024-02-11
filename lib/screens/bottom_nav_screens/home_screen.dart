@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:sole_capsule/widgets/general_widgets/custom_progress_inidicator.dart';
 
+import '../../provider/box_provider.dart';
 import '../../provider/user_provider.dart';
 import '../../widgets/box_widgets/add_box_tile.dart';
 import '../../widgets/box_widgets/box_tile.dart';
+import '../../widgets/general_widgets/custom_progress_inidicator.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
 
 class HomeSceen extends StatefulWidget {
@@ -35,6 +36,8 @@ class _HomeSceenState extends State<HomeSceen> {
   Widget build(BuildContext context) {
     var of = Theme.of(context);
     var textTheme = of.textTheme;
+
+    var boxProvider = Provider.of<BoxProvider>(context);
 
     return SafeArea(
       child: PaddedScreenWidget(
@@ -72,9 +75,13 @@ class _HomeSceenState extends State<HomeSceen> {
                           crossAxisSpacing: 5.w,
                           childAspectRatio: 0.9,
                         ),
-                        itemCount: 3,
+                        itemCount: boxProvider.boxes.length + 1,
                         itemBuilder: (ctx, index) =>
-                            index == 2 ? const AddBoxTile() : const BoxTile(),
+                            index == boxProvider.boxes.length
+                                ? const AddBoxTile()
+                                : BoxTile(
+                                    box: boxProvider.boxes[index],
+                                  ),
                       ),
               ),
             ],
