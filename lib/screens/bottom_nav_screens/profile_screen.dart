@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -6,6 +7,7 @@ import 'package:sizer/sizer.dart';
 import '../../helpers/firebase_constants.dart';
 import '../../models/users.dart';
 import '../../provider/user_provider.dart';
+import '../../widgets/general_widgets/custom_icon.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -23,6 +25,11 @@ class ProfileScreen extends StatelessWidget {
       child: SingleChildScrollView(
         child: Consumer<UserProvider>(builder: (context, user, child) {
           Users userData = user.user;
+
+          var listTileStyle = textTheme.bodyMedium?.copyWith(
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w400,
+          );
 
           return Column(
             children: [
@@ -72,6 +79,44 @@ class ProfileScreen extends StatelessWidget {
                       value: userData.email,
                     ),
                   ],
+                ),
+              ),
+              ListTile(
+                leading: const CustomIcon(icon: 'orders'),
+                title: Text(
+                  'My Orders',
+                  style: listTileStyle,
+                ),
+                trailing: const Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: Colors.black,
+                ),
+                minLeadingWidth: 5.w,
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 1.h,
+                  horizontal: 5.w,
+                ),
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(color: Colors.grey.shade200),
+                ),
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  '/OrdersScreen',
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  'Dark Mode',
+                  style: listTileStyle,
+                ),
+                trailing: CupertinoSwitch(
+                  value: false,
+                  onChanged: (_) {},
+                  trackColor: Colors.black26,
+                ),
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 1.h,
+                  horizontal: 5.w,
                 ),
               ),
             ],

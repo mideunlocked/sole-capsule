@@ -17,6 +17,7 @@ import '../screens/onboarding_screens/onboarding_screen.dart';
 import '../screens/onboarding_screens/splash_screen.dart';
 import '../screens/onboarding_screens/welcome_screen.dart';
 import '../screens/profile_screens/edit_profile_screen.dart';
+import '../screens/profile_screens/orders_screen.dart';
 import '../screens/shop_screens/product_screen.dart';
 
 Map<String, Widget Function(BuildContext)> routes = {
@@ -38,4 +39,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   CheckOutDetailsScreen.routeName: (ctx) => const CheckOutDetailsScreen(),
   CheckOutSuccessScreen.routeName: (ctx) => const CheckOutSuccessScreen(),
   ProductScreen.routeName: (ctx) => const ProductScreen(),
+  OrdersScreen.routeName: (ctx) => const OrdersScreen(),
 };
