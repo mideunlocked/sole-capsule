@@ -22,12 +22,15 @@ class Product {
   });
 
   factory Product.fromJSon({required Map<String, dynamic> json}) {
+    double discount = double.parse(json['discount'].toString());
+    double price = double.parse(json['price'].toString());
+
     return Product(
         id: json['id'] as String,
         name: json['name'] as String,
-        price: json['price'] as double,
+        price: price,
         colors: json['colors'] as List<dynamic>,
-        discount: json['discount'] as double?,
+        discount: discount,
         description: json['description'] as String,
         productDetails: json['productDetails'] as String,
         isOutOfStock: json['isOutOfStock'] as bool,

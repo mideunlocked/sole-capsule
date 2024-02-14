@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../models/product.dart';
+import '../general_widgets/custom_progress_inidicator.dart';
 
 class ShopGridTile extends StatelessWidget {
   const ShopGridTile({
     super.key,
+    required this.product,
   });
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +25,7 @@ class ShopGridTile extends StatelessWidget {
       onTap: () => Navigator.pushNamed(
         context,
         '/ProductScreen',
-        arguments: products.first,
+        arguments: product,
       ),
       borderRadius: borderRadius,
       child: Stack(
@@ -44,19 +48,22 @@ class ShopGridTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Sole Capsule',
+                  product.name,
                   style: bodyLarge?.copyWith(fontSize: 15.sp),
                 ),
                 SizedBox(height: 1.h),
-                const Text(
-                  'Autumn And Winter Casual cotton-padded jacket',
+                Text(
+                  product.description,
                 ),
                 SizedBox(height: 1.h),
                 Text(
-                  '₹499',
+                  '\$${product.price}',
                   style: textTheme.labelMedium?.copyWith(
                     fontSize: 11.sp,
                   ),
+                  maxLines: 2,
+                  softWrap: true,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
@@ -64,7 +71,22 @@ class ShopGridTile extends StatelessWidget {
           ClipRRect(
             borderRadius: borderRadius,
             child: Image.network(
-              'https://firebasestorage.googleapis.com/v0/b/sole-capsule.appspot.com/o/sole-capsule.jpeg?alt=media&token=6ea04961-11d7-48a4-9bbd-a37924f6b27d',
+              product.productImages.last,
+              fit: BoxFit.cover,
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return const Center(
+                  child: CustomProgressIndicator(),
+                );
+              },
+              errorBuilder: (ctx, _, stacktrace) {
+                return const Center(
+                  child: Icon(
+                    Icons.error_rounded,
+                    color: Colors.black,
+                  ),
+                );
+              },
             ),
           ),
         ],

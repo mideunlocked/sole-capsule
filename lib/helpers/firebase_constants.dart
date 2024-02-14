@@ -8,4 +8,5 @@ class FirebaseConstants {
   static final storageInstance = FirebaseStorage.instance;
 
   static const String userPath = 'users';
+  static const String productsPath = 'products';
 }

@@ -56,6 +56,7 @@ class BoxScreen extends StatelessWidget {
                                     box.name,
                                     style: titleLarge?.copyWith(
                                       color: Colors.grey.shade200,
+                                      fontSize: 30.sp,
                                     ),
                                   ),
                                 ),
@@ -68,7 +69,7 @@ class BoxScreen extends StatelessWidget {
                                         ' ',
                                         onMatch: (p0) => '\n',
                                       ),
-                                      style: textTheme.titleMedium,
+                                      style: textTheme.titleSmall,
                                       softWrap: true,
                                       overflow: TextOverflow.clip,
                                     ),
