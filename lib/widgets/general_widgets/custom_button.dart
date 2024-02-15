@@ -7,9 +7,11 @@ class CustomButton extends StatelessWidget {
     required this.onTap,
     required this.label,
     this.color = const Color(0xFF000218),
+    this.icon,
   });
 
   final Function() onTap;
+  final IconData? icon;
   final String label;
   final Color color;
 
@@ -26,9 +28,22 @@ class CustomButton extends StatelessWidget {
           color: color,
         ),
         alignment: Alignment.center,
-        child: Text(
-          label,
-          style: const TextStyle(color: Colors.white),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Visibility(
+              visible: icon != null,
+              child: Icon(
+                icon,
+              ),
+            ),
+            Text(
+              label,
+              style: TextStyle(
+                color: color == const Color(0xFF000218) ? Colors.white : null,
+              ),
+            ),
+          ],
         ),
       ),
     );

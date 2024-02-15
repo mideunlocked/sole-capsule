@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../models/cart.dart';
+import '../../models/product.dart';
+
 class OrderTile extends StatelessWidget {
   const OrderTile({
     super.key,
+    required this.cart,
   });
+
+  final Cart cart;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +23,8 @@ class OrderTile extends StatelessWidget {
       fontWeight: FontWeight.w600,
     );
 
+    Product prod = cart.cartProduct();
+
     return Column(
       children: [
         Row(
@@ -25,7 +33,7 @@ class OrderTile extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: Image.network(
-                'https://firebasestorage.googleapis.com/v0/b/sole-capsule.appspot.com/o/sole-capsule.jpeg?alt=media&token=6ea04961-11d7-48a4-9bbd-a37924f6b27d',
+                prod.productImages.last,
                 height: 20.h,
                 width: 35.w,
                 fit: BoxFit.cover,
@@ -37,7 +45,7 @@ class OrderTile extends StatelessWidget {
               children: [
                 sizedBox,
                 Text(
-                  'Sole Capsule',
+                  prod.name,
                   style: customTextStyle,
                 ),
                 SizedBox(height: 1.h),
@@ -52,9 +60,9 @@ class OrderTile extends StatelessWidget {
                     ),
                     borderRadius: BorderRadius.circular(5),
                   ),
-                  child: const Text(
-                    '\$ 34.00',
-                    style: TextStyle(
+                  child: Text(
+                    '\$ ${cart.totalCartPrice()}',
+                    style: const TextStyle(
                       fontWeight: FontWeight.w600,
                     ),
                   ),

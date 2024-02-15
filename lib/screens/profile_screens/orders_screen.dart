@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:sole_capsule/models/cart.dart';
 
 import '../../widgets/general_widgets/custom_app_bar.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
@@ -80,7 +81,13 @@ class OrderSecondaryTile extends StatelessWidget {
           horizontal: 4.w,
           vertical: 1.5.h,
         ),
-        child: const OrderTile(),
+        child: const OrderTile(
+          cart: Cart(
+            id: '',
+            prodId: '',
+            quantity: 0,
+          ),
+        ),
       ),
     );
   }
