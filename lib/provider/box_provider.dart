@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../helpers/scaffold_messenger_helper.dart';
 import '../models/box.dart';
 
 class BoxProvider with ChangeNotifier {
@@ -54,13 +55,19 @@ class BoxProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void editBoxName({
-    required String id,
-    required String newName,
-  }) {
+  void editBoxName(
+      {required String id,
+      required String newName,
+      required GlobalKey<ScaffoldMessengerState> scaffoldKey}) {
     Box box = _boxes.firstWhere((box) => box.id == id);
 
     box.changeBoxName(newName);
+
+    showScaffoldMessenger(
+      scaffoldKey: scaffoldKey,
+      textContent: 'Box name changed.',
+      bkgColor: Colors.green,
+    );
 
     notifyListeners();
   }

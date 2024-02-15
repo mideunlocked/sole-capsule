@@ -35,7 +35,10 @@ class BoxTile extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset('assets/images/box.svg'),
+            Hero(
+              tag: box.id,
+              child: SvgPicture.asset('assets/images/box.svg'),
+            ),
             SizedBox(height: 3.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

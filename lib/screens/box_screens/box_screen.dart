@@ -34,8 +34,11 @@ class BoxScreen extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: 2.h),
-              const PaddedScreenWidget(
-                child: BoxAppBar(),
+              PaddedScreenWidget(
+                child: BoxAppBar(
+                  id: box.id,
+                  name: box.name,
+                ),
               ),
               Expanded(
                 child: Column(
@@ -89,11 +92,14 @@ class BoxScreen extends StatelessWidget {
                             }),
                           ],
                         ),
-                        SvgPicture.asset(
-                          'assets/images/box.svg',
-                          height: 30.h,
-                          width: 30.w,
-                          fit: BoxFit.cover,
+                        Hero(
+                          tag: box.id,
+                          child: SvgPicture.asset(
+                            'assets/images/box.svg',
+                            height: 30.h,
+                            width: 30.w,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ],
                     ),

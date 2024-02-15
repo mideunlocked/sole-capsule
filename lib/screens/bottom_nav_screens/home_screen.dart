@@ -94,11 +94,11 @@ class _HomeSceenState extends State<HomeSceen> {
   Future<void> getUserData() async {
     var userProvider = Provider.of<UserProvider>(context, listen: false);
 
-    if (isInitial) {
-      setState(() {
-        isLoading = true;
-      });
-    }
+    // if (isInitial) {
+    //   setState(() {
+    //     isLoading = true;
+    //   });
+    // }
 
     await userProvider.getUser(scaffoldKey: _scaffoldKey);
 

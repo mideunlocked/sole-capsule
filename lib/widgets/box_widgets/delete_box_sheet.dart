@@ -74,8 +74,11 @@ class DeleteBoxSheet extends StatelessWidget {
                         isInverted: true,
                         onTap: () {
                           boxPvr.deleteBox(id: boxId);
-                          Navigator.pop(context);
-                          Navigator.pop(context);
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            '/',
+                            (route) => false,
+                          );
                         },
                       );
                     }),

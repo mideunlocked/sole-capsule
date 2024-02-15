@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../provider/box_provider.dart';
 import '../../widgets/box_widgets/delete_box_button.dart';
 import '../../widgets/general_widgets/custom_app_bar.dart';
 import '../../widgets/general_widgets/custom_button.dart';
@@ -17,7 +19,16 @@ class BoxSettingsScreen extends StatefulWidget {
 }
 
 class _BoxSettingsScreenState extends State<BoxSettingsScreen> {
-  final boxNameCtr = TextEditingController();
+  var boxNameCtr = TextEditingController();
+
+  Map<String, dynamic> args = {};
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    getRouteArgs();
+  }
 
   @override
   void dispose() {
@@ -26,37 +37,76 @@ class _BoxSettingsScreenState extends State<BoxSettingsScreen> {
     boxNameCtr.dispose();
   }
 
+  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
+      GlobalKey<ScaffoldMessengerState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: PaddedScreenWidget(
-          child: Column(
-            children: [
-              const CustomAppBar(
-                title: 'Settings',
+      body: ScaffoldMessenger(
+        key: _scaffoldKey,
+        child: SafeArea(
+          child: PaddedScreenWidget(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  const CustomAppBar(
+                    title: 'Settings',
+                  ),
+                  SizedBox(height: 3.h),
+                  CustomTextField(
+                    controller: boxNameCtr,
+                    title: 'Box Name',
+                    hint: 'Enter box name',
+                    inputAction: TextInputAction.done,
+                  ),
+                  SizedBox(height: 4.h),
+                  DeleteBoxButton(
+                    boxId: args['id'],
+                  ),
+                  const Spacer(),
+                  CustomButton(
+                    onTap: () => editBoxName(
+                      boxId: args['id'],
+                    ),
+                    label: 'Save',
+                  ),
+                  SizedBox(height: 5.h),
+                ],
               ),
-              SizedBox(height: 3.h),
-              CustomTextField(
-                controller: boxNameCtr,
-                title: 'Box Name',
-                hint: 'Enter box name',
-              ),
-              SizedBox(height: 4.h),
-              const DeleteBoxButton(
-                boxId: '',
-              ),
-              const Spacer(),
-              CustomButton(
-                onTap: () {},
-                label: 'Save',
-              ),
-              SizedBox(height: 5.h),
-            ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  void getRouteArgs() {
+    args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+
+    boxNameCtr = TextEditingController(
+      text: args['name'],
+    );
+  }
+
+  void editBoxName({required String boxId}) {
+    final isValid = _formKey.currentState!.validate();
+
+    if (isValid == false) {
+      return;
+    } else {
+      var boxPvr = Provider.of<BoxProvider>(context, listen: false);
+
+      boxPvr.editBoxName(
+          id: boxId,
+          newName: boxNameCtr.text.trim(),
+          scaffoldKey: _scaffoldKey);
+
+      Navigator.pop(context);
+      Navigator.pop(context);
+    }
   }
 }
