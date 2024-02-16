@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
-import 'package:sole_capsule/provider/cart_provider.dart';
 
 import '../../models/product.dart';
+import '../../provider/cart_provider.dart';
 import '../../provider/product_provider.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
 import '../../widgets/shop_widgets/search_actions.dart';
@@ -21,21 +21,13 @@ class ShopScreen extends StatefulWidget {
 
 class _ShopScreenState extends State<ShopScreen> {
   bool isInitial = false;
-
-  final searchController = TextEditingController();
+  String searchQuery = '';
 
   @override
   void initState() {
     super.initState();
 
     getDatas();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-
-    searchController.dispose();
   }
 
   final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
@@ -46,7 +38,6 @@ class _ShopScreenState extends State<ShopScreen> {
     var of = Theme.of(context);
     var textTheme = of.textTheme;
 
-    var bodyMedium = textTheme.bodyMedium;
     var bodyLarge = textTheme.bodyLarge;
 
     var sizedBox = SizedBox(height: 3.h);
@@ -64,8 +55,7 @@ class _ShopScreenState extends State<ShopScreen> {
               const ShoppingScreenAppBar(),
               sizedBox,
               SearchTextField(
-                searchController: searchController,
-                bodyMedium: bodyMedium,
+                onChanged: searchProducts,
               ),
               sizedBox,
               Row(
@@ -104,7 +94,14 @@ class _ShopScreenState extends State<ShopScreen> {
                                 crossAxisSpacing: 5.w,
                                 childAspectRatio: 0.4,
                               ),
-                              children: productPvr.products.map(
+                              children: productPvr.products.where((e) {
+                                if (e.name.toLowerCase().contains(
+                                      searchQuery.toLowerCase(),
+                                    )) {
+                                  return true;
+                                }
+                                return false;
+                              }).map(
                                 (Product product) {
                                   return ShopGridTile(
                                     product: product,
@@ -141,6 +138,8 @@ class _ShopScreenState extends State<ShopScreen> {
       ),
     );
   }
+
+  void searchProducts(String query) => setState(() => searchQuery = query);
 
   void getDatas() async {
     var productPvr = Provider.of<ProductProvider>(context, listen: false);
