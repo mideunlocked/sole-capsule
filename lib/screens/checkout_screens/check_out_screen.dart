@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:sole_capsule/provider/cart_provider.dart';
 
 import '../../widgets/checkout_widgets/order_details_sheet.dart';
 import '../../widgets/general_widgets/custom_app_bar.dart';
@@ -26,6 +28,7 @@ class CheckOutScreen extends StatelessWidget {
     var sizedBox2 = SizedBox(height: 1.5.h);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: PaddedScreenWidget(
           child: Column(
@@ -106,10 +109,14 @@ class CheckOutScreen extends StatelessWidget {
                 ),
               ),
               sizedBox2,
-              CustomButton(
-                label: 'Checkout',
-                onTap: () => showOrderDetailsSheet(context: context),
-              ),
+              Consumer<CartProvider>(builder: (context, cartPvr, _) {
+                return CustomButton(
+                  label: 'Checkout',
+                  onTap: cartPvr.cartItems.isEmpty
+                      ? null
+                      : () => showOrderDetailsSheet(context: context),
+                );
+              }),
               sizedBox,
             ],
           ),

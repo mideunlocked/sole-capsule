@@ -25,53 +25,56 @@ class OrderTile extends StatelessWidget {
 
     Product prod = cart.cartProduct();
 
-    return Column(
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(15),
-              child: Image.network(
-                prod.productImages.last,
-                height: 20.h,
-                width: 35.w,
-                fit: BoxFit.cover,
+    return InkWell(
+      onTap: () => Navigator.pushNamed(
+        context,
+        '/ProductScreen',
+        arguments: prod,
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Image.network(
+              prod.productImages.last,
+              height: 20.h,
+              width: 35.w,
+              fit: BoxFit.cover,
+            ),
+          ),
+          SizedBox(width: 5.w),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              sizedBox,
+              Text(
+                prod.name,
+                style: customTextStyle,
               ),
-            ),
-            SizedBox(width: 5.w),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                sizedBox,
-                Text(
-                  prod.name,
-                  style: customTextStyle,
+              SizedBox(height: 1.h),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 5.w,
+                  vertical: 1.h,
                 ),
-                SizedBox(height: 1.h),
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 5.w,
-                    vertical: 1.h,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black12,
                   ),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.black12,
-                    ),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Text(
-                    '\$ ${cart.totalCartPrice()}',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                    ),
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Text(
+                  '\$ ${cart.totalCartPrice()}',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-              ],
-            ),
-          ],
-        ),
-      ],
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

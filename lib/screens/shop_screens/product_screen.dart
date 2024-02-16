@@ -225,15 +225,16 @@ class _ProductScreenState extends State<ProductScreen> {
                                     cartPvr.alreadyInCart(prodId: prod.id);
 
                                 return CustomButton(
+                                  isLoading: cartPvr.isLoading,
                                   color: const Color(0xFFDBDBDB),
                                   icon: checkCart ? Icons.check_rounded : null,
                                   label: checkCart
                                       ? 'Added to cart'
                                       : 'Add to cart',
-                                  onTap: () => checkCart
+                                  onTap: () async => checkCart
                                       ? cartPvr.notifyAlreadyInCart(
                                           scaffoldKey: _scaffoldKey)
-                                      : cartPvr.addToCart(
+                                      : await cartPvr.addToCart(
                                           scaffoldKey: _scaffoldKey,
                                           cart: Cart(
                                             id: (cartPvr.cartItems.length - 1)

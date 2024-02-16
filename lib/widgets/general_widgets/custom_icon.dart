@@ -6,9 +6,11 @@ class CustomIcon extends StatelessWidget {
   const CustomIcon({
     super.key,
     required this.icon,
+    this.isPlane = true,
   });
 
   final String icon;
+  final bool isPlane;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class CustomIcon extends StatelessWidget {
       height: 3.h,
       width: 3.w,
       // ignore: deprecated_member_use
-      color: Colors.black,
+      color: isPlane ? Colors.black : null,
     );
   }
 }
