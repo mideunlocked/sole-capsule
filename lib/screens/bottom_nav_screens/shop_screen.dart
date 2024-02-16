@@ -27,7 +27,7 @@ class _ShopScreenState extends State<ShopScreen> {
   void initState() {
     super.initState();
 
-    getDatas();
+    getDatas(false);
   }
 
   final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
@@ -45,7 +45,7 @@ class _ShopScreenState extends State<ShopScreen> {
     return SafeArea(
       child: PaddedScreenWidget(
         child: RefreshIndicator(
-          onRefresh: () async => getDatas(),
+          onRefresh: () async => getDatas(true),
           color: Colors.black,
           backgroundColor: Colors.grey.shade200,
           child: Column(
@@ -141,7 +141,7 @@ class _ShopScreenState extends State<ShopScreen> {
 
   void searchProducts(String query) => setState(() => searchQuery = query);
 
-  void getDatas() async {
+  void getDatas(bool isFirst) async {
     var productPvr = Provider.of<ProductProvider>(context, listen: false);
     var cartPvr = Provider.of<CartProvider>(context, listen: false);
 
@@ -149,7 +149,7 @@ class _ShopScreenState extends State<ShopScreen> {
       scaffoldKey: _scaffoldKey,
     );
 
-    if (!isInitial) {
+    if (!isInitial && !isFirst) {
       await cartPvr.getCartItems(
         scaffoldKey: _scaffoldKey,
       );
