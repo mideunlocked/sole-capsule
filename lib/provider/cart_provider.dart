@@ -2,11 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../helpers/firebase_constants.dart';
+import '../helpers/get_user_id.dart';
 import '../helpers/scaffold_messenger_helper.dart';
 import '../models/cart.dart';
 
 class CartProvider with ChangeNotifier {
-  String uid = FirebaseConstants.authInstance.currentUser?.uid ?? '';
+  String uid = UserId.getUid();
 
   final List<Cart> _cartItems = [];
   List<Cart> get cartItems => _cartItems;

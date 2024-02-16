@@ -20,6 +20,8 @@ class ShopScreen extends StatefulWidget {
 }
 
 class _ShopScreenState extends State<ShopScreen> {
+  bool isInitial = false;
+
   final searchController = TextEditingController();
 
   @override
@@ -148,8 +150,12 @@ class _ShopScreenState extends State<ShopScreen> {
       scaffoldKey: _scaffoldKey,
     );
 
-    await cartPvr.getCartItems(
-      scaffoldKey: _scaffoldKey,
-    );
+    if (!isInitial) {
+      await cartPvr.getCartItems(
+        scaffoldKey: _scaffoldKey,
+      );
+    }
+
+    isInitial = true;
   }
 }

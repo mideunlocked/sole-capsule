@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:sole_capsule/models/delivery_details.dart';
 
 import '../../models/users.dart';
 import '../../provider/auth_provider.dart';
@@ -154,6 +155,16 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         username: '',
         profileImage: '',
         phoneNumber: '',
+        deliveryDetails: const DeliveryDetails(
+          name: '',
+          city: '',
+          state: '',
+          email: '',
+          number: '',
+          country: '',
+          pinCode: '',
+          address: '',
+        ),
       );
 
       final response = await authProvider.createUserEmailPassword(

@@ -1,4 +1,5 @@
 import 'box.dart';
+import 'delivery_details.dart';
 
 class Users {
   final String id;
@@ -9,6 +10,7 @@ class Users {
   final String password;
   final String profileImage;
   final String phoneNumber;
+  final DeliveryDetails deliveryDetails;
 
   const Users({
     required this.id,
@@ -19,6 +21,7 @@ class Users {
     required this.username,
     required this.profileImage,
     required this.phoneNumber,
+    required this.deliveryDetails,
   });
 
   factory Users.fromJson({required Map<String, dynamic> json}) {
@@ -29,6 +32,9 @@ class Users {
         )
         .toList();
 
+    Map<String, dynamic> parsedDetails =
+        json['deliveryDetails'] as Map<String, dynamic>;
+
     return Users(
       id: json['id'] as String,
       email: json['email'] as String,
@@ -38,6 +44,9 @@ class Users {
       username: json['username'] as String,
       profileImage: json['profileImage'] as String,
       phoneNumber: json['phoneNumber'] as String,
+      deliveryDetails: DeliveryDetails.fromJson(
+        json: parsedDetails,
+      ),
     );
   }
 
@@ -51,6 +60,7 @@ class Users {
       'username': user.username,
       'profileImage': user.profileImage,
       'phoneNumber': user.phoneNumber,
+      'deliveryDetials': {},
     };
   }
 }

@@ -20,108 +20,141 @@ class ProfileScreen extends StatelessWidget {
 
     var bodyLarge = textTheme.bodyLarge;
     var bodySmall = textTheme.bodySmall;
+    var listTileStyle = textTheme.bodyMedium;
 
     return SafeArea(
-      child: SingleChildScrollView(
-        child: Consumer<UserProvider>(builder: (context, user, child) {
-          Users userData = user.user;
+      child: Consumer<UserProvider>(builder: (context, user, child) {
+        Users userData = user.user;
 
-          var listTileStyle = textTheme.bodyMedium?.copyWith(
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w400,
-          );
+        return Column(
+          children: [
+            SizedBox(height: 2.h),
+            const PaddedScreenWidget(
+              child: ProfileAppBar(),
+            ),
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  PaddedScreenWidget(
+                    child: Column(
+                      children: [
+                        SizedBox(height: 4.h),
+                        ProfileImage(
+                          imageUrl: userData.profileImage,
+                        ),
+                        SizedBox(height: 2.h),
+                        Text(
+                          userData.fullName,
+                          style: bodyLarge,
+                        ),
+                        Text(
+                          userData.email,
+                          style: bodySmall?.copyWith(
+                            color: Colors.black54,
+                          ),
+                        ),
+                        SizedBox(height: 6.w),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 100.w,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 5.w,
+                      vertical: 3.h,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF2F2F2),
+                      border: Border.all(color: Colors.grey.shade200),
+                    ),
+                    child: Column(
+                      children: [
+                        ProfileInfoTile(
+                          label: 'Phone Number',
+                          value: userData.phoneNumber,
+                        ),
+                        SizedBox(height: 2.h),
+                        ProfileInfoTile(
+                          label: 'Email',
+                          value: userData.email,
+                        ),
+                      ],
+                    ),
+                  ),
+                  ProfileRouteListTile(
+                    icon: 'pin',
+                    title: 'My Orders',
+                    routeName: 'OrdersScreen',
+                    listTileStyle: listTileStyle,
+                  ),
+                  ProfileRouteListTile(
+                    icon: 'orders',
+                    title: 'Delivery Address',
+                    routeName: 'CheckOutDetailsScreen',
+                    listTileStyle: listTileStyle,
+                  ),
+                  ListTile(
+                    title: Text(
+                      'Dark Mode',
+                      style: listTileStyle,
+                    ),
+                    trailing: CupertinoSwitch(
+                      value: false,
+                      onChanged: (_) {},
+                      trackColor: Colors.black26,
+                    ),
+                    contentPadding: EdgeInsets.symmetric(
+                      vertical: 1.5.h,
+                      horizontal: 5.w,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      }),
+    );
+  }
+}
 
-          return Column(
-            children: [
-              PaddedScreenWidget(
-                child: Column(
-                  children: [
-                    SizedBox(height: 2.h),
-                    const ProfileAppBar(),
-                    SizedBox(height: 4.h),
-                    ProfileImage(
-                      imageUrl: userData.profileImage,
-                    ),
-                    SizedBox(height: 2.h),
-                    Text(
-                      userData.fullName,
-                      style: bodyLarge,
-                    ),
-                    Text(
-                      userData.email,
-                      style: bodySmall?.copyWith(
-                        color: Colors.black54,
-                      ),
-                    ),
-                    SizedBox(height: 6.w),
-                  ],
-                ),
-              ),
-              Container(
-                width: 100.w,
-                padding: EdgeInsets.symmetric(
-                  horizontal: 5.w,
-                  vertical: 3.h,
-                ),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF2F2F2),
-                  border: Border.all(color: Colors.grey.shade200),
-                ),
-                child: Column(
-                  children: [
-                    ProfileInfoTile(
-                      label: 'Phone Number',
-                      value: userData.phoneNumber,
-                    ),
-                    SizedBox(height: 2.5.h),
-                    ProfileInfoTile(
-                      label: 'Email',
-                      value: userData.email,
-                    ),
-                  ],
-                ),
-              ),
-              ListTile(
-                leading: const CustomIcon(icon: 'orders'),
-                title: Text(
-                  'My Orders',
-                  style: listTileStyle,
-                ),
-                trailing: const Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  color: Colors.black,
-                ),
-                minLeadingWidth: 5.w,
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 1.h,
-                  horizontal: 5.w,
-                ),
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Colors.grey.shade200),
-                ),
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  '/OrdersScreen',
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  'Dark Mode',
-                  style: listTileStyle,
-                ),
-                trailing: CupertinoSwitch(
-                  value: false,
-                  onChanged: (_) {},
-                  trackColor: Colors.black26,
-                ),
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 1.h,
-                  horizontal: 5.w,
-                ),
-              ),
-            ],
-          );
-        }),
+class ProfileRouteListTile extends StatelessWidget {
+  const ProfileRouteListTile({
+    super.key,
+    required this.listTileStyle,
+    required this.routeName,
+    required this.icon,
+    required this.title,
+  });
+
+  final TextStyle? listTileStyle;
+  final String routeName;
+  final String icon;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: CustomIcon(icon: icon),
+      title: Text(
+        title,
+        style: listTileStyle,
+      ),
+      trailing: const Icon(
+        Icons.arrow_forward_ios_rounded,
+        color: Colors.black,
+      ),
+      minLeadingWidth: 5.w,
+      contentPadding: EdgeInsets.symmetric(
+        vertical: 1.5.h,
+        horizontal: 5.w,
+      ),
+      shape: RoundedRectangleBorder(
+        side: BorderSide(color: Colors.grey.shade200),
+      ),
+      onTap: () => Navigator.pushNamed(
+        context,
+        '/$routeName',
       ),
     );
   }
@@ -144,10 +177,10 @@ class ProfileImage extends StatelessWidget {
           backgroundImage: NetworkImage(
             imageUrl,
           ),
-          radius: 50.sp,
+          radius: 45.sp,
         ),
         Positioned(
-          top: 50.sp,
+          top: 45.sp,
           child: SizedBox(
             height: 8.h,
             width: 10.w,

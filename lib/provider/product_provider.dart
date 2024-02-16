@@ -20,8 +20,6 @@ class ProductProvider with ChangeNotifier {
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     try {
-      _products.clear();
-      _productCount = 0;
       QuerySnapshot<Map<String, dynamic>> querySnapshot =
           await FirebaseConstants.cloudInstance.collection(productsPath).get();
 
@@ -34,7 +32,11 @@ class ProductProvider with ChangeNotifier {
 
         Product product = Product.fromJSon(json: data);
 
-        _products.add(product);
+        bool isIn = _products.any((p) => p.id == product.id);
+
+        if (!isIn) {
+          _products.add(product);
+        }
       }
 
       getProductCount();
