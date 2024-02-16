@@ -32,63 +32,66 @@ class OrderTile extends StatelessWidget {
         '/ProductScreen',
         arguments: prod,
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child: Image.network(
-              prod.productImages.last,
-              height: 20.h,
-              width: 35.w,
-              fit: BoxFit.cover,
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return const Center(
-                  child: CustomProgressIndicator(),
-                );
-              },
-              errorBuilder: (ctx, _, stacktrace) {
-                return const Center(
-                  child: Icon(
-                    Icons.error_rounded,
-                    color: Colors.black,
-                  ),
-                );
-              },
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 1.h),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Image.network(
+                prod.productImages.last,
+                height: 20.h,
+                width: 35.w,
+                fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return const Center(
+                    child: CustomProgressIndicator(),
+                  );
+                },
+                errorBuilder: (ctx, _, stacktrace) {
+                  return const Center(
+                    child: Icon(
+                      Icons.error_rounded,
+                      color: Colors.black,
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
-          SizedBox(width: 5.w),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              sizedBox,
-              Text(
-                prod.name,
-                style: customTextStyle,
-              ),
-              SizedBox(height: 1.h),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 5.w,
-                  vertical: 1.h,
+            SizedBox(width: 5.w),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                sizedBox,
+                Text(
+                  prod.name,
+                  style: customTextStyle,
                 ),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.black12,
+                SizedBox(height: 1.h),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 5.w,
+                    vertical: 1.h,
                   ),
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: Text(
-                  '\$ ${cart.totalCartPrice()}',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.black12,
+                    ),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Text(
+                    '\$ ${cart.totalCartPrice()}',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
