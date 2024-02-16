@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
+import 'package:sole_capsule/provider/cart_provider.dart';
 
 import '../../models/product.dart';
 import '../../provider/product_provider.dart';
@@ -25,7 +26,7 @@ class _ShopScreenState extends State<ShopScreen> {
   void initState() {
     super.initState();
 
-    getProducts();
+    getDatas();
   }
 
   @override
@@ -51,7 +52,7 @@ class _ShopScreenState extends State<ShopScreen> {
     return SafeArea(
       child: PaddedScreenWidget(
         child: RefreshIndicator(
-          onRefresh: () async => getProducts(),
+          onRefresh: () async => getDatas(),
           color: Colors.black,
           backgroundColor: Colors.grey.shade200,
           child: Column(
@@ -139,10 +140,15 @@ class _ShopScreenState extends State<ShopScreen> {
     );
   }
 
-  void getProducts() async {
+  void getDatas() async {
     var productPvr = Provider.of<ProductProvider>(context, listen: false);
+    var cartPvr = Provider.of<CartProvider>(context, listen: false);
 
     await productPvr.getProducts(
+      scaffoldKey: _scaffoldKey,
+    );
+
+    await cartPvr.getCartItems(
       scaffoldKey: _scaffoldKey,
     );
   }

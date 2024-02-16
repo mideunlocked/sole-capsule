@@ -8,7 +8,7 @@ import '../models/product.dart';
 class ProductProvider with ChangeNotifier {
   String productsPath = FirebaseConstants.productsPath;
 
-  List<Product> _products = [];
+  final List<Product> _products = [];
 
   List<Product> get products => _products;
 

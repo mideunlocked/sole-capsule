@@ -78,14 +78,60 @@ class CartProvider with ChangeNotifier {
     }
   }
 
-  void removeFromCart({
-    required String cartId,
-  }) {
-    _cartItems.removeWhere(
-      (c) => c.id == cartId,
-    );
+  Future<void> getCartItems({
+    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+  }) async {
+    try {
+      _cartItems.clear();
+      var cartCollection = FirebaseConstants.cloudInstance
+          .collection('users')
+          .doc(uid)
+          .collection('cart');
 
-    notifyListeners();
+      QuerySnapshot<Map<String, dynamic>> querySnapshot =
+          await cartCollection.get();
+
+      List<dynamic> query = querySnapshot.docs;
+      QueryDocumentSnapshot docSnap;
+      Map<String, dynamic> data = {};
+
+      for (docSnap in query) {
+        data = docSnap.data() as Map<String, dynamic>;
+
+        Cart cart = Cart.fromJson(json: data);
+
+        _cartItems.add(cart);
+      }
+
+      notifyListeners();
+    } catch (e) {
+      print(e);
+      showScaffoldMessenger(
+        scaffoldKey: scaffoldKey,
+        textContent: 'Couldn\'t add to cart',
+      );
+    }
+  }
+
+  Future<void> removeFromCart({
+    required String cartId,
+  }) async {
+    try {
+      var cartCollection = FirebaseConstants.cloudInstance
+          .collection('users')
+          .doc(uid)
+          .collection('cart');
+
+      await cartCollection.doc(cartId).delete().then((_) {
+        _cartItems.removeWhere(
+          (c) => c.id == cartId,
+        );
+
+        notifyListeners();
+      });
+    } catch (e) {
+      print('Error removing from cart: $e');
+    }
   }
 
   bool alreadyInCart({

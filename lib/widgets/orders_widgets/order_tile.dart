@@ -3,6 +3,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../models/cart.dart';
 import '../../models/product.dart';
+import '../general_widgets/custom_progress_inidicator.dart';
 
 class OrderTile extends StatelessWidget {
   const OrderTile({
@@ -41,6 +42,20 @@ class OrderTile extends StatelessWidget {
               height: 20.h,
               width: 35.w,
               fit: BoxFit.cover,
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return const Center(
+                  child: CustomProgressIndicator(),
+                );
+              },
+              errorBuilder: (ctx, _, stacktrace) {
+                return const Center(
+                  child: Icon(
+                    Icons.error_rounded,
+                    color: Colors.black,
+                  ),
+                );
+              },
             ),
           ),
           SizedBox(width: 5.w),
