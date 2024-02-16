@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 
 import 'firebase_options.dart';
 import 'helpers/auth_helper.dart';
+import 'helpers/firebase_api.dart';
 import 'helpers/routes.dart';
 import 'provider/auth_provider.dart';
 import 'provider/box_provider.dart';
@@ -19,6 +20,8 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  await FirebaseApi().initNotification();
 
   final Auth auth = Auth();
   final bool isLogged = auth.isLogged();
