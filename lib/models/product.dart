@@ -37,17 +37,17 @@ class Product {
         productImages: json['productImages'] as List<dynamic>);
   }
 
-  Map<String, dynamic> toJson({required Product prod}) {
+  Map<String, dynamic> toJson() {
     return {
-      'id': prod.id,
-      'name': prod.name,
-      'price': prod.price,
-      'colors': prod.colors,
-      'discount': prod.discount,
-      'description': prod.description,
-      'productDetails': prod.productDetails,
-      'isOutOfStock': prod.isOutOfStock,
-      'productImages': prod.productImages,
+      'id': id,
+      'name': name,
+      'price': price,
+      'colors': colors,
+      'discount': discount,
+      'description': description,
+      'productDetails': productDetails,
+      'isOutOfStock': isOutOfStock,
+      'productImages': productImages,
     };
   }
 }

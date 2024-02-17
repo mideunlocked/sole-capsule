@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../models/product.dart';
@@ -11,6 +10,7 @@ import '../../widgets/shop_widgets/search_actions.dart';
 import '../../widgets/shop_widgets/search_text_field.dart';
 import '../../widgets/shop_widgets/shop_grid_tile.dart';
 import '../../widgets/shop_widgets/shop_screen_app_bar.dart';
+import '../../widgets/shop_widgets/shop_shimmer_grid_view.dart';
 
 class ShopScreen extends StatefulWidget {
   const ShopScreen({super.key});
@@ -109,27 +109,7 @@ class _ShopScreenState extends State<ShopScreen> {
                                 },
                               ).toList(),
                             ),
-                  child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 3.h,
-                      crossAxisSpacing: 5.w,
-                      childAspectRatio: 0.4,
-                    ),
-                    itemCount: 10,
-                    itemBuilder: (_, i) => Shimmer.fromColors(
-                      baseColor: Colors.grey.shade100,
-                      highlightColor: Colors.grey.shade50,
-                      child: Container(
-                        height: 100.h,
-                        width: 100.w,
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade300,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                    ),
-                  ),
+                  child: const ShopShimmerGridView(),
                 ),
               ),
             ],

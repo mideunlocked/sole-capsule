@@ -3,7 +3,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../models/cart.dart';
 import '../../models/product.dart';
-import '../general_widgets/custom_progress_inidicator.dart';
+import '../general_widgets/product_image.dart';
 
 class OrderTile extends StatelessWidget {
   const OrderTile({
@@ -37,28 +37,10 @@ class OrderTile extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(15),
-              child: Image.network(
-                prod.productImages.last,
-                height: 20.h,
-                width: 35.w,
-                fit: BoxFit.cover,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return const Center(
-                    child: CustomProgressIndicator(),
-                  );
-                },
-                errorBuilder: (ctx, _, stacktrace) {
-                  return const Center(
-                    child: Icon(
-                      Icons.error_rounded,
-                      color: Colors.black,
-                    ),
-                  );
-                },
-              ),
+            ProductImage(
+              imageUrl: prod.productImages.last,
+              height: 20.h,
+              width: 35.w,
             ),
             SizedBox(width: 5.w),
             Column(

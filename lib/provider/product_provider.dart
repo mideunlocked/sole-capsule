@@ -16,6 +16,30 @@ class ProductProvider with ChangeNotifier {
 
   int get productCount => _productCount;
 
+  Future<Product?> getProduct({
+    required String prodId,
+  }) async {
+    try {
+      DocumentSnapshot response = await FirebaseConstants.cloudInstance
+          .collection(productsPath)
+          .doc(prodId)
+          .get();
+
+      if (response.exists) {
+        Map<String, dynamic> data = response.data() as Map<String, dynamic>;
+
+        Product product = Product.fromJSon(json: data);
+
+        return product;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print('Couldn\'t get product error: $e');
+      return null;
+    }
+  }
+
   Future<void> getProducts({
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {

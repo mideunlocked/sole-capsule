@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
-import 'package:sole_capsule/models/cart.dart';
 
+import '../../models/order.dart';
 import '../../widgets/general_widgets/custom_app_bar.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
-import '../../widgets/orders_widgets/order_tile.dart';
+import '../../widgets/orders_widgets/order_secondary_tile.dart';
+import '../../widgets/orders_widgets/orders_tab_tile.dart';
 
 class OrdersScreen extends StatefulWidget {
   static const routeName = '/OrdersScreen';
@@ -49,91 +49,37 @@ class _OrdersScreenState extends State<OrdersScreen> {
             Expanded(
               child: PaddedScreenWidget(
                 child: ListView(
-                  children: const [
-                    OrderSecondaryTile(),
-                    OrderSecondaryTile(),
-                    OrderSecondaryTile(),
-                  ],
+                  children: currentTab == 0
+                      ? const [
+                          OrderSecondaryTile(
+                            order: Order(
+                              id: '0',
+                              status: 'Pending',
+                              prodId: '6WeMiMBHkZ1Q7cRP18nV',
+                              price: 105,
+                              color: 4294967295,
+                              quantity: 2,
+                              paymentMethod: '',
+                            ),
+                          ),
+                        ]
+                      : const [
+                          OrderSecondaryTile(
+                            order: Order(
+                              id: '0',
+                              status: 'Closed',
+                              prodId: '6WeMiMBHkZ1Q7cRP18nV',
+                              price: 99,
+                              color: 4294967295,
+                              quantity: 1,
+                              paymentMethod: '',
+                            ),
+                          ),
+                        ],
                 ),
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class OrderSecondaryTile extends StatelessWidget {
-  const OrderSecondaryTile({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 4.w,
-          vertical: 1.5.h,
-        ),
-        child: const OrderTile(
-          cart: Cart(
-            id: '',
-            prodId: '',
-            quantity: 0,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class OrdersTabTile extends StatelessWidget {
-  const OrdersTabTile({
-    super.key,
-    required this.label,
-    required this.tabIndex,
-    required this.currentIndex,
-    required this.toggleTab,
-  });
-
-  final String label;
-  final int tabIndex;
-  final int currentIndex;
-  final Function(int) toggleTab;
-
-  @override
-  Widget build(BuildContext context) {
-    bool isCurrent = tabIndex == currentIndex;
-    Color color = isCurrent ? Colors.black : Colors.black26;
-
-    return InkWell(
-      onTap: () {
-        toggleTab(tabIndex);
-      },
-      child: Container(
-        width: 50.w,
-        height: 8.h,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          border: BorderDirectional(
-            bottom: BorderSide(
-              color: color,
-              width: isCurrent ? 2 : 1,
-            ),
-          ),
-        ),
-        child: Text(
-          label,
-          style: TextStyle(
-            fontWeight: isCurrent ? FontWeight.w500 : null,
-            color: color,
-          ),
         ),
       ),
     );
