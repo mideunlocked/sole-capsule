@@ -52,7 +52,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                   children: currentTab == 0
                       ? const [
                           OrderSecondaryTile(
-                            order: Order(
+                            order: Orders(
                               id: '0',
                               status: 'Pending',
                               prodId: '6WeMiMBHkZ1Q7cRP18nV',
@@ -65,7 +65,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                         ]
                       : const [
                           OrderSecondaryTile(
-                            order: Order(
+                            order: Orders(
                               id: '0',
                               status: 'Closed',
                               prodId: '6WeMiMBHkZ1Q7cRP18nV',

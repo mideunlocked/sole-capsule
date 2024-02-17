@@ -11,6 +11,8 @@ import 'order_details_tile.dart';
 
 void showOrderDetailsSheet({
   required BuildContext context,
+  required double cartTotalPrice,
+  required GlobalKey<ScaffoldMessengerState> scaffoldKey,
 }) {
   showModalBottomSheet(
     context: context,
@@ -19,14 +21,22 @@ void showOrderDetailsSheet({
     ),
     backgroundColor: Colors.white,
     isScrollControlled: true,
-    builder: (ctx) => const OrderDetailsSheet(),
+    builder: (ctx) => OrderDetailsSheet(
+      scaffoldKey: scaffoldKey,
+      cartTotalPrice: cartTotalPrice,
+    ),
   );
 }
 
 class OrderDetailsSheet extends StatefulWidget {
   const OrderDetailsSheet({
     super.key,
+    required this.scaffoldKey,
+    required this.cartTotalPrice,
   });
+
+  final double cartTotalPrice;
+  final GlobalKey<ScaffoldMessengerState> scaffoldKey;
 
   @override
   State<OrderDetailsSheet> createState() => _OrderDetailsSheetState();
@@ -49,51 +59,55 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
       ),
       child: PaddedScreenWidget(
-        child: Consumer<CartProvider>(builder: (context, cartPvr, _) {
-          cartPvr.calculateCartTotalPrice();
-
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(height: 2.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Order Payment Details',
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  CustomIconButton(
-                    icon: 'close',
-                    onTap: () => Navigator.pop(context),
-                  ),
-                ],
-              ),
-              SizedBox(height: 2.h),
-              OrderDetailsTile(
-                title: 'Order Amounts',
-                value: '\$${cartPvr.totalCartPrice}',
-              ),
-              const OrderDetailsTile(
-                title: 'Delivery Fee',
-                value: 'Free',
-              ),
-              SizedBox(height: 2.h),
-              DiscountTextField(controller: discountCodeCtr),
-              SizedBox(height: 5.h),
-              CustomButton(
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  '/CheckOutSuccessScreen',
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(height: 2.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Order Payment Details',
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
-                label: 'Proceed to payment',
-              ),
-              SizedBox(height: 2.h),
-            ],
-          );
-        }),
+                CustomIconButton(
+                  icon: 'close',
+                  onTap: () => Navigator.pop(context),
+                ),
+              ],
+            ),
+            SizedBox(height: 2.h),
+            OrderDetailsTile(
+              title: 'Order Amounts',
+              value: '\$${widget.cartTotalPrice}',
+            ),
+            const OrderDetailsTile(
+              title: 'Delivery Fee',
+              value: 'Free',
+            ),
+            SizedBox(height: 2.h),
+            DiscountTextField(controller: discountCodeCtr),
+            SizedBox(height: 5.h),
+            CustomButton(
+              onTap: () => purchaseCart(),
+              label: 'Proceed to payment',
+            ),
+            SizedBox(height: 2.h),
+          ],
+        ),
       ),
+    );
+  }
+
+  void purchaseCart() async {
+    var cartPvr = Provider.of<CartProvider>(
+      context,
+      listen: false,
+    );
+
+    await cartPvr.purchaseCartItems(
+      scaffoldKey: widget.scaffoldKey,
     );
   }
 }

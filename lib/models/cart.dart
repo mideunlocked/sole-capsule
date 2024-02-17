@@ -7,11 +7,13 @@ import 'product.dart';
 
 class Cart {
   final String id;
+  final int color;
   final int quantity;
   final String prodId;
 
   const Cart({
     required this.id,
+    required this.color,
     required this.prodId,
     required this.quantity,
   });
@@ -21,6 +23,7 @@ class Cart {
   }) {
     return Cart(
       id: json['id'] as String,
+      color: json['color'] as int,
       prodId: json['prodId'] as String,
       quantity: json['quantity'] as int,
     );
@@ -32,6 +35,7 @@ class Cart {
   }) {
     return {
       'id': id,
+      'color': color,
       'prodId': cart.prodId,
       'quantity': cart.quantity,
     };

@@ -4,7 +4,7 @@ import '../main.dart';
 import '../provider/product_provider.dart';
 import 'product.dart';
 
-class Order {
+class Orders {
   final String id;
   final int color;
   final double price;
@@ -13,7 +13,7 @@ class Order {
   final String prodId;
   final String paymentMethod;
 
-  const Order({
+  const Orders({
     required this.id,
     required this.color,
     required this.price,
@@ -23,10 +23,10 @@ class Order {
     required this.paymentMethod,
   });
 
-  factory Order.fromJson({
+  factory Orders.fromJson({
     required Map<String, dynamic> json,
   }) {
-    return Order(
+    return Orders(
       id: json['id'] as String,
       status: json['status'] as String,
       color: json['color'] as int,

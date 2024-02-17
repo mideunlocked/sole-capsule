@@ -17,6 +17,12 @@ class CheckOutSuccessScreen extends StatelessWidget {
     var bodyLarge = textTheme.bodyLarge;
     return WillPopScope(
       onWillPop: () async {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          '/',
+          (route) => false,
+        );
+
         throw 0;
       },
       child: Scaffold(
@@ -47,8 +53,11 @@ class CheckOutSuccessScreen extends StatelessWidget {
                 CustomButton(
                   label: 'Checkout',
                   onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pop(context);
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      '/',
+                      (route) => false,
+                    );
                   },
                 ),
                 SizedBox(height: 4.h),

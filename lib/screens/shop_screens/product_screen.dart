@@ -239,6 +239,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                           cart: Cart(
                                             id: (cartPvr.cartItems.length - 1)
                                                 .toString(),
+                                            color: currentColor,
                                             prodId: prod.id,
                                             quantity: 1,
                                           ),

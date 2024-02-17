@@ -12,10 +12,18 @@ import '../../widgets/general_widgets/custom_icon.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
 import '../../widgets/shopping_cart_widgets/shopping_cart_widget.dart';
 
-class CheckOutScreen extends StatelessWidget {
+class CheckOutScreen extends StatefulWidget {
   static const routeName = '/CheckOutScreen';
 
   const CheckOutScreen({super.key});
+
+  @override
+  State<CheckOutScreen> createState() => _CheckOutScreenState();
+}
+
+class _CheckOutScreenState extends State<CheckOutScreen> {
+  final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
+      GlobalKey<ScaffoldMessengerState>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,106 +39,114 @@ class CheckOutScreen extends StatelessWidget {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: PaddedScreenWidget(
-          child: Column(
-            children: [
-              const CustomAppBar(
-                title: 'Checkout',
-              ),
-              sizedBox,
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          const CustomIcon(
-                            icon: 'pin',
-                          ),
-                          SizedBox(width: 3.w),
-                          Text(
-                            'Delivery Address',
-                            style: customTextStyle,
-                          ),
-                        ],
-                      ),
-                      sizedBox2,
-                      Card(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
+      body: ScaffoldMessenger(
+        key: _scaffoldKey,
+        child: SafeArea(
+          child: PaddedScreenWidget(
+            child: Column(
+              children: [
+                const CustomAppBar(
+                  title: 'Checkout',
+                ),
+                sizedBox,
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            const CustomIcon(
+                              icon: 'pin',
+                            ),
+                            SizedBox(width: 3.w),
+                            Text(
+                              'Delivery Address',
+                              style: customTextStyle,
+                            ),
+                          ],
                         ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 4.w, vertical: 3.h),
-                          child: Consumer<UserProvider>(
-                              builder: (context, userPvr, _) {
-                            DeliveryDetails details =
-                                userPvr.user.deliveryDetails;
+                        sizedBox2,
+                        Card(
+                          elevation: 5,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 4.w, vertical: 3.h),
+                            child: Consumer<UserProvider>(
+                                builder: (context, userPvr, _) {
+                              DeliveryDetails details =
+                                  userPvr.user.deliveryDetails;
 
-                            String shortAddress =
-                                '${details.address}, ${details.state}, ${details.country}';
+                              String shortAddress =
+                                  '${details.address}, ${details.state}, ${details.country}';
 
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                SizedBox(
-                                  width: 60.w,
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        'Address:',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w600,
+                              return Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  SizedBox(
+                                    width: 60.w,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Text(
+                                          'Address:',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                         ),
-                                      ),
-                                      SizedBox(height: 1.h),
-                                      Text(
-                                        shortAddress,
-                                        maxLines: 1,
-                                        softWrap: true,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      Text('Contact : ${details.number}'),
-                                    ],
+                                        SizedBox(height: 1.h),
+                                        Text(
+                                          shortAddress,
+                                          maxLines: 1,
+                                          softWrap: true,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        Text('Contact : ${details.number}'),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                IconButton(
-                                  onPressed: () => Navigator.pushNamed(
-                                    context,
-                                    '/CheckOutDetailsScreen',
+                                  IconButton(
+                                    onPressed: () => Navigator.pushNamed(
+                                      context,
+                                      '/CheckOutDetailsScreen',
+                                    ),
+                                    icon: const CustomIcon(icon: 'edit'),
                                   ),
-                                  icon: const CustomIcon(icon: 'edit'),
-                                ),
-                              ],
-                            );
-                          }),
+                                ],
+                              );
+                            }),
+                          ),
                         ),
-                      ),
-                      sizedBox,
-                      const ShoppingCartWidget(),
-                    ],
+                        sizedBox,
+                        const ShoppingCartWidget(),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              sizedBox2,
-              Consumer<CartProvider>(builder: (context, cartPvr, _) {
-                return CustomButton(
-                  label: 'Checkout',
-                  onTap: cartPvr.cartItems.isEmpty
-                      ? null
-                      : () => showOrderDetailsSheet(context: context),
-                );
-              }),
-              sizedBox,
-            ],
+                sizedBox2,
+                Consumer<CartProvider>(builder: (context, cartPvr, _) {
+                  return CustomButton(
+                    label: 'Checkout',
+                    onTap: cartPvr.cartItems.isEmpty
+                        ? null
+                        : () => showOrderDetailsSheet(
+                              context: context,
+                              scaffoldKey: _scaffoldKey,
+                              cartTotalPrice: cartPvr.totalCartPrice,
+                            ),
+                  );
+                }),
+                sizedBox,
+              ],
+            ),
           ),
         ),
       ),

@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import '../helpers/firebase_constants.dart';
 import '../helpers/get_user_id.dart';
 import '../helpers/scaffold_messenger_helper.dart';
+import '../main.dart';
 import '../models/cart.dart';
+import '../models/order.dart';
+import '../widgets/general_widgets/loader_widget.dart';
 
 class CartProvider with ChangeNotifier {
   String uid = UserId.getUid();
@@ -161,5 +164,64 @@ class CartProvider with ChangeNotifier {
     }
 
     _totalCartPrice = total;
+  }
+
+  Future<void> purchaseCartItems({
+    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+  }) async {
+    showCustomLoader();
+    try {
+      var ordersCollections = FirebaseConstants.cloudInstance
+          .collection('users')
+          .doc(uid)
+          .collection('orders');
+
+      Cart cart;
+
+      for (cart in _cartItems) {
+        Orders order = Orders(
+          id: '',
+          color: cart.color,
+          price: cart.cartProduct().price,
+          status: 'Pending',
+          prodId: cart.prodId,
+          quantity: cart.quantity,
+          paymentMethod: 'Cash in',
+        );
+
+        await ordersCollections.add(order.toJson()).then((value) async {
+          await ordersCollections.doc(value.id).set(
+            {
+              'id': value.id,
+            },
+            SetOptions(merge: true),
+          );
+        }).then((_) {
+          _cartItems.clear();
+
+          notifyListeners();
+
+          Navigator.pushNamedAndRemoveUntil(
+            MainApp.navigatorKey.currentContext!,
+            '/CheckOutSuccessScreen',
+            (route) => false,
+          );
+        });
+      }
+    } catch (e) {
+      print('Purchase cart items error: $e');
+
+      Navigator.pop(
+        MainApp.navigatorKey.currentContext!,
+      );
+      Navigator.pop(
+        MainApp.navigatorKey.currentContext!,
+      );
+
+      showScaffoldMessenger(
+        scaffoldKey: scaffoldKey,
+        textContent: 'An error occured couldn\'t complete purchase',
+      );
+    }
   }
 }

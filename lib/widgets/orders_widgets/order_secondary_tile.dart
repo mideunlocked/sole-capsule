@@ -12,7 +12,7 @@ class OrderSecondaryTile extends StatelessWidget {
     required this.order,
   });
 
-  final Order order;
+  final Orders order;
 
   @override
   Widget build(BuildContext context) {
