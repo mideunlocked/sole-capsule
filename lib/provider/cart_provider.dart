@@ -11,6 +11,7 @@ import '../widgets/general_widgets/loader_widget.dart';
 
 class CartProvider with ChangeNotifier {
   String uid = UserId.getUid();
+  final context = MainApp.navigatorKey.currentState?.overlay?.context;
 
   final List<Cart> _cartItems = [];
   List<Cart> get cartItems => _cartItems;
@@ -138,6 +139,21 @@ class CartProvider with ChangeNotifier {
     }
   }
 
+  Future<void> emptyCart() async {
+    try {
+      var cartCollection = FirebaseConstants.cloudInstance
+          .collection('users')
+          .doc(uid)
+          .collection('cart');
+
+      await cartCollection.snapshots().forEach(
+            (element) => element.docs.clear(),
+          );
+    } catch (e) {
+      print('Empty cart error: $e');
+    }
+  }
+
   bool alreadyInCart({
     required String prodId,
   }) {
@@ -169,8 +185,9 @@ class CartProvider with ChangeNotifier {
   Future<void> purchaseCartItems({
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
-    showCustomLoader();
     try {
+      showCustomLoader();
+
       var ordersCollections = FirebaseConstants.cloudInstance
           .collection('users')
           .doc(uid)
@@ -201,22 +218,22 @@ class CartProvider with ChangeNotifier {
 
           notifyListeners();
 
-          Navigator.pushNamedAndRemoveUntil(
-            MainApp.navigatorKey.currentContext!,
-            '/CheckOutSuccessScreen',
-            (route) => false,
-          );
+          if (context != null) {
+            Navigator.pushNamedAndRemoveUntil(
+              context!,
+              '/CheckOutSuccessScreen',
+              (route) => false,
+            );
+          }
         });
       }
     } catch (e) {
       print('Purchase cart items error: $e');
 
-      Navigator.pop(
-        MainApp.navigatorKey.currentContext!,
-      );
-      Navigator.pop(
-        MainApp.navigatorKey.currentContext!,
-      );
+      if (context != null) {
+        Navigator.pop(context!);
+        Navigator.pop(context!);
+      }
 
       showScaffoldMessenger(
         scaffoldKey: scaffoldKey,

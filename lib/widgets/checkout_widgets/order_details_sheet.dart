@@ -11,7 +11,6 @@ import 'order_details_tile.dart';
 
 void showOrderDetailsSheet({
   required BuildContext context,
-  required double cartTotalPrice,
   required GlobalKey<ScaffoldMessengerState> scaffoldKey,
 }) {
   showModalBottomSheet(
@@ -23,7 +22,6 @@ void showOrderDetailsSheet({
     isScrollControlled: true,
     builder: (ctx) => OrderDetailsSheet(
       scaffoldKey: scaffoldKey,
-      cartTotalPrice: cartTotalPrice,
     ),
   );
 }
@@ -32,10 +30,8 @@ class OrderDetailsSheet extends StatefulWidget {
   const OrderDetailsSheet({
     super.key,
     required this.scaffoldKey,
-    required this.cartTotalPrice,
   });
 
-  final double cartTotalPrice;
   final GlobalKey<ScaffoldMessengerState> scaffoldKey;
 
   @override
@@ -78,10 +74,12 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
               ],
             ),
             SizedBox(height: 2.h),
-            OrderDetailsTile(
-              title: 'Order Amounts',
-              value: '\$${widget.cartTotalPrice}',
-            ),
+            Consumer<CartProvider>(builder: (context, cartPvr, _) {
+              return OrderDetailsTile(
+                title: 'Order Amounts',
+                value: '\$${cartPvr.totalCartPrice}',
+              );
+            }),
             const OrderDetailsTile(
               title: 'Delivery Fee',
               value: 'Free',
@@ -90,7 +88,7 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
             DiscountTextField(controller: discountCodeCtr),
             SizedBox(height: 5.h),
             CustomButton(
-              onTap: () => purchaseCart(),
+              onTap: purchaseCart,
               label: 'Proceed to payment',
             ),
             SizedBox(height: 2.h),
@@ -101,13 +99,8 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
   }
 
   void purchaseCart() async {
-    var cartPvr = Provider.of<CartProvider>(
-      context,
-      listen: false,
-    );
+    var cartPvr = Provider.of<CartProvider>(context, listen: false);
 
-    await cartPvr.purchaseCartItems(
-      scaffoldKey: widget.scaffoldKey,
-    );
+    await cartPvr.purchaseCartItems(scaffoldKey: widget.scaffoldKey);
   }
 }

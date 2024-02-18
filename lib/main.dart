@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import 'firebase_options.dart';
-import 'helpers/auth_helper.dart';
 import 'helpers/firebase_api.dart';
 import 'helpers/routes.dart';
 import 'provider/auth_provider.dart';
@@ -12,8 +11,7 @@ import 'provider/box_provider.dart';
 import 'provider/cart_provider.dart';
 import 'provider/product_provider.dart';
 import 'provider/user_provider.dart';
-import 'screens/app.dart';
-import 'screens/onboarding_screens/onboarding_screen.dart';
+import 'screens/onboarding_screens/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,11 +21,7 @@ Future<void> main() async {
 
   await FirebaseApi().initNotification();
 
-  final Auth auth = Auth();
-  final bool isLogged = auth.isLogged();
-  final MainApp mainApp = MainApp(
-    initialRoute: isLogged ? App.rouetName : OnboardingScreen.routeName,
-  );
+  MainApp mainApp = const MainApp();
 
   runApp(mainApp);
 }
@@ -35,10 +29,7 @@ Future<void> main() async {
 class MainApp extends StatelessWidget {
   const MainApp({
     super.key,
-    required this.initialRoute,
   });
-
-  final String initialRoute;
 
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
@@ -118,7 +109,7 @@ class MainApp extends StatelessWidget {
               backgroundColor: Color(0xFF000218),
             ),
           ),
-          initialRoute: initialRoute,
+          initialRoute: SplashScreen.routeName,
           routes: routes,
         ),
       ),

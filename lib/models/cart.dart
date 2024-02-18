@@ -56,8 +56,10 @@ class Cart {
   }
 
   Product cartProduct() {
-    var productPvr =
-        Provider.of<ProductProvider>(MainApp.navigatorKey.currentContext!);
+    var productPvr = Provider.of<ProductProvider>(
+      MainApp.navigatorKey.currentContext!,
+      listen: false,
+    );
 
     Product product = productPvr.products.firstWhere(
       (e) => e.id == prodId,

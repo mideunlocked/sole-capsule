@@ -140,7 +140,6 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                         : () => showOrderDetailsSheet(
                               context: context,
                               scaffoldKey: _scaffoldKey,
-                              cartTotalPrice: cartPvr.totalCartPrice,
                             ),
                   );
                 }),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../helpers/auth_helper.dart';
 import '../../widgets/general_widgets/app_name.dart';
+import '../app.dart';
+import 'onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/SplashScreen';
@@ -23,8 +26,15 @@ class SplashScreenState extends State<SplashScreen> {
   void navigateToNextScreen() async {
     await Future.delayed(
       const Duration(seconds: 3),
-      () => Navigator.pushNamedAndRemoveUntil(
-          context, '/OnboardingScreen', (route) => false),
+      () {
+        final Auth auth = Auth();
+        final bool isLogged = auth.isLogged();
+
+        Navigator.pushNamedAndRemoveUntil(
+            context,
+            isLogged ? App.rouetName : OnboardingScreen.routeName,
+            (route) => false);
+      },
     );
   }
 
