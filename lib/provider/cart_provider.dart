@@ -213,19 +213,21 @@ class CartProvider with ChangeNotifier {
             },
             SetOptions(merge: true),
           );
-        }).then((_) {
-          _cartItems.clear();
-
-          notifyListeners();
-
-          if (context != null) {
-            Navigator.pushNamedAndRemoveUntil(
-              context!,
-              '/CheckOutSuccessScreen',
-              (route) => false,
-            );
-          }
         });
+      }
+
+      await deleteCollection();
+
+      _cartItems.clear();
+
+      notifyListeners();
+
+      if (context != null) {
+        Navigator.pushNamedAndRemoveUntil(
+          context!,
+          '/CheckOutSuccessScreen',
+          (route) => false,
+        );
       }
     } catch (e) {
       print('Purchase cart items error: $e');
@@ -239,6 +241,16 @@ class CartProvider with ChangeNotifier {
         scaffoldKey: scaffoldKey,
         textContent: 'An error occured couldn\'t complete purchase',
       );
+    }
+  }
+
+  Future<void> deleteCollection() async {
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    final QuerySnapshot querySnapshot =
+        await firestore.collection('users/$uid/cart').get();
+
+    for (QueryDocumentSnapshot documentSnapshot in querySnapshot.docs) {
+      await documentSnapshot.reference.delete();
     }
   }
 }

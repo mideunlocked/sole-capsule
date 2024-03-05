@@ -101,6 +101,9 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
   void purchaseCart() async {
     var cartPvr = Provider.of<CartProvider>(context, listen: false);
 
-    await cartPvr.purchaseCartItems(scaffoldKey: widget.scaffoldKey);
+    Future.delayed(
+        Duration.zero,
+        () async =>
+            await cartPvr.purchaseCartItems(scaffoldKey: widget.scaffoldKey));
   }
 }
