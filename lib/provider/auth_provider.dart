@@ -6,6 +6,7 @@ import '../helpers/encrypt_data.dart';
 import '../helpers/firebase_constants.dart';
 import '../helpers/get_user_id.dart';
 import '../helpers/scaffold_messenger_helper.dart';
+import '../models/user_details.dart';
 import '../models/users.dart';
 import '../widgets/general_widgets/loader_widget.dart';
 
@@ -17,12 +18,14 @@ class AuthProvider with ChangeNotifier {
     try {
       showCustomLoader();
 
-      await EncryptData.encryptAES(user.password);
+      UserDetails userDetails = user.userDetails;
+
+      await EncryptData.encryptAES(userDetails.password);
 
       await FirebaseConstants.authInstance
           .createUserWithEmailAndPassword(
-        email: user.email,
-        password: user.password,
+        email: userDetails.email,
+        password: userDetails.password,
       )
           .then((value) {
         String uid = value.user?.uid ?? '';
@@ -30,7 +33,10 @@ class AuthProvider with ChangeNotifier {
             .collection(FirebaseConstants.userPath)
             .doc(uid)
             .set(
-              user.toJson(uid, user: user),
+              user.toJson(
+                uid,
+                encryptedPassword: EncryptData.encrypted.toString(),
+              ),
             );
       });
 
@@ -41,7 +47,7 @@ class AuthProvider with ChangeNotifier {
       );
 
       await Future.delayed(
-        const Duration(seconds: 1),
+        Duration.zero,
       );
 
       return true;
@@ -76,7 +82,9 @@ class AuthProvider with ChangeNotifier {
 
   Future<dynamic> updateUserInfo({
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+    required Users user,
     required String username,
+    required String phoneNumber,
     required String profileImage,
   }) async {
     try {
@@ -88,8 +96,11 @@ class AuthProvider with ChangeNotifier {
           .doc(uid)
           .set(
         {
-          'username': username,
-          'profileImage': profileImage,
+          'userDetails': user.userDetails.toUserDetailsJson(
+            pUsername: username,
+            pProfileImage: profileImage,
+            pPhoneNumber: phoneNumber,
+          )
         },
         SetOptions(merge: true),
       ).then((value) => showScaffoldMessenger(

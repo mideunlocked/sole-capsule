@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:sole_capsule/models/delivery_details.dart';
 
+import '../../models/user_details.dart';
 import '../../models/users.dart';
 import '../../provider/auth_provider.dart';
 import '../../widgets/general_widgets/custom_back_button.dart';
@@ -148,13 +149,15 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
       Users user = Users(
         id: '',
-        email: emailController.text.trim(),
         boxes: [],
-        fullName: fullNameController.text.trim(),
-        password: passwordController.text.trim(),
-        username: '',
-        profileImage: '',
-        phoneNumber: '',
+        userDetails: UserDetails(
+          email: emailController.text.trim(),
+          fullName: fullNameController.text.trim(),
+          password: passwordController.text.trim(),
+          username: '',
+          profileImage: '',
+          phoneNumber: '',
+        ),
         deliveryDetails: const DeliveryDetails(
           name: '',
           city: '',
@@ -178,6 +181,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
           Navigator.pushNamedAndRemoveUntil(
             context,
             '/SetUpScreen',
+            arguments: user,
             (route) => false,
           );
         } else {

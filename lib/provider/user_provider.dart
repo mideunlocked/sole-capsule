@@ -1,25 +1,29 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:sole_capsule/models/delivery_details.dart';
 
 import '../helpers/firebase_constants.dart';
 import '../helpers/get_user_id.dart';
 import '../helpers/scaffold_messenger_helper.dart';
+import '../main.dart';
+import '../models/delivery_details.dart';
+import '../models/user_details.dart';
 import '../models/users.dart';
 import '../widgets/general_widgets/loader_widget.dart';
 
 class UserProvider with ChangeNotifier {
-  String uid = UserId.getUid();
+  final context = MainApp.navigatorKey.currentState?.overlay?.context;
 
   Users _user = const Users(
     id: '',
-    email: '',
     boxes: [],
-    fullName: '',
-    password: '',
-    username: '',
-    profileImage: '',
-    phoneNumber: '',
+    userDetails: UserDetails(
+      email: '',
+      fullName: '',
+      password: '',
+      username: '',
+      profileImage: '',
+      phoneNumber: '',
+    ),
     deliveryDetails: DeliveryDetails(
       name: '',
       city: '',
@@ -37,14 +41,22 @@ class UserProvider with ChangeNotifier {
   Future<void> getUser({
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
+    String uid = UserId.getUid();
+
     try {
       DocumentSnapshot userSnapshot = await FirebaseConstants.cloudInstance
           .collection(FirebaseConstants.userPath)
           .doc(uid)
           .get();
 
+      print(uid);
+      print(userSnapshot.id);
+
       if (userSnapshot.exists) {
+        print(userSnapshot.exists);
         Map<String, dynamic> data = userSnapshot.data() as Map<String, dynamic>;
+
+        print(data);
 
         _user = Users.fromJson(json: data);
         notifyListeners();
@@ -64,10 +76,64 @@ class UserProvider with ChangeNotifier {
     }
   }
 
+  Future<void> updateUserDetails({
+    required UserDetails userDetails,
+    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+  }) async {
+    showCustomLoader();
+    String uid = UserId.getUid();
+
+    try {
+      await FirebaseConstants.cloudInstance
+          .collection(FirebaseConstants.userPath)
+          .doc(uid)
+          .set(
+        {
+          'userDetails': userDetails.toJson(
+            encryptedPassword: user.userDetails.password,
+          ),
+        },
+        SetOptions(merge: true),
+      ).then((_) async {
+        await getUser(scaffoldKey: scaffoldKey);
+
+        showScaffoldMessenger(
+          scaffoldKey: scaffoldKey,
+          textContent: 'User details updated',
+          bkgColor: Colors.green,
+        );
+
+        if (context!.mounted) {
+          Navigator.pop(context!);
+        }
+      }).catchError((e) {
+        if (context!.mounted) {
+          Navigator.pop(context!);
+        }
+        print('Update user details error: $e');
+        showScaffoldMessenger(
+          scaffoldKey: scaffoldKey,
+          textContent: 'Failed to update user details, try again',
+        );
+      });
+    } catch (e) {
+      if (context!.mounted) {
+        Navigator.pop(context!);
+      }
+      print('Update user details error: $e');
+      showScaffoldMessenger(
+        scaffoldKey: scaffoldKey,
+        textContent: 'Failed to update user details, try again',
+      );
+    }
+  }
+
   Future<void> updateDeliveryDetails({
     required DeliveryDetails details,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
+    String uid = UserId.getUid();
+
     showCustomLoader();
 
     try {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../models/users.dart';
 import '../../provider/auth_provider.dart';
 import '../../widgets/general_widgets/custom_button.dart';
 import '../../widgets/general_widgets/custom_text_field.dart';
@@ -26,12 +27,14 @@ class _SetUpScreenState extends State<SetUpScreen> {
       GlobalKey<ScaffoldMessengerState>();
 
   final usernameController = TextEditingController();
+  final numberController = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
 
     usernameController.dispose();
+    numberController.dispose();
   }
 
   @override
@@ -76,6 +79,15 @@ class _SetUpScreenState extends State<SetUpScreen> {
                 sizedBox,
                 const SelectProfileImageWidget(),
                 sizedBox,
+                CustomTextField(
+                  controller: numberController,
+                  inputType: TextInputType.number,
+                  inputAction: TextInputAction.next,
+                  maxLength: 13,
+                  title: 'Phone number',
+                  hint: 'Enter phone number with country code',
+                ),
+                SizedBox(height: 2.h),
                 Consumer<AuthProvider>(builder: (ctx, provider, child) {
                   return CustomTextField(
                     controller: usernameController,
@@ -129,7 +141,7 @@ class _SetUpScreenState extends State<SetUpScreen> {
                           ),
                         ],
                       ),
-                SizedBox(height: 20.h),
+                SizedBox(height: 10.h),
                 CustomButton(
                   onTap: continueUserSetUp,
                   label: 'Complete Sign Up',
@@ -150,11 +162,14 @@ class _SetUpScreenState extends State<SetUpScreen> {
 
   void continueUserSetUp() async {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    Users user = ModalRoute.of(context)!.settings.arguments as Users;
 
     final response = await authProvider.updateUserInfo(
       scaffoldKey: _scaffoldKey,
       profileImage: '',
+      user: user,
       username: usernameController.text.trim(),
+      phoneNumber: numberController.text.trim(),
     );
 
     if (response == true) {

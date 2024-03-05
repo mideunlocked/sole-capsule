@@ -1,26 +1,17 @@
 import 'box.dart';
 import 'delivery_details.dart';
+import 'user_details.dart';
 
 class Users {
   final String id;
-  final String email;
   final List<Box> boxes;
-  final String username;
-  final String fullName;
-  final String password;
-  final String profileImage;
-  final String phoneNumber;
+  final UserDetails userDetails;
   final DeliveryDetails deliveryDetails;
 
   const Users({
     required this.id,
-    required this.email,
     required this.boxes,
-    required this.fullName,
-    required this.password,
-    required this.username,
-    required this.profileImage,
-    required this.phoneNumber,
+    required this.userDetails,
     required this.deliveryDetails,
   });
 
@@ -35,32 +26,28 @@ class Users {
     Map<String, dynamic> parsedDetails =
         json['deliveryDetails'] as Map<String, dynamic>;
 
+    Map<String, dynamic> userDetails =
+        json['userDetails'] as Map<String, dynamic>;
+
     return Users(
       id: json['id'] as String,
-      email: json['email'] as String,
       boxes: boxes,
-      fullName: json['fullName'] as String,
-      password: json['password'] as String,
-      username: json['username'] as String,
-      profileImage: json['profileImage'] as String,
-      phoneNumber: json['phoneNumber'] as String,
-      deliveryDetails: DeliveryDetails.fromJson(
-        json: parsedDetails,
-      ),
+      userDetails: UserDetails.fromJson(json: userDetails),
+      deliveryDetails: DeliveryDetails.fromJson(json: parsedDetails),
     );
   }
 
-  Map<String, dynamic> toJson(String? uid, {required Users user}) {
+  Map<String, dynamic> toJson(
+    String? uid, {
+    required String encryptedPassword,
+  }) {
     return {
       'id': uid,
-      'email': user.email,
-      'boxes': user.boxes,
-      'fullName': user.fullName,
-      'password': user.password,
-      'username': user.username,
-      'profileImage': user.profileImage,
-      'phoneNumber': user.phoneNumber,
-      'deliveryDetials': {},
+      'boxes': boxes,
+      'userDetails': userDetails.toJson(
+        encryptedPassword: encryptedPassword,
+      ),
+      'deliveryDetails': deliveryDetails.toJSon(),
     };
   }
 }

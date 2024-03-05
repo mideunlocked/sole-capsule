@@ -15,6 +15,7 @@ class CustomTextField extends StatefulWidget {
     this.isObscure = false,
     this.isVisibilityShown = false,
     this.onChanged,
+    this.maxLength,
   });
 
   final TextEditingController controller;
@@ -25,6 +26,7 @@ class CustomTextField extends StatefulWidget {
   final String hint;
   final bool isObscure;
   final bool isVisibilityShown;
+  final int? maxLength;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -76,6 +78,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
           cursorColor: AppColors.secondary,
           style: bodyMedium,
           enableSuggestions: !widget.isObscure,
+          maxLength: widget.maxLength,
+          buildCounter: (context,
+                  {required currentLength, required isFocused, maxLength}) =>
+              const SizedBox(),
           decoration: InputDecoration(
             hintText: widget.hint,
             hintStyle: bodyMedium?.copyWith(color: Colors.black38),

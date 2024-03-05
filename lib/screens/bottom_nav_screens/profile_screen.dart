@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:sole_capsule/models/user_details.dart';
 
 import '../../helpers/firebase_constants.dart';
 import '../../models/users.dart';
@@ -25,6 +26,7 @@ class ProfileScreen extends StatelessWidget {
     return SafeArea(
       child: Consumer<UserProvider>(builder: (context, user, child) {
         Users userData = user.user;
+        UserDetails userDetails = userData.userDetails;
 
         return Column(
           children: [
@@ -40,15 +42,15 @@ class ProfileScreen extends StatelessWidget {
                       children: [
                         SizedBox(height: 4.h),
                         ProfileImage(
-                          imageUrl: userData.profileImage,
+                          imageUrl: userDetails.profileImage,
                         ),
                         SizedBox(height: 2.h),
                         Text(
-                          userData.fullName,
+                          userDetails.fullName,
                           style: bodyLarge,
                         ),
                         Text(
-                          userData.email,
+                          userDetails.email,
                           style: bodySmall?.copyWith(
                             color: Colors.black54,
                           ),
@@ -71,12 +73,12 @@ class ProfileScreen extends StatelessWidget {
                       children: [
                         ProfileInfoTile(
                           label: 'Phone Number',
-                          value: userData.phoneNumber,
+                          value: userDetails.phoneNumber,
                         ),
                         SizedBox(height: 2.h),
                         ProfileInfoTile(
                           label: 'Email',
-                          value: userData.email,
+                          value: userDetails.email,
                         ),
                       ],
                     ),
@@ -293,10 +295,12 @@ class ProfileAppBar extends StatelessWidget {
                 ),
               ],
             ),
-            onPressed: () => FirebaseConstants.authInstance.signOut().then(
-                  (value) => Navigator.pushReplacementNamed(
-                          context, '/OnboardingScreen')
-                      .catchError((e) {
+            onPressed: () async => await FirebaseConstants.authInstance
+                .signOut()
+                .then(
+                  (value) =>
+                      Navigator.pushReplacementNamed(context, '/WelcomeScreen')
+                          .catchError((e) {
                     print(e);
                     return e;
                   }),
