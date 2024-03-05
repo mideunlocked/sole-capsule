@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -26,6 +28,9 @@ class EditProfileScreenState extends State<EditProfileScreen> {
   var emailCtr = TextEditingController();
   var numberCtr = TextEditingController();
   var usernameCtr = TextEditingController();
+  String profileImageUrl = '';
+
+  File profileImageFile = File('');
 
   bool usernameAvailable = false;
   bool isLoading = false;
@@ -73,8 +78,9 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                       child: Column(
                         children: [
                           sizedBox,
-                          const SelectProfileImageWidget(
-                            imageUrl: '',
+                          SelectProfileImageWidget(
+                            imageUrl: profileImageUrl,
+                            getProfileImage: getProfileImage,
                           ),
                           sizedBox,
                           CustomTextField(
@@ -171,6 +177,10 @@ class EditProfileScreenState extends State<EditProfileScreen> {
     );
   }
 
+  void getProfileImage(File file) {
+    setState(() => profileImageFile = file);
+  }
+
   void getUserDetails() {
     var userProvider = Provider.of<UserProvider>(context, listen: false);
 
@@ -182,6 +192,7 @@ class EditProfileScreenState extends State<EditProfileScreen> {
       emailCtr = TextEditingController(text: userDetails.email);
       numberCtr = TextEditingController(text: userDetails.phoneNumber);
       usernameCtr = TextEditingController(text: userDetails.username);
+      profileImageUrl = userDetails.profileImage;
     });
   }
 
@@ -193,27 +204,18 @@ class EditProfileScreenState extends State<EditProfileScreen> {
     } else {
       var userProvider = Provider.of<UserProvider>(context, listen: false);
 
-      await userProvider
-          .updateUserDetails(
-            userDetails: UserDetails(
-              email: emailCtr.text.trim(),
-              fullName: fullNameCtr.text.trim(),
-              username: usernameCtr.text.trim(),
-              password: '',
-              phoneNumber: numberCtr.text.trim(),
-              profileImage: '',
-            ),
-            scaffoldKey: _scaffoldKey,
-          )
-          .then(
-            (_) async => await userProvider
-                .getUser(
-                  scaffoldKey: _scaffoldKey,
-                )
-                .then(
-                  (_) => getUserDetails(),
-                ),
-          );
+      await userProvider.updateUserDetails(
+        profileImage: profileImageFile,
+        userDetails: UserDetails(
+          email: emailCtr.text.trim(),
+          fullName: fullNameCtr.text.trim(),
+          username: usernameCtr.text.trim(),
+          password: '',
+          phoneNumber: numberCtr.text.trim(),
+          profileImage: '',
+        ),
+        scaffoldKey: _scaffoldKey,
+      );
     }
   }
 }

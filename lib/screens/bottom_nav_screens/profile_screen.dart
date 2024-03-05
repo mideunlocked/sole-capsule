@@ -180,6 +180,7 @@ class ProfileImage extends StatelessWidget {
             imageUrl,
           ),
           radius: 45.sp,
+          backgroundColor: Colors.grey.shade300,
         ),
         Positioned(
           top: 45.sp,

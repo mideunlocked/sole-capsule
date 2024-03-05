@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +11,7 @@ import '../models/delivery_details.dart';
 import '../models/user_details.dart';
 import '../models/users.dart';
 import '../widgets/general_widgets/loader_widget.dart';
+import 'image_provider.dart';
 
 class UserProvider with ChangeNotifier {
   final context = MainApp.navigatorKey.currentState?.overlay?.context;
@@ -77,6 +80,7 @@ class UserProvider with ChangeNotifier {
   }
 
   Future<void> updateUserDetails({
+    required File profileImage,
     required UserDetails userDetails,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
@@ -84,12 +88,22 @@ class UserProvider with ChangeNotifier {
     String uid = UserId.getUid();
 
     try {
+      String? profileImageUrl = '';
+
+      if (profileImage.existsSync()) {
+        profileImageUrl =
+            await AppImageProvider().uploadProfileImage(profileImage);
+      }
+
+      print('Profile image url $profileImageUrl');
+
       await FirebaseConstants.cloudInstance
           .collection(FirebaseConstants.userPath)
           .doc(uid)
           .set(
         {
           'userDetails': userDetails.toJson(
+            pProfileImage: profileImageUrl ?? '',
             encryptedPassword: user.userDetails.password,
           ),
         },

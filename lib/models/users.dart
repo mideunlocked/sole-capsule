@@ -40,12 +40,14 @@ class Users {
   Map<String, dynamic> toJson(
     String? uid, {
     required String encryptedPassword,
+    required String profileImage,
   }) {
     return {
       'id': uid,
       'boxes': boxes,
       'userDetails': userDetails.toJson(
         encryptedPassword: encryptedPassword,
+        pProfileImage: profileImage,
       ),
       'deliveryDetails': deliveryDetails.toJSon(),
     };

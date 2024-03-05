@@ -28,13 +28,14 @@ class UserDetails {
 
   Map<String, dynamic> toJson({
     required String encryptedPassword,
+    required String pProfileImage,
   }) {
     return {
       'email': email,
       'fullName': fullName,
       'password': encryptedPassword,
       'username': username,
-      'profileImage': profileImage,
+      'profileImage': pProfileImage,
       'phoneNumber': phoneNumber,
     };
   }

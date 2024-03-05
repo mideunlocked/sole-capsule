@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sole_capsule/provider/image_provider.dart';
 
 import '../helpers/encrypt_data.dart';
 import '../helpers/firebase_constants.dart';
@@ -36,6 +39,7 @@ class AuthProvider with ChangeNotifier {
               user.toJson(
                 uid,
                 encryptedPassword: EncryptData.encrypted.toString(),
+                profileImage: '',
               ),
             );
       });
@@ -85,11 +89,17 @@ class AuthProvider with ChangeNotifier {
     required Users user,
     required String username,
     required String phoneNumber,
-    required String profileImage,
+    required File profileImage,
   }) async {
     try {
       showCustomLoader();
       String uid = UserId.getUid();
+      String? profileImageUrl = '';
+
+      if (profileImage.existsSync()) {
+        profileImageUrl =
+            await AppImageProvider().uploadProfileImage(profileImage);
+      }
 
       await FirebaseConstants.cloudInstance
           .collection(FirebaseConstants.userPath)
@@ -98,7 +108,7 @@ class AuthProvider with ChangeNotifier {
         {
           'userDetails': user.userDetails.toUserDetailsJson(
             pUsername: username,
-            pProfileImage: profileImage,
+            pProfileImage: profileImageUrl ?? "",
             pPhoneNumber: phoneNumber,
           )
         },

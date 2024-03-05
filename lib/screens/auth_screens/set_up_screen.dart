@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -28,6 +30,8 @@ class _SetUpScreenState extends State<SetUpScreen> {
 
   final usernameController = TextEditingController();
   final numberController = TextEditingController();
+
+  File profileImageFile = File('');
 
   @override
   void dispose() {
@@ -77,7 +81,9 @@ class _SetUpScreenState extends State<SetUpScreen> {
                   style: TextStyle(color: Colors.black54),
                 ),
                 sizedBox,
-                const SelectProfileImageWidget(),
+                SelectProfileImageWidget(
+                  getProfileImage: getProfileImage,
+                ),
                 sizedBox,
                 CustomTextField(
                   controller: numberController,
@@ -166,7 +172,7 @@ class _SetUpScreenState extends State<SetUpScreen> {
 
     final response = await authProvider.updateUserInfo(
       scaffoldKey: _scaffoldKey,
-      profileImage: '',
+      profileImage: profileImageFile,
       user: user,
       username: usernameController.text.trim(),
       phoneNumber: numberController.text.trim(),
@@ -186,5 +192,9 @@ class _SetUpScreenState extends State<SetUpScreen> {
         Navigator.pop(context);
       }
     }
+  }
+
+  void getProfileImage(File file) {
+    setState(() => profileImageFile = file);
   }
 }
