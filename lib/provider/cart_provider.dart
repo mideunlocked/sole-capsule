@@ -113,7 +113,7 @@ class CartProvider with ChangeNotifier {
       print(e);
       showScaffoldMessenger(
         scaffoldKey: scaffoldKey,
-        textContent: 'Couldn\'t add to cart',
+        textContent: 'Couldn\'t get cart items',
       );
     }
   }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../../models/order.dart';
+import '../../helpers/app_colors.dart';
+import '../../provider/order_provider.dart';
 import '../../widgets/general_widgets/custom_app_bar.dart';
+import '../../widgets/general_widgets/custom_progress_inidicator.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
 import '../../widgets/orders_widgets/order_secondary_tile.dart';
 import '../../widgets/orders_widgets/orders_tab_tile.dart';
@@ -21,67 +24,87 @@ class _OrdersScreenState extends State<OrdersScreen> {
   void toggleTab(int newTab) => setState(() => currentTab = newTab);
 
   @override
+  void initState() {
+    Future.delayed(
+        Duration.zero,
+        () => getOrders(
+              isInitial: true,
+            ));
+
+    super.initState();
+  }
+
+  final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
+      GlobalKey<ScaffoldMessengerState>();
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            const PaddedScreenWidget(
-              child: CustomAppBar(title: 'My Orders'),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: RefreshIndicator(
+        onRefresh: () async => getOrders(),
+        color: AppColors.secondary,
+        child: ScaffoldMessenger(
+          key: _scaffoldKey,
+          child: SafeArea(
+            child: Column(
               children: [
-                OrdersTabTile(
-                  label: 'OPEN ORDERS',
-                  tabIndex: 0,
-                  currentIndex: currentTab,
-                  toggleTab: toggleTab,
+                const PaddedScreenWidget(
+                  child: CustomAppBar(title: 'My Orders'),
                 ),
-                OrdersTabTile(
-                  label: 'CLOSED ORDERS',
-                  tabIndex: 1,
-                  currentIndex: currentTab,
-                  toggleTab: toggleTab,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    OrdersTabTile(
+                      label: 'OPEN ORDERS',
+                      tabIndex: 0,
+                      currentIndex: currentTab,
+                      toggleTab: toggleTab,
+                    ),
+                    OrdersTabTile(
+                      label: 'CLOSED ORDERS',
+                      tabIndex: 1,
+                      currentIndex: currentTab,
+                      toggleTab: toggleTab,
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: PaddedScreenWidget(
+                    child: Consumer<OrderProvider>(
+                        builder: (context, orderPvr, child) {
+                      if (orderPvr.isLoading == true) {
+                        return const Center(
+                          child: CustomProgressIndicator(),
+                        );
+                      }
+
+                      return ListView(
+                        children: currentTab == 0
+                            ? orderPvr.orders
+                                .where((order) => order.status == 'Pending')
+                                .map((e) => OrderSecondaryTile(order: e))
+                                .toList()
+                            : orderPvr.orders
+                                .where((order) => order.status == 'Closed')
+                                .map((e) => OrderSecondaryTile(order: e))
+                                .toList(),
+                      );
+                    }),
+                  ),
                 ),
               ],
             ),
-            Expanded(
-              child: PaddedScreenWidget(
-                child: ListView(
-                  children: currentTab == 0
-                      ? const [
-                          OrderSecondaryTile(
-                            order: Orders(
-                              id: '0',
-                              status: 'Pending',
-                              prodId: '6WeMiMBHkZ1Q7cRP18nV',
-                              price: 105,
-                              color: 4294967295,
-                              quantity: 2,
-                              paymentMethod: '',
-                            ),
-                          ),
-                        ]
-                      : const [
-                          OrderSecondaryTile(
-                            order: Orders(
-                              id: '0',
-                              status: 'Closed',
-                              prodId: '6WeMiMBHkZ1Q7cRP18nV',
-                              price: 99,
-                              color: 4294967295,
-                              quantity: 1,
-                              paymentMethod: '',
-                            ),
-                          ),
-                        ],
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
+  }
+
+  void getOrders({
+    bool isInitial = false,
+  }) async {
+    var orderPvr = Provider.of<OrderProvider>(context, listen: false);
+
+    await orderPvr.getOrders(scaffoldKey: _scaffoldKey);
   }
 }

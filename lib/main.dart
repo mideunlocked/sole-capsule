@@ -9,6 +9,7 @@ import 'helpers/routes.dart';
 import 'provider/auth_provider.dart';
 import 'provider/box_provider.dart';
 import 'provider/cart_provider.dart';
+import 'provider/order_provider.dart';
 import 'provider/product_provider.dart';
 import 'provider/user_provider.dart';
 import 'screens/onboarding_screens/splash_screen.dart';
@@ -53,6 +54,9 @@ class MainApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(
             create: (ctx) => CartProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (ctx) => OrderProvider(),
           ),
         ],
         child: MaterialApp(
