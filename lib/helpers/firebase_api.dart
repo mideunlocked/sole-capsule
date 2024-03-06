@@ -48,7 +48,7 @@ class FirebaseApi {
       requestSoundPermission: true,
       onDidReceiveLocalNotification: (id, title, body, payload) async {},
     );
-    const android = AndroidInitializationSettings('@drawable/launcher_icon');
+    const android = AndroidInitializationSettings('@drawable/pill');
     var settings = InitializationSettings(android: android, iOS: iOS);
 
     await _localNotifications.initialize(settings,
