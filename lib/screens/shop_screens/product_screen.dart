@@ -28,6 +28,8 @@ class _ProductScreenState extends State<ProductScreen> {
   String currentImageUrl = '';
   int currentColor = 0;
 
+  int quantity = 1;
+
   final pgCtr = PageController();
 
   @override
@@ -37,21 +39,14 @@ class _ProductScreenState extends State<ProductScreen> {
     pgCtr.dispose();
   }
 
-  void scrollImage(int newImage) {
-    setState(() {
-      currentImage = newImage;
-    });
-  }
+  void scrollImage(int newImage) => setState(() => currentImage = newImage);
 
-  void setCurrentImage(String newImageUrl) {
-    currentImageUrl = newImageUrl;
-  }
+  void setCurrentImage(String newImageUrl) => currentImageUrl = newImageUrl;
 
-  void setCurrentColor(int newColor) {
-    setState(() {
-      currentColor = newColor;
-    });
-  }
+  void setCurrentColor(int newColor) => setState(() => currentColor = newColor);
+
+  void increaseQuantity() => setState(() => quantity++);
+  void decreaseQuantity() => setState(() => quantity > 1 ? quantity-- : null);
 
   final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
       GlobalKey<ScaffoldMessengerState>();
@@ -167,16 +162,18 @@ class _ProductScreenState extends State<ProductScreen> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  const QuantityButton(
+                                  QuantityButton(
                                     icon: Icons.remove_rounded,
+                                    onTap: decreaseQuantity,
                                   ),
                                   Padding(
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 4.w),
-                                    child: const Text('1'),
+                                    child: Text(quantity.toString()),
                                   ),
-                                  const QuantityButton(
+                                  QuantityButton(
                                     icon: Icons.add_rounded,
+                                    onTap: increaseQuantity,
                                   ),
                                 ],
                               ),
@@ -265,7 +262,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                                 .toString(),
                                             color: currentColor,
                                             prodId: prod.id,
-                                            quantity: 1,
+                                            quantity: quantity,
                                           ),
                                         ),
                                 );
