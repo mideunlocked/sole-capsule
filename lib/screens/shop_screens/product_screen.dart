@@ -9,6 +9,7 @@ import '../../provider/cart_provider.dart';
 import '../../widgets/general_widgets/custom_app_bar.dart';
 import '../../widgets/general_widgets/custom_button.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
+import '../../widgets/orders_widgets/order_tile.dart';
 import '../../widgets/product_widgets/image_indicator.dart';
 import '../../widgets/product_widgets/product_image_tile.dart';
 
@@ -120,43 +121,65 @@ class _ProductScreenState extends State<ProductScreen> {
                           }).toList(),
                         ),
                         sizedBox,
+                        sizedBox,
                         PaddedScreenWidget(
-                          child: SizedBox(
-                            height: 5.h,
-                            width: 100.w,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: prod.colors.length,
-                              itemBuilder: (ctx, index) {
-                                int color = prod.colors[index];
-                                bool isCurrent = color == currentColor;
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                height: 5.h,
+                                width: 50.w,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: prod.colors.length,
+                                  itemBuilder: (ctx, index) {
+                                    int color = prod.colors[index];
+                                    bool isCurrent = color == currentColor;
 
-                                return IconButton(
-                                  onPressed: () {
-                                    setCurrentColor(color);
+                                    return IconButton(
+                                      onPressed: () {
+                                        setCurrentColor(color);
+                                      },
+                                      icon: Container(
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          border: isCurrent
+                                              ? Border.all(
+                                                  color: Colors.black45,
+                                                  width: 1,
+                                                )
+                                              : null,
+                                          color: Colors.grey.shade200,
+                                        ),
+                                        alignment: Alignment.center,
+                                        child: Icon(
+                                          Icons.circle_rounded,
+                                          size: 20.sp,
+                                          color: Color(color),
+                                        ),
+                                      ),
+                                    );
                                   },
-                                  icon: Container(
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: isCurrent
-                                          ? Border.all(
-                                              color: Colors.black45,
-                                              width: 1,
-                                            )
-                                          : null,
-                                      color: Colors.grey.shade200,
-                                    ),
-                                    alignment: Alignment.center,
-                                    child: Icon(
-                                      Icons.circle_rounded,
-                                      size: 20.sp,
-                                      color: Color(color),
-                                    ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  const QuantityButton(
+                                    icon: Icons.remove_rounded,
                                   ),
-                                );
-                              },
-                            ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 4.w),
+                                    child: const Text('1'),
+                                  ),
+                                  const QuantityButton(
+                                    icon: Icons.add_rounded,
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                         sizedBox,
