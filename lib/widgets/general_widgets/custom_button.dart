@@ -6,16 +6,18 @@ class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
     required this.onTap,
-    required this.label,
+    this.label,
     this.color = const Color(0xFF000218),
     this.isLoading = false,
     this.icon,
+    this.customWidget,
   });
 
+  final Widget? customWidget;
   final Function()? onTap;
   final bool isLoading;
   final IconData? icon;
-  final String label;
+  final String? label;
   final Color color;
 
   @override
@@ -38,25 +40,26 @@ class CustomButton extends StatelessWidget {
             ? const Center(
                 child: CustomProgressIndicator(),
               )
-            : Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Visibility(
-                    visible: icon != null,
-                    child: Icon(
-                      icon,
+            : customWidget ??
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Visibility(
+                      visible: icon != null,
+                      child: Icon(
+                        icon,
+                      ),
                     ),
-                  ),
-                  Text(
-                    label,
-                    style: TextStyle(
-                      color: color == const Color(0xFF000218)
-                          ? Colors.white
-                          : null,
+                    Text(
+                      label ?? '',
+                      style: TextStyle(
+                        color: color == const Color(0xFF000218)
+                            ? Colors.white
+                            : null,
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
       ),
     );
   }

@@ -7,6 +7,7 @@ void showScaffoldMessenger({
   required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   required String textContent,
   Color bkgColor = Colors.red,
+  SnackBarAction? snackBarAction,
 }) {
   final context = MainApp.navigatorKey.currentState!.overlay!.context;
   final scaffoldMessenger = ScaffoldMessenger.of(context);
@@ -24,6 +25,7 @@ void showScaffoldMessenger({
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
+      action: snackBarAction,
     ),
   );
 }
