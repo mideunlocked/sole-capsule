@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../models/product.dart';
+import '../general_widgets/product_image.dart';
 import 'product_image_view_handler.dart';
 
 class ProdImageTile extends StatelessWidget {
@@ -25,14 +26,11 @@ class ProdImageTile extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Image.network(
-              image,
-              fit: BoxFit.cover,
-              height: 28.h,
-              width: 100.w,
-            ),
+          ProductImage(
+            imageUrl: image,
+            borderRadius: 20,
+            height: 28.h,
+            width: 100.w,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 2.w),

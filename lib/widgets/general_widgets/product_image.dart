@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'custom_progress_inidicator.dart';
+import 'sole_image_loader.dart';
 
 class ProductImage extends StatelessWidget {
   const ProductImage({
     super.key,
     required this.imageUrl,
+    this.borderRadius = 15,
     this.height,
     this.width,
   });
 
+  final double borderRadius;
   final String imageUrl;
   final double? height;
   final double? width;
@@ -17,7 +19,7 @@ class ProductImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(15),
+      borderRadius: BorderRadius.circular(borderRadius),
       child: Image.network(
         imageUrl,
         height: height,
@@ -28,19 +30,17 @@ class ProductImage extends StatelessWidget {
           return SizedBox(
             height: height,
             width: width,
-            child: const Center(
-              child: CustomProgressIndicator(),
-            ),
+            child: const SoleImageLoader(),
           );
         },
         errorBuilder: (ctx, _, stacktrace) {
           return SizedBox(
             height: height,
             width: width,
-            child: const Center(
-              child: Icon(
-                Icons.error_rounded,
-                color: Colors.black,
+            child: Center(
+              child: Image.asset(
+                'assets/logo/SOLE CAPSULE.png',
+                color: Colors.grey.shade300,
               ),
             ),
           );

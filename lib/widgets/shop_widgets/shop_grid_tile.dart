@@ -3,6 +3,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../models/product.dart';
 import '../general_widgets/custom_progress_inidicator.dart';
+import '../general_widgets/product_image.dart';
 
 class ShopGridTile extends StatelessWidget {
   const ShopGridTile({
@@ -68,26 +69,9 @@ class ShopGridTile extends StatelessWidget {
               ],
             ),
           ),
-          ClipRRect(
-            borderRadius: borderRadius,
-            child: Image.network(
-              product.productImages.last,
-              fit: BoxFit.cover,
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return const Center(
-                  child: CustomProgressIndicator(),
-                );
-              },
-              errorBuilder: (ctx, _, stacktrace) {
-                return const Center(
-                  child: Icon(
-                    Icons.error_rounded,
-                    color: Colors.black,
-                  ),
-                );
-              },
-            ),
+          ProductImage(
+            imageUrl: product.productImages.last,
+            borderRadius: 20,
           ),
         ],
       ),
