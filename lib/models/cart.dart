@@ -41,6 +41,15 @@ class Cart {
     };
   }
 
+  factory Cart.nullCart() {
+    return const Cart(
+      id: '',
+      color: 0,
+      prodId: '',
+      quantity: 0,
+    );
+  }
+
   double totalCartPrice() {
     Product product = cartProduct();
     String priceString = CalculateDiscount.calculateDiscount(

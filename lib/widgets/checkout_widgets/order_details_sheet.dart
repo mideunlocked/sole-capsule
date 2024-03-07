@@ -15,6 +15,7 @@ import 'order_details_tile.dart';
 void showOrderDetailsSheet({
   required BuildContext context,
   required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+  bool directBuy = false,
 }) {
   var userPvr = Provider.of<UserProvider>(context, listen: false);
 
@@ -45,6 +46,7 @@ void showOrderDetailsSheet({
       isScrollControlled: true,
       builder: (ctx) => OrderDetailsSheet(
         scaffoldKey: scaffoldKey,
+        directBuy: directBuy,
       ),
     );
   }
@@ -54,9 +56,11 @@ class OrderDetailsSheet extends StatefulWidget {
   const OrderDetailsSheet({
     super.key,
     required this.scaffoldKey,
+    required this.directBuy,
   });
 
   final GlobalKey<ScaffoldMessengerState> scaffoldKey;
+  final bool directBuy;
 
   @override
   State<OrderDetailsSheet> createState() => _OrderDetailsSheetState();
@@ -102,7 +106,8 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
             Consumer<CartProvider>(builder: (context, cartPvr, _) {
               return OrderDetailsTile(
                 title: 'Order Amounts',
-                value: '\$${cartPvr.totalCartPrice}',
+                value:
+                    '\$${widget.directBuy ? cartPvr.directCart.totalCartPrice() : cartPvr.totalCartPrice}',
               );
             }),
             const OrderDetailsTile(
@@ -113,7 +118,7 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
             DiscountTextField(controller: discountCodeCtr),
             SizedBox(height: 5.h),
             CustomButton(
-              onTap: purchaseCart,
+              onTap: () => purchaseCart(paymentMethod: 'Cash In'),
               label: 'Proceed to payment',
             ),
             sizedBox,
@@ -125,12 +130,12 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
             ),
             sizedBox,
             CustomButton(
-              onTap: purchaseCart,
+              onTap: () => purchaseCart(paymentMethod: 'Google Pay'),
               customWidget: SvgPicture.asset('assets/icons/gpay.svg'),
             ),
             sizedBox,
             CustomButton(
-              onTap: purchaseCart,
+              onTap: () => purchaseCart(paymentMethod: 'Apple Pay'),
               customWidget: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -151,12 +156,23 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
     );
   }
 
-  void purchaseCart() async {
+  void purchaseCart({
+    required String paymentMethod,
+  }) async {
     var cartPvr = Provider.of<CartProvider>(context, listen: false);
 
-    Future.delayed(
-        Duration.zero,
-        () async =>
-            await cartPvr.purchaseCartItems(scaffoldKey: widget.scaffoldKey));
+    print(cartPvr.directCart.totalCartPrice());
+
+    if (!widget.directBuy) {
+      await cartPvr.purchaseCartItems(
+        scaffoldKey: widget.scaffoldKey,
+        paymentMethod: paymentMethod,
+      );
+    } else {
+      await cartPvr.purchaseDirectCart(
+        scaffoldKey: widget.scaffoldKey,
+        paymentMethod: paymentMethod,
+      );
+    }
   }
 }

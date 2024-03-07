@@ -1,20 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../helpers/calculate_discount.dart';
 import '../helpers/firebase_constants.dart';
 import '../helpers/get_user_id.dart';
 import '../helpers/scaffold_messenger_helper.dart';
 import '../main.dart';
 import '../models/cart.dart';
 import '../models/order.dart';
+import '../models/users.dart';
 import '../widgets/general_widgets/loader_widget.dart';
+import 'user_provider.dart';
 
 class CartProvider with ChangeNotifier {
-  String uid = UserId.getUid();
   final context = MainApp.navigatorKey.currentState?.overlay?.context;
 
   final List<Cart> _cartItems = [];
   List<Cart> get cartItems => _cartItems;
+
+  Cart _directCart = Cart.nullCart();
+  Cart get directCart => _directCart;
 
   double _totalCartPrice = 0;
   double get totalCartPrice => _totalCartPrice;
@@ -22,10 +28,18 @@ class CartProvider with ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
+  Users getUser() {
+    var userPvr = Provider.of<UserProvider>(context!, listen: false);
+
+    return userPvr.user;
+  }
+
   Future<void> addToCart({
     required Cart cart,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
+    String uid = UserId.getUid();
+
     try {
       _isLoading = true;
 
@@ -86,6 +100,8 @@ class CartProvider with ChangeNotifier {
   Future<void> getCartItems({
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
+    String uid = UserId.getUid();
+
     try {
       _cartItems.clear();
       var cartCollection = FirebaseConstants.cloudInstance
@@ -121,6 +137,8 @@ class CartProvider with ChangeNotifier {
   Future<void> removeFromCart({
     required String cartId,
   }) async {
+    String uid = UserId.getUid();
+
     try {
       var cartCollection = FirebaseConstants.cloudInstance
           .collection('users')
@@ -140,6 +158,8 @@ class CartProvider with ChangeNotifier {
   }
 
   Future<void> emptyCart() async {
+    String uid = UserId.getUid();
+
     try {
       var cartCollection = FirebaseConstants.cloudInstance
           .collection('users')
@@ -182,9 +202,79 @@ class CartProvider with ChangeNotifier {
     _totalCartPrice = total;
   }
 
-  Future<void> purchaseCartItems({
+  Future<void> purchaseDirectCart({
+    required String paymentMethod,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
+    String uid = UserId.getUid();
+
+    try {
+      showCustomLoader();
+
+      var ordersCollections = FirebaseConstants.cloudInstance
+          .collection('users')
+          .doc(uid)
+          .collection('orders');
+
+      double orderPrice = double.parse(
+        CalculateDiscount.calculateDiscount(
+          _directCart.cartProduct().price,
+          _directCart.cartProduct().discount ?? 0,
+        ),
+      );
+
+      Orders order = Orders(
+        id: '',
+        color: _directCart.color,
+        price: orderPrice,
+        status: 'Pending',
+        prodId: _directCart.prodId,
+        quantity: _directCart.quantity,
+        paymentMethod: paymentMethod,
+        deliveryDetails: getUser().deliveryDetails,
+      );
+
+      await ordersCollections.add(order.toJson()).then((value) async {
+        await ordersCollections.doc(value.id).set(
+          {
+            'id': value.id,
+          },
+          SetOptions(merge: true),
+        );
+      });
+
+      removeDirectCart();
+
+      notifyListeners();
+
+      if (context != null) {
+        Navigator.pushNamedAndRemoveUntil(
+          context!,
+          '/CheckOutSuccessScreen',
+          (route) => false,
+        );
+      }
+    } catch (e) {
+      print('Purchase item error: $e');
+
+      if (context != null) {
+        Navigator.pop(context!);
+        Navigator.pop(context!);
+      }
+
+      showScaffoldMessenger(
+        scaffoldKey: scaffoldKey,
+        textContent: 'An error occured couldn\'t complete purchase',
+      );
+    }
+  }
+
+  Future<void> purchaseCartItems({
+    required String paymentMethod,
+    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+  }) async {
+    String uid = UserId.getUid();
+
     try {
       showCustomLoader();
 
@@ -196,14 +286,22 @@ class CartProvider with ChangeNotifier {
       Cart cart;
 
       for (cart in _cartItems) {
+        double orderPrice = double.parse(
+          CalculateDiscount.calculateDiscount(
+            _directCart.cartProduct().price,
+            _directCart.cartProduct().discount ?? 0,
+          ),
+        );
+
         Orders order = Orders(
           id: '',
           color: cart.color,
-          price: cart.cartProduct().price,
+          price: orderPrice,
           status: 'Pending',
           prodId: cart.prodId,
           quantity: cart.quantity,
-          paymentMethod: 'Cash in',
+          paymentMethod: paymentMethod,
+          deliveryDetails: getUser().deliveryDetails,
         );
 
         await ordersCollections.add(order.toJson()).then((value) async {
@@ -216,9 +314,9 @@ class CartProvider with ChangeNotifier {
         });
       }
 
-      await deleteCollection();
-
       _cartItems.clear();
+
+      await deleteCollection();
 
       notifyListeners();
 
@@ -245,6 +343,8 @@ class CartProvider with ChangeNotifier {
   }
 
   Future<void> deleteCollection() async {
+    String uid = UserId.getUid();
+
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
     final QuerySnapshot querySnapshot =
         await firestore.collection('users/$uid/cart').get();
@@ -252,5 +352,17 @@ class CartProvider with ChangeNotifier {
     for (QueryDocumentSnapshot documentSnapshot in querySnapshot.docs) {
       await documentSnapshot.reference.delete();
     }
+  }
+
+  void putDirectCart({
+    required Cart cart,
+  }) {
+    _directCart = cart;
+  }
+
+  void removeDirectCart() {
+    _directCart = Cart.nullCart();
+
+    notifyListeners();
   }
 }

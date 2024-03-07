@@ -1,4 +1,5 @@
 import 'package:provider/provider.dart';
+import 'package:sole_capsule/models/delivery_details.dart';
 
 import '../main.dart';
 import '../provider/product_provider.dart';
@@ -12,6 +13,7 @@ class Orders {
   final String status;
   final String prodId;
   final String paymentMethod;
+  final DeliveryDetails deliveryDetails;
 
   const Orders({
     required this.id,
@@ -21,6 +23,7 @@ class Orders {
     required this.prodId,
     required this.quantity,
     required this.paymentMethod,
+    required this.deliveryDetails,
   });
 
   factory Orders.fromJson({
@@ -34,6 +37,7 @@ class Orders {
       prodId: json['prodId'] as String,
       quantity: json['quantity'] as int,
       paymentMethod: json['paymentMethod'] as String,
+      deliveryDetails: DeliveryDetails.fromJson(json: json['deliveryDetails']),
     );
   }
 
@@ -46,6 +50,7 @@ class Orders {
       'prodId': prodId,
       'quantity': quantity,
       'paymentMethod': paymentMethod,
+      'deliveryDetails': deliveryDetails.toJSon(),
     };
   }
 

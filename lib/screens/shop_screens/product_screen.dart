@@ -268,13 +268,27 @@ class _ProductScreenState extends State<ProductScreen> {
                                 );
                               }),
                               sizedBox,
-                              CustomButton(
-                                onTap: () => showOrderDetailsSheet(
-                                  context: context,
-                                  scaffoldKey: _scaffoldKey,
-                                ),
-                                label: 'Buy Now',
-                              ),
+                              Consumer<CartProvider>(
+                                  builder: (context, cartPvr, _) {
+                                cartPvr.putDirectCart(
+                                  cart: Cart(
+                                    id: (cartPvr.cartItems.length - 1)
+                                        .toString(),
+                                    color: currentColor,
+                                    prodId: prod.id,
+                                    quantity: quantity,
+                                  ),
+                                );
+
+                                return CustomButton(
+                                  onTap: () => showOrderDetailsSheet(
+                                    context: context,
+                                    scaffoldKey: _scaffoldKey,
+                                    directBuy: true,
+                                  ),
+                                  label: 'Buy Now',
+                                );
+                              }),
                               sizedBox,
                             ],
                           ),

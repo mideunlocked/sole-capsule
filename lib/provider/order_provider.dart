@@ -8,7 +8,6 @@ import '../main.dart';
 import '../models/order.dart';
 
 class OrderProvider with ChangeNotifier {
-  String uid = UserId.getUid();
   final context = MainApp.navigatorKey.currentState?.overlay?.context;
 
   bool _isLoading = false;
@@ -21,8 +20,12 @@ class OrderProvider with ChangeNotifier {
     bool isInitial = false,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
+    String uid = UserId.getUid();
+
     if (isInitial) {
       _isLoading = true;
+      _orders.clear();
+
       notifyListeners();
     }
 
