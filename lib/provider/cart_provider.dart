@@ -365,4 +365,23 @@ class CartProvider with ChangeNotifier {
 
     notifyListeners();
   }
+
+  void updateCartQuantity({
+    required String id,
+    required int quantity,
+  }) {
+    Cart cart = _cartItems.firstWhere((e) => e.id == id);
+    int index = _cartItems.indexOf(cart);
+
+    cart = Cart(
+      id: id,
+      color: cart.color,
+      prodId: cart.prodId,
+      quantity: quantity,
+    );
+
+    _cartItems.setAll(index, [cart]);
+
+    notifyListeners();
+  }
 }

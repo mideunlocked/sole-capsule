@@ -1,17 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../models/cart.dart';
 import '../../models/product.dart';
+import '../../provider/cart_provider.dart';
 import '../general_widgets/product_image.dart';
 
-class OrderTile extends StatelessWidget {
+class OrderTile extends StatefulWidget {
   const OrderTile({
     super.key,
     required this.cart,
   });
 
   final Cart cart;
+
+  @override
+  State<OrderTile> createState() => _OrderTileState();
+}
+
+class _OrderTileState extends State<OrderTile> {
+  int quantity = 1;
+
+  @override
+  void initState() {
+    super.initState();
+
+    quantity = widget.cart.quantity;
+  }
+
+  void increaseQuantity() {
+    setState(() => quantity++);
+
+    updateQuantity();
+  }
+
+  void decreaseQuantity() {
+    setState(() => quantity > 1 ? quantity-- : null);
+
+    updateQuantity();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +52,7 @@ class OrderTile extends StatelessWidget {
       fontWeight: FontWeight.w600,
     );
 
-    Product prod = cart.cartProduct();
+    Product prod = widget.cart.cartProduct();
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 1.h),
@@ -87,7 +115,7 @@ class OrderTile extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: Text(
-                  '\$ ${cart.totalCartPrice()}',
+                  '\$ ${widget.cart.totalCartPrice()}',
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                   ),
@@ -104,15 +132,17 @@ class OrderTile extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    const QuantityButton(
+                    QuantityButton(
                       icon: Icons.remove_rounded,
+                      onTap: () => decreaseQuantity(),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 4.w),
-                      child: Text(cart.quantity.toString()),
+                      child: Text(widget.cart.quantity.toString()),
                     ),
-                    const QuantityButton(
+                    QuantityButton(
                       icon: Icons.add_rounded,
+                      onTap: () => increaseQuantity(),
                     ),
                   ],
                 ),
@@ -121,6 +151,15 @@ class OrderTile extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void updateQuantity() {
+    var cartPvr = Provider.of<CartProvider>(context, listen: false);
+
+    cartPvr.updateCartQuantity(
+      id: widget.cart.id,
+      quantity: quantity,
     );
   }
 }
