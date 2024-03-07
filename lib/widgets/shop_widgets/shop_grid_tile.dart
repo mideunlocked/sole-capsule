@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../models/product.dart';
-import '../general_widgets/custom_progress_inidicator.dart';
 import '../general_widgets/product_image.dart';
 
 class ShopGridTile extends StatelessWidget {
