@@ -354,6 +354,24 @@ class CartProvider with ChangeNotifier {
     }
   }
 
+  Future<void> deleteCartItem({
+    required String id,
+  }) async {
+    try {
+      String uid = UserId.getUid();
+
+      _cartItems.removeWhere((element) => element.id == id);
+
+      notifyListeners();
+
+      final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+      await firestore.collection('users/$uid/cart').doc(id).delete();
+    } catch (e) {
+      print('Error deleting cart item: $e');
+    }
+  }
+
   void putDirectCart({
     required Cart cart,
   }) {

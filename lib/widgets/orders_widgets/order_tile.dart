@@ -92,9 +92,16 @@ class _OrderTileState extends State<OrderTile> {
                         style: customTextStyle,
                       ),
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
+                    Consumer<CartProvider>(
+                      builder: (context, cartPvr, child) {
+                        return IconButton(
+                          onPressed: () async => cartPvr.deleteCartItem(
+                            id: widget.cart.id,
+                          ),
+                          icon: child!,
+                        );
+                      },
+                      child: const Icon(
                         Icons.delete_rounded,
                         color: Colors.red,
                       ),
