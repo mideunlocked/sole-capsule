@@ -6,10 +6,12 @@ class OrderDetailsTile extends StatelessWidget {
     super.key,
     required this.title,
     required this.value,
+    this.subValue,
   });
 
   final String title;
   final String value;
+  final String? subValue;
 
   @override
   Widget build(BuildContext context) {
@@ -17,19 +19,32 @@ class OrderDetailsTile extends StatelessWidget {
       fontSize: 12.sp,
     );
 
+    bool hasSub = subValue == 'null';
+
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 1.h),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             title,
             style: textStyle,
           ),
+          const Spacer(),
           Text(
             value,
             style: textStyle.copyWith(
-              fontWeight: FontWeight.w600,
+              fontWeight: hasSub ? null : FontWeight.w600,
+              decoration: hasSub ? TextDecoration.lineThrough : null,
+              color: hasSub ? Colors.grey : null,
+            ),
+          ),
+          Visibility(
+            visible: hasSub,
+            child: Text(
+              subValue ?? '',
+              style: textStyle.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
         ],

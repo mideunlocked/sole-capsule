@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../helpers/scaffold_messenger_helper.dart';
 import '../../provider/cart_provider.dart';
+import '../../provider/discount_provider.dart';
 import '../../provider/theme_mode_provider.dart';
 import '../../provider/user_provider.dart';
 import '../general_widgets/custom_button.dart';
@@ -110,11 +111,19 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
               ),
               sizedBox,
               Consumer<CartProvider>(builder: (context, cartPvr, _) {
-                return OrderDetailsTile(
-                  title: 'Order Amounts',
-                  value:
-                      '\$${widget.directBuy ? cartPvr.directCart.totalCartPrice() : cartPvr.totalCartPrice}',
-                );
+                double price = widget.directBuy
+                    ? cartPvr.directCart.totalCartPrice()
+                    : cartPvr.totalCartPrice;
+
+                return Consumer<DiscountProvider>(
+                    builder: (context, discountPvr, _) {
+                  return OrderDetailsTile(
+                    title: 'Order Amount',
+                    value: '\$$price',
+                    subValue:
+                        '  \$${discountPvr.discount?.calculateDiscountPrice(price: price.toString())}',
+                  );
+                });
               }),
               const OrderDetailsTile(
                 title: 'Delivery Fee',

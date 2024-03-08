@@ -11,6 +11,7 @@ import 'helpers/save_share_preferences.dart';
 import 'provider/auth_provider.dart';
 import 'provider/box_provider.dart';
 import 'provider/cart_provider.dart';
+import 'provider/discount_provider.dart';
 import 'provider/order_provider.dart';
 import 'provider/product_provider.dart';
 import 'provider/theme_mode_provider.dart';
@@ -66,6 +67,9 @@ class MainApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(
             create: (ctx) => ThemeModeProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (ctx) => DiscountProvider(),
           ),
         ],
         child: Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
