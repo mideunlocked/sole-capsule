@@ -45,7 +45,10 @@ class ProductProvider with ChangeNotifier {
   }) async {
     try {
       QuerySnapshot<Map<String, dynamic>> querySnapshot =
-          await FirebaseConstants.cloudInstance.collection(productsPath).get();
+          await FirebaseConstants.cloudInstance
+              .collection(productsPath)
+              .orderBy('timestamp')
+              .get();
 
       List<dynamic> query = querySnapshot.docs;
       QueryDocumentSnapshot docSnap;

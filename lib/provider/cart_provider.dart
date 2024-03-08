@@ -110,7 +110,7 @@ class CartProvider with ChangeNotifier {
           .collection('cart');
 
       QuerySnapshot<Map<String, dynamic>> querySnapshot =
-          await cartCollection.get();
+          await cartCollection.orderBy('timestamp', descending: true).get();
 
       List<dynamic> query = querySnapshot.docs;
       QueryDocumentSnapshot docSnap;
@@ -230,6 +230,7 @@ class CartProvider with ChangeNotifier {
         status: 'Pending',
         prodId: _directCart.prodId,
         quantity: _directCart.quantity,
+        timestamp: Timestamp.now(),
         paymentMethod: paymentMethod,
         deliveryDetails: getUser().deliveryDetails,
       );
@@ -300,6 +301,7 @@ class CartProvider with ChangeNotifier {
           status: 'Pending',
           prodId: cart.prodId,
           quantity: cart.quantity,
+          timestamp: Timestamp.now(),
           paymentMethod: paymentMethod,
           deliveryDetails: getUser().deliveryDetails,
         );

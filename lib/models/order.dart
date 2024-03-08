@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import 'package:sole_capsule/models/delivery_details.dart';
 
@@ -12,6 +13,7 @@ class Orders {
   final int quantity;
   final String status;
   final String prodId;
+  final Timestamp timestamp;
   final String paymentMethod;
   final DeliveryDetails deliveryDetails;
 
@@ -22,6 +24,7 @@ class Orders {
     required this.status,
     required this.prodId,
     required this.quantity,
+    required this.timestamp,
     required this.paymentMethod,
     required this.deliveryDetails,
   });
@@ -36,6 +39,7 @@ class Orders {
       price: json['price'] as double,
       prodId: json['prodId'] as String,
       quantity: json['quantity'] as int,
+      timestamp: json['timestamp'] as Timestamp,
       paymentMethod: json['paymentMethod'] as String,
       deliveryDetails: DeliveryDetails.fromJson(json: json['deliveryDetails']),
     );
@@ -49,6 +53,7 @@ class Orders {
       'price': price,
       'prodId': prodId,
       'quantity': quantity,
+      'timestamp': Timestamp.now(),
       'paymentMethod': paymentMethod,
       'deliveryDetails': deliveryDetails.toJSon(),
     };

@@ -108,9 +108,10 @@ class _CheckOutDetailsScreenState extends State<CheckOutDetailsScreen> {
                         ),
                         CustomTextField(
                           controller: pinCodeCtr,
-                          title: 'Pin Code',
-                          hint: 'Enter delivery pin code',
+                          title: 'Zip Code',
+                          hint: 'Enter delivery zip code',
                           inputType: TextInputType.number,
+                          maxLength: 6,
                         ),
                         sizedBox,
                         CustomTextField(
