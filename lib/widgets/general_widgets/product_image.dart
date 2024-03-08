@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'sole_image_error.dart';
 import 'sole_image_loader.dart';
 
 class ProductImage extends StatelessWidget {
@@ -37,12 +38,7 @@ class ProductImage extends StatelessWidget {
           return SizedBox(
             height: height,
             width: width,
-            child: Center(
-              child: Image.asset(
-                'assets/logo/SOLE CAPSULE.png',
-                color: Colors.grey.shade300,
-              ),
-            ),
+            child: const SoleImageError(),
           );
         },
       ),

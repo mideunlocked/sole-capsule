@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../provider/theme_mode_provider.dart';
 import '../../widgets/general_widgets/custom_button.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
 
@@ -34,9 +36,16 @@ class CheckOutSuccessScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SvgPicture.asset(
-                        'assets/icons/success.svg',
-                      ),
+                      Consumer<ThemeModeProvider>(
+                          builder: (context, tmPvr, child) {
+                        bool isLightMode = tmPvr.isLight;
+
+                        return SvgPicture.asset(
+                          isLightMode
+                              ? 'assets/icons/success.svg'
+                              : 'assets/icons/success2.svg',
+                        );
+                      }),
                       SizedBox(height: 4.h),
                       Text(
                         'Order placed successfully!',

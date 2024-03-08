@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../models/product.dart';
+import '../../provider/theme_mode_provider.dart';
 import '../general_widgets/product_image.dart';
 
 class ShopGridTile extends StatelessWidget {
@@ -31,18 +33,26 @@ class ShopGridTile extends StatelessWidget {
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
-          Container(
-            width: 100.w,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey.shade300,
-              ),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            padding: EdgeInsets.symmetric(
-              horizontal: 3.w,
-              vertical: 2.h,
-            ),
+          Consumer<ThemeModeProvider>(
+            builder: (context, tmPvr, child) {
+              bool isLightMode = tmPvr.isLight;
+
+              return Container(
+                width: 100.w,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: isLightMode ? Colors.grey.shade300 : Colors.white30,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  color: isLightMode ? null : const Color(0xFF14191D),
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 3.w,
+                  vertical: 2.h,
+                ),
+                child: child!,
+              );
+            },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,11 +61,11 @@ class ShopGridTile extends StatelessWidget {
                   product.name,
                   style: bodyLarge?.copyWith(fontSize: 15.sp),
                 ),
-                SizedBox(height: 1.h),
+                SizedBox(height: 1.5.h),
                 Text(
                   product.description,
                 ),
-                SizedBox(height: 1.h),
+                SizedBox(height: 1.5.h),
                 Text(
                   '\$${product.price}',
                   style: textTheme.labelMedium?.copyWith(

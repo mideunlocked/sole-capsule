@@ -6,6 +6,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../models/box.dart';
 import '../../provider/box_provider.dart';
+import '../../provider/theme_mode_provider.dart';
 
 class BoxTile extends StatelessWidget {
   const BoxTile({
@@ -23,50 +24,63 @@ class BoxTile extends StatelessWidget {
         '/BoxScreen',
         arguments: box,
       ),
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: const Color(0xFFE4E4E4),
+      child: Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
+        bool isLightMode = tmPvr.isLight;
+
+        return Container(
+          decoration: BoxDecoration(
+            border: isLightMode
+                ? Border.all(
+                    color: const Color(0xFFE4E4E4),
+                  )
+                : null,
+            borderRadius: BorderRadius.circular(20),
+            color:
+                isLightMode ? const Color(0xFFF9F9F9) : const Color(0xFF14191D),
           ),
-          borderRadius: BorderRadius.circular(20),
-          color: const Color(0xFFF9F9F9),
-        ),
-        padding: EdgeInsets.symmetric(horizontal: 4.w),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Hero(
-              tag: box.id,
-              child: SvgPicture.asset('assets/images/box.svg'),
-            ),
-            SizedBox(height: 3.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  width: 15.w,
-                  child: Text(
-                    box.name,
-                    softWrap: true,
-                    overflow: TextOverflow.ellipsis,
+          padding: EdgeInsets.symmetric(horizontal: 4.w),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Hero(
+                tag: box.id,
+                child: SvgPicture.asset(
+                  isLightMode
+                      ? 'assets/images/box.svg'
+                      : 'assets/images/box2.svg',
+                ),
+              ),
+              SizedBox(height: 3.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: 15.w,
+                    child: Text(
+                      box.name,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                ),
-                Consumer<BoxProvider>(
-                  builder: (context, boxPrv, child) {
-                    return CupertinoSwitch(
-                      value: box.isOpen,
-                      activeColor: Colors.black,
-                      onChanged: (_) => boxPrv.toggleBoxOpen(
-                        id: box.id,
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
+                  Consumer<BoxProvider>(
+                    builder: (context, boxPrv, child) {
+                      return CupertinoSwitch(
+                        value: box.isOpen,
+                        activeColor: isLightMode ? Colors.black : Colors.white,
+                        thumbColor: isLightMode ? Colors.white : Colors.black,
+                        trackColor: isLightMode ? null : Colors.grey,
+                        onChanged: (_) => boxPrv.toggleBoxOpen(
+                          id: box.id,
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      }),
     );
   }
 }

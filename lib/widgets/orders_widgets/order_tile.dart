@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 import '../../models/cart.dart';
 import '../../models/product.dart';
 import '../../provider/cart_provider.dart';
+import '../../provider/theme_mode_provider.dart';
 import '../general_widgets/product_image.dart';
 
 class OrderTile extends StatefulWidget {
@@ -110,17 +111,24 @@ class _OrderTileState extends State<OrderTile> {
                 ),
               ),
               sizedBox,
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 5.w,
-                  vertical: 1.h,
-                ),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.black12,
-                  ),
-                  borderRadius: BorderRadius.circular(5),
-                ),
+              Consumer<ThemeModeProvider>(
+                builder: (context, tmPvr, child) {
+                  bool isLightMode = tmPvr.isLight;
+
+                  return Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 5.w,
+                      vertical: 1.h,
+                    ),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: isLightMode ? Colors.black12 : Colors.white12,
+                      ),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: child!,
+                  );
+                },
                 child: Text(
                   '\$ ${widget.cart.totalCartPrice()}',
                   style: const TextStyle(

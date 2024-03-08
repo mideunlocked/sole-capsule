@@ -2,7 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../provider/theme_mode_provider.dart';
 
 class BottomNavItem extends StatelessWidget {
   const BottomNavItem({
@@ -23,28 +26,34 @@ class BottomNavItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isCurrent = currentIndex == index;
-    Color color = isCurrent ? Colors.black : const Color(0xFF6A6A6A);
+
+    Color lightColor = isCurrent ? Colors.black : const Color(0xFF6A6A6A);
+    Color darkColor = isCurrent ? Colors.white : Colors.white54;
 
     return InkWell(
       onTap: () => function(index),
-      child: Row(
-        children: [
-          SvgPicture.asset(
-            'assets/icons/$icon',
-            color: color,
-            height: 3.h,
-            width: 3.w,
-          ),
-          SizedBox(width: 3.w),
-          Text(
-            label,
-            style: TextStyle(
-              color: color,
-              fontSize: 9.sp,
+      child: Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
+        bool isLightMode = tmPvr.isLight;
+
+        return Row(
+          children: [
+            SvgPicture.asset(
+              'assets/icons/$icon',
+              color: isLightMode ? lightColor : darkColor,
+              height: 3.h,
+              width: 3.w,
             ),
-          ),
-        ],
-      ),
+            SizedBox(width: 3.w),
+            Text(
+              label,
+              style: TextStyle(
+                color: isLightMode ? lightColor : darkColor,
+                fontSize: 9.sp,
+              ),
+            ),
+          ],
+        );
+      }),
     );
   }
 }

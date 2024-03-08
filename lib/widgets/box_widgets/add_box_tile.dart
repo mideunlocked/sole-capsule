@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../provider/theme_mode_provider.dart';
 
 class AddBoxTile extends StatelessWidget {
   const AddBoxTile({
@@ -17,20 +20,25 @@ class AddBoxTile extends StatelessWidget {
         '/AddBoxScreen',
       ),
       borderRadius: borderRadius,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: borderRadius,
-          color: const Color(0xFF000000),
-        ),
-        alignment: Alignment.center,
-        child: CircleAvatar(
-          maxRadius: 22.sp,
-          backgroundColor: Colors.white,
-          child: SvgPicture.asset(
-            'assets/icons/add.svg',
+      child: Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
+        bool isLightMode = tmPvr.isLight;
+
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: borderRadius,
+            color:
+                isLightMode ? const Color(0xFF000000) : const Color(0xFF14191D),
           ),
-        ),
-      ),
+          alignment: Alignment.center,
+          child: CircleAvatar(
+            maxRadius: 22.sp,
+            backgroundColor: Colors.white,
+            child: SvgPicture.asset(
+              'assets/icons/add.svg',
+            ),
+          ),
+        );
+      }),
     );
   }
 }

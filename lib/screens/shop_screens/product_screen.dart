@@ -6,6 +6,7 @@ import 'package:sole_capsule/models/cart.dart';
 
 import '../../models/product.dart';
 import '../../provider/cart_provider.dart';
+import '../../provider/theme_mode_provider.dart';
 import '../../widgets/checkout_widgets/order_details_sheet.dart';
 import '../../widgets/general_widgets/custom_app_bar.dart';
 import '../../widgets/general_widgets/custom_button.dart';
@@ -201,12 +202,21 @@ class _ProductScreenState extends State<ProductScreen> {
                               sizedBox,
                               Row(
                                 children: [
-                                  Text(
-                                    '\$${prod.price}',
-                                    style: labelStyle?.copyWith(
-                                      decoration: TextDecoration.lineThrough,
-                                      color: Colors.black38,
-                                    ),
+                                  Consumer<ThemeModeProvider>(
+                                    builder: (context, tmPvr, child) {
+                                      bool isLightMode = tmPvr.isLight;
+
+                                      return Text(
+                                        '\$${prod.price}',
+                                        style: labelStyle?.copyWith(
+                                          decoration:
+                                              TextDecoration.lineThrough,
+                                          color: isLightMode
+                                              ? Colors.black38
+                                              : Colors.white38,
+                                        ),
+                                      );
+                                    },
                                   ),
                                   Text(
                                     ' \$${CalculateDiscount.calculateDiscount(

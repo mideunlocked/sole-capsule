@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../helpers/scaffold_messenger_helper.dart';
 import '../../provider/cart_provider.dart';
+import '../../provider/theme_mode_provider.dart';
 import '../../provider/user_provider.dart';
 import '../general_widgets/custom_button.dart';
 import '../general_widgets/custom_icon_button.dart';
@@ -37,12 +38,16 @@ void showOrderDetailsSheet({
       ),
     );
   } else {
+    var tmPvr = Provider.of<ThemeModeProvider>(context, listen: false);
+
+    bool isLightMode = tmPvr.isLight;
+
     showModalBottomSheet(
       context: context,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: isLightMode ? Colors.white : const Color(0xFF21272C),
       isScrollControlled: true,
       builder: (ctx) => OrderDetailsSheet(
         scaffoldKey: scaffoldKey,
@@ -85,72 +90,78 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
       ),
       child: PaddedScreenWidget(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            sizedBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Order Payment Details',
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-                CustomIconButton(
-                  icon: 'close',
-                  onTap: () => Navigator.pop(context),
-                ),
-              ],
-            ),
-            sizedBox,
-            Consumer<CartProvider>(builder: (context, cartPvr, _) {
-              return OrderDetailsTile(
-                title: 'Order Amounts',
-                value:
-                    '\$${widget.directBuy ? cartPvr.directCart.totalCartPrice() : cartPvr.totalCartPrice}',
-              );
-            }),
-            const OrderDetailsTile(
-              title: 'Delivery Fee',
-              value: 'Free',
-            ),
-            SizedBox(height: 2.h),
-            DiscountTextField(controller: discountCodeCtr),
-            SizedBox(height: 5.h),
-            CustomButton(
-              onTap: () => purchaseCart(paymentMethod: 'Cash In'),
-              label: 'Proceed to payment',
-            ),
-            sizedBox,
-            Text(
-              'OR pay with',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Colors.black38,
-                  ),
-            ),
-            sizedBox,
-            CustomButton(
-              onTap: () => purchaseCart(paymentMethod: 'Google Pay'),
-              customWidget: SvgPicture.asset('assets/icons/gpay.svg'),
-            ),
-            sizedBox,
-            CustomButton(
-              onTap: () => purchaseCart(paymentMethod: 'Apple Pay'),
-              customWidget: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              sizedBox,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'Pay with ',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
+                  Text(
+                    'Order Payment Details',
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
-                  SvgPicture.asset('assets/icons/apple_pay.svg'),
+                  CustomIconButton(
+                    icon: 'close',
+                    onTap: () => Navigator.pop(context),
+                  ),
                 ],
               ),
-            ),
-            sizedBox,
-          ],
+              sizedBox,
+              Consumer<CartProvider>(builder: (context, cartPvr, _) {
+                return OrderDetailsTile(
+                  title: 'Order Amounts',
+                  value:
+                      '\$${widget.directBuy ? cartPvr.directCart.totalCartPrice() : cartPvr.totalCartPrice}',
+                );
+              }),
+              const OrderDetailsTile(
+                title: 'Delivery Fee',
+                value: 'Free',
+              ),
+              SizedBox(height: 2.h),
+              DiscountTextField(controller: discountCodeCtr),
+              SizedBox(height: 5.h),
+              CustomButton(
+                onTap: () => purchaseCart(paymentMethod: 'Cash In'),
+                label: 'Proceed to payment',
+              ),
+              sizedBox,
+              Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
+                bool isLightMode = tmPvr.isLight;
+
+                return Text(
+                  'OR pay with',
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: isLightMode ? Colors.black38 : Colors.white38,
+                      ),
+                );
+              }),
+              sizedBox,
+              CustomButton(
+                onTap: () => purchaseCart(paymentMethod: 'Google Pay'),
+                customWidget: SvgPicture.asset('assets/icons/gpay.svg'),
+              ),
+              sizedBox,
+              CustomButton(
+                onTap: () => purchaseCart(paymentMethod: 'Apple Pay'),
+                customWidget: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Pay with ',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    SvgPicture.asset('assets/icons/apple_pay.svg'),
+                  ],
+                ),
+              ),
+              sizedBox,
+            ],
+          ),
         ),
       ),
     );
@@ -161,7 +172,7 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
   }) async {
     var cartPvr = Provider.of<CartProvider>(context, listen: false);
 
-    print(cartPvr.directCart.totalCartPrice());
+    print(cartPvr.cartItems.length);
 
     if (!widget.directBuy) {
       await cartPvr.purchaseCartItems(

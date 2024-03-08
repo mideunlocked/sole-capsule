@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../provider/theme_mode_provider.dart';
 import 'custom_button.dart';
 import 'padded_screen_widget.dart';
 
@@ -47,58 +49,62 @@ class SuccessfullSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     var sizedBox = SizedBox(height: 5.h);
 
-    return Stack(
-      alignment: Alignment.bottomCenter,
-      children: [
-        SizedBox(
-          height: 50.h,
-        ),
-        Container(
-          height: 35.h,
-          width: 100.w,
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(20),
-            ),
-            color: Colors.white,
+    return Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
+      bool isLightMode = tmPvr.isLight;
+
+      return Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          SizedBox(
+            height: 50.h,
           ),
-          child: PaddedScreenWidget(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                successMesssage,
-                sizedBox,
-                CustomButton(
-                  onTap: () {
-                    buttonFunction();
-                  },
-                  label: buttonTitle,
-                ),
-                sizedBox,
-              ],
+          Container(
+            height: 35.h,
+            width: 100.w,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(20),
+              ),
+              color: isLightMode ? Colors.white : const Color(0xFF21272C),
             ),
-          ),
-        ),
-        Positioned(
-          bottom: 27.h,
-          child: Container(
-            padding: EdgeInsets.all(5.sp),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              shape: BoxShape.circle,
-            ),
-            child: CircleAvatar(
-              radius: 40.sp,
-              backgroundColor: Colors.black,
-              child: Icon(
-                Icons.check_rounded,
-                color: Colors.white,
-                size: 40.sp,
+            child: PaddedScreenWidget(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  successMesssage,
+                  sizedBox,
+                  CustomButton(
+                    onTap: () {
+                      buttonFunction();
+                    },
+                    label: buttonTitle,
+                  ),
+                  sizedBox,
+                ],
               ),
             ),
           ),
-        ),
-      ],
-    );
+          Positioned(
+            bottom: 27.h,
+            child: Container(
+              padding: EdgeInsets.all(5.sp),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+              child: CircleAvatar(
+                radius: 40.sp,
+                backgroundColor: Colors.black,
+                child: Icon(
+                  Icons.check_rounded,
+                  color: Colors.white,
+                  size: 40.sp,
+                ),
+              ),
+            ),
+          ),
+        ],
+      );
+    });
   }
 }

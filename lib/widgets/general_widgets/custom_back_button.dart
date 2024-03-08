@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../helpers/app_contants.dart';
+import '../../provider/theme_mode_provider.dart';
 
 class CustomBackButton extends StatelessWidget {
   const CustomBackButton({
@@ -19,18 +21,24 @@ class CustomBackButton extends StatelessWidget {
     return InkWell(
       onTap: () => extraFunction == true ? onTap!() : Navigator.pop(context),
       borderRadius: BorderRadius.circular(50),
-      child: Container(
-        padding: EdgeInsets.all(12.sp),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: const Color(0xFFD4D4D4),
+      child: Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
+        bool isLightMode = tmPvr.isLight;
+
+        return Container(
+          padding: EdgeInsets.all(12.sp),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: const Color(0xFFD4D4D4),
+            ),
+            shape: BoxShape.circle,
           ),
-          shape: BoxShape.circle,
-        ),
-        child: SvgPicture.asset(
-          AppConstants.backIcon,
-        ),
-      ),
+          child: SvgPicture.asset(
+            AppConstants.backIcon,
+            // ignore: deprecated_member_use
+            color: isLightMode ? null : Colors.white,
+          ),
+        );
+      }),
     );
   }
 }

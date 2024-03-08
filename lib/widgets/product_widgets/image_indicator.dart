@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../provider/theme_mode_provider.dart';
 
 class ImageIndicator extends StatelessWidget {
   const ImageIndicator({
@@ -13,11 +16,19 @@ class ImageIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 0.5.w),
-      child: Icon(
-        Icons.circle_rounded,
-        color: isCurrent ? Colors.black : Colors.grey,
-        size: isCurrent ? 10.sp : 6.sp,
-      ),
+      child: Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
+        bool isLightMode = tmPvr.isLight;
+
+        return Icon(
+          Icons.circle_rounded,
+          color: isCurrent
+              ? isLightMode
+                  ? Colors.black
+                  : Colors.white
+              : Colors.grey,
+          size: isCurrent ? 10.sp : 6.sp,
+        );
+      }),
     );
   }
 }

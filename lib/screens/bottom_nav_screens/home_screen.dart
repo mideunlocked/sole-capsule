@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../provider/box_provider.dart';
+import '../../provider/theme_mode_provider.dart';
 import '../../provider/user_provider.dart';
 import '../../widgets/box_widgets/add_box_tile.dart';
 import '../../widgets/box_widgets/box_tile.dart';
@@ -55,12 +56,16 @@ class _HomeSceenState extends State<HomeSceen> {
                     'Home',
                     style: textTheme.bodyLarge,
                   ),
-                  Text(
-                    'My Boxes',
-                    style: textTheme.bodySmall?.copyWith(
-                      color: Colors.black54,
-                    ),
-                  )
+                  Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
+                    bool isLightMode = tmPvr.isLight;
+
+                    return Text(
+                      'My Boxes',
+                      style: textTheme.bodySmall?.copyWith(
+                        color: isLightMode ? Colors.black54 : Colors.white54,
+                      ),
+                    );
+                  })
                 ],
               ),
               SizedBox(height: 3.h),

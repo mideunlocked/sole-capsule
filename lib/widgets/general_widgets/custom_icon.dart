@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../provider/theme_mode_provider.dart';
 
 class CustomIcon extends StatelessWidget {
   const CustomIcon({
@@ -14,12 +17,20 @@ class CustomIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      'assets/icons/$icon.svg',
-      height: 3.h,
-      width: 3.w,
-      // ignore: deprecated_member_use
-      color: isPlane ? Colors.black : null,
-    );
+    return Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
+      bool isLightMode = tmPvr.isLight;
+
+      return SvgPicture.asset(
+        'assets/icons/$icon.svg',
+        height: 3.h,
+        width: 3.w,
+        // ignore: deprecated_member_use
+        color: isPlane
+            ? isLightMode
+                ? Colors.black
+                : Colors.white
+            : null,
+      );
+    });
   }
 }

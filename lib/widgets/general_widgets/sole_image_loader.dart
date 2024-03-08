@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../provider/theme_mode_provider.dart';
 
 class SoleImageLoader extends StatefulWidget {
   const SoleImageLoader({
@@ -23,9 +26,13 @@ class _SoleImageLoaderState extends State<SoleImageLoader>
       duration: const Duration(seconds: 2),
     )..repeat(); // Repeat the animation indefinitely
 
+    var tmPvr = Provider.of<ThemeModeProvider>(context, listen: false);
+
+    bool isLightMode = tmPvr.isLight;
+
     _animation = ColorTween(
-      begin: Colors.grey.shade300,
-      end: Colors.grey.shade100,
+      begin: isLightMode ? Colors.grey.shade300 : Colors.white30,
+      end: isLightMode ? Colors.grey.shade100 : Colors.white12,
     ).animate(_controller);
   }
 

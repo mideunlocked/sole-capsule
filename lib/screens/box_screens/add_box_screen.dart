@@ -64,6 +64,9 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
               ),
               CustomButton(
                 onTap: () {
+                  if (boxNameCtr.text.isEmpty) {
+                    return;
+                  }
                   var of = Theme.of(context);
                   var textTheme = of.textTheme;
                   var titleMedium = textTheme.titleMedium;

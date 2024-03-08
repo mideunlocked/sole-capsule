@@ -62,7 +62,9 @@ class _ShopScreenState extends State<ShopScreen> {
                 children: [
                   Consumer<ProductProvider>(builder: (context, productPvr, _) {
                     return Text(
-                      '${productPvr.productCount} Item(s)',
+                      productPvr.productCount > 1
+                          ? '${productPvr.productCount} Items'
+                          : '${productPvr.productCount} Item',
                       style: bodyLarge,
                     );
                   }),
@@ -72,7 +74,7 @@ class _ShopScreenState extends State<ShopScreen> {
                     icon: 'top_bottom',
                     onTap: () {},
                   ),
-                  SizedBox(width: 5.w),
+                  SizedBox(width: 3.w),
                   SearchActions(
                     label: 'Filter',
                     icon: 'filter',

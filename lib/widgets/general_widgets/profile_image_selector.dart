@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../helpers/app_contants.dart';
+import '../../provider/theme_mode_provider.dart';
 
 class SelectProfileImageWidget extends StatefulWidget {
   const SelectProfileImageWidget({
@@ -44,10 +46,13 @@ class _SelectProfileImageWidgetState extends State<SelectProfileImageWidget> {
         child: Row(
           children: [
             widget.imageUrl.isNotEmpty
-                ? CircleAvatar(
-                    backgroundImage: NetworkImage(widget.imageUrl),
-                    backgroundColor: backColor,
-                    radius: 30.sp,
+                ? Hero(
+                    tag: 'Profile Image',
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(widget.imageUrl),
+                      backgroundColor: backColor,
+                      radius: 30.sp,
+                    ),
                   )
                 : !file.isAbsolute
                     ? CircleAvatar(
@@ -63,14 +68,18 @@ class _SelectProfileImageWidgetState extends State<SelectProfileImageWidget> {
                         radius: 30.sp,
                       ),
             SizedBox(width: 3.w),
-            Text(
-              widget.imageUrl.isEmpty
-                  ? 'Click to upload profile picture'
-                  : 'Click to change profile picture',
-              style: const TextStyle(
-                color: Colors.black54,
-              ),
-            ),
+            Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
+              bool isLightMode = tmPvr.isLight;
+
+              return Text(
+                widget.imageUrl.isEmpty
+                    ? 'Click to upload profile picture'
+                    : 'Click to change profile picture',
+                style: TextStyle(
+                  color: isLightMode ? Colors.black54 : Colors.white54,
+                ),
+              );
+            }),
           ],
         ),
       ),
