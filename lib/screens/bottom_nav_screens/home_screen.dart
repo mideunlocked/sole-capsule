@@ -9,6 +9,7 @@ import '../../widgets/box_widgets/add_box_tile.dart';
 import '../../widgets/box_widgets/box_tile.dart';
 import '../../widgets/general_widgets/custom_progress_inidicator.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
+import '../notification_screen.dart';
 
 class HomeSceen extends StatefulWidget {
   const HomeSceen({
@@ -49,24 +50,31 @@ class _HomeSceenState extends State<HomeSceen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 2.h),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Home',
-                    style: textTheme.bodyLarge,
-                  ),
-                  Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
-                    bool isLightMode = tmPvr.isLight;
+              InkWell(
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  NotificationScreen.routeName,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Home',
+                      style: textTheme.bodyLarge,
+                    ),
+                    Consumer<ThemeModeProvider>(
+                        builder: (context, tmPvr, child) {
+                      bool isLightMode = tmPvr.isLight;
 
-                    return Text(
-                      'My Boxes',
-                      style: textTheme.bodySmall?.copyWith(
-                        color: isLightMode ? Colors.black54 : Colors.white54,
-                      ),
-                    );
-                  })
-                ],
+                      return Text(
+                        'My Boxes',
+                        style: textTheme.bodySmall?.copyWith(
+                          color: isLightMode ? Colors.black54 : Colors.white54,
+                        ),
+                      );
+                    })
+                  ],
+                ),
               ),
               SizedBox(height: 3.h),
               Expanded(

@@ -13,9 +13,11 @@ import '../screens/checkout_screens/check_out_details_screen.dart';
 import '../screens/checkout_screens/check_out_screen.dart';
 import '../screens/box_screens/add_box_screen.dart';
 import '../screens/checkout_screens/check_out_success_screen.dart';
+import '../screens/notification_screen.dart';
 import '../screens/onboarding_screens/onboarding_screen.dart';
 import '../screens/onboarding_screens/splash_screen.dart';
 import '../screens/onboarding_screens/welcome_screen.dart';
+import '../screens/order_details_screens/order_details_screen.dart';
 import '../screens/profile_screens/edit_profile_screen.dart';
 import '../screens/profile_screens/orders_screen.dart';
 import '../screens/profile_screens/wallet_screen.dart';
@@ -42,4 +44,6 @@ Map<String, Widget Function(BuildContext)> routes = {
   ProductScreen.routeName: (ctx) => const ProductScreen(),
   OrdersScreen.routeName: (ctx) => const OrdersScreen(),
   WalletScreen.routeName: (ctx) => const WalletScreen(),
+  NotificationScreen.routeName: (ctx) => const NotificationScreen(),
+  OrderDetailsScreen.routeName: (ctx) => const OrderDetailsScreen(),
 };
