@@ -22,6 +22,7 @@ class CustomIcon extends StatelessWidget {
 
       return SvgPicture.asset(
         'assets/icons/$icon.svg',
+        fit: BoxFit.cover,
         height: 3.h,
         width: 3.w,
         // ignore: deprecated_member_use

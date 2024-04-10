@@ -3,6 +3,7 @@ import 'package:sizer/sizer.dart';
 
 class AppThemes {
   static ThemeData lightMode = ThemeData(
+    useMaterial3: false,
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: AppBarTheme(
       elevation: 0,
@@ -56,6 +57,7 @@ class AppThemes {
 
   static ThemeData darkMode = ThemeData(
     scaffoldBackgroundColor: const Color(0xFF0A0D0F),
+    useMaterial3: false,
     appBarTheme: AppBarTheme(
       elevation: 0,
       backgroundColor: Colors.transparent,

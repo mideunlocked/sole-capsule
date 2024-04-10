@@ -45,7 +45,7 @@ class ProfileRouteListTile extends StatelessWidget {
         ),
         onTap: () => Navigator.pushNamed(
           context,
-          '/$routeName',
+          routeName,
         ),
       );
     });

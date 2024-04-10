@@ -10,9 +10,11 @@ class CustomBackButton extends StatelessWidget {
   const CustomBackButton({
     super.key,
     this.onTap,
+    this.isLight = false,
     this.extraFunction,
   });
 
+  final bool isLight;
   final Function()? onTap;
   final bool? extraFunction;
 
@@ -35,7 +37,11 @@ class CustomBackButton extends StatelessWidget {
           child: SvgPicture.asset(
             AppConstants.backIcon,
             // ignore: deprecated_member_use
-            color: isLightMode ? null : Colors.white,
+            color: isLightMode
+                ? isLight
+                    ? Colors.white
+                    : null
+                : Colors.white,
           ),
         );
       }),

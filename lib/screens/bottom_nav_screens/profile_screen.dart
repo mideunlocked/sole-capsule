@@ -12,6 +12,8 @@ import '../../widgets/profile_widgets/profile_app_bar.dart';
 import '../../widgets/profile_widgets/profile_image.dart';
 import '../../widgets/profile_widgets/profile_info_tile.dart';
 import '../../widgets/profile_widgets/profile_route_list_tile.dart';
+import '../profile_screens/orders_screen.dart';
+import '../profile_screens/wallet_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -101,15 +103,15 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                   ProfileRouteListTile(
-                    icon: 'pin',
+                    icon: 'orders',
                     title: 'My Orders',
-                    routeName: 'OrdersScreen',
+                    routeName: OrdersScreen.routeName,
                     listTileStyle: listTileStyle,
                   ),
                   ProfileRouteListTile(
-                    icon: 'orders',
-                    title: 'Delivery Address',
-                    routeName: 'CheckOutDetailsScreen',
+                    icon: 'wallet',
+                    title: 'Wallet',
+                    routeName: WalletScreen.routeName,
                     listTileStyle: listTileStyle,
                   ),
                   ListTile(
