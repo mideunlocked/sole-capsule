@@ -21,14 +21,13 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var textTheme2 = Theme.of(context).textTheme;
     return Scaffold(
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            PaddedScreenWidget(
-              child: const CustomAppBar(
+            const PaddedScreenWidget(
+              child: CustomAppBar(
                 title: 'Notifications',
               ),
             ),
@@ -54,9 +53,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 child: ListView(
                   padding: EdgeInsets.zero,
                   children: [
-                    NotificationTile(textTheme2: textTheme2),
-                    NotificationTile(textTheme2: textTheme2),
-                    NotificationTile(textTheme2: textTheme2),
+                    const NotificationTile(),
+                    const NotificationTile(),
+                    const NotificationTile(),
                   ],
                 ),
               ),
@@ -71,13 +70,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
 class NotificationTile extends StatelessWidget {
   const NotificationTile({
     super.key,
-    required this.textTheme2,
   });
-
-  final TextTheme textTheme2;
 
   @override
   Widget build(BuildContext context) {
+    var textTheme2 = Theme.of(context).textTheme;
+
     return ListTile(
       contentPadding: EdgeInsets.symmetric(vertical: 1.h),
       leading: CircleAvatar(

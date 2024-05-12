@@ -28,6 +28,8 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
     name: '',
     isOpen: false,
     isLightOn: false,
+    lightIntensity: 50,
+    lightColor: Colors.white,
   );
 
   @override
@@ -105,6 +107,8 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
       name: boxNameCtr.text.trim(),
       isOpen: false,
       isLightOn: false,
+      lightIntensity: 50,
+      lightColor: Colors.white,
     );
 
     boxProvider.addNewBox(

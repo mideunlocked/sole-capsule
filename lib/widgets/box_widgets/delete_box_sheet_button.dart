@@ -8,10 +8,12 @@ class DeleteBoxSheetButton extends StatelessWidget {
   const DeleteBoxSheetButton({
     super.key,
     this.isInverted = false,
+    this.backgroundColor,
     required this.label,
     required this.onTap,
   });
 
+  final Color? backgroundColor;
   final Function()? onTap;
   final bool isInverted;
   final String label;
@@ -35,7 +37,7 @@ class DeleteBoxSheetButton extends StatelessWidget {
                     color: Colors.grey.shade400,
                   ),
             borderRadius: BorderRadius.circular(40),
-            color: isInverted ? Colors.red : null,
+            color: backgroundColor ?? (isInverted ? Colors.red : null),
             boxShadow: isLightMode
                 ? [
                     BoxShadow(

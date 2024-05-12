@@ -4,7 +4,7 @@ import 'package:sizer/sizer.dart';
 class AppThemes {
   static ThemeData lightMode = ThemeData(
     useMaterial3: false,
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: const Color(0xFFF2F2F2),
     appBarTheme: AppBarTheme(
       elevation: 0,
       backgroundColor: Colors.transparent,

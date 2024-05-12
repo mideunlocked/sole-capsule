@@ -8,7 +8,7 @@ import '../../models/box.dart';
 import '../../provider/box_provider.dart';
 import '../../provider/theme_mode_provider.dart';
 import '../../widgets/box_widgets/box_screen_app_bar.dart';
-import '../../widgets/box_widgets/delete_box_button.dart';
+import '../../widgets/box_widgets/color_selector_bottom_sheet.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
 
 class BoxScreen extends StatelessWidget {
@@ -24,6 +24,7 @@ class BoxScreen extends StatelessWidget {
     var textTheme = of.textTheme;
     var titleLarge = textTheme.titleLarge;
 
+    // ignore: deprecated_member_use
     return WillPopScope(
       onWillPop: () async {
         Navigator.pushReplacementNamed(context, '/');
@@ -53,9 +54,10 @@ class BoxScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Stack(
-                                alignment: Alignment.centerLeft,
+                                alignment: Alignment.center,
                                 children: [
                                   SizedBox(
                                     width: 30.w,
@@ -63,7 +65,7 @@ class BoxScreen extends StatelessWidget {
                                       box.name,
                                       style: titleLarge?.copyWith(
                                         color: isLightMode
-                                            ? Colors.grey.shade200
+                                            ? Colors.grey.shade300
                                             : Colors.white24,
                                         fontSize: 30.sp,
                                       ),
@@ -117,40 +119,126 @@ class BoxScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 5.h),
                       PaddedScreenWidget(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Light',
-                              style: textTheme.bodyLarge,
+                              'Color',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(fontWeight: FontWeight.w500),
                             ),
-                            Consumer<BoxProvider>(
-                                builder: (context, boxPvr, _) {
-                              return CupertinoSwitch(
-                                value: box.isLightOn,
-                                activeColor:
-                                    isLightMode ? Colors.black : Colors.white,
-                                thumbColor:
-                                    isLightMode ? Colors.white : Colors.black,
-                                trackColor: isLightMode ? null : Colors.grey,
-                                onChanged: (_) =>
-                                    boxPvr.toggleLight(id: box.id),
-                              );
-                            }),
+                            SizedBox(height: 0.5.h),
+                            InkWell(
+                              onTap: () => showColorSelector(
+                                context,
+                                box: box,
+                              ),
+                              child: Image.asset(
+                                'assets/images/color_wheel.png',
+                              ),
+                            ),
                           ],
                         ),
                       ),
+                      Consumer<BoxProvider>(builder: (context, boxPvr, _) {
+                        return Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            PaddedScreenWidget(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  SizedBox(height: 5.h),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Intensity',
+                                        style: textTheme.bodyMedium?.copyWith(
+                                          fontSize: 13.sp,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        '${box.lightIntensity.toInt()}%',
+                                        style: textTheme.bodyMedium?.copyWith(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Slider(
+                              value: box.lightIntensity,
+                              min: 0,
+                              max: 100,
+                              activeColor:
+                                  isLightMode ? Colors.black : Colors.white,
+                              thumbColor:
+                                  isLightMode ? Colors.black : Colors.white,
+                              inactiveColor: Colors.white,
+                              onChanged: (value) {
+                                boxPvr.changeIntensity(
+                                  id: box.id,
+                                  intensity: value,
+                                );
+                              },
+                              allowedInteraction: SliderInteraction.slideThumb,
+                            ),
+                            PaddedScreenWidget(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Off',
+                                    style: textTheme.bodySmall,
+                                  ),
+                                  Text(
+                                    '100%',
+                                    style: textTheme.bodySmall,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        );
+                      }),
                     ],
                   ),
                 ),
-                DeleteBoxButton(
-                  boxId: box.id,
-                ),
-                SizedBox(height: 2.h)
               ],
             ),
           );
         }),
+      ),
+    );
+  }
+
+  void showColorSelector(
+    BuildContext context, {
+    required Box box,
+  }) {
+    var themeProvider = Provider.of<ThemeModeProvider>(context, listen: false);
+
+    showModalBottomSheet(
+      showDragHandle: true,
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20),
+        ),
+      ),
+      backgroundColor: themeProvider.isLight
+          ? Theme.of(context).scaffoldBackgroundColor
+          : const Color(0xFF21272C),
+      builder: (ctx) => ColorSelectorBottomSheet(
+        boxId: box.id,
+        lightColor: box.lightColor,
       ),
     );
   }

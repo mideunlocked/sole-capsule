@@ -20,6 +20,7 @@ void showSuccesfullSheet({
       borderRadius: BorderRadius.circular(20),
     ),
     backgroundColor: Colors.transparent,
+    // ignore: deprecated_member_use
     builder: (ctx) => WillPopScope(
       onWillPop: () {
         throw 0;

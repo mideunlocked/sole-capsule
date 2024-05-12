@@ -50,31 +50,40 @@ class _HomeSceenState extends State<HomeSceen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 2.h),
-              InkWell(
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  NotificationScreen.routeName,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Home',
-                      style: textTheme.bodyLarge,
-                    ),
-                    Consumer<ThemeModeProvider>(
-                        builder: (context, tmPvr, child) {
-                      bool isLightMode = tmPvr.isLight;
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Home',
+                        style: textTheme.bodyLarge,
+                      ),
+                      Consumer<ThemeModeProvider>(
+                          builder: (context, tmPvr, child) {
+                        bool isLightMode = tmPvr.isLight;
 
-                      return Text(
-                        'My Boxes',
-                        style: textTheme.bodySmall?.copyWith(
-                          color: isLightMode ? Colors.black54 : Colors.white54,
-                        ),
-                      );
-                    })
-                  ],
-                ),
+                        return Text(
+                          'My Boxes',
+                          style: textTheme.bodySmall?.copyWith(
+                            color:
+                                isLightMode ? Colors.black54 : Colors.white54,
+                          ),
+                        );
+                      })
+                    ],
+                  ),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.notifications_none_rounded,
+                    ),
+                    onPressed: () => Navigator.pushNamed(
+                      context,
+                      NotificationScreen.routeName,
+                    ),
+                  ),
+                ],
               ),
               SizedBox(height: 3.h),
               Expanded(

@@ -10,12 +10,16 @@ class BoxProvider with ChangeNotifier {
       name: 'Nike Box',
       isOpen: false,
       isLightOn: false,
+      lightIntensity: 50,
+      lightColor: Colors.orange,
     ),
     Box(
       id: '1',
       name: 'Balenciaga Tripple S',
       isOpen: false,
       isLightOn: false,
+      lightIntensity: 50,
+      lightColor: Colors.white,
     ),
   ];
 
@@ -51,6 +55,28 @@ class BoxProvider with ChangeNotifier {
     Box box = _boxes.firstWhere((box) => box.id == id);
 
     box.toggleBoxOpen();
+
+    notifyListeners();
+  }
+
+  void changeIntensity({
+    required String id,
+    required double intensity,
+  }) {
+    Box box = _boxes.firstWhere((box) => box.id == id);
+
+    box.changeLightIntensity(intensity);
+
+    notifyListeners();
+  }
+
+  void changeLightColor({
+    required String id,
+    required Color color,
+  }) {
+    Box box = _boxes.firstWhere((box) => box.id == id);
+
+    box.changeLightColor(color);
 
     notifyListeners();
   }

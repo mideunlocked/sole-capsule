@@ -1,14 +1,20 @@
+import 'package:flutter/material.dart';
+
 class Box {
   final String id;
   String name;
   bool isOpen;
   bool isLightOn;
+  double lightIntensity;
+  Color lightColor;
 
   Box({
     required this.id,
     required this.name,
     required this.isOpen,
     required this.isLightOn,
+    required this.lightColor,
+    required this.lightIntensity,
   });
 
   factory Box.fromJson({
@@ -19,6 +25,8 @@ class Box {
       name: json['name'] as String,
       isOpen: json['isOpen'] as bool,
       isLightOn: json['isLightOn'] as bool,
+      lightColor: json['lightColor'] as Color,
+      lightIntensity: json['lightIntensity'] as double,
     );
   }
 
@@ -28,6 +36,8 @@ class Box {
       'name': box.name,
       'isOpen': box.isOpen,
       'isLightOn': box.isLightOn,
+      'lightColor': box.lightColor,
+      'lightIntensity': box.lightIntensity,
     };
   }
 
@@ -41,5 +51,13 @@ class Box {
 
   void changeBoxName(String newName) {
     name = newName;
+  }
+
+  void changeLightColor(Color newColor) {
+    lightColor = newColor;
+  }
+
+  void changeLightIntensity(double newIntensity) {
+    lightIntensity = newIntensity;
   }
 }
