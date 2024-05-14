@@ -156,7 +156,7 @@ class BoxScreen extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Intensity',
+                                        'Brightness',
                                         style: textTheme.bodyMedium?.copyWith(
                                           fontSize: 13.sp,
                                           fontWeight: FontWeight.bold,

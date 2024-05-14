@@ -59,8 +59,8 @@ class _BoxSettingsScreenState extends State<BoxSettingsScreen> {
                   SizedBox(height: 3.h),
                   CustomTextField(
                     controller: boxNameCtr,
-                    title: 'Box Name',
-                    hint: 'Enter box name',
+                    title: 'POD Name',
+                    hint: 'Enter POD name',
                     inputAction: TextInputAction.done,
                   ),
                   SizedBox(height: 4.h),

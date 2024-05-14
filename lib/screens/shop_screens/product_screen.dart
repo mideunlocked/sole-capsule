@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:sole_capsule/helpers/calculate_discount.dart';
-import 'package:sole_capsule/models/cart.dart';
+import 'package:video_player/video_player.dart';
 
+import '../../helpers/calculate_discount.dart';
+import '../../models/cart.dart';
 import '../../models/product.dart';
 import '../../provider/cart_provider.dart';
 import '../../provider/theme_mode_provider.dart';
@@ -38,6 +39,7 @@ class _ProductScreenState extends State<ProductScreen> {
     super.dispose();
 
     pgCtr.dispose();
+    _controller.dispose();
   }
 
   void scrollImage(int newImage) => setState(() => currentImage = newImage);
@@ -51,6 +53,29 @@ class _ProductScreenState extends State<ProductScreen> {
 
   final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
       GlobalKey<ScaffoldMessengerState>();
+
+  late VideoPlayerController _controller;
+
+  @override
+  void initState() {
+    Future.delayed(Duration.zero, () {
+      Product prod = ModalRoute.of(context)!.settings.arguments as Product;
+
+      print(prod.productImages.first);
+
+      _controller = VideoPlayerController.networkUrl(
+        Uri.parse(
+          prod.productImages.first,
+        ),
+      )..initialize().then((_) {
+          setState(() {});
+          _controller.play();
+          _controller.setLooping(true);
+        });
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +117,22 @@ class _ProductScreenState extends State<ProductScreen> {
                             physics: const BouncingScrollPhysics(),
                             onPageChanged: scrollImage,
                             itemBuilder: (ctx, index) {
+                              if (index == 0 &&
+                                  _controller.value.isInitialized) {
+                                return InkWell(
+                                  onTap: () {
+                                    if (_controller.value.isPlaying) {
+                                      _controller.pause();
+                                      return;
+                                    }
+                                    _controller.play();
+                                  },
+                                  child: AspectRatio(
+                                    aspectRatio: _controller.value.aspectRatio,
+                                    child: VideoPlayer(_controller),
+                                  ),
+                                );
+                              }
                               String image =
                                   prod.productImages[index].toString();
                               setCurrentImage(image);

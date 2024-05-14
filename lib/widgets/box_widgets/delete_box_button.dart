@@ -23,7 +23,7 @@ class DeleteBoxButton extends StatelessWidget {
         elevation: 0,
         backgroundColor: const Color(0xFFFFE4E4),
         label: Text(
-          'Delete Box',
+          'Delete POD',
           style: textTheme.bodyMedium?.copyWith(
             color: Colors.red,
           ),

@@ -65,7 +65,7 @@ class _HomeSceenState extends State<HomeSceen> {
                         bool isLightMode = tmPvr.isLight;
 
                         return Text(
-                          'My Boxes',
+                          'My Pods',
                           style: textTheme.bodySmall?.copyWith(
                             color:
                                 isLightMode ? Colors.black54 : Colors.white54,
