@@ -7,15 +7,19 @@ import '../../provider/theme_mode_provider.dart';
 class ConnectBlueButton extends StatelessWidget {
   const ConnectBlueButton({
     super.key,
+    this.onTap,
   });
+
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     var borderRadius = BorderRadius.circular(15);
 
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       borderRadius: borderRadius,
+      splashColor: Colors.white30,
       child: Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
         bool isLightMode = tmPvr.isLight;
 
