@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -111,7 +110,7 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
               ),
               sizedBox,
               Consumer<CartProvider>(builder: (context, cartPvr, _) {
-                double price = widget.directBuy
+                double? price = widget.directBuy
                     ? cartPvr.directCart.totalCartPrice()
                     : cartPvr.totalCartPrice;
 
@@ -131,43 +130,15 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
               ),
               SizedBox(height: 2.h),
               DiscountTextField(controller: discountCodeCtr),
+              SizedBox(height: 2.h),
               SizedBox(height: 5.h),
-              CustomButton(
-                onTap: () => purchaseCart(paymentMethod: 'Cash In'),
-                label: 'Proceed to payment',
-              ),
-              sizedBox,
-              Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
-                bool isLightMode = tmPvr.isLight;
-
-                return Text(
-                  'OR pay with',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: isLightMode ? Colors.black38 : Colors.white38,
-                      ),
+              Consumer<CartProvider>(builder: (context, cartPvr, _) {
+                return CustomButton(
+                  onTap: () => purchaseCart(paymentMethod: 'Cash In'),
+                  label: 'Proceed to payment',
+                  isLoading: cartPvr.isLoading,
                 );
               }),
-              sizedBox,
-              CustomButton(
-                onTap: () => purchaseCart(paymentMethod: 'Google Pay'),
-                customWidget: SvgPicture.asset('assets/icons/gpay.svg'),
-              ),
-              sizedBox,
-              CustomButton(
-                onTap: () => purchaseCart(paymentMethod: 'Apple Pay'),
-                customWidget: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Pay with ',
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                    SvgPicture.asset('assets/icons/apple_pay.svg'),
-                  ],
-                ),
-              ),
               sizedBox,
             ],
           ),
@@ -180,8 +151,6 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
     required String paymentMethod,
   }) async {
     var cartPvr = Provider.of<CartProvider>(context, listen: false);
-
-    print(cartPvr.cartItems.length);
 
     if (!widget.directBuy) {
       await cartPvr.purchaseCartItems(

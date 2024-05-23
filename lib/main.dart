@@ -1,6 +1,8 @@
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -30,6 +32,10 @@ Future<void> main() async {
   await FirebaseApi().initNotification();
 
   await SaveSharedPref().initSharedPref();
+
+  await dotenv.load(fileName: 'assets/.env');
+  Stripe.publishableKey = dotenv.env['STRIPE_PUBLIC_KEY'] ?? '';
+  await Stripe.instance.applySettings();
 
   MainApp mainApp = const MainApp();
 

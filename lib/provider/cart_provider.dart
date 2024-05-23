@@ -6,6 +6,7 @@ import '../helpers/calculate_discount.dart';
 import '../helpers/firebase_constants.dart';
 import '../helpers/get_user_id.dart';
 import '../helpers/scaffold_messenger_helper.dart';
+import '../helpers/stripe_payment.dart';
 import '../main.dart';
 import '../models/cart.dart';
 import '../models/order.dart';
@@ -89,7 +90,6 @@ class CartProvider with ChangeNotifier {
       _isLoading = false;
       notifyListeners();
 
-      print(e);
       showScaffoldMessenger(
         scaffoldKey: scaffoldKey,
         textContent: 'Couldn\'t add to cart',
@@ -126,7 +126,6 @@ class CartProvider with ChangeNotifier {
 
       notifyListeners();
     } catch (e) {
-      print(e);
       showScaffoldMessenger(
         scaffoldKey: scaffoldKey,
         textContent: 'Couldn\'t get cart items',
@@ -152,9 +151,7 @@ class CartProvider with ChangeNotifier {
 
         notifyListeners();
       });
-    } catch (e) {
-      print('Error removing from cart: $e');
-    }
+    } catch (e) {}
   }
 
   Future<void> emptyCart() async {
@@ -169,9 +166,7 @@ class CartProvider with ChangeNotifier {
       await cartCollection.snapshots().forEach(
             (element) => element.docs.clear(),
           );
-    } catch (e) {
-      print('Empty cart error: $e');
-    }
+    } catch (e) {}
   }
 
   bool alreadyInCart({
@@ -209,7 +204,8 @@ class CartProvider with ChangeNotifier {
     String uid = UserId.getUid();
 
     try {
-      showCustomLoader();
+      _isLoading = true;
+      notifyListeners();
 
       var ordersCollections = FirebaseConstants.cloudInstance
           .collection('users')
@@ -223,41 +219,65 @@ class CartProvider with ChangeNotifier {
         ),
       );
 
-      Orders order = Orders(
-        id: '',
-        color: _directCart.color,
-        price: orderPrice,
-        status: 'Pending',
-        prodId: _directCart.prodId,
-        quantity: _directCart.quantity,
-        timestamp: Timestamp.now(),
-        paymentMethod: paymentMethod,
+      double orderAmount = orderPrice * _directCart.quantity;
+
+      bool isPaid = await StripePayment.initializePayment(
+        scaffoldKey: scaffoldKey,
         deliveryDetails: getUser().deliveryDetails,
+        currency: 'usd',
+        amount: orderAmount.toInt(),
       );
 
-      await ordersCollections.add(order.toJson()).then((value) async {
-        await ordersCollections.doc(value.id).set(
-          {
-            'id': value.id,
-          },
-          SetOptions(merge: true),
-        );
-      });
-
-      removeDirectCart();
-
+      _isLoading = false;
       notifyListeners();
 
-      if (context != null) {
-        Navigator.pushNamedAndRemoveUntil(
-          context!,
-          '/CheckOutSuccessScreen',
-          (route) => false,
+      showCustomLoader();
+
+      if (isPaid) {
+        Orders order = Orders(
+          id: '',
+          color: _directCart.color,
+          price: orderAmount,
+          status: 'Pending',
+          prodId: _directCart.prodId,
+          quantity: _directCart.quantity,
+          timestamp: Timestamp.now(),
+          paymentMethod: paymentMethod,
+          deliveryDetails: getUser().deliveryDetails,
         );
+
+        await ordersCollections.add(order.toJson()).then((value) async {
+          await ordersCollections.doc(value.id).set(
+            {
+              'id': value.id,
+            },
+            SetOptions(merge: true),
+          );
+        });
+
+        removeDirectCart();
+
+        _isLoading = false;
+
+        notifyListeners();
+
+        if (context != null) {
+          Navigator.pushNamedAndRemoveUntil(
+            context!,
+            '/CheckOutSuccessScreen',
+            (route) => false,
+          );
+        }
+      } else {
+        _isLoading = false;
+        notifyListeners();
+
+        if (context != null) {
+          Navigator.pop(context!);
+          Navigator.pop(context!);
+        }
       }
     } catch (e) {
-      print('Purchase item error: $e');
-
       if (context != null) {
         Navigator.pop(context!);
         Navigator.pop(context!);
@@ -275,63 +295,83 @@ class CartProvider with ChangeNotifier {
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     String uid = UserId.getUid();
-
     try {
-      showCustomLoader();
-
-      var ordersCollections = FirebaseConstants.cloudInstance
-          .collection('users')
-          .doc(uid)
-          .collection('orders');
-
-      Cart cart;
-
-      for (cart in _cartItems) {
-        double orderPrice = double.parse(
-          CalculateDiscount.calculateDiscount(
-            _directCart.cartProduct().price,
-            _directCart.cartProduct().discount ?? 0,
-          ),
-        );
-
-        Orders order = Orders(
-          id: '',
-          color: cart.color,
-          price: orderPrice,
-          status: 'Pending',
-          prodId: cart.prodId,
-          quantity: cart.quantity,
-          timestamp: Timestamp.now(),
-          paymentMethod: paymentMethod,
-          deliveryDetails: getUser().deliveryDetails,
-        );
-
-        await ordersCollections.add(order.toJson()).then((value) async {
-          await ordersCollections.doc(value.id).set(
-            {
-              'id': value.id,
-            },
-            SetOptions(merge: true),
-          );
-        });
-      }
-
-      _cartItems.clear();
-
-      await deleteCollection();
-
+      _isLoading = true;
       notifyListeners();
 
-      if (context != null) {
-        Navigator.pushNamedAndRemoveUntil(
-          context!,
-          '/CheckOutSuccessScreen',
-          (route) => false,
-        );
+      bool isPaid = await StripePayment.initializePayment(
+        scaffoldKey: scaffoldKey,
+        deliveryDetails: getUser().deliveryDetails,
+        currency: 'usd',
+        amount: _totalCartPrice.toInt(),
+      );
+
+      _isLoading = false;
+      notifyListeners();
+
+      if (isPaid) {
+        showCustomLoader();
+
+        var ordersCollections = FirebaseConstants.cloudInstance
+            .collection('users')
+            .doc(uid)
+            .collection('orders');
+
+        Cart cart;
+
+        for (cart in _cartItems) {
+          double orderPrice = double.parse(
+            CalculateDiscount.calculateDiscount(
+              cart.cartProduct().price,
+              cart.cartProduct().discount ?? 0,
+            ),
+          );
+
+          Orders order = Orders(
+            id: '',
+            color: cart.color,
+            price: orderPrice,
+            status: 'Pending',
+            prodId: cart.prodId,
+            quantity: cart.quantity,
+            timestamp: Timestamp.now(),
+            paymentMethod: paymentMethod,
+            deliveryDetails: getUser().deliveryDetails,
+          );
+
+          await ordersCollections.add(order.toJson()).then((value) async {
+            await ordersCollections.doc(value.id).set(
+              {
+                'id': value.id,
+              },
+              SetOptions(merge: true),
+            );
+          });
+        }
+
+        _cartItems.clear();
+
+        await deleteCollection();
+
+        notifyListeners();
+
+        if (context != null) {
+          Navigator.pushNamedAndRemoveUntil(
+            context!,
+            '/CheckOutSuccessScreen',
+            (route) => false,
+          );
+        }
+      } else {
+        _isLoading = false;
+        notifyListeners();
+
+        if (context != null) {
+          Navigator.pop(context!);
+          Navigator.pop(context!);
+        }
       }
     } catch (e) {
-      print('Purchase cart items error: $e');
-
       if (context != null) {
         Navigator.pop(context!);
         Navigator.pop(context!);
@@ -369,9 +409,7 @@ class CartProvider with ChangeNotifier {
       final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
       await firestore.collection('users/$uid/cart').doc(id).delete();
-    } catch (e) {
-      print('Error deleting cart item: $e');
-    }
+    } catch (e) {}
   }
 
   void putDirectCart({

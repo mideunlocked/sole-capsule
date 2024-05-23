@@ -8,9 +8,9 @@ class CustomProgressIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const CircularProgressIndicator(
-      color: Colors.black,
+      color: Colors.white,
       backgroundColor: Colors.black38,
-      strokeWidth: 4,
+      strokeWidth: 1,
     );
   }
 }
