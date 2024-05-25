@@ -81,9 +81,19 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
     discountCodeCtr.dispose();
   }
 
+  String currency = 'USD';
+  List<String> currencies = [
+    'USD',
+    'EUR',
+    'CAD',
+    'GBP',
+  ];
+
   @override
   Widget build(BuildContext context) {
     var sizedBox = SizedBox(height: 2.h);
+    bool isLight =
+        Provider.of<ThemeModeProvider>(context, listen: false).isLight;
 
     return Padding(
       padding: EdgeInsets.only(
@@ -131,6 +141,33 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
               SizedBox(height: 2.h),
               DiscountTextField(controller: discountCodeCtr),
               SizedBox(height: 2.h),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(
+                    color: const Color(0xFFB7B7B7),
+                  ),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 0.8.h, horizontal: 3.w),
+                child: DropdownButton(
+                  dropdownColor: !isLight ? const Color(0xFF14191D) : null,
+                  value: currency,
+                  items: currencies
+                      .map(
+                        (e) => DropdownMenuItem(
+                          value: e,
+                          child: Text(
+                            e,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (value) => setState(() => currency = value ?? ''),
+                  isExpanded: true,
+                  underline: const SizedBox.shrink(),
+                ),
+              ),
               SizedBox(height: 5.h),
               Consumer<CartProvider>(builder: (context, cartPvr, _) {
                 return CustomButton(
@@ -156,11 +193,13 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
       await cartPvr.purchaseCartItems(
         scaffoldKey: widget.scaffoldKey,
         paymentMethod: paymentMethod,
+        currency: currency,
       );
     } else {
       await cartPvr.purchaseDirectCart(
         scaffoldKey: widget.scaffoldKey,
         paymentMethod: paymentMethod,
+        currency: currency,
       );
     }
   }

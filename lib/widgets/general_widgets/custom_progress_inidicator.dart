@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/theme_mode_provider.dart';
 
 class CustomProgressIndicator extends StatelessWidget {
   const CustomProgressIndicator({
@@ -7,9 +10,12 @@ class CustomProgressIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CircularProgressIndicator(
+    bool isLight =
+        Provider.of<ThemeModeProvider>(context, listen: false).isLight;
+
+    return CircularProgressIndicator(
       color: Colors.white,
-      backgroundColor: Colors.black38,
+      backgroundColor: isLight ? Colors.black38 : const Color(0xFF14191D),
       strokeWidth: 1,
     );
   }

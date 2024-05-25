@@ -199,6 +199,7 @@ class CartProvider with ChangeNotifier {
 
   Future<void> purchaseDirectCart({
     required String paymentMethod,
+    required String currency,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     String uid = UserId.getUid();
@@ -224,7 +225,7 @@ class CartProvider with ChangeNotifier {
       bool isPaid = await StripePayment.initializePayment(
         scaffoldKey: scaffoldKey,
         deliveryDetails: getUser().deliveryDetails,
-        currency: 'usd',
+        currency: currency,
         amount: orderAmount.toInt(),
       );
 
@@ -291,6 +292,7 @@ class CartProvider with ChangeNotifier {
   }
 
   Future<void> purchaseCartItems({
+    required String currency,
     required String paymentMethod,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
@@ -302,7 +304,7 @@ class CartProvider with ChangeNotifier {
       bool isPaid = await StripePayment.initializePayment(
         scaffoldKey: scaffoldKey,
         deliveryDetails: getUser().deliveryDetails,
-        currency: 'usd',
+        currency: currency,
         amount: _totalCartPrice.toInt(),
       );
 

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../helpers/app_colors.dart';
+import '../../models/order.dart';
 import '../../provider/order_provider.dart';
 import '../../widgets/general_widgets/custom_app_bar.dart';
-import '../../widgets/general_widgets/custom_progress_inidicator.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
 import '../../widgets/orders_widgets/order_secondary_tile.dart';
 import '../../widgets/orders_widgets/orders_tab_tile.dart';
@@ -33,6 +33,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
 
     super.initState();
   }
+
+  List<Orders> orders = [];
 
   final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
       GlobalKey<ScaffoldMessengerState>();
@@ -70,28 +72,29 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 ),
                 Expanded(
                   child: PaddedScreenWidget(
-                    child: Consumer<OrderProvider>(
-                        builder: (context, orderPvr, child) {
-                      if (orderPvr.isLoading == true) {
-                        return const Center(
-                          child: CustomProgressIndicator(),
-                        );
-                      }
-
-                      return ListView(
-                        children: currentTab == 0
-                            ? orderPvr.orders
-                                .where((order) => order.status == 'Pending')
-                                .map((e) => OrderSecondaryTile(order: e))
-                                .toList()
-                            : orderPvr.orders
-                                .where((order) => order.status == 'Closed')
-                                .map((e) => OrderSecondaryTile(order: e))
-                                .toList(),
-                      );
-                    }),
+                    child: ListView(
+                      children: currentTab == 0
+                          ? orders
+                              .where((order) => order.status == 'Pending')
+                              .map((e) => OrderSecondaryTile(order: e))
+                              .toList()
+                          : orders
+                              .where((order) => order.status == 'Closed')
+                              .map((e) => OrderSecondaryTile(order: e))
+                              .toList(),
+                    ),
                   ),
                 ),
+                Consumer<OrderProvider>(builder: (context, orderPvr, child) {
+                  return Visibility(
+                    visible: orderPvr.isLoading,
+                    child: const LinearProgressIndicator(
+                      backgroundColor: Color(0xFF14191D),
+                      color: Colors.white54,
+                      // minHeight: 1,
+                    ),
+                  );
+                }),
               ],
             ),
           ),
@@ -106,5 +109,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
     var orderPvr = Provider.of<OrderProvider>(context, listen: false);
 
     await orderPvr.getOrders(scaffoldKey: _scaffoldKey);
+
+    setState(() {
+      orders = orderPvr.orders;
+    });
   }
 }
