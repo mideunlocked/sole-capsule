@@ -5,6 +5,7 @@ import 'package:sole_capsule/models/box.dart';
 
 import '../../provider/ble_provider.dart';
 import '../../provider/box_provider.dart';
+import '../../provider/theme_mode_provider.dart';
 import '../../widgets/add_box_widgets/connect_blue_button.dart';
 import '../../widgets/general_widgets/custom_app_bar.dart';
 import '../../widgets/general_widgets/custom_button.dart';
@@ -113,6 +114,15 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
     await bleProvider.checkBluetoothStatus(
       scaffoldKey: _scaffoldKey,
     );
+
+    showAvailableDevicesDialog();
+  }
+
+  void showAvailableDevicesDialog() {
+    showDialog(
+      context: context,
+      builder: (ctx) => const BluetoothDeviciesDialog(),
+    );
   }
 
   void addNewBox() {
@@ -129,6 +139,74 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
 
     boxProvider.addNewBox(
       box: box,
+    );
+  }
+}
+
+class BluetoothDeviciesDialog extends StatelessWidget {
+  const BluetoothDeviciesDialog({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    bool isLightMode =
+        Provider.of<ThemeModeProvider>(context, listen: false).isLight;
+
+    var of = Theme.of(context);
+    var textTheme = of.textTheme;
+    return Dialog(
+      backgroundColor:
+          isLightMode ? const Color(0xFFEEF5FB) : const Color(0xFF14191D),
+      insetPadding: EdgeInsets.symmetric(
+        vertical: 20.h,
+        horizontal: 10.w,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30),
+      ),
+      insetAnimationCurve: Curves.bounceIn,
+      insetAnimationDuration: const Duration(seconds: 5),
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 2.h),
+        child: Column(
+          children: [
+            Text(
+              'Available devices',
+              style: textTheme.bodyLarge?.copyWith(fontSize: 12.sp),
+            ),
+            SizedBox(height: 1.h),
+            const Divider(height: 0),
+            Expanded(
+              child: Container(
+                color: of.scaffoldBackgroundColor,
+                child: Consumer<BleProvider>(builder: (context, blePvr, _) {
+                  return ListView(
+                    children: blePvr.bleDevices
+                        .map(
+                          (e) => Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 2.h, horizontal: 3.w),
+                                child: Text(e.platformName),
+                              ),
+                              const Divider(),
+                            ],
+                          ),
+                        )
+                        .toList(),
+                  );
+                }),
+              ),
+            ),
+            const Divider(
+              height: 0,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

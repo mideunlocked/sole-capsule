@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -17,51 +18,47 @@ class BleProvider with ChangeNotifier {
   BluetoothDevice? _currentDevice;
   BluetoothDevice? get currentDevice => _currentDevice;
 
+  StreamSubscription<BluetoothAdapterState>? _adapterStateSubscription;
+  StreamSubscription<List<ScanResult>>? _scanSubscription;
+  StreamSubscription<BluetoothConnectionState>? _connectionStateSubscription;
+
+  @override
+  void dispose() {
+    _adapterStateSubscription?.cancel();
+    _scanSubscription?.cancel();
+    _connectionStateSubscription?.cancel();
+    super.dispose();
+  }
+
   Future<void> checkBluetoothStatus({
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     try {
       if (await FlutterBluePlus.isSupported == false) {
-        print("Bluetooth not supported by this device");
-        showScaffoldMessenger(
-          scaffoldKey: scaffoldKey,
-          textContent: "Bluetooth not supported by this device",
-        );
+        _showMessage(scaffoldKey, "Bluetooth not supported by this device");
         return;
       }
 
-      var subscription =
+      _adapterStateSubscription =
           FlutterBluePlus.adapterState.listen((BluetoothAdapterState state) {
         print(state);
         if (state == BluetoothAdapterState.on) {
           _isOn = true;
-
           scanDevices(scaffoldKey: scaffoldKey);
         } else {
           _isOn = false;
-          showScaffoldMessenger(
-            scaffoldKey: scaffoldKey,
-            textContent: "Error switching on bluetooth on device",
-          );
+          _showMessage(scaffoldKey, "Error switching on Bluetooth on device");
         }
+        notifyListeners();
       });
 
       if (Platform.isAndroid) {
-        await FlutterBluePlus.turnOn().then((value) => _isOn = true);
-
+        await FlutterBluePlus.turnOn().then((_) => _isOn = true);
         scanDevices(scaffoldKey: scaffoldKey);
       }
-
-      subscription.cancel();
-
-      notifyListeners();
     } catch (e) {
       _isOn = false;
-      showScaffoldMessenger(
-        scaffoldKey: scaffoldKey,
-        textContent: "Error switching on bluetooth on device",
-      );
-
+      _showMessage(scaffoldKey, "Error switching on Bluetooth on device");
       notifyListeners();
     }
   }
@@ -71,29 +68,19 @@ class BleProvider with ChangeNotifier {
   }) async {
     try {
       if (_isOn) {
-        var subscription = FlutterBluePlus.onScanResults.listen(
-          (results) {
-            if (results.isNotEmpty) {
-              for (ScanResult sr in results) {
-                print(sr.device.advName);
-                if (!_bleDevices.contains(sr)) {
-                  _bleDevices.add(sr.device);
-
-                  print('${sr.device.remoteId}: Name: ${sr.device.advName}');
-                }
-              }
-
-              notifyListeners();
+        _scanSubscription = FlutterBluePlus.onScanResults.listen((results) {
+          for (ScanResult sr in results) {
+            if (!_bleDevices
+                .any((device) => device.remoteId == sr.device.remoteId)) {
+              _bleDevices.add(sr.device);
+              print('${sr.device.remoteId}: Name: ${sr.device.advName}');
             }
-          },
-          onError: (e) => print(e),
-        );
-
-        FlutterBluePlus.cancelWhenScanComplete(subscription);
-
-        await FlutterBluePlus.adapterState
-            .where((val) => val == BluetoothAdapterState.on)
-            .first;
+          }
+          notifyListeners();
+        }, onError: (e) {
+          print('Error scanning devices: $e');
+          _showMessage(scaffoldKey, "Error scanning devices");
+        });
 
         await FlutterBluePlus.startScan(
           withServices: [Guid("180D")], // match any of the specified services
@@ -104,18 +91,12 @@ class BleProvider with ChangeNotifier {
         // wait for scanning to stop
         await FlutterBluePlus.isScanning.where((val) => val == false).first;
       } else {
-        showScaffoldMessenger(
-          scaffoldKey: scaffoldKey,
-          textContent:
-              "Bluetooth is inactive, kindly switch on bluetooth on device",
-        );
+        _showMessage(scaffoldKey,
+            "Bluetooth is inactive, kindly switch on Bluetooth on device");
       }
     } catch (e) {
       print('Error scanning devices: $e');
-      showScaffoldMessenger(
-        scaffoldKey: scaffoldKey,
-        textContent: "Error switching on bluetooth on device",
-      );
+      _showMessage(scaffoldKey, "Error scanning devices");
     }
   }
 
@@ -125,36 +106,28 @@ class BleProvider with ChangeNotifier {
   }) async {
     try {
       if (_isOn) {
-        var subscription = device.connectionState
-            .listen((BluetoothConnectionState state) async {
+        _connectionStateSubscription =
+            device.connectionState.listen((BluetoothConnectionState state) {
           if (state == BluetoothConnectionState.disconnected) {
             print(
                 "${device.disconnectReason?.code} ${device.disconnectReason?.description}");
           }
         });
 
-        device.cancelWhenDisconnected(subscription, delayed: true, next: true);
-
         await device.connect().then((_) {
           _currentDevice = device;
-
           notifyListeners();
+        }).catchError((e) {
+          print('Error connecting to device: $e');
+          _showMessage(scaffoldKey, "Error connecting to Bluetooth device");
         });
-
-        subscription.cancel();
       } else {
-        showScaffoldMessenger(
-          scaffoldKey: scaffoldKey,
-          textContent:
-              "Bluetooth is inactive, kindly switch on bluetooth on device",
-        );
+        _showMessage(scaffoldKey,
+            "Bluetooth is inactive, kindly switch on Bluetooth on device");
       }
     } catch (e) {
       print('Error connecting to device: $e');
-      showScaffoldMessenger(
-        scaffoldKey: scaffoldKey,
-        textContent: "Error connecting to bluetooth device",
-      );
+      _showMessage(scaffoldKey, "Error connecting to Bluetooth device");
     }
   }
 
@@ -164,27 +137,21 @@ class BleProvider with ChangeNotifier {
   }) async {
     try {
       if (_isOn) {
-        var subscription = device.connectionState
-            .listen((BluetoothConnectionState state) async {
-          if (state == BluetoothConnectionState.connected) {
-            device.disconnect();
-          }
-        });
-
-        subscription.cancel();
+        await device.disconnect();
+        _currentDevice = null;
+        notifyListeners();
       } else {
-        showScaffoldMessenger(
-          scaffoldKey: scaffoldKey,
-          textContent:
-              "Bluetooth is inactive, kindly switch on bluetooth on device",
-        );
+        _showMessage(scaffoldKey,
+            "Bluetooth is inactive, kindly switch on Bluetooth on device");
       }
     } catch (e) {
       print('Error disconnecting device: $e');
-      showScaffoldMessenger(
-        scaffoldKey: scaffoldKey,
-        textContent: "Error discoonecting bluetooth device",
-      );
+      _showMessage(scaffoldKey, "Error disconnecting Bluetooth device");
     }
+  }
+
+  void _showMessage(
+      GlobalKey<ScaffoldMessengerState> scaffoldKey, String message) {
+    showScaffoldMessenger(scaffoldKey: scaffoldKey, textContent: message);
   }
 }
