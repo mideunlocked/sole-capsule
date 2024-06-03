@@ -60,23 +60,27 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   void initState() {
-    Future.delayed(Duration.zero, () {
-      Product prod = ModalRoute.of(context)!.settings.arguments as Product;
+    super.initState();
 
-      print(prod.productImages.first);
+    Future.delayed(Duration.zero, initVideoPlayer);
+  }
 
-      _controller = VideoPlayerController.networkUrl(
-        Uri.parse(
-          prod.productImages.first,
-        ),
-      )..initialize().then((_) {
-          setState(() {});
-          _controller.play();
-          _controller.setLooping(true);
-        });
+  void initVideoPlayer() async {
+    String videoUrl = '';
+    Product prod = ModalRoute.of(context)!.settings.arguments as Product;
+    setState(() {
+      videoUrl = prod.productImages[1];
     });
 
-    super.initState();
+    _controller = VideoPlayerController.networkUrl(
+      Uri.parse(videoUrl),
+    );
+
+    await _controller.initialize().then((_) {
+      setState(() {});
+      _controller.play();
+      _controller.setLooping(true);
+    });
   }
 
   @override
@@ -119,8 +123,7 @@ class _ProductScreenState extends State<ProductScreen> {
                             physics: const BouncingScrollPhysics(),
                             onPageChanged: scrollImage,
                             itemBuilder: (ctx, index) {
-                              if (index == 0 &&
-                                  _controller.value.isInitialized) {
+                              if (index == 1) {
                                 return InkWell(
                                   onTap: () {
                                     if (_controller.value.isPlaying) {
@@ -135,6 +138,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                   ),
                                 );
                               }
+
                               String image =
                                   prod.productImages[index].toString();
                               setCurrentImage(image);
