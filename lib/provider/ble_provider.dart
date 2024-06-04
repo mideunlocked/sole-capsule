@@ -15,8 +15,16 @@ class BleProvider with ChangeNotifier {
   bool _isOn = false;
   bool get isOn => _isOn;
 
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
   BluetoothDevice? _currentDevice;
   BluetoothDevice? get currentDevice => _currentDevice;
+
+  BluetoothDevice? _selectedDevice;
+  BluetoothDevice? get selectedDevice => _selectedDevice;
+
+  List<BluetoothService> _services = [];
 
   StreamSubscription<BluetoothAdapterState>? _adapterStateSubscription;
   StreamSubscription<List<ScanResult>>? _scanSubscription;
@@ -28,6 +36,16 @@ class BleProvider with ChangeNotifier {
     _scanSubscription?.cancel();
     _connectionStateSubscription?.cancel();
     super.dispose();
+  }
+
+  void _loading() {
+    _isLoading = true;
+    notifyListeners();
+  }
+
+  void _loaded() {
+    _isLoading = false;
+    notifyListeners();
   }
 
   Future<void> checkBluetoothStatus({
@@ -101,33 +119,50 @@ class BleProvider with ChangeNotifier {
   }
 
   Future<void> connectToDevice({
+    required BuildContext context,
     required BluetoothDevice device,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
-    try {
-      if (_isOn) {
-        _connectionStateSubscription =
-            device.connectionState.listen((BluetoothConnectionState state) {
-          if (state == BluetoothConnectionState.disconnected) {
-            print(
-                "${device.disconnectReason?.code} ${device.disconnectReason?.description}");
-          }
-        });
+    if (_selectedDevice == null) {
+      try {
+        _selectedDevice = device;
+        _loading();
 
-        await device.connect().then((_) {
-          _currentDevice = device;
-          notifyListeners();
-        }).catchError((e) {
-          print('Error connecting to device: $e');
-          _showMessage(scaffoldKey, "Error connecting to Bluetooth device");
-        });
-      } else {
-        _showMessage(scaffoldKey,
-            "Bluetooth is inactive, kindly switch on Bluetooth on device");
+        if (_isOn) {
+          _connectionStateSubscription =
+              device.connectionState.listen((BluetoothConnectionState state) {
+            if (state == BluetoothConnectionState.disconnected) {
+              print(
+                  "${device.disconnectReason?.code} ${device.disconnectReason?.description}");
+            }
+          });
+
+          await device.connect().then((_) async {
+            _currentDevice = device;
+
+            _services = await device.discoverServices();
+
+            if (context.mounted) Navigator.pop(context);
+            _loaded();
+            notifyListeners();
+          }).catchError((e) {
+            _selectedDevice = null;
+            _loaded();
+            print('Error connecting to device: $e');
+            _showMessage(scaffoldKey, "Error connecting to Bluetooth device");
+          });
+        } else {
+          _selectedDevice = null;
+          _loaded();
+          _showMessage(scaffoldKey,
+              "Bluetooth is inactive, kindly switch on Bluetooth on device");
+        }
+      } catch (e) {
+        _selectedDevice = null;
+        _loaded();
+        print('Error connecting to device: $e');
+        _showMessage(scaffoldKey, "Error connecting to Bluetooth device");
       }
-    } catch (e) {
-      print('Error connecting to device: $e');
-      _showMessage(scaffoldKey, "Error connecting to Bluetooth device");
     }
   }
 
@@ -153,5 +188,80 @@ class BleProvider with ChangeNotifier {
   void _showMessage(
       GlobalKey<ScaffoldMessengerState> scaffoldKey, String message) {
     showScaffoldMessenger(scaffoldKey: scaffoldKey, textContent: message);
+  }
+
+  Future<void> toggleLight({
+    required int status,
+    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+  }) async {
+    if (_currentDevice != null && _services.isNotEmpty) {
+      try {
+        for (BluetoothService service in _services) {
+          for (BluetoothCharacteristic characteristic
+              in service.characteristics) {
+            if (characteristic.uuid ==
+                Guid("6E400005-B5A3-F393-E0A9-E50E24DCCA9E")) {
+              List<int> value = [status];
+              await characteristic.write(value);
+              print('Light toggled');
+              break;
+            }
+          }
+        }
+      } catch (e) {
+        print('Error toggling pod light: $e');
+        _showMessage(scaffoldKey, "Error toggling pod light");
+      }
+    }
+  }
+
+  Future<void> toggleTray({
+    required int status,
+    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+  }) async {
+    if (_currentDevice != null && _services.isNotEmpty) {
+      try {
+        for (BluetoothService service in _services) {
+          for (BluetoothCharacteristic characteristic
+              in service.characteristics) {
+            if (characteristic.uuid ==
+                Guid("6E400002-B5A3-F393-E0A9-E50E24DCCA9E")) {
+              List<int> value = [status];
+              await characteristic.write(value);
+              print('Pod tray toggled');
+              break;
+            }
+          }
+        }
+      } catch (e) {
+        print('Error toggling pod tray: $e');
+        _showMessage(scaffoldKey, "Error toggling pod tray");
+      }
+    }
+  }
+
+  Future<void> toggleBrightness({
+    required int status,
+    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+  }) async {
+    if (_currentDevice != null && _services.isNotEmpty) {
+      try {
+        for (BluetoothService service in _services) {
+          for (BluetoothCharacteristic characteristic
+              in service.characteristics) {
+            if (characteristic.uuid ==
+                Guid("6E400006-B5A3-F393-E0A9-E50E24DCCA9E")) {
+              List<int> value = [status];
+              await characteristic.write(value);
+              print('Pod brightness toggled');
+              break;
+            }
+          }
+        }
+      } catch (e) {
+        print('Error toggling pod brightness: $e');
+        _showMessage(scaffoldKey, "Error toggling pod brightness");
+      }
+    }
   }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../helpers/scaffold_messenger_helper.dart';
 import '../models/box.dart';
+import 'ble_provider.dart';
 
 class BoxProvider with ChangeNotifier {
   final List<Box> _boxes = [
@@ -11,6 +13,7 @@ class BoxProvider with ChangeNotifier {
       isOpen: false,
       isLightOn: false,
       lightIntensity: 50,
+      isConnected: false,
       lightColor: Colors.orange,
     ),
     Box(
@@ -19,6 +22,7 @@ class BoxProvider with ChangeNotifier {
       isOpen: false,
       isLightOn: false,
       lightIntensity: 50,
+      isConnected: false,
       lightColor: Colors.white,
     ),
   ];
@@ -39,35 +43,61 @@ class BoxProvider with ChangeNotifier {
     return box;
   }
 
-  void toggleLight({
+  Future<void> toggleLight({
     required String id,
-  }) {
-    Box box = _boxes.firstWhere((box) => box.id == id);
+    required int status,
+    required BuildContext context,
+    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+  }) async {
+    var blePvr = Provider.of<BleProvider>(context, listen: false);
 
-    box.toggleLight();
+    await blePvr
+        .toggleLight(status: status, scaffoldKey: scaffoldKey)
+        .then((_) {
+      Box box = _boxes.firstWhere((box) => box.id == id);
 
-    notifyListeners();
+      box.toggleLight();
+
+      notifyListeners();
+    });
   }
 
-  void toggleBoxOpen({
+  Future<void> toggleBoxOpen({
     required String id,
-  }) {
-    Box box = _boxes.firstWhere((box) => box.id == id);
+    required int status,
+    required BuildContext context,
+    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+  }) async {
+    var blePvr = Provider.of<BleProvider>(context, listen: false);
 
-    box.toggleBoxOpen();
+    await blePvr
+        .toggleLight(status: status, scaffoldKey: scaffoldKey)
+        .then((_) {
+      Box box = _boxes.firstWhere((box) => box.id == id);
 
-    notifyListeners();
+      box.toggleBoxOpen();
+
+      notifyListeners();
+    });
   }
 
   void changeIntensity({
     required String id,
     required double intensity,
-  }) {
-    Box box = _boxes.firstWhere((box) => box.id == id);
+    required BuildContext context,
+    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+  }) async {
+    var blePvr = Provider.of<BleProvider>(context, listen: false);
 
-    box.changeLightIntensity(intensity);
+    await blePvr
+        .toggleLight(status: intensity.toInt(), scaffoldKey: scaffoldKey)
+        .then((_) {
+      Box box = _boxes.firstWhere((box) => box.id == id);
 
-    notifyListeners();
+      box.changeLightIntensity(intensity);
+
+      notifyListeners();
+    });
   }
 
   void changeLightColor({

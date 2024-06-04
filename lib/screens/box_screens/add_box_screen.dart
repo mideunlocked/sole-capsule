@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -11,6 +12,7 @@ import '../../widgets/general_widgets/custom_app_bar.dart';
 import '../../widgets/general_widgets/custom_button.dart';
 import '../../widgets/general_widgets/custom_text_field.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
+import '../../widgets/general_widgets/successfull_sheet.dart';
 
 class AddBoxScreen extends StatefulWidget {
   static const routeName = '/AddBoxScreen';
@@ -30,6 +32,7 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
     isOpen: false,
     isLightOn: false,
     lightIntensity: 50,
+    isConnected: false,
     lightColor: Colors.white,
   );
 
@@ -74,28 +77,28 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
                 ),
                 CustomButton(
                   onTap: () {
-                    // if (boxNameCtr.text.isEmpty) {
-                    //   return;
-                    // }
-                    // var of = Theme.of(context);
-                    // var textTheme = of.textTheme;
-                    // var titleMedium = textTheme.titleMedium;
+                    if (boxNameCtr.text.isEmpty) {
+                      return;
+                    }
+                    var of = Theme.of(context);
+                    var textTheme = of.textTheme;
+                    var titleMedium = textTheme.titleMedium;
 
-                    // addNewBox();
+                    addNewBox();
 
-                    // showSuccesfullSheet(
-                    //   context: context,
-                    //   successMessage: Text(
-                    //     'Box Added',
-                    //     style: titleMedium?.copyWith(fontSize: 20.sp),
-                    //   ),
-                    //   buttonTitle: 'View',
-                    //   buttonFunction: () => Navigator.pushReplacementNamed(
-                    //     context,
-                    //     '/BoxScreen',
-                    //     arguments: box,
-                    //   ),
-                    // );
+                    showSuccesfullSheet(
+                      context: context,
+                      successMessage: Text(
+                        'Box Added',
+                        style: titleMedium?.copyWith(fontSize: 20.sp),
+                      ),
+                      buttonTitle: 'View',
+                      buttonFunction: () => Navigator.pushReplacementNamed(
+                        context,
+                        '/BoxScreen',
+                        arguments: box,
+                      ),
+                    );
                   },
                   label: 'Add +',
                 ),
@@ -121,12 +124,15 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
   void showAvailableDevicesDialog() {
     showDialog(
       context: context,
-      builder: (ctx) => const BluetoothDeviciesDialog(),
+      builder: (ctx) => BluetoothDeviciesDialog(
+        scaffoldKey: _scaffoldKey,
+      ),
     );
   }
 
   void addNewBox() {
     var boxProvider = Provider.of<BoxProvider>(context, listen: false);
+    var bleProvider = Provider.of<BleProvider>(context, listen: false);
 
     box = Box(
       id: boxProvider.boxes.length.toString(),
@@ -134,6 +140,7 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
       isOpen: false,
       isLightOn: false,
       lightIntensity: 50,
+      isConnected: bleProvider.currentDevice != null,
       lightColor: Colors.white,
     );
 
@@ -146,7 +153,10 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
 class BluetoothDeviciesDialog extends StatelessWidget {
   const BluetoothDeviciesDialog({
     super.key,
+    required this.scaffoldKey,
   });
+
+  final GlobalKey<ScaffoldMessengerState> scaffoldKey;
 
   @override
   Widget build(BuildContext context) {
@@ -179,21 +189,31 @@ class BluetoothDeviciesDialog extends StatelessWidget {
             const Divider(height: 0),
             Expanded(
               child: Container(
-                color: of.scaffoldBackgroundColor,
+                decoration: BoxDecoration(
+                  color: of.scaffoldBackgroundColor,
+                  borderRadius: BorderRadius.circular(15),
+                ),
                 child: Consumer<BleProvider>(builder: (context, blePvr, _) {
                   return ListView(
+                    physics: const BouncingScrollPhysics(),
+                    // children: [
+                    //   BleDeviceTile(
+                    //     name: 'Sole Pod',
+                    //     isSelected: false,
+                    //     isCurrent: true,
+                    //   ),
+                    // ],
                     children: blePvr.bleDevices
                         .map(
-                          (e) => Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 2.h, horizontal: 3.w),
-                                child: Text(e.platformName),
-                              ),
-                              const Divider(),
-                            ],
+                          (e) => BleDeviceTile(
+                            name: e.platformName,
+                            isSelected: e == blePvr.selectedDevice,
+                            isCurrent: e == blePvr.currentDevice,
+                            onTap: () => blePvr.connectToDevice(
+                              context: context,
+                              device: e,
+                              scaffoldKey: scaffoldKey,
+                            ),
                           ),
                         )
                         .toList(),
@@ -206,6 +226,54 @@ class BluetoothDeviciesDialog extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class BleDeviceTile extends StatelessWidget {
+  const BleDeviceTile({
+    super.key,
+    required this.name,
+    required this.isSelected,
+    this.onTap,
+    this.isCurrent,
+  });
+
+  final String name;
+  final bool? isSelected;
+  final bool? isCurrent;
+  final Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {},
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 3.w),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  name,
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                  ),
+                ),
+                isCurrent ?? false
+                    ? const Icon(Icons.check_rounded)
+                    : Visibility(
+                        visible: isSelected ?? false,
+                        child: const CupertinoActivityIndicator(),
+                      ),
+              ],
+            ),
+          ),
+          const Divider(),
+        ],
       ),
     );
   }

@@ -5,6 +5,7 @@ class Box {
   String name;
   bool isOpen;
   bool isLightOn;
+  bool isConnected;
   double lightIntensity;
   Color lightColor;
 
@@ -14,6 +15,7 @@ class Box {
     required this.isOpen,
     required this.isLightOn,
     required this.lightColor,
+    required this.isConnected,
     required this.lightIntensity,
   });
 
@@ -26,19 +28,25 @@ class Box {
       isOpen: json['isOpen'] as bool,
       isLightOn: json['isLightOn'] as bool,
       lightColor: json['lightColor'] as Color,
+      isConnected: json['isConnected'] as bool,
       lightIntensity: json['lightIntensity'] as double,
     );
   }
 
-  Map<String, dynamic> toJson({required Box box}) {
+  Map<String, dynamic> toJson() {
     return {
-      'id': box.id,
-      'name': box.name,
-      'isOpen': box.isOpen,
-      'isLightOn': box.isLightOn,
-      'lightColor': box.lightColor,
-      'lightIntensity': box.lightIntensity,
+      'id': id,
+      'name': name,
+      'isOpen': isOpen,
+      'isLightOn': isLightOn,
+      'lightColor': lightColor,
+      'isConnected': lightIntensity,
+      'lightIntensity': lightIntensity,
     };
+  }
+
+  void changeConnectionState(bool status) {
+    isConnected = status;
   }
 
   void toggleLight() {

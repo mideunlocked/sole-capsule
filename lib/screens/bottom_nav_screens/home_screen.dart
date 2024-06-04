@@ -103,6 +103,7 @@ class _HomeSceenState extends State<HomeSceen> {
                                 ? const AddBoxTile()
                                 : BoxTile(
                                     box: boxProvider.boxes[index],
+                                    scaffoldKey: _scaffoldKey,
                                   ),
                       ),
               ),
