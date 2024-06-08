@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../provider/box_provider.dart';
+import '../../widgets/box_widgets/connect_wi_fi_button.dart';
 import '../../widgets/box_widgets/delete_box_button.dart';
 import '../../widgets/general_widgets/custom_app_bar.dart';
 import '../../widgets/general_widgets/custom_button.dart';
@@ -64,6 +65,10 @@ class _BoxSettingsScreenState extends State<BoxSettingsScreen> {
                     inputAction: TextInputAction.done,
                   ),
                   SizedBox(height: 4.h),
+                  ConnectWifiButton(
+                    boxId: args['id'],
+                  ),
+                  SizedBox(height: 3.h),
                   DeleteBoxButton(
                     boxId: args['id'],
                   ),

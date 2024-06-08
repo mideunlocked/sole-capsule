@@ -28,65 +28,66 @@ class CustomButton extends StatelessWidget {
     var borderRadius = BorderRadius.circular(30);
     bool isNull = onTap == null;
 
-    return InkWell(
-      onTap: onTap,
-      borderRadius: borderRadius,
-      child: Consumer<ThemeModeProvider>(
-        builder: (context, tmPvr, child) {
-          bool isLightMode = tmPvr.isLight;
+    return Consumer<ThemeModeProvider>(
+      builder: (context, tmPvr, child) {
+        bool isLightMode = tmPvr.isLight;
 
-          return Container(
-            width: 100.w,
-            height: 6.h,
-            decoration: BoxDecoration(
-              borderRadius: borderRadius,
-              color: isLightMode
-                  ? color.withOpacity(isNull ? 0.2 : 1)
-                  : const Color(0xFF101417),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.white10,
-                  spreadRadius: 1,
-                  blurStyle: BlurStyle.normal,
-                  blurRadius: 1,
-                  offset: Offset.infinite,
+        return Container(
+          width: 100.w,
+          height: 6.h,
+          decoration: BoxDecoration(
+            borderRadius: borderRadius,
+            color: isLightMode
+                ? color.withOpacity(isNull ? 0.2 : 1)
+                : const Color(0xFF101417),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.white10,
+                spreadRadius: 1,
+                blurStyle: BlurStyle.normal,
+                blurRadius: 1,
+                offset: Offset.infinite,
+              ),
+            ],
+          ),
+          alignment: Alignment.center,
+          child: isLoading
+              ? const Center(
+                  child: CustomProgressIndicator(),
+                )
+              : InkWell(
+                  onTap: onTap,
+                  borderRadius: borderRadius,
+                  splashColor: Colors.white,
+                  child: customWidget ??
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Visibility(
+                            visible: icon != null,
+                            child: Row(
+                              children: [
+                                Icon(
+                                  icon,
+                                  color: isLightMode ? null : Colors.white,
+                                ),
+                                SizedBox(width: 3.w),
+                              ],
+                            ),
+                          ),
+                          Text(
+                            label ?? '',
+                            style: TextStyle(
+                              color: color == const Color(0xFF000218)
+                                  ? Colors.white
+                                  : null,
+                            ),
+                          ),
+                        ],
+                      ),
                 ),
-              ],
-            ),
-            alignment: Alignment.center,
-            child: isLoading
-                ? const Center(
-                    child: CustomProgressIndicator(),
-                  )
-                : customWidget ??
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Visibility(
-                          visible: icon != null,
-                          child: Row(
-                            children: [
-                              Icon(
-                                icon,
-                                color: isLightMode ? null : Colors.white,
-                              ),
-                              SizedBox(width: 3.w),
-                            ],
-                          ),
-                        ),
-                        Text(
-                          label ?? '',
-                          style: TextStyle(
-                            color: color == const Color(0xFF000218)
-                                ? Colors.white
-                                : null,
-                          ),
-                        ),
-                      ],
-                    ),
-          );
-        },
-      ),
+        );
+      },
     );
   }
 }

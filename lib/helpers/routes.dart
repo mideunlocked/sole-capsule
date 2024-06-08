@@ -8,6 +8,7 @@ import '../screens/auth_screens/set_up_screen.dart';
 import '../screens/app.dart';
 import '../screens/box_screens/box_screen.dart';
 import '../screens/box_screens/box_settings_screen.dart';
+import '../screens/box_screens/connect_wifi_screen.dart';
 import '../screens/cart_screens/cart_screen.dart';
 import '../screens/checkout_screens/check_out_details_screen.dart';
 import '../screens/checkout_screens/check_out_screen.dart';
@@ -46,4 +47,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   WalletScreen.routeName: (ctx) => const WalletScreen(),
   NotificationScreen.routeName: (ctx) => const NotificationScreen(),
   OrderDetailsScreen.routeName: (ctx) => const OrderDetailsScreen(),
+  ConnectWifiScreen.routeName: (ctx) => const ConnectWifiScreen(),
 };

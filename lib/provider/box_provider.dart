@@ -70,9 +70,7 @@ class BoxProvider with ChangeNotifier {
   }) async {
     var blePvr = Provider.of<BleProvider>(context, listen: false);
 
-    await blePvr
-        .toggleLight(status: status, scaffoldKey: scaffoldKey)
-        .then((_) {
+    await blePvr.toggleTray(status: status, scaffoldKey: scaffoldKey).then((_) {
       Box box = _boxes.firstWhere((box) => box.id == id);
 
       box.toggleBoxOpen();
@@ -81,7 +79,7 @@ class BoxProvider with ChangeNotifier {
     });
   }
 
-  void changeIntensity({
+  Future<void> changeIntensity({
     required String id,
     required double intensity,
     required BuildContext context,
@@ -89,8 +87,10 @@ class BoxProvider with ChangeNotifier {
   }) async {
     var blePvr = Provider.of<BleProvider>(context, listen: false);
 
+    double brightness = intensity / 100 * 255;
+
     await blePvr
-        .toggleLight(status: intensity.toInt(), scaffoldKey: scaffoldKey)
+        .toggleBrightness(status: brightness.toInt(), scaffoldKey: scaffoldKey)
         .then((_) {
       Box box = _boxes.firstWhere((box) => box.id == id);
 
@@ -98,6 +98,35 @@ class BoxProvider with ChangeNotifier {
 
       notifyListeners();
     });
+  }
+
+  Future<void> passWiFiCredToPod({
+    required String id,
+    required String networkId,
+    required String password,
+    required BuildContext context,
+    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+  }) async {
+    Box box = _boxes.firstWhere((box) => box.id == id);
+
+    if (box.isConnected) {
+      var blePvr = Provider.of<BleProvider>(context, listen: false);
+
+      await blePvr.passWiFiCredToPod(
+        networkId: networkId,
+        password: password,
+        context: context,
+        scaffoldKey: scaffoldKey,
+      );
+
+      return;
+    }
+
+    showScaffoldMessenger(
+      scaffoldKey: scaffoldKey,
+      textContent:
+          'Pod must be connected to device via bluetooth before Wi-Fi Credentials can be passed',
+    );
   }
 
   void changeLightColor({

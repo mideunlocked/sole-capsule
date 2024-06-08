@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -186,8 +187,12 @@ class BleProvider with ChangeNotifier {
   }
 
   void _showMessage(
-      GlobalKey<ScaffoldMessengerState> scaffoldKey, String message) {
-    showScaffoldMessenger(scaffoldKey: scaffoldKey, textContent: message);
+      GlobalKey<ScaffoldMessengerState> scaffoldKey, String message,
+      {Color? color}) {
+    color != null
+        ? showScaffoldMessenger(
+            scaffoldKey: scaffoldKey, textContent: message, bkgColor: color)
+        : showScaffoldMessenger(scaffoldKey: scaffoldKey, textContent: message);
   }
 
   Future<void> toggleLight({
@@ -201,8 +206,8 @@ class BleProvider with ChangeNotifier {
               in service.characteristics) {
             if (characteristic.uuid ==
                 Guid("6E400005-B5A3-F393-E0A9-E50E24DCCA9E")) {
-              List<int> value = [status];
-              await characteristic.write(value);
+              String value = status.toString();
+              await characteristic.write(utf8.encode(value));
               print('Light toggled');
               break;
             }
@@ -226,8 +231,8 @@ class BleProvider with ChangeNotifier {
               in service.characteristics) {
             if (characteristic.uuid ==
                 Guid("6E400002-B5A3-F393-E0A9-E50E24DCCA9E")) {
-              List<int> value = [status];
-              await characteristic.write(value);
+              String value = status.toString();
+              await characteristic.write(utf8.encode(value));
               print('Pod tray toggled');
               break;
             }
@@ -251,8 +256,8 @@ class BleProvider with ChangeNotifier {
               in service.characteristics) {
             if (characteristic.uuid ==
                 Guid("6E400006-B5A3-F393-E0A9-E50E24DCCA9E")) {
-              List<int> value = [status];
-              await characteristic.write(value);
+              String value = status.toString();
+              await characteristic.write(utf8.encode(value));
               print('Pod brightness toggled');
               break;
             }
@@ -261,6 +266,44 @@ class BleProvider with ChangeNotifier {
       } catch (e) {
         print('Error toggling pod brightness: $e');
         _showMessage(scaffoldKey, "Error toggling pod brightness");
+      }
+    }
+  }
+
+  Future<void> passWiFiCredToPod({
+    required String networkId,
+    required String password,
+    required BuildContext context,
+    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+  }) async {
+    if (_currentDevice != null && _services.isNotEmpty) {
+      try {
+        for (BluetoothService service in _services) {
+          for (BluetoothCharacteristic characteristic
+              in service.characteristics) {
+            if (characteristic.uuid ==
+                Guid("6E400003-B5A3-F393-E0A9-E50E24DCCA9E")) {
+              await characteristic.write(utf8.encode(networkId));
+              print('Network Id passed');
+            }
+            if (characteristic.uuid ==
+                Guid("6E400004-B5A3-F393-E0A9-E50E24DCCA9E")) {
+              await characteristic.write(utf8.encode(password));
+              print('Network password passed');
+            }
+          }
+        }
+
+        _showMessage(
+          scaffoldKey,
+          "Wi-Fi credentials passed to pod successfully",
+          color: Colors.green,
+        );
+
+        Navigator.pop(context);
+      } catch (e) {
+        print('Error passing Wi-Fi credentials to pod: $e');
+        _showMessage(scaffoldKey, "Error passing Wi-Fi credentials to pod");
       }
     }
   }

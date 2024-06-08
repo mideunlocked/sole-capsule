@@ -129,7 +129,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
             if (value!.isEmpty) {
               return '${widget.title} is required';
             }
-            if (widget.title.contains('Password') && value.length <= 7) {
+            if (widget.title.contains('Password') &&
+                value.length <= 7 &&
+                widget.isVisibilityShown) {
               return 'Password must contain 8 characters or more';
             }
             if (widget.title.contains('Password') &&

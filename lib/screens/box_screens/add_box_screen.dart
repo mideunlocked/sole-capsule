@@ -186,7 +186,6 @@ class BluetoothDeviciesDialog extends StatelessWidget {
               style: textTheme.bodyLarge?.copyWith(fontSize: 12.sp),
             ),
             SizedBox(height: 1.h),
-            const Divider(height: 0),
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
@@ -196,13 +195,6 @@ class BluetoothDeviciesDialog extends StatelessWidget {
                 child: Consumer<BleProvider>(builder: (context, blePvr, _) {
                   return ListView(
                     physics: const BouncingScrollPhysics(),
-                    // children: [
-                    //   BleDeviceTile(
-                    //     name: 'Sole Pod',
-                    //     isSelected: false,
-                    //     isCurrent: true,
-                    //   ),
-                    // ],
                     children: blePvr.bleDevices
                         .map(
                           (e) => BleDeviceTile(
@@ -220,9 +212,6 @@ class BluetoothDeviciesDialog extends StatelessWidget {
                   );
                 }),
               ),
-            ),
-            const Divider(
-              height: 0,
             ),
           ],
         ),
@@ -248,7 +237,7 @@ class BleDeviceTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

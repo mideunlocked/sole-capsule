@@ -111,11 +111,12 @@ class _BoxScreenState extends State<BoxScreen> {
                                         : Colors.black,
                                     trackColor:
                                         isLightMode ? null : Colors.grey,
-                                    onChanged: (_) => boxPvr.toggleBoxOpen(
-                                        id: box.id,
-                                        context: context,
-                                        scaffoldKey: _scaffoldKey,
-                                        status: box.isOpen ? 0 : 1),
+                                    onChanged: (_) async =>
+                                        await boxPvr.toggleBoxOpen(
+                                            id: box.id,
+                                            context: context,
+                                            scaffoldKey: _scaffoldKey,
+                                            status: box.isOpen ? 0 : 1),
                                   );
                                 }),
                               ],
@@ -154,11 +155,12 @@ class _BoxScreenState extends State<BoxScreen> {
                                   thumbColor:
                                       isLightMode ? Colors.white : Colors.black,
                                   trackColor: isLightMode ? null : Colors.grey,
-                                  onChanged: (_) => boxPvr.toggleLight(
-                                      id: box.id,
-                                      context: context,
-                                      scaffoldKey: _scaffoldKey,
-                                      status: box.isLightOn ? 0 : 1),
+                                  onChanged: (_) async =>
+                                      await boxPvr.toggleLight(
+                                          id: box.id,
+                                          context: context,
+                                          scaffoldKey: _scaffoldKey,
+                                          status: box.isLightOn ? 0 : 1),
                                 );
                               }),
                             ],
@@ -204,8 +206,8 @@ class _BoxScreenState extends State<BoxScreen> {
                                 thumbColor:
                                     isLightMode ? Colors.black : Colors.white,
                                 inactiveColor: Colors.white,
-                                onChanged: (value) {
-                                  boxPvr.changeIntensity(
+                                onChanged: (value) async {
+                                  await boxPvr.changeIntensity(
                                     id: box.id,
                                     intensity: value,
                                     context: context,
