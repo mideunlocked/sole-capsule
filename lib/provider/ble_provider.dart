@@ -300,10 +300,54 @@ class BleProvider with ChangeNotifier {
           color: Colors.green,
         );
 
-        Navigator.pop(context);
+        if (context.mounted) Navigator.pop(context);
       } catch (e) {
         print('Error passing Wi-Fi credentials to pod: $e');
         _showMessage(scaffoldKey, "Error passing Wi-Fi credentials to pod");
+      }
+    }
+  }
+
+  Future<void> passLightColorParam({
+    required String r,
+    required String b,
+    required String g,
+    required BuildContext context,
+    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+  }) async {
+    if (_currentDevice != null && _services.isNotEmpty) {
+      try {
+        for (BluetoothService service in _services) {
+          for (BluetoothCharacteristic characteristic
+              in service.characteristics) {
+            if (characteristic.uuid ==
+                Guid("6E400008-B5A3-F393-E0A9-E50E24DCCA9E")) {
+              await characteristic.write(utf8.encode(r));
+              print('Red value passed');
+            }
+            if (characteristic.uuid ==
+                Guid("6E400009-B5A3-F393-E0A9-E50E24DCCA9E")) {
+              await characteristic.write(utf8.encode(g));
+              print('Green value passed');
+            }
+            if (characteristic.uuid ==
+                Guid("6E4000010-B5A3-F393-E0A9-E50E24DCCA9E")) {
+              await characteristic.write(utf8.encode(b));
+              print('Blue value passed passed');
+            }
+          }
+        }
+
+        _showMessage(
+          scaffoldKey,
+          "Light parameters changed successfully",
+          color: Colors.green,
+        );
+
+        if (context.mounted) Navigator.pop(context);
+      } catch (e) {
+        print('Error changing light parameters: $e');
+        _showMessage(scaffoldKey, "Error changing light parameters");
       }
     }
   }

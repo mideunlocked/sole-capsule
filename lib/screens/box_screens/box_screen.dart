@@ -278,22 +278,14 @@ class _BoxScreenState extends State<BoxScreen> {
     BuildContext context, {
     required Box box,
   }) {
-    var themeProvider = Provider.of<ThemeModeProvider>(context, listen: false);
-
     showModalBottomSheet(
-      showDragHandle: true,
       context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(20),
-        ),
-      ),
-      backgroundColor: themeProvider.isLight
-          ? Theme.of(context).scaffoldBackgroundColor
-          : const Color(0xFF21272C),
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
       builder: (ctx) => ColorSelectorBottomSheet(
         boxId: box.id,
         lightColor: box.lightColor,
+        scaffoldKey: _scaffoldKey,
       ),
     );
   }

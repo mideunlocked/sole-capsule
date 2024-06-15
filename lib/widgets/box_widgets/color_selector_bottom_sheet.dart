@@ -1,11 +1,12 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../provider/box_provider.dart';
 import '../../provider/theme_mode_provider.dart';
-import '../general_widgets/padded_screen_widget.dart';
-import 'available_color_tile.dart';
 import 'delete_box_sheet_button.dart';
 
 class ColorSelectorBottomSheet extends StatefulWidget {
@@ -13,10 +14,12 @@ class ColorSelectorBottomSheet extends StatefulWidget {
     super.key,
     required this.boxId,
     required this.lightColor,
+    required this.scaffoldKey,
   });
 
   final String boxId;
   final Color lightColor;
+  final GlobalKey<ScaffoldMessengerState> scaffoldKey;
 
   @override
   State<ColorSelectorBottomSheet> createState() =>
@@ -24,7 +27,7 @@ class ColorSelectorBottomSheet extends StatefulWidget {
 }
 
 class _ColorSelectorBottomSheetState extends State<ColorSelectorBottomSheet> {
-  Color _selectedColor = Colors.transparent;
+  Color _selectedColor = Colors.red;
 
   void selectColor(Color newColor) => setState(() => _selectedColor = newColor);
 
@@ -37,129 +40,55 @@ class _ColorSelectorBottomSheetState extends State<ColorSelectorBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 40.h,
-      width: 100.w,
-      child: PaddedScreenWidget(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    var themePvr = Provider.of<ThemeModeProvider>(context, listen: false);
+
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+      child: Container(
+        height: 60.h,
+        width: 100.w,
+        alignment: Alignment.center,
+        margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
+        padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 2.w),
+        decoration: BoxDecoration(
+          color: themePvr.isLight
+              ? Theme.of(context).scaffoldBackgroundColor
+              : const Color(0xFF21272C),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: ListView(
+          physics: const NeverScrollableScrollPhysics(),
           children: [
-            Text(
-              'Color',
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Consumer<ThemeModeProvider>(builder: (context, themePvr, _) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Pick available colors',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: themePvr.isLight
-                              ? Colors.black26
-                              : Colors.white54,
-                        ),
-                  ),
-                  SizedBox(height: 2.h),
-                  Divider(
-                    color: themePvr.isLight ? Colors.black26 : Colors.white,
-                  ),
-                ],
-              );
-            }),
             SizedBox(height: 2.h),
-            Expanded(
-              child: GridView(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 5,
-                  crossAxisSpacing: 10.w,
-                  mainAxisSpacing: 4.h,
-                  childAspectRatio: 0.8,
-                ),
-                children: [
-                  AvailableColorTile(
-                    color: Colors.white,
-                    activeColor: _selectedColor,
-                    selectColor: selectColor,
-                  ),
-                  AvailableColorTile(
-                    color: Colors.purple,
-                    activeColor: _selectedColor,
-                    selectColor: selectColor,
-                  ),
-                  AvailableColorTile(
-                    color: Colors.purpleAccent,
-                    activeColor: _selectedColor,
-                    selectColor: selectColor,
-                  ),
-                  AvailableColorTile(
-                    color: Colors.red,
-                    activeColor: _selectedColor,
-                    selectColor: selectColor,
-                  ),
-                  AvailableColorTile(
-                    color: Colors.redAccent,
-                    activeColor: _selectedColor,
-                    selectColor: selectColor,
-                  ),
-                  AvailableColorTile(
-                    color: Colors.blue,
-                    activeColor: _selectedColor,
-                    selectColor: selectColor,
-                  ),
-                  AvailableColorTile(
-                    color: Colors.blueAccent,
-                    activeColor: _selectedColor,
-                    selectColor: selectColor,
-                  ),
-                  AvailableColorTile(
-                    color: Colors.blueGrey,
-                    activeColor: _selectedColor,
-                    selectColor: selectColor,
-                  ),
-                  AvailableColorTile(
-                    color: Colors.lightBlue,
-                    activeColor: _selectedColor,
-                    selectColor: selectColor,
-                  ),
-                  AvailableColorTile(
-                    color: Colors.lightBlueAccent,
-                    activeColor: _selectedColor,
-                    selectColor: selectColor,
-                  ),
-                ],
-              ),
+            ColorPicker(
+              pickerAreaBorderRadius: BorderRadius.circular(500),
+              pickerColor: _selectedColor,
+              onColorChanged: (color) => setState(() => _selectedColor = color),
+              hexInputBar: false,
+              labelTypes: const [],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                DeleteBoxSheetButton(
-                  onTap: () => Navigator.pop(context),
-                  label: 'Cancel',
-                ),
-                DeleteBoxSheetButton(
-                  onTap: setNewColor,
-                  label: 'Set color',
-                  backgroundColor: Colors.black,
-                  isInverted: true,
-                ),
-              ],
+            DeleteBoxSheetButton(
+              onTap: setNewColor,
+              label: 'Set color',
+              backgroundColor: Colors.black,
+              isInverted: true,
             ),
-            SizedBox(height: 2.h),
           ],
         ),
       ),
     );
   }
 
-  void setNewColor() {
+  void setNewColor() async {
     var boxProvider = Provider.of<BoxProvider>(context, listen: false);
 
-    boxProvider.changeLightColor(id: widget.boxId, color: _selectedColor);
+    await boxProvider.changeLightColor(
+      id: widget.boxId,
+      color: _selectedColor,
+      context: context,
+      scaffoldKey: widget.scaffoldKey,
+    );
 
-    Navigator.pop(context);
+    if (mounted) Navigator.pop(context);
   }
 }

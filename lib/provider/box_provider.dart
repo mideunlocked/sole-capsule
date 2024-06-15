@@ -129,13 +129,26 @@ class BoxProvider with ChangeNotifier {
     );
   }
 
-  void changeLightColor({
+  Future<void> changeLightColor({
     required String id,
     required Color color,
-  }) {
-    Box box = _boxes.firstWhere((box) => box.id == id);
+    required BuildContext context,
+    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+  }) async {
+    var blePvr = Provider.of<BleProvider>(context, listen: false);
 
-    box.changeLightColor(color);
+    String r = color.red.toString();
+    String g = color.green.toString();
+    String b = color.blue.toString();
+
+    await blePvr
+        .passLightColorParam(
+            r: r, g: g, b: b, context: context, scaffoldKey: scaffoldKey)
+        .then((_) {
+      Box box = _boxes.firstWhere((box) => box.id == id);
+
+      box.changeLightColor(color);
+    });
 
     notifyListeners();
   }
