@@ -201,6 +201,7 @@ class _BoxScreenState extends State<BoxScreen> {
                                 value: box.lightIntensity,
                                 min: 0,
                                 max: 100,
+                                divisions: 8,
                                 activeColor:
                                     isLightMode ? Colors.black : Colors.white,
                                 thumbColor:
