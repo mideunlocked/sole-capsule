@@ -20,6 +20,7 @@ import 'provider/order_provider.dart';
 import 'provider/product_provider.dart';
 import 'provider/theme_mode_provider.dart';
 import 'provider/user_provider.dart';
+import 'provider/wifi_provider.dart';
 import 'screens/onboarding_screens/splash_screen.dart';
 
 Future<void> main() async {
@@ -84,6 +85,9 @@ class MainApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(
             create: (ctx) => BleProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (ctx) => WifiProvider(),
           ),
         ],
         child: Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
