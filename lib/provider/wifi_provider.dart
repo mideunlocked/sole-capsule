@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:wifi_scan/wifi_scan.dart';
 
@@ -5,8 +7,11 @@ class WifiProvider with ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  List<WiFiAccessPoint> _wifiList = [];
+  final List<WiFiAccessPoint> _wifiList = [];
   List<WiFiAccessPoint> get wifiList => _wifiList;
+
+  int _currentStep = 0;
+  int get currentStep => _currentStep;
 
   void _loading() {
     _isLoading = true;
@@ -18,9 +23,26 @@ class WifiProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> startWifiScan(
-    ScrollController scrollCtr,
-  ) async {
+  void previous() {
+    if (_currentStep > 0) {
+      --_currentStep;
+      notifyListeners();
+    }
+  }
+
+  void next() {
+    if (_currentStep < 3) {
+      ++_currentStep;
+      notifyListeners();
+    }
+  }
+
+  void resetCurrentStep() {
+    _currentStep = 0;
+    notifyListeners();
+  }
+
+  Future<void> startWifiScan() async {
     _loading();
 
     final can = await WiFiScan.instance.canStartScan(askPermissions: true);
@@ -29,15 +51,13 @@ class WifiProvider with ChangeNotifier {
 
     switch (can) {
       case CanStartScan.yes:
-        final result = await WiFiScan.instance.startScan();
+        await WiFiScan.instance.startScan();
 
-        print(result);
+        next();
         _loaded();
       default:
         _loaded();
     }
-
-    scrollCtr.jumpTo(1);
   }
 
   Future<void> getScannedWifi() async {

@@ -18,8 +18,10 @@ class CustomTextField extends StatefulWidget {
     this.isVisibilityShown = false,
     this.onChanged,
     this.maxLength,
+    this.onFieldSubmitted,
   });
 
+  final Function(String)? onFieldSubmitted;
   final TextEditingController controller;
   final Function(String)? onChanged;
   final TextInputType inputType;
@@ -145,6 +147,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             return null;
           },
           onChanged: widget.onChanged,
+          onFieldSubmitted: widget.onFieldSubmitted,
         ),
       ],
     );
