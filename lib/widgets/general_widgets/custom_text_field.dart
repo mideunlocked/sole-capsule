@@ -137,8 +137,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
               return 'Password must contain 8 characters or more';
             }
             if (widget.title.contains('Password') &&
-                CheckPassword.checkPasswordStrength(value)) {
-              return 'Password must contain Uppercase, lowercase, and any special character';
+                !CheckPassword.checkPasswordStrength(value)) {
+              return '''Password must contain Uppercase, lowercase, 
+and any special character''';
             }
             if (widget.title.contains('Email') && !value.contains('.com')) {
               return 'Email is incorrect';
