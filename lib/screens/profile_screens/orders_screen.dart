@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../helpers/app_colors.dart';
-import '../../models/order.dart';
 import '../../provider/order_provider.dart';
 import '../../widgets/general_widgets/custom_app_bar.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
@@ -25,16 +24,10 @@ class _OrdersScreenState extends State<OrdersScreen> {
 
   @override
   void initState() {
-    Future.delayed(
-        Duration.zero,
-        () => getOrders(
-              isInitial: true,
-            ));
+    Future.delayed(Duration.zero, () => getOrders());
 
     super.initState();
   }
-
-  List<Orders> orders = [];
 
   final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
       GlobalKey<ScaffoldMessengerState>();
@@ -72,17 +65,20 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 ),
                 Expanded(
                   child: PaddedScreenWidget(
-                    child: ListView(
-                      children: currentTab == 0
-                          ? orders
-                              .where((order) => order.status == 'Pending')
-                              .map((e) => OrderSecondaryTile(order: e))
-                              .toList()
-                          : orders
-                              .where((order) => order.status == 'Closed')
-                              .map((e) => OrderSecondaryTile(order: e))
-                              .toList(),
-                    ),
+                    child: Consumer<OrderProvider>(
+                        builder: (context, orderPvr, _) {
+                      return ListView(
+                        children: currentTab == 0
+                            ? orderPvr.orders
+                                .where((order) => order.status == 'Pending')
+                                .map((e) => OrderSecondaryTile(order: e))
+                                .toList()
+                            : orderPvr.orders
+                                .where((order) => order.status == 'Closed')
+                                .map((e) => OrderSecondaryTile(order: e))
+                                .toList(),
+                      );
+                    }),
                   ),
                 ),
                 Consumer<OrderProvider>(builder: (context, orderPvr, child) {
@@ -103,15 +99,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
     );
   }
 
-  void getOrders({
-    bool isInitial = false,
-  }) async {
+  void getOrders() async {
     var orderPvr = Provider.of<OrderProvider>(context, listen: false);
 
     await orderPvr.getOrders(scaffoldKey: _scaffoldKey);
-
-    setState(() {
-      orders = orderPvr.orders;
-    });
   }
 }

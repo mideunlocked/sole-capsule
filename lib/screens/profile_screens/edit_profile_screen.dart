@@ -97,7 +97,6 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                               hint: 'example',
                               inputAction: TextInputAction.done,
                               onChanged: (value) async {
-                                print(value);
                                 bool isAvailable = await provider.checkUsername(
                                   username: value,
                                 );

@@ -17,8 +17,8 @@ class CheckOutSuccessScreen extends StatelessWidget {
     var of = Theme.of(context);
     var textTheme = of.textTheme;
     var bodyLarge = textTheme.bodyLarge;
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      onPopInvoked: (_) async {
         Navigator.pushNamedAndRemoveUntil(
           context,
           '/',

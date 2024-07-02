@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -151,7 +153,9 @@ class CartProvider with ChangeNotifier {
 
         notifyListeners();
       });
-    } catch (e) {}
+    } catch (e) {
+      print('Error removing from cart: $e');
+    }
   }
 
   Future<void> emptyCart() async {
@@ -166,7 +170,9 @@ class CartProvider with ChangeNotifier {
       await cartCollection.snapshots().forEach(
             (element) => element.docs.clear(),
           );
-    } catch (e) {}
+    } catch (e) {
+      print('Error emptying cart: $e');
+    }
   }
 
   bool alreadyInCart({
@@ -245,6 +251,7 @@ class CartProvider with ChangeNotifier {
           timestamp: Timestamp.now(),
           paymentMethod: paymentMethod,
           deliveryDetails: getUser().deliveryDetails,
+          product: null,
         );
 
         await ordersCollections.add(order.toJson()).then((value) async {
@@ -339,6 +346,7 @@ class CartProvider with ChangeNotifier {
             timestamp: Timestamp.now(),
             paymentMethod: paymentMethod,
             deliveryDetails: getUser().deliveryDetails,
+            product: null,
           );
 
           await ordersCollections.add(order.toJson()).then((value) async {
@@ -411,7 +419,9 @@ class CartProvider with ChangeNotifier {
       final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
       await firestore.collection('users/$uid/cart').doc(id).delete();
-    } catch (e) {}
+    } catch (e) {
+      print('Error deleting cart item: $e');
+    }
   }
 
   void putDirectCart({
