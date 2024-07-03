@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<String>This app needs access to device photo library</String>
+	<string>This app needs access to device photo library</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>

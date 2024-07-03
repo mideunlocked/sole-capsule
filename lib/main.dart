@@ -56,39 +56,17 @@ class MainApp extends StatelessWidget {
     return Sizer(
       builder: (context, orientation, deviceType) => MultiProvider(
         providers: [
-          ChangeNotifierProvider(
-            create: (ctx) => AuthProvider(),
-          ),
-          ChangeNotifierProvider(
-            create: (ctx) => UserProvider(),
-          ),
-          ChangeNotifierProvider(
-            create: (ctx) => BoxProvider(),
-          ),
-          ChangeNotifierProvider(
-            create: (ctx) => ProductProvider(),
-          ),
-          ChangeNotifierProvider(
-            create: (ctx) => CartProvider(),
-          ),
-          ChangeNotifierProvider(
-            create: (ctx) => OrderProvider(),
-          ),
-          ChangeNotifierProvider(
-            create: (ctx) => ThemeModeProvider(),
-          ),
-          ChangeNotifierProvider(
-            create: (ctx) => DiscountProvider(),
-          ),
-          ChangeNotifierProvider(
-            create: (ctx) => NotificationProvider(),
-          ),
-          ChangeNotifierProvider(
-            create: (ctx) => BleProvider(),
-          ),
-          ChangeNotifierProvider(
-            create: (ctx) => WifiProvider(),
-          ),
+          ChangeNotifierProvider(create: (ctx) => AuthProvider()),
+          ChangeNotifierProvider(create: (ctx) => UserProvider()),
+          ChangeNotifierProvider(create: (ctx) => BoxProvider()),
+          ChangeNotifierProvider(create: (ctx) => ProductProvider()),
+          ChangeNotifierProvider(create: (ctx) => CartProvider()),
+          ChangeNotifierProvider(create: (ctx) => OrderProvider()),
+          ChangeNotifierProvider(create: (ctx) => ThemeModeProvider()),
+          ChangeNotifierProvider(create: (ctx) => DiscountProvider()),
+          ChangeNotifierProvider(create: (ctx) => NotificationProvider()),
+          ChangeNotifierProvider(create: (ctx) => BleProvider()),
+          ChangeNotifierProvider(create: (ctx) => WifiProvider()),
         ],
         child: Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
           tmPvr.setInitThemeMode();

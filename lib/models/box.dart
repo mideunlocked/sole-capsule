@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class Box {
   final String id;
+
   String name;
+
   bool isOpen;
+
   bool isLightOn;
+
   bool isConnected;
+
   double lightIntensity;
-  Color lightColor;
+
+  Color lightColor; // Store Color as an integer
 
   Box({
     required this.id,
@@ -33,17 +40,17 @@ class Box {
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'isOpen': isOpen,
-      'isLightOn': isLightOn,
-      'lightColor': lightColor,
-      'isConnected': lightIntensity,
-      'lightIntensity': lightIntensity,
-    };
-  }
+  // Map<String, dynamic> toJson() {
+  //   return {
+  //     'id': id,
+  //     'name': name,
+  //     'isOpen': isOpen,
+  //     'isLightOn': isLightOn,
+  //     'lightColor': lightColor,
+  //     'isConnected': lightIntensity,
+  //     'lightIntensity': lightIntensity,
+  //   };
+  // }
 
   void changeConnectionState(bool status) {
     isConnected = status;
