@@ -4,8 +4,6 @@ target 'Runner' do
   use_frameworks!
   
   pod 'Firebase/Messaging'
-  pod 'flutter_plugin_android_lifecycle'
-
 
   target 'RunnerTests' do
     inherit! :search_paths
