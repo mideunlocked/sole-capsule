@@ -1,14 +1,35 @@
+# Uncomment the next line to define a global platform for your project
 platform :ios, '13.0'
+
+# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+project 'Runner', {
+  'Debug' => :debug,
+  'Profile' => :release,
+  'Release' => :release,
+}
+
+def firebase_target(target)
+  target 'Runner' do
+    use_frameworks!
+    use_modular_headers!
+
+    pod 'Firebase/Core'
+    pod 'Firebase/Firestore'
+  end
+end
 
 target 'Runner' do
   use_frameworks!
-  
-  pod 'Firebase/Messaging'
-  pod 'flutter_plugin_android_lifecycle'
+  use_modular_headers!
 
+  # Include Firebase Pods
+  firebase_target(self)
+end
 
-  target 'RunnerTests' do
-    inherit! :search_paths
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    flutter_additional_ios_build_settings(target)
   end
-
 end
