@@ -17,6 +17,7 @@ def firebase_target(target)
 
     pod 'Firebase/Core'
     pod 'Firebase/Firestore'
+    pod 'Firebase/Messaging'
   end
 end
 
