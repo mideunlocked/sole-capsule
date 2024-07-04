@@ -21,10 +21,6 @@ def firebase_target(target)
   end
 end
 
-target 'Runner' do
-  use_frameworks!
-  use_modular_headers!
-
   # Include Firebase Pods
   firebase_target(self)
 end
