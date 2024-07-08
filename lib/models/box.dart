@@ -1,20 +1,29 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:hive/hive.dart';
 
-class Box {
+part 'box.g.dart';
+
+@HiveType(typeId: 0)
+class Box extends HiveObject {
+  @HiveField(0)
   final String id;
 
+  @HiveField(1)
   String name;
 
+  @HiveField(2)
   bool isOpen;
 
+  @HiveField(3)
   bool isLightOn;
 
+  @HiveField(4)
   bool isConnected;
 
+  @HiveField(5)
   double lightIntensity;
 
-  Color lightColor; // Store Color as an integer
+  @HiveField(6)
+  int lightColor;
 
   Box({
     required this.id,
@@ -34,7 +43,7 @@ class Box {
       name: json['name'] as String,
       isOpen: json['isOpen'] as bool,
       isLightOn: json['isLightOn'] as bool,
-      lightColor: json['lightColor'] as Color,
+      lightColor: json['lightColor'] as int,
       isConnected: json['isConnected'] as bool,
       lightIntensity: json['lightIntensity'] as double,
     );
@@ -68,7 +77,7 @@ class Box {
     name = newName;
   }
 
-  void changeLightColor(Color newColor) {
+  void changeLightColor(int newColor) {
     lightColor = newColor;
   }
 

@@ -14,7 +14,7 @@ class BoxProvider with ChangeNotifier {
       isLightOn: false,
       lightIntensity: 50,
       isConnected: false,
-      lightColor: Colors.orange,
+      lightColor: Colors.orange.value,
     ),
     Box(
       id: '1',
@@ -23,7 +23,7 @@ class BoxProvider with ChangeNotifier {
       isLightOn: false,
       lightIntensity: 50,
       isConnected: false,
-      lightColor: Colors.white,
+      lightColor: Colors.white.value,
     ),
   ];
 
@@ -147,7 +147,7 @@ class BoxProvider with ChangeNotifier {
         .then((_) {
       Box box = _boxes.firstWhere((box) => box.id == id);
 
-      box.changeLightColor(color);
+      box.changeLightColor(color.value);
     });
 
     notifyListeners();

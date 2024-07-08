@@ -33,7 +33,7 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
     isLightOn: false,
     lightIntensity: 50,
     isConnected: false,
-    lightColor: Colors.white,
+    lightColor: Colors.white.value,
   );
 
   @override
@@ -141,7 +141,7 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
       isLightOn: false,
       lightIntensity: 50,
       isConnected: bleProvider.currentDevice != null,
-      lightColor: Colors.white,
+      lightColor: Colors.white.value,
     );
 
     boxProvider.addNewBox(

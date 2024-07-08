@@ -18,7 +18,7 @@ class ColorSelectorBottomSheet extends StatefulWidget {
   });
 
   final String boxId;
-  final Color lightColor;
+  final int lightColor;
   final GlobalKey<ScaffoldMessengerState> scaffoldKey;
 
   @override
@@ -33,7 +33,7 @@ class _ColorSelectorBottomSheetState extends State<ColorSelectorBottomSheet> {
 
   @override
   void initState() {
-    _selectedColor = widget.lightColor;
+    _selectedColor = Color(widget.lightColor);
 
     super.initState();
   }
