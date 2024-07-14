@@ -7,9 +7,10 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import 'firebase_options.dart';
-import 'helpers/firebase_api.dart';
+import 'services/firebase_api.dart';
 import 'helpers/routes.dart';
-import 'helpers/save_share_preferences.dart';
+import 'services/hive_service.dart';
+import 'services/save_share_preferences.dart';
 import 'provider/auth_provider.dart';
 import 'provider/ble_provider.dart';
 import 'provider/box_provider.dart';
@@ -37,6 +38,8 @@ Future<void> main() async {
   await dotenv.load(fileName: 'assets/.env');
   Stripe.publishableKey = dotenv.env['STRIPE_PUBLIC_KEY'] ?? '';
   await Stripe.instance.applySettings();
+
+  await HiveService.initHive();
 
   MainApp mainApp = const MainApp();
 

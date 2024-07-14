@@ -75,10 +75,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     sizedBox3,
                     CustomTextField(
                       controller: passwordController,
-                      title: 'Password',
+                      title: 'Password ',
                       hint: '',
                       isObscure: true,
                       isVisibilityShown: true,
+                      inputAction: TextInputAction.done,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,

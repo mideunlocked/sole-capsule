@@ -1,38 +1,60 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:hive/hive.dart' as hive;
 
 import '../helpers/scaffold_messenger_helper.dart';
 import '../models/box.dart';
+import '../services/hive_service.dart';
 import 'ble_provider.dart';
 
 class BoxProvider with ChangeNotifier {
   final List<Box> _boxes = [
-    Box(
-      id: '0',
-      name: 'Nike Box',
-      isOpen: false,
-      isLightOn: false,
-      lightIntensity: 50,
-      isConnected: false,
-      lightColor: Colors.orange.value,
-    ),
-    Box(
-      id: '1',
-      name: 'Balenciaga Tripple S',
-      isOpen: false,
-      isLightOn: false,
-      lightIntensity: 50,
-      isConnected: false,
-      lightColor: Colors.white.value,
-    ),
+    // Box(
+    //   id: '0',
+    //   name: 'Nike Box',
+    //   isOpen: false,
+    //   isLightOn: false,
+    //   lightIntensity: 50,
+    //   isConnected: false,
+    //   lightColor: Colors.orange.value,
+    // ),
+    // Box(
+    //   id: '1',
+    //   name: 'Balenciaga Tripple S',
+    //   isOpen: false,
+    //   isLightOn: false,
+    //   lightIntensity: 50,
+    //   isConnected: false,
+    //   lightColor: Colors.white.value,
+    // ),
   ];
 
   List<Box> get boxes => [..._boxes];
 
-  void addNewBox({required Box box}) {
-    _boxes.add(box);
+  Future<void> getBoxes() async {
+    _boxes.clear();
+    hive.Box<Box> boxes = await HiveService.boxProperty();
+
+    for (Box b in boxes.values) {
+      _boxes.add(b);
+    }
 
     notifyListeners();
+  }
+
+  void addNewBox({required Box box}) async {
+    await HiveService.addPod(box);
+
+    await getBoxes();
+  }
+
+  Future<void> updateBox({required String id}) async {
+    Box box = _boxes.firstWhere((box) => box.id == id);
+    int index = _boxes.indexWhere((e) => e.id == box.id);
+
+    await HiveService.updatePod(index, box);
+
+    await getBoxes();
   }
 
   Box getBox({
@@ -60,6 +82,8 @@ class BoxProvider with ChangeNotifier {
 
       notifyListeners();
     });
+
+    await updateBox(id: id);
   }
 
   Future<void> toggleBoxOpen({
@@ -77,6 +101,8 @@ class BoxProvider with ChangeNotifier {
 
       notifyListeners();
     });
+
+    await updateBox(id: id);
   }
 
   Future<void> changeIntensity({
@@ -98,6 +124,8 @@ class BoxProvider with ChangeNotifier {
 
       notifyListeners();
     });
+
+    await updateBox(id: id);
   }
 
   Future<void> passWiFiCredToPod({
@@ -127,6 +155,8 @@ class BoxProvider with ChangeNotifier {
       textContent:
           'Pod must be connected to device via bluetooth before Wi-Fi Credentials can be passed',
     );
+
+    await updateBox(id: id);
   }
 
   Future<void> changeLightColor({
@@ -151,12 +181,13 @@ class BoxProvider with ChangeNotifier {
     });
 
     notifyListeners();
+    await updateBox(id: id);
   }
 
   void editBoxName(
       {required String id,
       required String newName,
-      required GlobalKey<ScaffoldMessengerState> scaffoldKey}) {
+      required GlobalKey<ScaffoldMessengerState> scaffoldKey}) async {
     Box box = _boxes.firstWhere((box) => box.id == id);
 
     box.changeBoxName(newName);
@@ -168,12 +199,17 @@ class BoxProvider with ChangeNotifier {
     );
 
     notifyListeners();
+    await updateBox(id: id);
   }
 
   void deleteBox({
     required String id,
-  }) {
-    _boxes.removeWhere((box) => box.id == id);
+  }) async {
+    int index = _boxes.indexWhere((e) => e.id == id);
+
+    HiveService.deletePod(index);
+
+    await updateBox(id: id);
 
     notifyListeners();
   }

@@ -117,11 +117,7 @@ class _HomeSceenState extends State<HomeSceen> {
   Future<void> getUserData() async {
     var userProvider = Provider.of<UserProvider>(context, listen: false);
 
-    // if (isInitial) {
-    //   setState(() {
-    //     isLoading = true;
-    //   });
-    // }
+    getBoxes();
 
     await userProvider.getUser(scaffoldKey: _scaffoldKey);
 
@@ -129,5 +125,11 @@ class _HomeSceenState extends State<HomeSceen> {
       isLoading = false;
       isInitial = false;
     });
+  }
+
+  void getBoxes() async {
+    var boxPvr = Provider.of<BoxProvider>(context, listen: false);
+
+    await boxPvr.getBoxes();
   }
 }

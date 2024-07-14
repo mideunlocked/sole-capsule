@@ -8,7 +8,7 @@ import '../helpers/calculate_discount.dart';
 import '../helpers/firebase_constants.dart';
 import '../helpers/get_user_id.dart';
 import '../helpers/scaffold_messenger_helper.dart';
-import '../helpers/stripe_payment.dart';
+import '../services/stripe_payment.dart';
 import '../main.dart';
 import '../models/cart.dart';
 import '../models/order.dart';

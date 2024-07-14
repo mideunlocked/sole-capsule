@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:sole_capsule/models/box.dart';
 
+import '../../models/box.dart';
 import '../../provider/ble_provider.dart';
 import '../../provider/box_provider.dart';
 import '../../provider/theme_mode_provider.dart';
@@ -13,6 +13,7 @@ import '../../widgets/general_widgets/custom_button.dart';
 import '../../widgets/general_widgets/custom_text_field.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
 import '../../widgets/general_widgets/successfull_sheet.dart';
+import 'box_screen.dart';
 
 class AddBoxScreen extends StatefulWidget {
   static const routeName = '/AddBoxScreen';
@@ -95,7 +96,7 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
                       buttonTitle: 'View',
                       buttonFunction: () => Navigator.pushReplacementNamed(
                         context,
-                        '/BoxScreen',
+                        BoxScreen.routeName,
                         arguments: box,
                       ),
                     );
