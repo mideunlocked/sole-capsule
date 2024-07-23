@@ -47,7 +47,7 @@ class WifiProvider with ChangeNotifier {
 
     final can = await WiFiScan.instance.canStartScan(askPermissions: true);
 
-    print(can);
+    print('Wifi scan status: $can');
 
     switch (can) {
       case CanStartScan.yes:
@@ -56,6 +56,9 @@ class WifiProvider with ChangeNotifier {
         next();
         _loaded();
       default:
+      await WiFiScan.instance.startScan();
+
+        next();
         _loaded();
     }
   }
