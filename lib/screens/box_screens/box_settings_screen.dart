@@ -48,40 +48,38 @@ class _BoxSettingsScreenState extends State<BoxSettingsScreen> {
       resizeToAvoidBottomInset: false,
       body: ScaffoldMessenger(
         key: _scaffoldKey,
-        child: SafeArea(
-          child: PaddedScreenWidget(
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  const CustomAppBar(
-                    title: 'Settings',
-                  ),
-                  SizedBox(height: 3.h),
-                  CustomTextField(
-                    controller: boxNameCtr,
-                    title: 'POD Name',
-                    hint: 'Enter POD name',
-                    inputAction: TextInputAction.done,
-                  ),
-                  SizedBox(height: 4.h),
-                  ConnectWifiButton(
+        child: PaddedScreenWidget(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                const CustomAppBar(
+                  title: 'Settings',
+                ),
+                SizedBox(height: 3.h),
+                CustomTextField(
+                  controller: boxNameCtr,
+                  title: 'POD Name',
+                  hint: 'Enter POD name',
+                  inputAction: TextInputAction.done,
+                ),
+                SizedBox(height: 4.h),
+                ConnectWifiButton(
+                  boxId: args['id'],
+                ),
+                SizedBox(height: 3.h),
+                DeleteBoxButton(
+                  boxId: args['id'],
+                ),
+                const Spacer(),
+                CustomButton(
+                  onTap: () => editBoxName(
                     boxId: args['id'],
                   ),
-                  SizedBox(height: 3.h),
-                  DeleteBoxButton(
-                    boxId: args['id'],
-                  ),
-                  const Spacer(),
-                  CustomButton(
-                    onTap: () => editBoxName(
-                      boxId: args['id'],
-                    ),
-                    label: 'Save',
-                  ),
-                  SizedBox(height: 5.h),
-                ],
-              ),
+                  label: 'Save',
+                ),
+                SizedBox(height: 4.h),
+              ],
             ),
           ),
         ),

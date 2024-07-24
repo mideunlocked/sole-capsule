@@ -32,6 +32,7 @@ class _SelectProfileImageWidgetState extends State<SelectProfileImageWidget> {
     var borderRadius = BorderRadius.circular(20);
 
     var backColor = Colors.grey.shade300;
+
     return InkWell(
       onTap: pickProfileImage,
       borderRadius: borderRadius,

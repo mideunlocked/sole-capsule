@@ -40,59 +40,57 @@ class _OrdersScreenState extends State<OrdersScreen> {
         color: AppColors.secondary,
         child: ScaffoldMessenger(
           key: _scaffoldKey,
-          child: SafeArea(
-            child: Column(
-              children: [
-                const PaddedScreenWidget(
-                  child: CustomAppBar(title: 'My Orders'),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    OrdersTabTile(
-                      label: 'OPEN ORDERS',
-                      tabIndex: 0,
-                      currentIndex: currentTab,
-                      toggleTab: toggleTab,
-                    ),
-                    OrdersTabTile(
-                      label: 'CLOSED ORDERS',
-                      tabIndex: 1,
-                      currentIndex: currentTab,
-                      toggleTab: toggleTab,
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: PaddedScreenWidget(
-                    child: Consumer<OrderProvider>(
-                        builder: (context, orderPvr, _) {
-                      return ListView(
-                        children: currentTab == 0
-                            ? orderPvr.orders
-                                .where((order) => order.status == 'Pending')
-                                .map((e) => OrderSecondaryTile(order: e))
-                                .toList()
-                            : orderPvr.orders
-                                .where((order) => order.status == 'Closed')
-                                .map((e) => OrderSecondaryTile(order: e))
-                                .toList(),
-                      );
-                    }),
+          child: Column(
+            children: [
+              const PaddedScreenWidget(
+                child: CustomAppBar(title: 'My Orders'),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  OrdersTabTile(
+                    label: 'OPEN ORDERS',
+                    tabIndex: 0,
+                    currentIndex: currentTab,
+                    toggleTab: toggleTab,
                   ),
+                  OrdersTabTile(
+                    label: 'CLOSED ORDERS',
+                    tabIndex: 1,
+                    currentIndex: currentTab,
+                    toggleTab: toggleTab,
+                  ),
+                ],
+              ),
+              Expanded(
+                child: PaddedScreenWidget(
+                  child: Consumer<OrderProvider>(
+                      builder: (context, orderPvr, _) {
+                    return ListView(
+                      children: currentTab == 0
+                          ? orderPvr.orders
+                              .where((order) => order.status == 'Pending')
+                              .map((e) => OrderSecondaryTile(order: e))
+                              .toList()
+                          : orderPvr.orders
+                              .where((order) => order.status == 'Closed')
+                              .map((e) => OrderSecondaryTile(order: e))
+                              .toList(),
+                    );
+                  }),
                 ),
-                Consumer<OrderProvider>(builder: (context, orderPvr, child) {
-                  return Visibility(
-                    visible: orderPvr.isLoading,
-                    child: const LinearProgressIndicator(
-                      backgroundColor: Color(0xFF14191D),
-                      color: Colors.white54,
-                      // minHeight: 1,
-                    ),
-                  );
-                }),
-              ],
-            ),
+              ),
+              Consumer<OrderProvider>(builder: (context, orderPvr, child) {
+                return Visibility(
+                  visible: orderPvr.isLoading,
+                  child: const LinearProgressIndicator(
+                    backgroundColor: Color(0xFF14191D),
+                    color: Colors.white54,
+                    // minHeight: 1,
+                  ),
+                );
+              }),
+            ],
           ),
         ),
       ),

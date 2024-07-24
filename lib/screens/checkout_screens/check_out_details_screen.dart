@@ -59,99 +59,97 @@ class _CheckOutDetailsScreenState extends State<CheckOutDetailsScreen> {
   Widget build(BuildContext context) {
     var sizedBox = SizedBox(height: 2.h);
     return Scaffold(
-      body: SafeArea(
-        child: PaddedScreenWidget(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const CustomAppBar(
-                title: 'Checkout',
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 4.h),
-                        const CheckoutDetailsHeader(
-                          label: 'Personal Details',
-                        ),
-                        CustomTextField(
-                          controller: nameCtr,
-                          title: 'Name',
-                          hint: 'Enter your name',
-                          inputType: TextInputType.name,
-                        ),
-                        sizedBox,
-                        CustomTextField(
-                          controller: emailCtr,
-                          title: 'Email',
-                          hint: 'Enter your email address',
-                          inputType: TextInputType.emailAddress,
-                        ),
-                        sizedBox,
-                        CustomTextField(
-                          controller: numberCtr,
-                          title: 'Phone Number',
-                          hint: 'Enter your contact number',
-                          inputType: TextInputType.phone,
-                        ),
-                        sizedBox,
-                        const Divider(
-                          color: Color(0xFFC4C4C4),
-                        ),
-                        sizedBox,
-                        const CheckoutDetailsHeader(
-                          label: 'Delivery Details',
-                        ),
-                        CustomTextField(
-                          controller: pinCodeCtr,
-                          title: 'Zip Code',
-                          hint: 'Enter delivery zip code',
-                          inputType: TextInputType.number,
-                          maxLength: 6,
-                        ),
-                        sizedBox,
-                        CustomTextField(
-                          controller: addressCtr,
-                          title: 'Address',
-                          hint: 'Enter delivery address',
-                          inputType: TextInputType.streetAddress,
-                        ),
-                        sizedBox,
-                        CustomTextField(
-                          controller: cityCtr,
-                          title: 'City',
-                          hint: 'Enter delivery city',
-                        ),
-                        sizedBox,
-                        CustomTextField(
-                          controller: stateCtr,
-                          title: 'State',
-                          hint: 'Enter delivery state',
-                        ),
-                        sizedBox,
-                        CustomTextField(
-                          controller: countryCtr,
-                          title: 'Country',
-                          hint: 'Enter delivery country',
-                          inputAction: TextInputAction.done,
-                        ),
-                        SizedBox(height: 4.h),
-                        CustomButton(
-                          onTap: updateDeliveryDetails,
-                          label: 'Continue',
-                        ),
-                        sizedBox,
-                      ],
-                    ),
+      body: PaddedScreenWidget(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const CustomAppBar(
+              title: 'Checkout',
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 4.h),
+                      const CheckoutDetailsHeader(
+                        label: 'Personal Details',
+                      ),
+                      CustomTextField(
+                        controller: nameCtr,
+                        title: 'Name',
+                        hint: 'Enter your name',
+                        inputType: TextInputType.name,
+                      ),
+                      sizedBox,
+                      CustomTextField(
+                        controller: emailCtr,
+                        title: 'Email',
+                        hint: 'Enter your email address',
+                        inputType: TextInputType.emailAddress,
+                      ),
+                      sizedBox,
+                      CustomTextField(
+                        controller: numberCtr,
+                        title: 'Phone Number',
+                        hint: 'Enter your contact number',
+                        inputType: TextInputType.phone,
+                      ),
+                      sizedBox,
+                      const Divider(
+                        color: Color(0xFFC4C4C4),
+                      ),
+                      sizedBox,
+                      const CheckoutDetailsHeader(
+                        label: 'Delivery Details',
+                      ),
+                      CustomTextField(
+                        controller: pinCodeCtr,
+                        title: 'Zip Code',
+                        hint: 'Enter delivery zip code',
+                        inputType: TextInputType.number,
+                        maxLength: 6,
+                      ),
+                      sizedBox,
+                      CustomTextField(
+                        controller: addressCtr,
+                        title: 'Address',
+                        hint: 'Enter delivery address',
+                        inputType: TextInputType.streetAddress,
+                      ),
+                      sizedBox,
+                      CustomTextField(
+                        controller: cityCtr,
+                        title: 'City',
+                        hint: 'Enter delivery city',
+                      ),
+                      sizedBox,
+                      CustomTextField(
+                        controller: stateCtr,
+                        title: 'State',
+                        hint: 'Enter delivery state',
+                      ),
+                      sizedBox,
+                      CustomTextField(
+                        controller: countryCtr,
+                        title: 'Country',
+                        hint: 'Enter delivery country',
+                        inputAction: TextInputAction.done,
+                      ),
+                      SizedBox(height: 4.h),
+                      CustomButton(
+                        onTap: updateDeliveryDetails,
+                        label: 'Continue',
+                      ),
+                      sizedBox,
+                    ],
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

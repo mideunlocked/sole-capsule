@@ -54,83 +54,81 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     return Scaffold(
       body: ScaffoldMessenger(
         key: _scaffoldKey,
-        child: SafeArea(
-          child: PaddedScreenWidget(
-            child: SingleChildScrollView(
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 2.h),
-                    const CustomBackButton(),
-                    sizedBox,
-                    Text(
-                      'Let’s get you started',
-                      style: titleMedium?.copyWith(fontSize: 20.sp),
-                    ),
-                    SizedBox(height: 0.5.h),
-                    const Text(
-                      'Join the SoleCapsule community! Create your account now to unlock a world of smart living.',
-                      style: TextStyle(color: Colors.black54),
-                    ),
-                    sizedBox,
-                    CustomTextField(
-                      controller: fullNameController,
-                      title: 'Full Name',
-                      hint: 'John Doe',
-                    ),
-                    sizedBox3,
-                    CustomTextField(
-                      controller: emailController,
-                      title: 'Email',
-                      hint: 'example@email.com',
-                      inputType: TextInputType.emailAddress,
-                    ),
-                    sizedBox3,
-                    CustomTextField(
-                      controller: passwordController,
-                      title: 'Password',
-                      hint: 'Something descrete..',
-                      isObscure: true,
-                      isVisibilityShown: true,
-                    ),
-                    sizedBox3,
-                    CustomTextField(
-                      controller: confPassController,
-                      title: 'Confirm Password',
-                      hint: '',
-                      isObscure: true,
-                      inputAction: TextInputAction.done,
-                    ),
-                    sizedBox,
-                    CustomButton(
-                      onTap: createNewUser,
-                      label: 'Continue',
-                    ),
-                    sizedBox3,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text('Already have an account? '),
-                        InkWell(
-                          onTap: () {
-                            Navigator.pushReplacementNamed(
-                                context, '/LoginScreen');
-                          },
-                          child: Text(
-                            'Login',
-                            style: TextStyle(
-                              fontSize: 13.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
+        child: PaddedScreenWidget(
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 2.h),
+                  const CustomBackButton(),
+                  sizedBox,
+                  Text(
+                    'Let’s get you started',
+                    style: titleMedium?.copyWith(fontSize: 20.sp),
+                  ),
+                  SizedBox(height: 0.5.h),
+                  const Text(
+                    'Join the SoleCapsule community! Create your account now to unlock a world of smart living.',
+                    style: TextStyle(color: Colors.black54),
+                  ),
+                  sizedBox,
+                  CustomTextField(
+                    controller: fullNameController,
+                    title: 'Full Name',
+                    hint: 'John Doe',
+                  ),
+                  sizedBox3,
+                  CustomTextField(
+                    controller: emailController,
+                    title: 'Email',
+                    hint: 'example@email.com',
+                    inputType: TextInputType.emailAddress,
+                  ),
+                  sizedBox3,
+                  CustomTextField(
+                    controller: passwordController,
+                    title: 'Password',
+                    hint: 'Something descrete..',
+                    isObscure: true,
+                    isVisibilityShown: true,
+                  ),
+                  sizedBox3,
+                  CustomTextField(
+                    controller: confPassController,
+                    title: 'Confirm Password',
+                    hint: '',
+                    isObscure: true,
+                    inputAction: TextInputAction.done,
+                  ),
+                  sizedBox,
+                  CustomButton(
+                    onTap: createNewUser,
+                    label: 'Continue',
+                  ),
+                  sizedBox3,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Already have an account? '),
+                      InkWell(
+                        onTap: () {
+                          Navigator.pushReplacementNamed(
+                              context, '/LoginScreen');
+                        },
+                        child: Text(
+                          'Login',
+                          style: TextStyle(
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ],
-                    ),
-                    sizedBox,
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                  sizedBox,
+                ],
               ),
             ),
           ),

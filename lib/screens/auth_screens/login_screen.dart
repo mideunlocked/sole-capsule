@@ -45,85 +45,83 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: ScaffoldMessenger(
         key: _scaffoldKey,
-        child: SafeArea(
-          child: PaddedScreenWidget(
-            child: SingleChildScrollView(
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 2.h),
-                    const CustomBackButton(),
-                    sizedBox,
-                    Text(
-                      'Welcome Back!',
-                      style: titleMedium?.copyWith(fontSize: 20.sp),
-                    ),
-                    SizedBox(height: 0.5.h),
-                    const Text(
-                      'Sign in to your SoleCapsule account to reconnect with your smart home.',
-                      style: TextStyle(color: Colors.black54),
-                    ),
-                    sizedBox,
-                    CustomTextField(
-                      controller: emailController,
-                      title: 'Email',
-                      hint: 'example@email.com',
-                      inputType: TextInputType.emailAddress,
-                    ),
-                    sizedBox3,
-                    CustomTextField(
-                      controller: passwordController,
-                      title: 'Password ',
-                      hint: '',
-                      isObscure: true,
-                      isVisibilityShown: true,
-                      inputAction: TextInputAction.done,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context, '/ForgotPasswordScreen');
-                          },
-                          child: Text(
-                            'Forgot password?',
-                            style: textTheme.bodyMedium,
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(height: 20.h),
-                    CustomButton(
-                      onTap: signInUser,
-                      label: 'Login',
-                    ),
-                    sizedBox3,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text('Don’t have an account? '),
-                        InkWell(
-                          onTap: () {
-                            Navigator.pushReplacementNamed(
-                                context, '/CreateAccountScreen');
-                          },
-                          child: Text(
-                            'Sign Up',
-                            style: TextStyle(
-                              fontSize: 13.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
+        child: PaddedScreenWidget(
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 2.h),
+                  const CustomBackButton(),
+                  sizedBox,
+                  Text(
+                    'Welcome Back!',
+                    style: titleMedium?.copyWith(fontSize: 20.sp),
+                  ),
+                  SizedBox(height: 0.5.h),
+                  const Text(
+                    'Sign in to your SoleCapsule account to reconnect with your smart home.',
+                    style: TextStyle(color: Colors.black54),
+                  ),
+                  sizedBox,
+                  CustomTextField(
+                    controller: emailController,
+                    title: 'Email',
+                    hint: 'example@email.com',
+                    inputType: TextInputType.emailAddress,
+                  ),
+                  sizedBox3,
+                  CustomTextField(
+                    controller: passwordController,
+                    title: 'Password ',
+                    hint: '',
+                    isObscure: true,
+                    isVisibilityShown: true,
+                    inputAction: TextInputAction.done,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, '/ForgotPasswordScreen');
+                        },
+                        child: Text(
+                          'Forgot password?',
+                          style: textTheme.bodyMedium,
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 20.h),
+                  CustomButton(
+                    onTap: signInUser,
+                    label: 'Login',
+                  ),
+                  sizedBox3,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Don’t have an account? '),
+                      InkWell(
+                        onTap: () {
+                          Navigator.pushReplacementNamed(
+                              context, '/CreateAccountScreen');
+                        },
+                        child: Text(
+                          'Sign Up',
+                          style: TextStyle(
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ],
-                    ),
-                    sizedBox,
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                  sizedBox,
+                ],
               ),
             ),
           ),

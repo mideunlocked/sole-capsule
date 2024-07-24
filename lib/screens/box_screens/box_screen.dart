@@ -45,17 +45,17 @@ class _BoxScreenState extends State<BoxScreen> {
           child: Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
             bool isLightMode = tmPvr.isLight;
 
-            return SafeArea(
-              child: Column(
-                children: [
-                  SizedBox(height: 2.h),
-                  PaddedScreenWidget(
-                    child: BoxAppBar(
-                      id: box.id,
-                      name: box.name,
-                    ),
+            return Column(
+              children: [
+                SizedBox(height: 2.h),
+                PaddedScreenWidget(
+                  child: BoxAppBar(
+                    id: box.id,
+                    name: box.name,
                   ),
-                  Expanded(
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -262,11 +262,12 @@ class _BoxScreenState extends State<BoxScreen> {
                             ],
                           ),
                         ),
+                        SizedBox(height: 10.h),
                       ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             );
           }),
         ),

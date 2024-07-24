@@ -23,36 +23,34 @@ class OrderDetailsScreen extends StatelessWidget {
     var sizedBox2 = SizedBox(height: 1.5.h);
 
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            PaddedScreenWidget(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const CustomAppBar(
-                    title: '',
-                  ),
-                  SizedBox(height: 3.h),
-                  Row(
-                    children: [
-                      const CustomIcon(icon: 'pin'),
-                      SizedBox(width: 1.w),
-                      Text(
-                        'Delivery Address',
-                        style: customTextStyle,
-                      ),
-                    ],
-                  ),
-                  sizedBox2,
-                  const DeliveryPreviewCard(),
-                  SizedBox(height: 5.h),
-                  // Shoppin
-                ],
-              ),
+      body: Column(
+        children: [
+          PaddedScreenWidget(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const CustomAppBar(
+                  title: '',
+                ),
+                SizedBox(height: 3.h),
+                Row(
+                  children: [
+                    const CustomIcon(icon: 'pin'),
+                    SizedBox(width: 1.w),
+                    Text(
+                      'Delivery Address',
+                      style: customTextStyle,
+                    ),
+                  ],
+                ),
+                sizedBox2,
+                const DeliveryPreviewCard(),
+                SizedBox(height: 5.h),
+                // Shoppin
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

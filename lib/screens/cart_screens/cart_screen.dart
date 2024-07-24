@@ -16,28 +16,26 @@ class CartScreen extends StatelessWidget {
     var sizedBox = SizedBox(height: 3.h);
 
     return Scaffold(
-      body: SafeArea(
-        child: PaddedScreenWidget(
-          child: Column(
-            children: [
-              const CustomAppBar(
-                title: 'Cart',
+      body: PaddedScreenWidget(
+        child: Column(
+          children: [
+            const CustomAppBar(
+              title: 'Cart',
+            ),
+            sizedBox,
+            const Expanded(
+              child: ShoppingCartWidget(),
+            ),
+            SizedBox(height: 1.5.h),
+            CustomButton(
+              label: 'Checkout',
+              onTap: () => Navigator.pushNamed(
+                context,
+                '/CheckOutScreen',
               ),
-              sizedBox,
-              const Expanded(
-                child: ShoppingCartWidget(),
-              ),
-              SizedBox(height: 1.5.h),
-              CustomButton(
-                label: 'Checkout',
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  '/CheckOutScreen',
-                ),
-              ),
-              sizedBox,
-            ],
-          ),
+            ),
+            sizedBox,
+          ],
         ),
       ),
     );

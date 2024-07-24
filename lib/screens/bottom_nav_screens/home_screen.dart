@@ -41,74 +41,72 @@ class _HomeSceenState extends State<HomeSceen> {
 
     var boxProvider = Provider.of<BoxProvider>(context);
 
-    return SafeArea(
-      child: PaddedScreenWidget(
-        child: RefreshIndicator(
-          onRefresh: getUserData,
-          color: Colors.black,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 2.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Home',
-                        style: textTheme.bodyLarge,
-                      ),
-                      Consumer<ThemeModeProvider>(
-                          builder: (context, tmPvr, child) {
-                        bool isLightMode = tmPvr.isLight;
-
-                        return Text(
-                          'My Pods',
-                          style: textTheme.bodySmall?.copyWith(
-                            color:
-                                isLightMode ? Colors.black54 : Colors.white54,
-                          ),
-                        );
-                      })
-                    ],
-                  ),
-                  IconButton(
-                    icon: const Icon(
-                      Icons.notifications_none_rounded,
+    return PaddedScreenWidget(
+      child: RefreshIndicator(
+        onRefresh: getUserData,
+        color: Colors.black,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 2.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Home',
+                      style: textTheme.bodyLarge,
                     ),
-                    onPressed: () => Navigator.pushNamed(
-                      context,
-                      NotificationScreen.routeName,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 3.h),
-              Expanded(
-                child: isLoading == true
-                    ? const Center(child: CustomProgressIndicator())
-                    : GridView.builder(
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 3.h,
-                          crossAxisSpacing: 5.w,
-                          childAspectRatio: 0.9,
+                    Consumer<ThemeModeProvider>(
+                        builder: (context, tmPvr, child) {
+                      bool isLightMode = tmPvr.isLight;
+    
+                      return Text(
+                        'My Pods',
+                        style: textTheme.bodySmall?.copyWith(
+                          color:
+                              isLightMode ? Colors.black54 : Colors.white54,
                         ),
-                        itemCount: boxProvider.boxes.length + 1,
-                        itemBuilder: (ctx, index) =>
-                            index == boxProvider.boxes.length
-                                ? const AddBoxTile()
-                                : BoxTile(
-                                    box: boxProvider.boxes[index],
-                                    scaffoldKey: _scaffoldKey,
-                                  ),
+                      );
+                    })
+                  ],
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.notifications_none_rounded,
+                  ),
+                  onPressed: () => Navigator.pushNamed(
+                    context,
+                    NotificationScreen.routeName,
+                  ),
+                ),
+              ],
+            ),
+            // SizedBox(height: 2.h),
+            Expanded(
+              child: isLoading == true
+                  ? const Center(child: CustomProgressIndicator())
+                  : GridView.builder(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 3.h,
+                        crossAxisSpacing: 5.w,
+                        childAspectRatio: 0.9,
                       ),
-              ),
-            ],
-          ),
+                      itemCount: boxProvider.boxes.length + 1,
+                      itemBuilder: (ctx, index) =>
+                          index == boxProvider.boxes.length
+                              ? const AddBoxTile()
+                              : BoxTile(
+                                  box: boxProvider.boxes[index],
+                                  scaffoldKey: _scaffoldKey,
+                                ),
+                    ),
+            ),
+          ],
         ),
       ),
     );

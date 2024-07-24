@@ -8,10 +8,14 @@ class PaddedScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double horizontal = 5.w;
+
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 5.w,
-        vertical: 0,
+
+      padding: EdgeInsets.only(
+        left: horizontal,
+        right: horizontal,
+        top: 4.h,
       ),
       child: child,
     );

@@ -21,64 +21,62 @@ class WelcomeScreen extends StatelessWidget {
     var titleMedium = textTheme.titleMedium;
 
     return Scaffold(
-      body: SafeArea(
-        child: PaddedScreenWidget(
-          child: Column(
-            children: [
-              sizedBox,
-              AppName(
-                size: 20.sp,
-              ),
-              sizedBox,
-              sizedBox,
-              SvgPicture.asset(AppConstants.onboarding4),
-              sizedBox,
-              SizedBox(height: 3.h),
-              Row(
-                children: [
-                  Text(
-                    'Welcome to ',
-                    style: titleMedium?.copyWith(
-                      color: AppColors.primary,
-                      fontSize: 21.sp,
-                    ),
+      body: PaddedScreenWidget(
+        child: Column(
+          children: [
+            sizedBox,
+            AppName(
+              size: 20.sp,
+            ),
+            sizedBox,
+            sizedBox,
+            SvgPicture.asset(AppConstants.onboarding4),
+            sizedBox,
+            SizedBox(height: 3.h),
+            Row(
+              children: [
+                Text(
+                  'Welcome to ',
+                  style: titleMedium?.copyWith(
+                    color: AppColors.primary,
+                    fontSize: 21.sp,
                   ),
-                  Text(
-                    'SoleCapsule',
-                    style: titleMedium?.copyWith(
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                      fontSize: 21.sp,
-                    ),
+                ),
+                Text(
+                  'SoleCapsule',
+                  style: titleMedium?.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
+                    fontSize: 21.sp,
                   ),
-                ],
-              ),
-              SizedBox(height: 1.h),
-              const Text(
-                'It\'s time to simplify and enhance your home automation experience.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.black54,
                 ),
+              ],
+            ),
+            SizedBox(height: 1.h),
+            const Text(
+              'It\'s time to simplify and enhance your home automation experience.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black54,
               ),
-              sizedBox,
-              CustomButton(
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  '/CreateAccountScreen',
-                ),
-                label: 'Get Started',
+            ),
+            sizedBox,
+            CustomButton(
+              onTap: () => Navigator.pushNamed(
+                context,
+                '/CreateAccountScreen',
               ),
-              SizedBox(height: 1.h),
-              CustomButton(
-                onTap: () {
-                  Navigator.pushNamed(context, '/LoginScreen');
-                },
-                label: 'Sign in',
-                color: AppColors.primary,
-              ),
-            ],
-          ),
+              label: 'Get Started',
+            ),
+            SizedBox(height: 1.h),
+            CustomButton(
+              onTap: () {
+                Navigator.pushNamed(context, '/LoginScreen');
+              },
+              label: 'Sign in',
+              color: AppColors.primary,
+            ),
+          ],
         ),
       ),
     );

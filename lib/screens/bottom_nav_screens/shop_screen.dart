@@ -42,80 +42,77 @@ class _ShopScreenState extends State<ShopScreen> {
 
     var sizedBox = SizedBox(height: 3.h);
 
-    return SafeArea(
-      child: PaddedScreenWidget(
-        child: RefreshIndicator(
-          onRefresh: () async => getDatas(true),
-          color: Colors.black,
-          backgroundColor: Colors.grey.shade200,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 2.h),
-              const ShoppingScreenAppBar(),
-              sizedBox,
-              SearchTextField(
-                onChanged: searchProducts,
-              ),
-              sizedBox,
-              Row(
-                children: [
-                  Consumer<ProductProvider>(builder: (context, productPvr, _) {
-                    return Text(
-                      productPvr.productCount > 1
-                          ? '${productPvr.productCount} Items'
-                          : '${productPvr.productCount} Item',
-                      style: bodyLarge,
-                    );
-                  }),
-                  const Spacer(),
-                  SearchActions(
-                    label: 'Sort',
-                    icon: 'top_bottom',
-                    onTap: () {},
-                  ),
-                  SizedBox(width: 3.w),
-                  SearchActions(
-                    label: 'Filter',
-                    icon: 'filter',
-                    onTap: () {},
-                  ),
-                ],
-              ),
-              SizedBox(height: 3.h),
-              Expanded(
-                child: Consumer<ProductProvider>(
-                  builder: (context, productPvr, child) =>
-                      productPvr.products.isEmpty
-                          ? child!
-                          : GridView(
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                mainAxisSpacing: 3.h,
-                                crossAxisSpacing: 5.w,
-                                childAspectRatio: 0.4,
-                              ),
-                              children: productPvr.products.where((e) {
-                                if (e.name.toLowerCase().contains(
-                                      searchQuery.toLowerCase(),
-                                    )) {
-                                  return true;
-                                }
-                                return false;
-                              }).map(
-                                (Product product) {
-                                  return ShopGridTile(
-                                    product: product,
-                                  );
-                                },
-                              ).toList(),
-                            ),
-                  child: const ShopShimmerGridView(),
+    return PaddedScreenWidget(
+      child: RefreshIndicator(
+        onRefresh: () async => getDatas(true),
+        color: Colors.black,
+        backgroundColor: Colors.grey.shade200,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 2.h),
+            const ShoppingScreenAppBar(),
+            sizedBox,
+            SearchTextField(
+              onChanged: searchProducts,
+            ),
+            sizedBox,
+            Row(
+              children: [
+                Consumer<ProductProvider>(builder: (context, productPvr, _) {
+                  return Text(
+                    productPvr.productCount > 1
+                        ? '${productPvr.productCount} Items'
+                        : '${productPvr.productCount} Item',
+                    style: bodyLarge,
+                  );
+                }),
+                const Spacer(),
+                SearchActions(
+                  label: 'Sort',
+                  icon: 'top_bottom',
+                  onTap: () {},
                 ),
+                SizedBox(width: 3.w),
+                SearchActions(
+                  label: 'Filter',
+                  icon: 'filter',
+                  onTap: () {},
+                ),
+              ],
+            ),
+            Expanded(
+              child: Consumer<ProductProvider>(
+                builder: (context, productPvr, child) =>
+                    productPvr.products.isEmpty
+                        ? child!
+                        : GridView(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 3.h,
+                              crossAxisSpacing: 5.w,
+                              childAspectRatio: 0.4,
+                            ),
+                            children: productPvr.products.where((e) {
+                              if (e.name.toLowerCase().contains(
+                                    searchQuery.toLowerCase(),
+                                  )) {
+                                return true;
+                              }
+                              return false;
+                            }).map(
+                              (Product product) {
+                                return ShopGridTile(
+                                  product: product,
+                                );
+                              },
+                            ).toList(),
+                          ),
+                child: const ShopShimmerGridView(),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -13,7 +13,7 @@ class CustomTextField extends StatefulWidget {
     required this.title,
     required this.hint,
     this.inputAction = TextInputAction.next,
-    this.inputType = TextInputType.name,
+    this.inputType = TextInputType.text,
     this.isObscure = false,
     this.isVisibilityShown = false,
     this.onChanged,

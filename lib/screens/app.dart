@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -59,7 +61,9 @@ class _AppState extends State<App> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 2.h),
+            padding: EdgeInsets.symmetric(
+              vertical:Platform.isIOS ? 4.h : 2.h,
+            ),
             child: PaddedScreenWidget(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -27,18 +27,18 @@ class ProfileScreen extends StatelessWidget {
     var bodySmall = textTheme.bodySmall;
     var listTileStyle = textTheme.bodyMedium;
 
-    return SafeArea(
-      child: Consumer<UserProvider>(builder: (context, user, child) {
-        Users userData = user.user;
-        UserDetails userDetails = userData.userDetails;
-
-        return Column(
-          children: [
-            SizedBox(height: 2.h),
-            const PaddedScreenWidget(
-              child: ProfileAppBar(),
-            ),
-            SingleChildScrollView(
+    return Consumer<UserProvider>(builder: (context, user, child) {
+      Users userData = user.user;
+      UserDetails userDetails = userData.userDetails;
+    
+      return Column(
+        children: [
+          SizedBox(height: 2.h),
+          const PaddedScreenWidget(
+            child: ProfileAppBar(),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
               child: Column(
                 children: [
                   PaddedScreenWidget(
@@ -56,7 +56,7 @@ class ProfileScreen extends StatelessWidget {
                         Consumer<ThemeModeProvider>(
                             builder: (context, tmPvr, child) {
                           bool isLightMode = tmPvr.isLight;
-
+            
                           return Text(
                             userDetails.email,
                             style: bodySmall?.copyWith(
@@ -72,7 +72,7 @@ class ProfileScreen extends StatelessWidget {
                   Consumer<ThemeModeProvider>(
                     builder: (context, tmPvr, child) {
                       bool isLightMode = tmPvr.isLight;
-
+            
                       return Container(
                         width: 100.w,
                         padding: EdgeInsets.symmetric(
@@ -122,7 +122,7 @@ class ProfileScreen extends StatelessWidget {
                     trailing: Consumer<ThemeModeProvider>(
                         builder: (context, tmPvr, child) {
                       bool isLightMode = tmPvr.isLight;
-
+            
                       return CupertinoSwitch(
                         value: !isLightMode,
                         onChanged: (value) => tmPvr.toggleThemeMode(),
@@ -139,9 +139,9 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-          ],
-        );
-      }),
-    );
+          ),
+        ],
+      );
+    });
   }
 }

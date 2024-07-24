@@ -34,57 +34,55 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     var sizedBox = SizedBox(height: 5.h);
 
     return Scaffold(
-      body: SafeArea(
-        child: PaddedScreenWidget(
-          child: Column(
-            children: [
-              sizedBox,
-              AppName(
-                size: 20.sp,
-              ),
-              sizedBox,
-              Expanded(
-                child: PageView.builder(
-                  controller: pageController,
-                  onPageChanged: (value) =>
-                      setState(() => currentIndex = value),
-                  itemCount: onboardingData.length,
-                  itemBuilder: (ctx, index) => OnboardingWidget(
-                    onboarding: onboardingData[index],
-                  ),
+      body: PaddedScreenWidget(
+        child: Column(
+          children: [
+            sizedBox,
+            AppName(
+              size: 20.sp,
+            ),
+            sizedBox,
+            Expanded(
+              child: PageView.builder(
+                controller: pageController,
+                onPageChanged: (value) =>
+                    setState(() => currentIndex = value),
+                itemCount: onboardingData.length,
+                itemBuilder: (ctx, index) => OnboardingWidget(
+                  onboarding: onboardingData[index],
                 ),
               ),
-              SizedBox(
-                height: 0.4.h,
-                width: 100.w,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 3,
-                  itemBuilder: (ctx, index) {
-                    bool isCurrent = index == currentIndex;
-
-                    return OnboardingIndicator(isCurrent: isCurrent);
-                  },
-                ),
-              ),
-              sizedBox,
-              CustomButton(
-                label: 'Next',
-                onTap: () {
-                  if (currentIndex != 2) {
-                    pageController.nextPage(
-                      duration: const Duration(seconds: 1),
-                      curve: Curves.easeIn,
-                    );
-                  } else {
-                    Navigator.pushNamed(context, '/WelcomeScreen');
-                  }
+            ),
+            SizedBox(
+              height: 0.4.h,
+              width: 100.w,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 3,
+                itemBuilder: (ctx, index) {
+                  bool isCurrent = index == currentIndex;
+      
+                  return OnboardingIndicator(isCurrent: isCurrent);
                 },
               ),
-              sizedBox,
-            ],
-          ),
+            ),
+            sizedBox,
+            CustomButton(
+              label: 'Next',
+              onTap: () {
+                if (currentIndex != 2) {
+                  pageController.nextPage(
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.easeIn,
+                  );
+                } else {
+                  Navigator.pushNamed(context, '/WelcomeScreen');
+                }
+              },
+            ),
+            sizedBox,
+          ],
         ),
       ),
     );

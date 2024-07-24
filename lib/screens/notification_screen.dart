@@ -38,51 +38,49 @@ class _NotificationScreenState extends State<NotificationScreen> {
     return Scaffold(
       body: ScaffoldMessenger(
         key: _scaffoldKey,
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const PaddedScreenWidget(
-                child: CustomAppBar(
-                  title: 'Notifications',
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const PaddedScreenWidget(
+              child: CustomAppBar(
+                title: 'Notifications',
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                OrdersTabTile(
+                  label: 'ACCOUNT',
+                  tabIndex: 0,
+                  currentIndex: currentTab,
+                  toggleTab: toggleTab,
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  OrdersTabTile(
-                    label: 'ACCOUNT',
-                    tabIndex: 0,
-                    currentIndex: currentTab,
-                    toggleTab: toggleTab,
-                  ),
-                  OrdersTabTile(
-                    label: 'NEWS & UPDATES',
-                    tabIndex: 1,
-                    currentIndex: currentTab,
-                    toggleTab: toggleTab,
-                  ),
-                ],
-              ),
-              Expanded(
-                child: PaddedScreenWidget(
-                  child: Consumer<NotificationProvider>(
-                      builder: (context, notiPvr, _) {
-                    return ListView(
-                      padding: EdgeInsets.zero,
-                      children: notiPvr.notifications
-                          .map(
-                            (e) => NotificationTile(
-                              notification: e,
-                            ),
-                          )
-                          .toList(),
-                    );
-                  }),
+                OrdersTabTile(
+                  label: 'NEWS & UPDATES',
+                  tabIndex: 1,
+                  currentIndex: currentTab,
+                  toggleTab: toggleTab,
                 ),
+              ],
+            ),
+            Expanded(
+              child: PaddedScreenWidget(
+                child: Consumer<NotificationProvider>(
+                    builder: (context, notiPvr, _) {
+                  return ListView(
+                    padding: EdgeInsets.zero,
+                    children: notiPvr.notifications
+                        .map(
+                          (e) => NotificationTile(
+                            notification: e,
+                          ),
+                        )
+                        .toList(),
+                  );
+                }),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

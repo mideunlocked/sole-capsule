@@ -66,109 +66,107 @@ class EditProfileScreenState extends State<EditProfileScreen> {
     return Scaffold(
       body: ScaffoldMessenger(
         key: _scaffoldKey,
-        child: SafeArea(
-          child: PaddedScreenWidget(
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  const CustomAppBar(title: 'Edit Profile'),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          sizedBox,
-                          SelectProfileImageWidget(
-                            imageUrl: profileImageUrl,
-                            getProfileImage: getProfileImage,
-                          ),
-                          sizedBox,
-                          CustomTextField(
-                            controller: fullNameCtr,
-                            title: 'Full Name',
-                            hint: 'Enter full name',
-                          ),
-                          sizedBox,
-                          Consumer<AuthProvider>(
-                              builder: (ctx, provider, child) {
-                            return CustomTextField(
-                              controller: usernameCtr,
-                              title: 'Username',
-                              hint: 'example',
-                              inputAction: TextInputAction.done,
-                              onChanged: (value) async {
-                                bool isAvailable = await provider.checkUsername(
-                                  username: value,
-                                );
-
-                                setState(() {
-                                  isChecked = true;
-                                  usernameAvailable = isAvailable;
-                                });
-                              },
-                            );
-                          }),
-                          SizedBox(height: 0.5.h),
-                          !isChecked
-                              ? const SizedBox()
-                              : Row(
-                                  children: [
-                                    Visibility(
-                                      visible: isLoading,
-                                      replacement: Icon(
-                                        usernameAvailable
-                                            ? Icons.check_circle_rounded
-                                            : Icons.cancel_rounded,
+        child: PaddedScreenWidget(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                const CustomAppBar(title: 'Edit Profile'),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        sizedBox,
+                        SelectProfileImageWidget(
+                          imageUrl: profileImageUrl,
+                          getProfileImage: getProfileImage,
+                        ),
+                        sizedBox,
+                        CustomTextField(
+                          controller: fullNameCtr,
+                          title: 'Full Name',
+                          hint: 'Enter full name',
+                        ),
+                        sizedBox,
+                        Consumer<AuthProvider>(
+                            builder: (ctx, provider, child) {
+                          return CustomTextField(
+                            controller: usernameCtr,
+                            title: 'Username',
+                            hint: 'example',
+                            inputAction: TextInputAction.done,
+                            onChanged: (value) async {
+                              bool isAvailable = await provider.checkUsername(
+                                username: value,
+                              );
+        
+                              setState(() {
+                                isChecked = true;
+                                usernameAvailable = isAvailable;
+                              });
+                            },
+                          );
+                        }),
+                        SizedBox(height: 0.5.h),
+                        !isChecked
+                            ? const SizedBox()
+                            : Row(
+                                children: [
+                                  Visibility(
+                                    visible: isLoading,
+                                    replacement: Icon(
+                                      usernameAvailable
+                                          ? Icons.check_circle_rounded
+                                          : Icons.cancel_rounded,
+                                      color: usernameAvailable
+                                          ? Colors.green
+                                          : Colors.red,
+                                    ),
+                                    child: SizedBox(
+                                      height: 1.5.h,
+                                      width: 3.w,
+                                      child: CircularProgressIndicator(
+                                        color: Colors.grey.shade300,
+                                        backgroundColor: Colors.grey.shade200,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: 2.w),
+                                  Text(
+                                    usernameAvailable
+                                        ? 'username available'
+                                        : 'username already in use',
+                                    style: textTheme.bodySmall?.copyWith(
                                         color: usernameAvailable
                                             ? Colors.green
-                                            : Colors.red,
-                                      ),
-                                      child: SizedBox(
-                                        height: 1.5.h,
-                                        width: 3.w,
-                                        child: CircularProgressIndicator(
-                                          color: Colors.grey.shade300,
-                                          backgroundColor: Colors.grey.shade200,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(width: 2.w),
-                                    Text(
-                                      usernameAvailable
-                                          ? 'username available'
-                                          : 'username already in use',
-                                      style: textTheme.bodySmall?.copyWith(
-                                          color: usernameAvailable
-                                              ? Colors.green
-                                              : Colors.red),
-                                    ),
-                                  ],
-                                ),
-                          sizedBox,
-                          CustomTextField(
-                            controller: emailCtr,
-                            title: 'Email Address',
-                            hint: 'Enter email address',
-                          ),
-                          sizedBox,
-                          CustomTextField(
-                            controller: numberCtr,
-                            title: 'Phone Number',
-                            hint: 'Enter phone number',
-                          ),
-                          sizedBox,
-                          sizedBox,
-                          CustomButton(
-                            onTap: updateUserDetails,
-                            label: 'Save',
-                          ),
-                          sizedBox,
-                        ],
-                      ),
+                                            : Colors.red),
+                                  ),
+                                ],
+                              ),
+                        sizedBox,
+                        CustomTextField(
+                          controller: emailCtr,
+                          title: 'Email Address',
+                          hint: 'Enter email address',
+                        ),
+                        sizedBox,
+                        CustomTextField(
+                          controller: numberCtr,
+                          title: 'Phone Number',
+                          hint: 'Enter phone number',
+                        ),
+                        sizedBox,
+                        sizedBox,
+                        CustomButton(
+                          onTap: updateUserDetails,
+                          label: 'Save',
+                        ),
+                        sizedBox,
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

@@ -40,54 +40,52 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
       resizeToAvoidBottomInset: false,
       body: ScaffoldMessenger(
         key: _scaffoldKey,
-        child: SafeArea(
-          child: PaddedScreenWidget(
-            child: Column(
-              children: [
-                const CustomAppBar(
-                  title: 'Checkout',
-                ),
-                sizedBox,
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            const CustomIcon(
-                              icon: 'pin',
-                            ),
-                            SizedBox(width: 3.w),
-                            Text(
-                              'Delivery Address',
-                              style: customTextStyle,
-                            ),
-                          ],
-                        ),
-                        sizedBox2,
-                        const DeliveryPreviewCard(),
-                        sizedBox,
-                        const ShoppingCartWidget(),
-                      ],
-                    ),
+        child: PaddedScreenWidget(
+          child: Column(
+            children: [
+              const CustomAppBar(
+                title: 'Checkout',
+              ),
+              sizedBox,
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const CustomIcon(
+                            icon: 'pin',
+                          ),
+                          SizedBox(width: 3.w),
+                          Text(
+                            'Delivery Address',
+                            style: customTextStyle,
+                          ),
+                        ],
+                      ),
+                      sizedBox2,
+                      const DeliveryPreviewCard(),
+                      sizedBox,
+                      const ShoppingCartWidget(),
+                    ],
                   ),
                 ),
-                sizedBox2,
-                Consumer<CartProvider>(builder: (context, cartPvr, _) {
-                  return CustomButton(
-                    label: 'Checkout',
-                    onTap: cartPvr.cartItems.isEmpty
-                        ? null
-                        : () => showOrderDetailsSheet(
-                              context: context,
-                              scaffoldKey: _scaffoldKey,
-                            ),
-                  );
-                }),
-                sizedBox,
-              ],
-            ),
+              ),
+              sizedBox2,
+              Consumer<CartProvider>(builder: (context, cartPvr, _) {
+                return CustomButton(
+                  label: 'Checkout',
+                  onTap: cartPvr.cartItems.isEmpty
+                      ? null
+                      : () => showOrderDetailsSheet(
+                            context: context,
+                            scaffoldKey: _scaffoldKey,
+                          ),
+                );
+              }),
+              sizedBox,
+            ],
           ),
         ),
       ),

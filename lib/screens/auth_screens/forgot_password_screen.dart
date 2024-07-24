@@ -38,41 +38,37 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     var titleMedium = textTheme.titleMedium;
 
     return Scaffold(
-      body: SafeArea(
-        child: PaddedScreenWidget(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 2.h),
-                const CustomBackButton(),
-                sizedBox,
-                Text(
-                  'Forgot Your Password?',
-                  style: titleMedium?.copyWith(fontSize: 20.sp),
-                ),
-                SizedBox(height: 0.5.h),
-                const Text(
-                  'We\'ve got you covered. Enter your email address, and we\'ll send you a link to reset your password.',
-                  style: TextStyle(color: Colors.black54),
-                ),
-                sizedBox,
-                CustomTextField(
-                  controller: emailController,
-                  title: 'Email',
-                  hint: 'example@email.com',
-                  inputType: TextInputType.emailAddress,
-                  inputAction: TextInputAction.done,
-                ),
-                SizedBox(height: 30.h),
-                CustomButton(
-                  onTap: sendResetEmail,
-                  label: 'Submit',
-                ),
-                sizedBox,
-              ],
+      body: PaddedScreenWidget(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 2.h),
+            const CustomBackButton(),
+            SizedBox(height: 3.h),
+            Text(
+              'Forgot Your Password?',
+              style: titleMedium?.copyWith(fontSize: 20.sp),
             ),
-          ),
+            SizedBox(height: 0.5.h),
+            const Text(
+              'We\'ve got you covered. Enter your email address, and we\'ll send you a link to reset your password.',
+              style: TextStyle(color: Colors.black54),
+            ),
+            sizedBox,
+            CustomTextField(
+              controller: emailController,
+              title: 'Email',
+              hint: 'example@email.com',
+              inputType: TextInputType.emailAddress,
+              inputAction: TextInputAction.done,
+            ),
+            const Spacer(),
+            CustomButton(
+              onTap: sendResetEmail,
+              label: 'Submit',
+            ),
+            sizedBox,
+          ],
         ),
       ),
     );

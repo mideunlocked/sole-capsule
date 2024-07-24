@@ -59,163 +59,160 @@ class _ConnectWifiScreenState extends State<ConnectWifiScreen> {
         resizeToAvoidBottomInset: false,
         body: ScaffoldMessenger(
           key: _scaffoldKey,
-          child: SafeArea(
-            child: PaddedScreenWidget(
-              child: Column(
-                children: [
-                  const CustomAppBar(
-                    title: 'Connect Wi-Fi',
-                  ),
-                  SizedBox(height: 3.h),
-                  Expanded(
-                    child:
-                        Consumer<WifiProvider>(builder: (context, wifiPvr, _) {
-                      return Stepper(
-                        // margin: EdgeInsets.only(bottom: 10.h),
-                        controlsBuilder: (context, details) =>
-                            const SizedBox.shrink(),
-                        currentStep: wifiPvr.currentStep,
-                        stepIconBuilder: (stepIndex, stepState) => Container(
-                          padding: EdgeInsets.all(1.sp),
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: isLight
-                                ? Colors.black
-                                : const Color.fromARGB(255, 26, 32, 37),
+          child: PaddedScreenWidget(
+            child: Column(
+              children: [
+                const CustomAppBar(
+                  title: 'Connect Wi-Fi',
+                ),
+                Expanded(
+                  child:
+                      Consumer<WifiProvider>(builder: (context, wifiPvr, _) {
+                    return Stepper(
+                      // margin: EdgeInsets.only(bottom: 10.h),
+                      controlsBuilder: (context, details) =>
+                          const SizedBox.shrink(),
+                      currentStep: wifiPvr.currentStep,
+                      stepIconBuilder: (stepIndex, stepState) => Container(
+                        padding: EdgeInsets.all(1.sp),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: isLight
+                              ? Colors.black
+                              : const Color.fromARGB(255, 26, 32, 37),
+                        ),
+                        child: Text(
+                          (stepIndex + 1).toString(),
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      connectorColor:
+                          const WidgetStatePropertyAll(AppColors.primary),
+          
+                      steps: [
+                        Step(
+                          title: const Text('Scan'),
+                          subtitle: Text(
+                            'Scan available Wi-Fi',
+                            style: subTextStyle,
                           ),
-                          child: Text(
-                            (stepIndex + 1).toString(),
-                            style: const TextStyle(color: Colors.white),
+                          content: Column(
+                            children: [
+                              isLight
+                                  ? LottieBuilder.asset(
+                                      // animate: value.isLoading,
+                                      'assets/lottie/scan_wifi.json',
+                                    )
+                                  : LottieBuilder.asset(
+                                      // animate: value.isLoading,
+                                      'assets/lottie/scan_wifi_dark.json',
+                                    ),
+                              CustomButton(
+                                onTap: scanAvailableWifi,
+                                isLoading: wifiPvr.isLoading,
+                                label: 'Scan',
+                              ),
+                            ],
                           ),
                         ),
-                        connectorColor:
-                            const WidgetStatePropertyAll(AppColors.primary),
-
-                        steps: [
-                          Step(
-                            title: const Text('Scan'),
-                            subtitle: Text(
-                              'Scan available Wi-Fi',
-                              style: subTextStyle,
-                            ),
-                            content: Column(
-                              children: [
-                                isLight
-                                    ? LottieBuilder.asset(
-                                        // animate: value.isLoading,
-                                        'assets/lottie/scan_wifi.json',
-                                      )
-                                    : LottieBuilder.asset(
-                                        // animate: value.isLoading,
-                                        'assets/lottie/scan_wifi_dark.json',
-                                      ),
-                                CustomButton(
-                                  onTap: scanAvailableWifi,
-                                  isLoading: wifiPvr.isLoading,
-                                  label: 'Scan',
-                                ),
-                              ],
-                            ),
+                        Step(
+                          title: const Text('Select'),
+                          subtitle: Text(
+                            'Select Wi-Fi',
+                            style: subTextStyle,
                           ),
-                          Step(
-                            title: const Text('Select'),
-                            subtitle: Text(
-                              'Select Wi-Fi',
-                              style: subTextStyle,
-                            ),
-                            content: SizedBox(
-                              height: 40.h,
-                              width: 100.w,
-                              child: Container(
-                                padding: EdgeInsets.symmetric(horizontal: 2.w),
-                                decoration: BoxDecoration(
-                                  color: isLight
-                                      ? const Color.fromARGB(255, 235, 235, 235)
-                                      : const Color(0xFF101417),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: ListView(
-                                  children: wifiPvr.wifiList
-                                      .map(
-                                        (e) => Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            InkWell(
-                                              onTap: () {
-                                                getWifiId(e.ssid);
-                                                wifiPvr.next();
-                                              },
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical: 2.h),
-                                                child: Text(e.ssid),
-                                              ),
+                          content: SizedBox(
+                            height: 40.h,
+                            width: 100.w,
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 2.w),
+                              decoration: BoxDecoration(
+                                color: isLight
+                                    ? const Color.fromARGB(255, 235, 235, 235)
+                                    : const Color(0xFF101417),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: ListView(
+                                children: wifiPvr.wifiList
+                                    .map(
+                                      (e) => Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              getWifiId(e.ssid);
+                                              wifiPvr.next();
+                                            },
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 2.h),
+                                              child: Text(e.ssid),
                                             ),
-                                            const Divider(),
-                                          ],
-                                        ),
-                                      )
-                                      .toList(),
-                                ),
+                                          ),
+                                          const Divider(),
+                                        ],
+                                      ),
+                                    )
+                                    .toList(),
                               ),
                             ),
                           ),
-                          Step(
-                            title: const Text('Password'),
-                            subtitle: Text(
-                              'Input Wi-Fi Password',
-                              style: subTextStyle,
-                            ),
-                            content: Column(
-                              children: [
-                                SizedBox(height: 2.h),
-                                CustomTextField(
-                                  controller: passwordTextEditCtr,
-                                  title: 'Network Password',
-                                  hint: 'Wi-Fi Password',
-                                  inputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    wifiPvr.next();
-                                  },
-                                ),
-                              ],
-                            ),
+                        ),
+                        Step(
+                          title: const Text('Password'),
+                          subtitle: Text(
+                            'Input Wi-Fi Password',
+                            style: subTextStyle,
                           ),
-                          Step(
-                            title: const Text('Save'),
-                            subtitle: Text(
-                              'Save Wi-Fi to Pod',
-                              style: subTextStyle,
-                            ),
-                            content: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(height: 2.h),
-                                wifiCredTile(
-                                  title: 'Wi-Fi ID:',
-                                  value: wifiId,
-                                  isLight: isLight,
-                                ),
-                                wifiCredTile(
-                                  title: 'Password:',
-                                  value: passwordTextEditCtr.text.trim(),
-                                  isLight: isLight,
-                                ),
-                                CustomButton(
-                                  label: 'Connect',
-                                  onTap: connectPodToWiFi,
-                                ),
-                              ],
-                            ),
+                          content: Column(
+                            children: [
+                              SizedBox(height: 2.h),
+                              CustomTextField(
+                                controller: passwordTextEditCtr,
+                                title: 'Network Password',
+                                hint: 'Wi-Fi Password',
+                                inputAction: TextInputAction.next,
+                                onFieldSubmitted: (_) {
+                                  wifiPvr.next();
+                                },
+                              ),
+                            ],
                           ),
-                        ],
-                      );
-                    }),
-                  ),
-                ],
-              ),
+                        ),
+                        Step(
+                          title: const Text('Save'),
+                          subtitle: Text(
+                            'Save Wi-Fi to Pod',
+                            style: subTextStyle,
+                          ),
+                          content: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 2.h),
+                              wifiCredTile(
+                                title: 'Wi-Fi ID:',
+                                value: wifiId,
+                                isLight: isLight,
+                              ),
+                              wifiCredTile(
+                                title: 'Password:',
+                                value: passwordTextEditCtr.text.trim(),
+                                isLight: isLight,
+                              ),
+                              CustomButton(
+                                label: 'Connect',
+                                onTap: connectPodToWiFi,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    );
+                  }),
+                ),
+              ],
             ),
           ),
         ),

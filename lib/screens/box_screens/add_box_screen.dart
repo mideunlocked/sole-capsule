@@ -52,60 +52,58 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
     return Scaffold(
       body: ScaffoldMessenger(
         key: _scaffoldKey,
-        child: SafeArea(
-          child: PaddedScreenWidget(
-            child: Column(
-              children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      const CustomAppBar(
-                        title: 'Add box',
-                      ),
-                      SizedBox(height: 4.h),
-                      CustomTextField(
-                        controller: boxNameCtr,
-                        title: 'Box Name',
-                        hint: 'Box 1',
-                        inputAction: TextInputAction.done,
-                      ),
-                      SizedBox(height: 3.h),
-                      ConnectBlueButton(
-                        onTap: scanBluetoothDevices,
-                      ),
-                    ],
-                  ),
+        child: PaddedScreenWidget(
+          child: Column(
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    const CustomAppBar(
+                      title: 'Add box',
+                    ),
+                    SizedBox(height: 4.h),
+                    CustomTextField(
+                      controller: boxNameCtr,
+                      title: 'Box Name',
+                      hint: 'Box 1',
+                      inputAction: TextInputAction.done,
+                    ),
+                    SizedBox(height: 3.h),
+                    ConnectBlueButton(
+                      onTap: scanBluetoothDevices,
+                    ),
+                  ],
                 ),
-                CustomButton(
-                  onTap: () {
-                    if (boxNameCtr.text.isEmpty) {
-                      return;
-                    }
-                    var of = Theme.of(context);
-                    var textTheme = of.textTheme;
-                    var titleMedium = textTheme.titleMedium;
-
-                    addNewBox();
-
-                    showSuccesfullSheet(
-                      context: context,
-                      successMessage: Text(
-                        'Box Added',
-                        style: titleMedium?.copyWith(fontSize: 20.sp),
-                      ),
-                      buttonTitle: 'View',
-                      buttonFunction: () => Navigator.pushReplacementNamed(
-                        context,
-                        BoxScreen.routeName,
-                        arguments: box,
-                      ),
-                    );
-                  },
-                  label: 'Add +',
-                ),
-                SizedBox(height: 2.h),
-              ],
-            ),
+              ),
+              CustomButton(
+                onTap: () {
+                  if (boxNameCtr.text.isEmpty) {
+                    return;
+                  }
+                  var of = Theme.of(context);
+                  var textTheme = of.textTheme;
+                  var titleMedium = textTheme.titleMedium;
+        
+                  addNewBox();
+        
+                  showSuccesfullSheet(
+                    context: context,
+                    successMessage: Text(
+                      'Box Added',
+                      style: titleMedium?.copyWith(fontSize: 20.sp),
+                    ),
+                    buttonTitle: 'View',
+                    buttonFunction: () => Navigator.pushReplacementNamed(
+                      context,
+                      BoxScreen.routeName,
+                      arguments: box,
+                    ),
+                  );
+                },
+                label: 'Add +',
+              ),
+              SizedBox(height: 4.h),
+            ],
           ),
         ),
       ),
