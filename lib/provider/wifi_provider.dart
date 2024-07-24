@@ -56,9 +56,7 @@ class WifiProvider with ChangeNotifier {
         next();
         _loaded();
       default:
-      await WiFiScan.instance.startScan();
-
-        next();
+      
         _loaded();
     }
   }
