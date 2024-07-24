@@ -61,10 +61,11 @@ class _AppState extends State<App> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(
-              vertical:Platform.isIOS ? 4.h : 2.h,
+            padding: EdgeInsets.only(
+              bottom:Platform.isIOS ? 4.h : 2.h,
             ),
             child: PaddedScreenWidget(
+              padTop: false,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

@@ -44,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
                   PaddedScreenWidget(
                     child: Column(
                       children: [
-                        SizedBox(height: 4.h),
+                        // SizedBox(height: 2.h),
                         ProfileImage(
                           imageUrl: userDetails.profileImage,
                         ),
