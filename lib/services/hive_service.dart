@@ -32,4 +32,10 @@ class HiveService {
 
     pods.deleteAt(index);
   }
+
+  static Future<void> clearPods() async {
+    Box pods = await boxProperty();
+
+    pods.clear();
+  }
 }

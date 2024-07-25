@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../helpers/firebase_constants.dart';
+import '../../provider/box_provider.dart';
 import '../../provider/theme_mode_provider.dart';
 
 class ProfileAppBar extends StatelessWidget {
@@ -29,28 +30,11 @@ class ProfileAppBar extends StatelessWidget {
         ),
         SizedBox(
           height: 4.5.h,
-          child: Consumer<ThemeModeProvider>(
-            builder: (context, tmPvr, child) {
-              return FloatingActionButton.extended(
-                heroTag: 'log-out',
-                elevation: 0,
-                backgroundColor: const Color(0xFFFFE4E4),
-                label: child!,
-                onPressed: () async =>
-                    await FirebaseConstants.authInstance.signOut().then(
-                  (value) async {
-                    tmPvr.resetThemeMode();
-
-                    await Navigator.pushNamedAndRemoveUntil(
-                        context, '/WelcomeScreen', (route) => false);
-                  },
-                ).catchError((e) {
-                  print(e);
-                  return e;
-                }),
-              );
-            },
-            child: Row(
+          child: FloatingActionButton.extended(
+            heroTag: 'log-out',
+            elevation: 0,
+            backgroundColor: const Color(0xFFFFE4E4),
+            label: Row(
               children: [
                 SvgPicture.asset(
                   'assets/icons/logout.svg',
@@ -64,9 +48,28 @@ class ProfileAppBar extends StatelessWidget {
                 ),
               ],
             ),
+            onPressed: () => signOut(context),
           ),
         ),
       ],
     );
+  }
+
+  Future<void> signOut(BuildContext context) async {
+    var thmPvr = Provider.of<ThemeModeProvider>(context, listen: false);
+    var boxPvr = Provider.of<BoxProvider>(context, listen: false);
+
+    await FirebaseConstants.authInstance.signOut().then((_) async {
+      thmPvr.resetThemeMode();
+      await boxPvr.clearPods();
+
+      if (context.mounted) {
+        await Navigator.pushNamedAndRemoveUntil(
+            context, '/WelcomeScreen', (route) => false);
+      }
+    }).catchError((e) {
+      print(e);
+      return e;
+    });
   }
 }

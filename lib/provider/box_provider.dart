@@ -230,4 +230,12 @@ class BoxProvider with ChangeNotifier {
 
     notifyListeners();
   }
+
+  Future<void> clearPods() async {
+    HiveService.clearPods();
+
+    await getBoxes();
+
+    notifyListeners();
+  }
 }
