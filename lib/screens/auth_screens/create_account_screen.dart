@@ -171,6 +171,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       final response = await authProvider.createUserEmailPassword(
         user: user,
         scaffoldKey: _scaffoldKey,
+        context: context,
       );
 
       if (mounted) {

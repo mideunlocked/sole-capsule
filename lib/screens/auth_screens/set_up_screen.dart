@@ -174,6 +174,7 @@ class _SetUpScreenState extends State<SetUpScreen> {
       user: user,
       username: usernameController.text.trim(),
       phoneNumber: numberController.text.trim(),
+        context: context,
     );
 
     if (response == true) {

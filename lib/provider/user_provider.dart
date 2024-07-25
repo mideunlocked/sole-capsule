@@ -84,9 +84,10 @@ class UserProvider with ChangeNotifier {
   Future<void> updateUserDetails({
     required File profileImage,
     required UserDetails userDetails,
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
-    showCustomLoader();
+    showCustomLoader(context);
     String uid = UserId.getUid();
 
     try {
@@ -119,12 +120,12 @@ class UserProvider with ChangeNotifier {
           bkgColor: Colors.green,
         );
 
-        if (context!.mounted) {
-          Navigator.pop(context!);
+        if (context.mounted) {
+          Navigator.pop(context);
         }
       }).catchError((e) {
-        if (context!.mounted) {
-          Navigator.pop(context!);
+        if (context.mounted) {
+          Navigator.pop(context);
         }
         print('Update user details error: $e');
         showScaffoldMessenger(
@@ -133,8 +134,8 @@ class UserProvider with ChangeNotifier {
         );
       });
     } catch (e) {
-      if (context!.mounted) {
-        Navigator.pop(context!);
+      if (context.mounted) {
+        Navigator.pop(context);
       }
       print('Update user details error: $e');
       showScaffoldMessenger(
@@ -146,11 +147,12 @@ class UserProvider with ChangeNotifier {
 
   Future<void> updateDeliveryDetails({
     required DeliveryDetails details,
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     String uid = UserId.getUid();
 
-    showCustomLoader();
+    showCustomLoader(context);
 
     try {
       await FirebaseConstants.cloudInstance

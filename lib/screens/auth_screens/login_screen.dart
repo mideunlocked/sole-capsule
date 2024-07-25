@@ -141,6 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
       final response = await authProvider.signInUSer(
         loginDetail: emailController.text.trim(),
         password: passwordController.text.trim(),
+        context: context,
         scaffoldKey: _scaffoldKey,
       );
 

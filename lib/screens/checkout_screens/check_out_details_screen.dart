@@ -192,6 +192,7 @@ class _CheckOutDetailsScreenState extends State<CheckOutDetailsScreen> {
               address: addressCtr.text.trim(),
             ),
             scaffoldKey: _scaffoldKey,
+        context: context,
           )
           .then(
             (_) => Navigator.pop(context),

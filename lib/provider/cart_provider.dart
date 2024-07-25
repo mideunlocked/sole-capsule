@@ -206,6 +206,7 @@ class CartProvider with ChangeNotifier {
   Future<void> purchaseDirectCart({
     required String paymentMethod,
     required String currency,
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     String uid = UserId.getUid();
@@ -238,7 +239,7 @@ class CartProvider with ChangeNotifier {
       _isLoading = false;
       notifyListeners();
 
-      showCustomLoader();
+      showCustomLoader(context);
 
       if (isPaid) {
         Orders order = Orders(
@@ -269,9 +270,9 @@ class CartProvider with ChangeNotifier {
 
         notifyListeners();
 
-        if (context != null) {
+        if (context.mounted) {
           Navigator.pushNamedAndRemoveUntil(
-            context!,
+            context,
             '/CheckOutSuccessScreen',
             (route) => false,
           );
@@ -280,15 +281,15 @@ class CartProvider with ChangeNotifier {
         _isLoading = false;
         notifyListeners();
 
-        if (context != null) {
-          Navigator.pop(context!);
-          Navigator.pop(context!);
+        if (context.mounted) {
+          Navigator.pop(context);
+          Navigator.pop(context);
         }
       }
     } catch (e) {
-      if (context != null) {
-        Navigator.pop(context!);
-        Navigator.pop(context!);
+        if (context.mounted) {
+        Navigator.pop(context);
+        Navigator.pop(context);
       }
 
       showScaffoldMessenger(
@@ -301,6 +302,7 @@ class CartProvider with ChangeNotifier {
   Future<void> purchaseCartItems({
     required String currency,
     required String paymentMethod,
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     String uid = UserId.getUid();
@@ -319,7 +321,7 @@ class CartProvider with ChangeNotifier {
       notifyListeners();
 
       if (isPaid) {
-        showCustomLoader();
+        if (context.mounted) showCustomLoader(context);
 
         var ordersCollections = FirebaseConstants.cloudInstance
             .collection('users')
@@ -365,9 +367,9 @@ class CartProvider with ChangeNotifier {
 
         notifyListeners();
 
-        if (context != null) {
+        if (context.mounted) {
           Navigator.pushNamedAndRemoveUntil(
-            context!,
+            context,
             '/CheckOutSuccessScreen',
             (route) => false,
           );
@@ -376,15 +378,15 @@ class CartProvider with ChangeNotifier {
         _isLoading = false;
         notifyListeners();
 
-        if (context != null) {
-          Navigator.pop(context!);
-          Navigator.pop(context!);
+        if (context.mounted) {
+          Navigator.pop(context);
+          Navigator.pop(context);
         }
       }
     } catch (e) {
-      if (context != null) {
-        Navigator.pop(context!);
-        Navigator.pop(context!);
+        if (context.mounted) {
+        Navigator.pop(context);
+        Navigator.pop(context);
       }
 
       showScaffoldMessenger(

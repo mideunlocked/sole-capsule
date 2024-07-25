@@ -18,10 +18,11 @@ import '../widgets/general_widgets/loader_widget.dart';
 class AuthProvider with ChangeNotifier {
   Future<dynamic> createUserEmailPassword({
     required Users user,
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     try {
-      showCustomLoader();
+      showCustomLoader(context);
 
       UserDetails userDetails = user.userDetails;
 
@@ -88,13 +89,14 @@ class AuthProvider with ChangeNotifier {
 
   Future<dynamic> updateUserInfo({
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+    required BuildContext context,
     required Users user,
     required String username,
     required String phoneNumber,
     required File profileImage,
   }) async {
     try {
-      showCustomLoader();
+      showCustomLoader(context);
       String uid = UserId.getUid();
       String? profileImageUrl = '';
 
@@ -152,9 +154,10 @@ class AuthProvider with ChangeNotifier {
   Future<dynamic> signInUSer({
     required String loginDetail,
     required String password,
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
-    showCustomLoader();
+    showCustomLoader(context);
     try {
       if (loginDetail.contains(".com") != true) {
         QuerySnapshot snap = await FirebaseConstants.cloudInstance
@@ -220,9 +223,10 @@ class AuthProvider with ChangeNotifier {
 
   Future<dynamic> resetPassword({
     required String email,
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
-    showCustomLoader();
+    showCustomLoader(context);
     try {
       FirebaseConstants.authInstance.sendPasswordResetEmail(email: email).then(
             (value) => showScaffoldMessenger(

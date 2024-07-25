@@ -80,6 +80,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     await authProvider.resetPassword(
       email: emailController.text.trim(),
       scaffoldKey: _scaffoldKey,
+        context: context,
     );
 
     if (mounted) {

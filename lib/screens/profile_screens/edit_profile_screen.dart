@@ -212,6 +212,7 @@ class EditProfileScreenState extends State<EditProfileScreen> {
           profileImage: '',
         ),
         scaffoldKey: _scaffoldKey,
+        context: context,
       );
     }
   }

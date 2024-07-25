@@ -194,12 +194,14 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
         scaffoldKey: widget.scaffoldKey,
         paymentMethod: paymentMethod,
         currency: currency,
+        context: context,
       );
     } else {
       await cartPvr.purchaseDirectCart(
         scaffoldKey: widget.scaffoldKey,
         paymentMethod: paymentMethod,
         currency: currency,
+        context: context,
       );
     }
   }
