@@ -56,7 +56,6 @@ class WifiProvider with ChangeNotifier {
         next();
         _loaded();
       default:
-      
         _loaded();
     }
   }
