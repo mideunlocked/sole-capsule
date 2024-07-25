@@ -103,15 +103,14 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                   ProfileRouteListTile(
-                    icon: 'orders',
-                    title: 'My Orders',
-                    routeName: OrdersScreen.routeName,
-                    listTileStyle: listTileStyle,
-                  ),
-                  ProfileRouteListTile(
                     icon: 'wallet',
                     title: 'Wallet',
                     routeName: WalletScreen.routeName,
+                    listTileStyle: listTileStyle,
+                  ),ProfileRouteListTile(
+                    icon: 'orders',
+                    title: 'My Orders',
+                    routeName: OrdersScreen.routeName,
                     listTileStyle: listTileStyle,
                   ),
                   ListTile(

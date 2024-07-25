@@ -53,7 +53,7 @@ class _OrderTileState extends State<OrderTile> {
       fontWeight: FontWeight.w600,
     );
 
-    Product prod = widget.cart.cartProduct();
+    Product prod = widget.cart.cartProduct(context);
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 1.h),
@@ -130,7 +130,7 @@ class _OrderTileState extends State<OrderTile> {
                   );
                 },
                 child: Text(
-                  '\$ ${widget.cart.totalCartPrice()}',
+                  '\$ ${widget.cart.totalCartPrice(context)}',
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                   ),

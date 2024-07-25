@@ -27,6 +27,7 @@ class NotificationProvider with ChangeNotifier {
   }
 
   Future<void> getNotifications({
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     try {
@@ -53,18 +54,24 @@ class NotificationProvider with ChangeNotifier {
         loaded();
         notifyListeners();
       } else {
-        showScaffoldMessenger(
-          scaffoldKey: scaffoldKey,
-          textContent: 'Error fetching notifications',
-        );
+        if (context.mounted) {
+          showScaffoldMessenger(
+            scaffoldKey: scaffoldKey,
+            context: context,
+            textContent: 'Error fetching notifications',
+          );
+        }
         loaded();
       }
     } catch (e) {
       print('Get notification error: $e');
-      showScaffoldMessenger(
-        scaffoldKey: scaffoldKey,
-        textContent: 'Error fetching notifications',
-      );
+      if (context.mounted) {
+        showScaffoldMessenger(
+          scaffoldKey: scaffoldKey,
+          textContent: 'Error fetching notifications',
+          context: context,
+        );
+      }
       loaded();
     }
   }

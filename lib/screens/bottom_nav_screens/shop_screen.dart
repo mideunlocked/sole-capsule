@@ -83,32 +83,31 @@ class _ShopScreenState extends State<ShopScreen> {
             ),
             Expanded(
               child: Consumer<ProductProvider>(
-                builder: (context, productPvr, child) =>
-                    productPvr.products.isEmpty
-                        ? child!
-                        : GridView(
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 3.h,
-                              crossAxisSpacing: 5.w,
-                              childAspectRatio: 0.4,
-                            ),
-                            children: productPvr.products.where((e) {
-                              if (e.name.toLowerCase().contains(
-                                    searchQuery.toLowerCase(),
-                                  )) {
-                                return true;
-                              }
-                              return false;
-                            }).map(
-                              (Product product) {
-                                return ShopGridTile(
-                                  product: product,
-                                );
-                              },
-                            ).toList(),
-                          ),
+                builder: (context, productPvr, child) => productPvr
+                        .products.isEmpty
+                    ? child!
+                    : GridView(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 3.h,
+                          crossAxisSpacing: 5.w,
+                          childAspectRatio: 0.4,
+                        ),
+                        children: productPvr.products.where((e) {
+                          if (e.name.toLowerCase().contains(
+                                searchQuery.toLowerCase(),
+                              )) {
+                            return true;
+                          }
+                          return false;
+                        }).map(
+                          (Product product) {
+                            return ShopGridTile(
+                              product: product,
+                            );
+                          },
+                        ).toList(),
+                      ),
                 child: const ShopShimmerGridView(),
               ),
             ),
@@ -126,11 +125,15 @@ class _ShopScreenState extends State<ShopScreen> {
 
     await productPvr.getProducts(
       scaffoldKey: _scaffoldKey,
+      context: context,
     );
 
     if (!isInitial && !isFirst) {
+      if (context.mounted) {}
       await cartPvr.getCartItems(
         scaffoldKey: _scaffoldKey,
+        // ignore: use_build_context_synchronously
+        context: context,
       );
     }
 

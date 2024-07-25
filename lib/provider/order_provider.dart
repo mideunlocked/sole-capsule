@@ -7,14 +7,11 @@ import 'package:provider/provider.dart';
 import '../helpers/firebase_constants.dart';
 import '../helpers/get_user_id.dart';
 import '../helpers/scaffold_messenger_helper.dart';
-import '../main.dart';
 import '../models/order.dart';
 import '../models/product.dart';
 import 'product_provider.dart';
 
 class OrderProvider with ChangeNotifier {
-  final context = MainApp.navigatorKey.currentState?.overlay?.context;
-
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
@@ -22,6 +19,7 @@ class OrderProvider with ChangeNotifier {
   List<Orders> get orders => _orders;
 
   Future<void> getOrders({
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     String uid = UserId.getUid();
@@ -37,42 +35,49 @@ class OrderProvider with ChangeNotifier {
 
       QuerySnapshot querySnapshot = await ordersCollections.get();
 
-      var productPvr = Provider.of<ProductProvider>(
-        MainApp.navigatorKey.currentContext!,
-        listen: false,
-      );
+      ProductProvider productPvr;
 
-      for (QueryDocumentSnapshot documentSnapshot in querySnapshot.docs) {
-        Map<String, dynamic> data =
-            documentSnapshot.data() as Map<String, dynamic>;
-
-        Product? product = await productPvr.getProduct(
-          prodId: data['prodId'].toString(),
+      if (context.mounted) {
+        productPvr = Provider.of<ProductProvider>(
+          context,
+          listen: false,
         );
 
-        Orders order = Orders.fromJson(
-          json: data,
-          product: product,
-        );
+        for (QueryDocumentSnapshot documentSnapshot in querySnapshot.docs) {
+          Map<String, dynamic> data =
+              documentSnapshot.data() as Map<String, dynamic>;
 
-        bool checkOrder = _orders.any((element) => element.id == order.id);
+          Product? product = await productPvr.getProduct(
+            prodId: data['prodId'].toString(),
+          );
 
-        if (!checkOrder) {
-          _orders.add(order);
+          Orders order = Orders.fromJson(
+            json: data,
+            product: product,
+          );
+
+          bool checkOrder = _orders.any((element) => element.id == order.id);
+
+          if (!checkOrder) {
+            _orders.add(order);
+          }
         }
-      }
 
-      _isLoading = false;
-      notifyListeners();
+        _isLoading = false;
+        notifyListeners();
+      }
     } catch (e) {
       _isLoading = false;
       notifyListeners();
 
       print('Get orders error: $e');
-      showScaffoldMessenger(
-        scaffoldKey: scaffoldKey,
-        textContent: 'Couldn\'t get orders, Try again',
-      );
+      if (context.mounted) {
+        showScaffoldMessenger(
+          scaffoldKey: scaffoldKey,
+          context: context,
+          textContent: 'Couldn\'t get orders, Try again',
+        );
+      }
     }
   }
 }

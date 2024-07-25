@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../helpers/calculate_discount.dart';
-import '../main.dart';
 import '../provider/product_provider.dart';
 import 'product.dart';
 
@@ -50,8 +50,8 @@ class Cart {
     );
   }
 
-  double totalCartPrice() {
-    Product product = cartProduct();
+  double totalCartPrice(BuildContext context) {
+    Product product = cartProduct(context);
     String priceString = CalculateDiscount.calculateDiscount(
       product.price,
       product.discount ?? 0,
@@ -64,9 +64,9 @@ class Cart {
     return totalPrice;
   }
 
-  Product cartProduct() {
+  Product cartProduct(BuildContext context) {
     var productPvr = Provider.of<ProductProvider>(
-      MainApp.navigatorKey.currentContext!,
+      context,
       listen: false,
     );
 

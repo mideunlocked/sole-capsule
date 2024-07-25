@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import '../helpers/firebase_constants.dart';
 import '../helpers/get_user_id.dart';
 import '../helpers/scaffold_messenger_helper.dart';
-import '../main.dart';
 import '../models/delivery_details.dart';
 import '../models/user_details.dart';
 import '../models/users.dart';
@@ -16,8 +15,6 @@ import '../widgets/general_widgets/loader_widget.dart';
 import 'image_provider.dart';
 
 class UserProvider with ChangeNotifier {
-  final context = MainApp.navigatorKey.currentState?.overlay?.context;
-
   Users _user = const Users(
     id: '',
     boxes: [],
@@ -44,6 +41,7 @@ class UserProvider with ChangeNotifier {
   Users get user => _user;
 
   Future<void> getUser({
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     String uid = UserId.getUid();
@@ -66,17 +64,23 @@ class UserProvider with ChangeNotifier {
         _user = Users.fromJson(json: data);
         notifyListeners();
       } else {
-        showScaffoldMessenger(
-          scaffoldKey: scaffoldKey,
-          textContent: 'Error getting user profile, please try again.',
-        );
+        if (context.mounted) {
+          showScaffoldMessenger(
+            context: context,
+            scaffoldKey: scaffoldKey,
+            textContent: 'Error getting user profile, please try again.',
+          );
+        }
       }
     } catch (e) {
       print('Get user error: $e');
-      showScaffoldMessenger(
-        scaffoldKey: scaffoldKey,
-        textContent: 'Error getting user profile, please try again.',
-      );
+      if (context.mounted) {
+        showScaffoldMessenger(
+          scaffoldKey: scaffoldKey,
+          context: context,
+          textContent: 'Error getting user profile, please try again.',
+        );
+      }
       return await Future.error(e);
     }
   }
@@ -112,13 +116,16 @@ class UserProvider with ChangeNotifier {
         },
         SetOptions(merge: true),
       ).then((_) async {
-        await getUser(scaffoldKey: scaffoldKey);
+        await getUser(scaffoldKey: scaffoldKey, context: context);
 
-        showScaffoldMessenger(
-          scaffoldKey: scaffoldKey,
-          textContent: 'User details updated',
-          bkgColor: Colors.green,
-        );
+        if (context.mounted) {
+          showScaffoldMessenger(
+            scaffoldKey: scaffoldKey,
+            textContent: 'User details updated',
+            bkgColor: Colors.green,
+            context: context,
+          );
+        }
 
         if (context.mounted) {
           Navigator.pop(context);
@@ -129,6 +136,7 @@ class UserProvider with ChangeNotifier {
         }
         print('Update user details error: $e');
         showScaffoldMessenger(
+          context: context,
           scaffoldKey: scaffoldKey,
           textContent: 'Failed to update user details, try again',
         );
@@ -138,10 +146,13 @@ class UserProvider with ChangeNotifier {
         Navigator.pop(context);
       }
       print('Update user details error: $e');
-      showScaffoldMessenger(
-        scaffoldKey: scaffoldKey,
-        textContent: 'Failed to update user details, try again',
-      );
+      if (context.mounted) {
+        showScaffoldMessenger(
+          context: context,
+          scaffoldKey: scaffoldKey,
+          textContent: 'Failed to update user details, try again',
+        );
+      }
     }
   }
 
@@ -164,26 +175,36 @@ class UserProvider with ChangeNotifier {
         },
         SetOptions(merge: true),
       ).then((_) async {
-        await getUser(scaffoldKey: scaffoldKey);
-
-        showScaffoldMessenger(
+        await getUser(
           scaffoldKey: scaffoldKey,
-          textContent: 'Delivery details updated',
-          bkgColor: Colors.green,
+          context: context,
         );
+
+        if (context.mounted) {
+          showScaffoldMessenger(
+            scaffoldKey: scaffoldKey,
+            textContent: 'Delivery details updated',
+            bkgColor: Colors.green,
+            context: context,
+          );
+        }
       }).catchError((e) {
         print('Update delivery details error: $e');
         showScaffoldMessenger(
           scaffoldKey: scaffoldKey,
           textContent: 'Failed to update delivery details, try again',
+          context: context,
         );
       });
     } catch (e) {
       print('Update delivery details error: $e');
-      showScaffoldMessenger(
-        scaffoldKey: scaffoldKey,
-        textContent: 'Failed to update delivery details, try again',
-      );
+      if (context.mounted) {
+        showScaffoldMessenger(
+          scaffoldKey: scaffoldKey,
+          textContent: 'Failed to update delivery details, try again',
+          context: context,
+        );
+      }
     }
   }
 }

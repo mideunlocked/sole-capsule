@@ -136,11 +136,10 @@ class _ProductScreenState extends State<ProductScreen> {
                               ),
                             );
                           }
-                        
-                          String image =
-                              prod.productImages[index].toString();
+
+                          String image = prod.productImages[index].toString();
                           setCurrentImage(image);
-                        
+
                           return ProdImageTile(
                             image: image,
                             pgCtr: pgCtr,
@@ -154,9 +153,8 @@ class _ProductScreenState extends State<ProductScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: prod.productImages.map((e) {
-                        bool isCurrent =
-                            e.toString().contains(currentImageUrl);
-                        
+                        bool isCurrent = e.toString().contains(currentImageUrl);
+
                         return ImageIndicator(
                           isCurrent: isCurrent,
                         );
@@ -177,7 +175,7 @@ class _ProductScreenState extends State<ProductScreen> {
                               itemBuilder: (ctx, index) {
                                 int color = prod.colors[index];
                                 bool isCurrent = color == currentColor;
-                        
+
                                 return IconButton(
                                   onPressed: () {
                                     setCurrentColor(color);
@@ -213,8 +211,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 onTap: decreaseQuantity,
                               ),
                               Padding(
-                                padding:
-                                    EdgeInsets.symmetric(horizontal: 4.w),
+                                padding: EdgeInsets.symmetric(horizontal: 4.w),
                                 child: Text(quantity.toString()),
                               ),
                               QuantityButton(
@@ -250,12 +247,11 @@ class _ProductScreenState extends State<ProductScreen> {
                               Consumer<ThemeModeProvider>(
                                 builder: (context, tmPvr, child) {
                                   bool isLightMode = tmPvr.isLight;
-                        
+
                                   return Text(
                                     '\$${prod.price}',
                                     style: labelStyle?.copyWith(
-                                      decoration:
-                                          TextDecoration.lineThrough,
+                                      decoration: TextDecoration.lineThrough,
                                       color: isLightMode
                                           ? Colors.black38
                                           : Colors.white38,
@@ -299,19 +295,21 @@ class _ProductScreenState extends State<ProductScreen> {
                               builder: (context, cartPvr, _) {
                             bool checkCart =
                                 cartPvr.alreadyInCart(prodId: prod.id);
-                        
+
                             return CustomButton(
                               isLoading: cartPvr.isLoading,
                               color: const Color(0xFFDBDBDB),
                               icon: checkCart ? Icons.check_rounded : null,
-                              label: checkCart
-                                  ? 'Added to cart'
-                                  : 'Add to cart',
+                              label:
+                                  checkCart ? 'Added to cart' : 'Add to cart',
                               onTap: () async => checkCart
                                   ? cartPvr.notifyAlreadyInCart(
-                                      scaffoldKey: _scaffoldKey)
+                                      scaffoldKey: _scaffoldKey,
+                                      context: context,
+                                    )
                                   : await cartPvr.addToCart(
                                       scaffoldKey: _scaffoldKey,
+                                      context: context,
                                       cart: Cart(
                                         id: (cartPvr.cartItems.length - 1)
                                             .toString(),
@@ -327,14 +325,13 @@ class _ProductScreenState extends State<ProductScreen> {
                               builder: (context, cartPvr, _) {
                             cartPvr.putDirectCart(
                               cart: Cart(
-                                id: (cartPvr.cartItems.length - 1)
-                                    .toString(),
+                                id: (cartPvr.cartItems.length - 1).toString(),
                                 color: currentColor,
                                 prodId: prod.id,
                                 quantity: quantity,
                               ),
                             );
-                        
+
                             return CustomButton(
                               onTap: () => showOrderDetailsSheet(
                                 context: context,
@@ -353,7 +350,6 @@ class _ProductScreenState extends State<ProductScreen> {
                 ),
               ),
             ),
-            
           ],
         ),
       ),

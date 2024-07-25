@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, use_build_context_synchronously
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,6 @@ import '../helpers/firebase_constants.dart';
 import '../helpers/get_user_id.dart';
 import '../helpers/scaffold_messenger_helper.dart';
 import '../services/stripe_payment.dart';
-import '../main.dart';
 import '../models/cart.dart';
 import '../models/order.dart';
 import '../models/users.dart';
@@ -17,8 +16,6 @@ import '../widgets/general_widgets/loader_widget.dart';
 import 'user_provider.dart';
 
 class CartProvider with ChangeNotifier {
-  final context = MainApp.navigatorKey.currentState?.overlay?.context;
-
   final List<Cart> _cartItems = [];
   List<Cart> get cartItems => _cartItems;
 
@@ -31,14 +28,15 @@ class CartProvider with ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  Users getUser() {
-    var userPvr = Provider.of<UserProvider>(context!, listen: false);
+  Users getUser(BuildContext context) {
+    var userPvr = Provider.of<UserProvider>(context, listen: false);
 
     return userPvr.user;
   }
 
   Future<void> addToCart({
     required Cart cart,
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     String uid = UserId.getUid();
@@ -75,6 +73,7 @@ class CartProvider with ChangeNotifier {
             scaffoldKey: scaffoldKey,
             textContent: 'Added to cart',
             bkgColor: Colors.green,
+            context: context,
           );
         });
       }).catchError((_) {
@@ -84,6 +83,7 @@ class CartProvider with ChangeNotifier {
         showScaffoldMessenger(
           scaffoldKey: scaffoldKey,
           textContent: 'Couldn\'t add to cart',
+          context: context,
         );
       });
 
@@ -95,11 +95,13 @@ class CartProvider with ChangeNotifier {
       showScaffoldMessenger(
         scaffoldKey: scaffoldKey,
         textContent: 'Couldn\'t add to cart',
+        context: context,
       );
     }
   }
 
   Future<void> getCartItems({
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     String uid = UserId.getUid();
@@ -131,6 +133,7 @@ class CartProvider with ChangeNotifier {
       showScaffoldMessenger(
         scaffoldKey: scaffoldKey,
         textContent: 'Couldn\'t get cart items',
+        context: context,
       );
     }
   }
@@ -182,22 +185,24 @@ class CartProvider with ChangeNotifier {
   }
 
   void notifyAlreadyInCart({
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) {
     showScaffoldMessenger(
       scaffoldKey: scaffoldKey,
       textContent: 'Already added in cart',
       bkgColor: Colors.grey,
+      context: context,
     );
   }
 
-  void calculateCartTotalPrice() {
+  void calculateCartTotalPrice(BuildContext context) {
     double total = 0;
 
     Cart cart;
 
     for (cart in _cartItems) {
-      total = total + cart.totalCartPrice();
+      total = total + cart.totalCartPrice(context);
     }
 
     _totalCartPrice = total;
@@ -222,8 +227,8 @@ class CartProvider with ChangeNotifier {
 
       double orderPrice = double.parse(
         CalculateDiscount.calculateDiscount(
-          _directCart.cartProduct().price,
-          _directCart.cartProduct().discount ?? 0,
+          _directCart.cartProduct(context).price,
+          _directCart.cartProduct(context).discount ?? 0,
         ),
       );
 
@@ -231,51 +236,54 @@ class CartProvider with ChangeNotifier {
 
       bool isPaid = await StripePayment.initializePayment(
         scaffoldKey: scaffoldKey,
-        deliveryDetails: getUser().deliveryDetails,
+        deliveryDetails: getUser(context).deliveryDetails,
         currency: currency,
         amount: orderAmount.toInt(),
+        context: context,
       );
 
       _isLoading = false;
       notifyListeners();
 
-      showCustomLoader(context);
+      if (context.mounted) showCustomLoader(context);
 
       if (isPaid) {
-        Orders order = Orders(
-          id: '',
-          color: _directCart.color,
-          price: orderAmount,
-          status: 'Pending',
-          prodId: _directCart.prodId,
-          quantity: _directCart.quantity,
-          timestamp: Timestamp.now(),
-          paymentMethod: paymentMethod,
-          deliveryDetails: getUser().deliveryDetails,
-          product: null,
-        );
-
-        await ordersCollections.add(order.toJson()).then((value) async {
-          await ordersCollections.doc(value.id).set(
-            {
-              'id': value.id,
-            },
-            SetOptions(merge: true),
-          );
-        });
-
-        removeDirectCart();
-
-        _isLoading = false;
-
-        notifyListeners();
-
         if (context.mounted) {
-          Navigator.pushNamedAndRemoveUntil(
-            context,
-            '/CheckOutSuccessScreen',
-            (route) => false,
+          Orders order = Orders(
+            id: '',
+            color: _directCart.color,
+            price: orderAmount,
+            status: 'Pending',
+            prodId: _directCart.prodId,
+            quantity: _directCart.quantity,
+            timestamp: Timestamp.now(),
+            paymentMethod: paymentMethod,
+            deliveryDetails: getUser(context).deliveryDetails,
+            product: null,
           );
+
+          await ordersCollections.add(order.toJson()).then((value) async {
+            await ordersCollections.doc(value.id).set(
+              {
+                'id': value.id,
+              },
+              SetOptions(merge: true),
+            );
+          });
+
+          removeDirectCart();
+
+          _isLoading = false;
+
+          notifyListeners();
+
+          if (context.mounted) {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              '/CheckOutSuccessScreen',
+              (route) => false,
+            );
+          }
         }
       } else {
         _isLoading = false;
@@ -287,7 +295,7 @@ class CartProvider with ChangeNotifier {
         }
       }
     } catch (e) {
-        if (context.mounted) {
+      if (context.mounted) {
         Navigator.pop(context);
         Navigator.pop(context);
       }
@@ -295,6 +303,7 @@ class CartProvider with ChangeNotifier {
       showScaffoldMessenger(
         scaffoldKey: scaffoldKey,
         textContent: 'An error occured couldn\'t complete purchase',
+        context: context,
       );
     }
   }
@@ -312,9 +321,10 @@ class CartProvider with ChangeNotifier {
 
       bool isPaid = await StripePayment.initializePayment(
         scaffoldKey: scaffoldKey,
-        deliveryDetails: getUser().deliveryDetails,
+        deliveryDetails: getUser(context).deliveryDetails,
         currency: currency,
         amount: _totalCartPrice.toInt(),
+        context: context,
       );
 
       _isLoading = false;
@@ -333,8 +343,8 @@ class CartProvider with ChangeNotifier {
         for (cart in _cartItems) {
           double orderPrice = double.parse(
             CalculateDiscount.calculateDiscount(
-              cart.cartProduct().price,
-              cart.cartProduct().discount ?? 0,
+              cart.cartProduct(context).price,
+              cart.cartProduct(context).discount ?? 0,
             ),
           );
 
@@ -347,7 +357,7 @@ class CartProvider with ChangeNotifier {
             quantity: cart.quantity,
             timestamp: Timestamp.now(),
             paymentMethod: paymentMethod,
-            deliveryDetails: getUser().deliveryDetails,
+            deliveryDetails: getUser(context).deliveryDetails,
             product: null,
           );
 
@@ -384,7 +394,7 @@ class CartProvider with ChangeNotifier {
         }
       }
     } catch (e) {
-        if (context.mounted) {
+      if (context.mounted) {
         Navigator.pop(context);
         Navigator.pop(context);
       }
@@ -392,6 +402,7 @@ class CartProvider with ChangeNotifier {
       showScaffoldMessenger(
         scaffoldKey: scaffoldKey,
         textContent: 'An error occured couldn\'t complete purchase',
+        context: context,
       );
     }
   }

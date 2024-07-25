@@ -21,7 +21,7 @@ class CustomBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => extraFunction == true ? onTap!() : Navigator.pop(context),
+      onTap:() => extraFunction == true?  onTap!(): Navigator.pop(context),
       borderRadius: BorderRadius.circular(50),
       child: Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
         bool isLightMode = tmPvr.isLight;

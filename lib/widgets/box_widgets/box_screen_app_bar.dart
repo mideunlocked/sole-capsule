@@ -18,8 +18,7 @@ class BoxAppBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CustomBackButton(
-          onTap: () => Navigator.pushReplacementNamed(context, '/'),
+        const CustomBackButton(
         ),
         CustomIconButton(
           icon: 'settings',

@@ -32,7 +32,7 @@ class ShoppingCartWidget extends StatelessWidget {
         sizedBox,
         Consumer<CartProvider>(
           builder: (context, cartPvr, child) {
-            cartPvr.calculateCartTotalPrice();
+            cartPvr.calculateCartTotalPrice(context);
 
             return Consumer<ThemeModeProvider>(builder: (context, tmPvr, _) {
               bool isLightMode = tmPvr.isLight;

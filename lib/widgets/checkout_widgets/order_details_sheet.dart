@@ -25,6 +25,7 @@ void showOrderDetailsSheet({
   if (writtenDetails) {
     showScaffoldMessenger(
       scaffoldKey: scaffoldKey,
+      context: context,
       textContent:
           'Delivery address not added, kindly fill delivery address to purchase',
       bkgColor: Colors.grey,
@@ -121,7 +122,7 @@ class _OrderDetailsSheetState extends State<OrderDetailsSheet> {
               sizedBox,
               Consumer<CartProvider>(builder: (context, cartPvr, _) {
                 double? price = widget.directBuy
-                    ? cartPvr.directCart.totalCartPrice()
+                    ? cartPvr.directCart.totalCartPrice(context)
                     : cartPvr.totalCartPrice;
 
                 return Consumer<DiscountProvider>(

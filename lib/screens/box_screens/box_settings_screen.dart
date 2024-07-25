@@ -104,9 +104,11 @@ class _BoxSettingsScreenState extends State<BoxSettingsScreen> {
       var boxPvr = Provider.of<BoxProvider>(context, listen: false);
 
       boxPvr.editBoxName(
-          id: boxId,
-          newName: boxNameCtr.text.trim(),
-          scaffoldKey: _scaffoldKey);
+        id: boxId,
+        newName: boxNameCtr.text.trim(),
+        scaffoldKey: _scaffoldKey,
+        context: context,
+      );
 
       Navigator.pop(context);
       Navigator.pop(context);

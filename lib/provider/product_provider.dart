@@ -43,6 +43,7 @@ class ProductProvider with ChangeNotifier {
   }
 
   Future<void> getProducts({
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     try {
@@ -74,6 +75,7 @@ class ProductProvider with ChangeNotifier {
     } catch (e) {
       print('Get product error: $e');
       showScaffoldMessenger(
+        context: context,
         scaffoldKey: scaffoldKey,
         textContent: 'Couldn\'t get products, try again',
       );

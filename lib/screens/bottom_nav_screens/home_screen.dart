@@ -62,12 +62,11 @@ class _HomeSceenState extends State<HomeSceen> {
                     Consumer<ThemeModeProvider>(
                         builder: (context, tmPvr, child) {
                       bool isLightMode = tmPvr.isLight;
-    
+
                       return Text(
                         'My Pods',
                         style: textTheme.bodySmall?.copyWith(
-                          color:
-                              isLightMode ? Colors.black54 : Colors.white54,
+                          color: isLightMode ? Colors.black54 : Colors.white54,
                         ),
                       );
                     })
@@ -117,7 +116,10 @@ class _HomeSceenState extends State<HomeSceen> {
 
     getBoxes();
 
-    await userProvider.getUser(scaffoldKey: _scaffoldKey);
+    await userProvider.getUser(
+      scaffoldKey: _scaffoldKey,
+      context: context,
+    );
 
     setState(() {
       isLoading = false;

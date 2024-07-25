@@ -100,6 +100,6 @@ class _OrdersScreenState extends State<OrdersScreen> {
   void getOrders() async {
     var orderPvr = Provider.of<OrderProvider>(context, listen: false);
 
-    await orderPvr.getOrders(scaffoldKey: _scaffoldKey);
+    await orderPvr.getOrders(scaffoldKey: _scaffoldKey, context: context,);
   }
 }

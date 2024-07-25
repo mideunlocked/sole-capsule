@@ -74,7 +74,11 @@ class BoxProvider with ChangeNotifier {
     var blePvr = Provider.of<BleProvider>(context, listen: false);
 
     await blePvr
-        .toggleLight(status: status, scaffoldKey: scaffoldKey)
+        .toggleLight(
+      status: status,
+      scaffoldKey: scaffoldKey,
+      context: context,
+    )
         .then((_) {
       Box box = _boxes.firstWhere((box) => box.id == id);
 
@@ -94,7 +98,13 @@ class BoxProvider with ChangeNotifier {
   }) async {
     var blePvr = Provider.of<BleProvider>(context, listen: false);
 
-    await blePvr.toggleTray(status: status, scaffoldKey: scaffoldKey).then((_) {
+    await blePvr
+        .toggleTray(
+      status: status,
+      scaffoldKey: scaffoldKey,
+      context: context,
+    )
+        .then((_) {
       Box box = _boxes.firstWhere((box) => box.id == id);
 
       box.toggleBoxOpen();
@@ -116,7 +126,11 @@ class BoxProvider with ChangeNotifier {
     double brightness = intensity / 100 * 255;
 
     await blePvr
-        .toggleBrightness(status: brightness.toInt(), scaffoldKey: scaffoldKey)
+        .toggleBrightness(
+      status: brightness.toInt(),
+      scaffoldKey: scaffoldKey,
+      context: context,
+    )
         .then((_) {
       Box box = _boxes.firstWhere((box) => box.id == id);
 
@@ -152,6 +166,7 @@ class BoxProvider with ChangeNotifier {
 
     showScaffoldMessenger(
       scaffoldKey: scaffoldKey,
+      context: context,
       textContent:
           'Pod must be connected to device via bluetooth before Wi-Fi Credentials can be passed',
     );
@@ -187,6 +202,7 @@ class BoxProvider with ChangeNotifier {
   void editBoxName(
       {required String id,
       required String newName,
+      required BuildContext context,
       required GlobalKey<ScaffoldMessengerState> scaffoldKey}) async {
     Box box = _boxes.firstWhere((box) => box.id == id);
 
@@ -195,6 +211,7 @@ class BoxProvider with ChangeNotifier {
     showScaffoldMessenger(
       scaffoldKey: scaffoldKey,
       textContent: 'Box name changed.',
+      context: context,
       bkgColor: Colors.green,
     );
 

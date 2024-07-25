@@ -76,8 +76,11 @@ class SuccessfullSheet extends StatelessWidget {
                   sizedBox,
                   CustomButton(
                     onTap: () {
+                      Navigator.pop(context);
+                      
                       buttonFunction();
-                    },
+                      }
+                    ,
                     label: buttonTitle,
                   ),
                   sizedBox,

@@ -83,9 +83,9 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
                   var of = Theme.of(context);
                   var textTheme = of.textTheme;
                   var titleMedium = textTheme.titleMedium;
-        
+
                   addNewBox();
-        
+
                   showSuccesfullSheet(
                     context: context,
                     successMessage: Text(
@@ -115,6 +115,7 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
 
     await bleProvider.checkBluetoothStatus(
       scaffoldKey: _scaffoldKey,
+      context: context,
     );
 
     showAvailableDevicesDialog();

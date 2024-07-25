@@ -47,11 +47,14 @@ class AuthProvider with ChangeNotifier {
             );
       });
 
-      showScaffoldMessenger(
-        scaffoldKey: scaffoldKey,
-        textContent: 'User account succesfully created',
-        bkgColor: Colors.green,
-      );
+      if (context.mounted) {
+        showScaffoldMessenger(
+          scaffoldKey: scaffoldKey,
+          textContent: 'User account succesfully created',
+          bkgColor: Colors.green,
+          context: context,
+        );
+      }
 
       await Future.delayed(
         Duration.zero,
@@ -61,24 +64,33 @@ class AuthProvider with ChangeNotifier {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
-        showScaffoldMessenger(
-          scaffoldKey: scaffoldKey,
-          textContent: "The password provided is too weak.",
-        );
+        if (context.mounted) {
+          showScaffoldMessenger(
+            context: context,
+            scaffoldKey: scaffoldKey,
+            textContent: "The password provided is too weak.",
+          );
+        }
         return false;
       } else if (e.code == 'email-already-in-use') {
         print('An account already exists with that email.');
-        showScaffoldMessenger(
-          scaffoldKey: scaffoldKey,
-          textContent: 'An account already exists with that email.',
-        );
+        if (context.mounted) {
+          showScaffoldMessenger(
+            context: context,
+            scaffoldKey: scaffoldKey,
+            textContent: 'An account already exists with that email.',
+          );
+        }
         return false;
       } else {
         print(e);
-        showScaffoldMessenger(
-          scaffoldKey: scaffoldKey,
-          textContent: e.toString(),
-        );
+        if (context.mounted) {
+          showScaffoldMessenger(
+            context: context,
+            scaffoldKey: scaffoldKey,
+            textContent: e.toString(),
+          );
+        }
         return false;
       }
     } catch (e) {
@@ -117,18 +129,28 @@ class AuthProvider with ChangeNotifier {
           )
         },
         SetOptions(merge: true),
-      ).then((value) => showScaffoldMessenger(
-                scaffoldKey: scaffoldKey,
-                textContent: 'User data updated',
-                bkgColor: Colors.green,
-              ));
+      ).then(
+        (value) {
+          if (context.mounted) {
+            showScaffoldMessenger(
+              context: context,
+              scaffoldKey: scaffoldKey,
+              textContent: 'User data updated',
+              bkgColor: Colors.green,
+            );
+          }
+        },
+      );
 
       return true;
     } catch (e) {
-      showScaffoldMessenger(
-        scaffoldKey: scaffoldKey,
-        textContent: 'An error occured, please try again.',
-      );
+      if (context.mounted) {
+        showScaffoldMessenger(
+          context: context,
+          scaffoldKey: scaffoldKey,
+          textContent: 'An error occured, please try again.',
+        );
+      }
 
       print("Sign up error: $e");
       return e.toString();
@@ -182,41 +204,56 @@ class AuthProvider with ChangeNotifier {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email/username.');
-        showScaffoldMessenger(
-          scaffoldKey: scaffoldKey,
-          textContent: 'No user found for that email/username.',
-        );
+        if (context.mounted) {
+          showScaffoldMessenger(
+            context: context,
+            scaffoldKey: scaffoldKey,
+            textContent: 'No user found for that email/username.',
+          );
+        }
         return false;
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
-        showScaffoldMessenger(
-          scaffoldKey: scaffoldKey,
-          textContent: 'Wrong password provided for that user.',
-        );
+        if (context.mounted) {
+          showScaffoldMessenger(
+            context: context,
+            scaffoldKey: scaffoldKey,
+            textContent: 'Wrong password provided for that user.',
+          );
+        }
         return false;
       } else if (e.code == "INVALID_LOGIN_CREDENTIALS") {
         print("Invalid login credentials");
-        showScaffoldMessenger(
-          scaffoldKey: scaffoldKey,
-          textContent:
-              'Invalid login credentials. Please check credetials and try again',
-        );
+        if (context.mounted) {
+          showScaffoldMessenger(
+            context: context,
+            scaffoldKey: scaffoldKey,
+            textContent:
+                'Invalid login credentials. Please check credetials and try again',
+          );
+        }
         return false;
       } else {
         print(e);
-        showScaffoldMessenger(
-          scaffoldKey: scaffoldKey,
-          textContent: e.message.toString(),
-        );
+        if (context.mounted) {
+          showScaffoldMessenger(
+            context: context,
+            scaffoldKey: scaffoldKey,
+            textContent: e.message.toString(),
+          );
+        }
         return false;
       }
     } catch (e) {
       print("Sign in error: $e");
 
-      showScaffoldMessenger(
-        scaffoldKey: scaffoldKey,
-        textContent: "Sign in error: $e",
-      );
+      if (context.mounted) {
+        showScaffoldMessenger(
+          context: context,
+          scaffoldKey: scaffoldKey,
+          textContent: "Sign in error: $e",
+        );
+      }
       return e;
     }
   }
@@ -228,37 +265,51 @@ class AuthProvider with ChangeNotifier {
   }) async {
     showCustomLoader(context);
     try {
-      FirebaseConstants.authInstance.sendPasswordResetEmail(email: email).then(
-            (value) => showScaffoldMessenger(
-              scaffoldKey: scaffoldKey,
-              textContent: 'Reset password email as been sent to your inbox',
-              bkgColor: Colors.green,
-            ),
+      FirebaseConstants.authInstance
+          .sendPasswordResetEmail(email: email)
+          .then((value) {
+        if (context.mounted) {
+          showScaffoldMessenger(
+            context: context,
+            scaffoldKey: scaffoldKey,
+            textContent: 'Reset password email as been sent to your inbox',
+            bkgColor: Colors.green,
           );
+        }
+      });
 
       return true;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
-        showScaffoldMessenger(
-          scaffoldKey: scaffoldKey,
-          textContent: 'No user found for that email.',
-        );
+        if (context.mounted) {
+          showScaffoldMessenger(
+            context: context,
+            scaffoldKey: scaffoldKey,
+            textContent: 'No user found for that email.',
+          );
+        }
         return false;
       } else {
         print(e);
-        showScaffoldMessenger(
-          scaffoldKey: scaffoldKey,
-          textContent: e.message.toString(),
-        );
+        if (context.mounted) {
+          showScaffoldMessenger(
+            context: context,
+            scaffoldKey: scaffoldKey,
+            textContent: e.message.toString(),
+          );
+        }
         return false;
       }
     } catch (e) {
       print("Resest password error: $e");
-      showScaffoldMessenger(
-        scaffoldKey: scaffoldKey,
-        textContent: 'Resest password error: $e',
-      );
+      if (context.mounted) {
+        showScaffoldMessenger(
+          context: context,
+          scaffoldKey: scaffoldKey,
+          textContent: 'Resest password error: $e',
+        );
+      }
       return false;
     }
   }

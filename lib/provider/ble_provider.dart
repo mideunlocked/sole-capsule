@@ -50,11 +50,15 @@ class BleProvider with ChangeNotifier {
   }
 
   Future<void> checkBluetoothStatus({
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     try {
       if (await FlutterBluePlus.isSupported == false) {
-        _showMessage(scaffoldKey, "Bluetooth not supported by this device");
+        if (context.mounted) {
+          _showMessage(
+              scaffoldKey, "Bluetooth not supported by this device", context);
+        }
         return;
       }
 
@@ -63,26 +67,33 @@ class BleProvider with ChangeNotifier {
         print(state);
         if (state == BluetoothAdapterState.on) {
           _isOn = true;
-          scanDevices(scaffoldKey: scaffoldKey);
+          scanDevices(scaffoldKey: scaffoldKey, context: context);
         } else {
           _isOn = false;
-          _showMessage(scaffoldKey, "Error switching on Bluetooth on device");
+          _showMessage(
+              scaffoldKey, "Error switching on Bluetooth on device", context);
         }
         notifyListeners();
       });
 
       if (Platform.isAndroid) {
         await FlutterBluePlus.turnOn().then((_) => _isOn = true);
-        scanDevices(scaffoldKey: scaffoldKey);
+        if (context.mounted) {
+          scanDevices(scaffoldKey: scaffoldKey, context: context);
+        }
       }
     } catch (e) {
       _isOn = false;
-      _showMessage(scaffoldKey, "Error switching on Bluetooth on device");
+      if (context.mounted) {
+        _showMessage(
+            scaffoldKey, "Error switching on Bluetooth on device", context);
+      }
       notifyListeners();
     }
   }
 
   Future<void> scanDevices({
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     try {
@@ -98,7 +109,7 @@ class BleProvider with ChangeNotifier {
           notifyListeners();
         }, onError: (e) {
           print('Error scanning devices: $e');
-          _showMessage(scaffoldKey, "Error scanning devices");
+          _showMessage(scaffoldKey, "Error scanning devices", context);
         });
 
         await FlutterBluePlus.startScan(
@@ -110,12 +121,16 @@ class BleProvider with ChangeNotifier {
         // wait for scanning to stop
         await FlutterBluePlus.isScanning.where((val) => val == false).first;
       } else {
-        _showMessage(scaffoldKey,
-            "Bluetooth is inactive, kindly switch on Bluetooth on device");
+        _showMessage(
+            scaffoldKey,
+            "Bluetooth is inactive, kindly switch on Bluetooth on device",
+            context);
       }
     } catch (e) {
       print('Error scanning devices: $e');
-      _showMessage(scaffoldKey, "Error scanning devices");
+      if (context.mounted) {
+        _showMessage(scaffoldKey, "Error scanning devices", context);
+      }
     }
   }
 
@@ -150,24 +165,31 @@ class BleProvider with ChangeNotifier {
             _selectedDevice = null;
             _loaded();
             print('Error connecting to device: $e');
-            _showMessage(scaffoldKey, "Error connecting to Bluetooth device");
+            _showMessage(
+                scaffoldKey, "Error connecting to Bluetooth device", context);
           });
         } else {
           _selectedDevice = null;
           _loaded();
-          _showMessage(scaffoldKey,
-              "Bluetooth is inactive, kindly switch on Bluetooth on device");
+          _showMessage(
+              scaffoldKey,
+              "Bluetooth is inactive, kindly switch on Bluetooth on device",
+              context);
         }
       } catch (e) {
         _selectedDevice = null;
         _loaded();
         print('Error connecting to device: $e');
-        _showMessage(scaffoldKey, "Error connecting to Bluetooth device");
+        if (context.mounted) {
+          _showMessage(
+              scaffoldKey, "Error connecting to Bluetooth device", context);
+        }
       }
     }
   }
 
   Future<void> disconnectDevice({
+    required BuildContext context,
     required BluetoothDevice device,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
@@ -177,26 +199,38 @@ class BleProvider with ChangeNotifier {
         _currentDevice = null;
         notifyListeners();
       } else {
-        _showMessage(scaffoldKey,
-            "Bluetooth is inactive, kindly switch on Bluetooth on device");
+        _showMessage(
+            scaffoldKey,
+            "Bluetooth is inactive, kindly switch on Bluetooth on device",
+            context);
       }
     } catch (e) {
       print('Error disconnecting device: $e');
-      _showMessage(scaffoldKey, "Error disconnecting Bluetooth device");
+      if (context.mounted) {
+        _showMessage(
+            scaffoldKey, "Error disconnecting Bluetooth device", context);
+      }
     }
   }
 
-  void _showMessage(
-      GlobalKey<ScaffoldMessengerState> scaffoldKey, String message,
+  void _showMessage(GlobalKey<ScaffoldMessengerState> scaffoldKey,
+      String message, BuildContext context,
       {Color? color}) {
-    color != null
-        ? showScaffoldMessenger(
-            scaffoldKey: scaffoldKey, textContent: message, bkgColor: color)
-        : showScaffoldMessenger(scaffoldKey: scaffoldKey, textContent: message);
+    if (context.mounted) {
+      color != null
+          ? showScaffoldMessenger(
+              context: context,
+              scaffoldKey: scaffoldKey,
+              textContent: message,
+              bkgColor: color)
+          : showScaffoldMessenger(
+              context: context, scaffoldKey: scaffoldKey, textContent: message);
+    }
   }
 
   Future<void> toggleLight({
     required int status,
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     if (_currentDevice != null && _services.isNotEmpty) {
@@ -215,13 +249,16 @@ class BleProvider with ChangeNotifier {
         }
       } catch (e) {
         print('Error toggling pod light: $e');
-        _showMessage(scaffoldKey, "Error toggling pod light");
+        if (context.mounted) {
+          _showMessage(scaffoldKey, "Error toggling pod light", context);
+        }
       }
     }
   }
 
   Future<void> toggleTray({
     required int status,
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     if (_currentDevice != null && _services.isNotEmpty) {
@@ -240,13 +277,18 @@ class BleProvider with ChangeNotifier {
         }
       } catch (e) {
         print('Error toggling pod tray: $e');
-        _showMessage(scaffoldKey, "Error toggling pod tray");
+        _showMessage(
+          scaffoldKey,
+          "Error toggling pod tray",
+          context,
+        );
       }
     }
   }
 
   Future<void> toggleBrightness({
     required int status,
+    required BuildContext context,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     if (_currentDevice != null && _services.isNotEmpty) {
@@ -265,7 +307,11 @@ class BleProvider with ChangeNotifier {
         }
       } catch (e) {
         print('Error toggling pod brightness: $e');
-        _showMessage(scaffoldKey, "Error toggling pod brightness");
+        _showMessage(
+          scaffoldKey,
+          "Error toggling pod brightness",
+          context,
+        );
       }
     }
   }
@@ -294,16 +340,25 @@ class BleProvider with ChangeNotifier {
           }
         }
 
-        _showMessage(
-          scaffoldKey,
-          "Wi-Fi credentials passed to pod successfully",
-          color: Colors.green,
-        );
+        if (context.mounted) {
+          _showMessage(
+            scaffoldKey,
+            "Wi-Fi credentials passed to pod successfully",
+            color: Colors.green,
+            context,
+          );
+        }
 
         if (context.mounted) Navigator.pop(context);
       } catch (e) {
         print('Error passing Wi-Fi credentials to pod: $e');
-        _showMessage(scaffoldKey, "Error passing Wi-Fi credentials to pod");
+        if (context.mounted) {
+          _showMessage(
+            scaffoldKey,
+            "Error passing Wi-Fi credentials to pod",
+            context,
+          );
+        }
       }
     }
   }
@@ -338,16 +393,21 @@ class BleProvider with ChangeNotifier {
           }
         }
 
-        _showMessage(
-          scaffoldKey,
-          "Light parameters changed successfully",
-          color: Colors.green,
-        );
+        if (context.mounted) {
+          _showMessage(
+            scaffoldKey,
+            "Light parameters changed successfully",
+            context,
+            color: Colors.green,
+          );
+        }
 
         if (context.mounted) Navigator.pop(context);
       } catch (e) {
         print('Error changing light parameters: $e');
-        _showMessage(scaffoldKey, "Error changing light parameters");
+        if (context.mounted) {
+          _showMessage(scaffoldKey, "Error changing light parameters", context);
+        }
       }
     }
   }

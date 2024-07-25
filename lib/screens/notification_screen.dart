@@ -94,6 +94,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
     await notificationProvider.getNotifications(
       scaffoldKey: _scaffoldKey,
+      context: context,
     );
   }
 }
