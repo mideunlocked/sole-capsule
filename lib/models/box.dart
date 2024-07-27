@@ -25,10 +25,14 @@ class Box extends HiveObject {
   @HiveField(6)
   int lightColor;
 
+  @HiveField(7)
+  String imagePath;
+
   Box({
     required this.id,
     required this.name,
     required this.isOpen,
+    required this.imagePath,
     required this.isLightOn,
     required this.lightColor,
     required this.isConnected,
@@ -42,6 +46,7 @@ class Box extends HiveObject {
       id: json['id'] as String,
       name: json['name'] as String,
       isOpen: json['isOpen'] as bool,
+      imagePath: '',
       isLightOn: json['isLightOn'] as bool,
       lightColor: json['lightColor'] as int,
       isConnected: json['isConnected'] as bool,
@@ -83,5 +88,9 @@ class Box extends HiveObject {
 
   void changeLightIntensity(double newIntensity) {
     lightIntensity = newIntensity;
+  }
+
+  void updatePodImage(String newImagePath) {
+    imagePath = newImagePath;
   }
 }

@@ -8,4 +8,7 @@ class AppConstants {
   // icons
   static const String backIcon = 'assets/icons/back.svg';
   static const String personIcon = 'assets/icons/person.svg';
+
+  // api keys
+  static const String removeBgKey = 'PWuLQgJDaYZj7Hxp183HcYPN';
 }

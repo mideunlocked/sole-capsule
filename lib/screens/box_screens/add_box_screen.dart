@@ -34,6 +34,7 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
     isLightOn: false,
     lightIntensity: 50,
     isConnected: false,
+    imagePath: '',
     lightColor: Colors.white.value,
   );
 
@@ -140,6 +141,7 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
       isOpen: false,
       isLightOn: false,
       lightIntensity: 50,
+      imagePath: '',
       isConnected: bleProvider.currentDevice != null,
       lightColor: Colors.white.value,
     );

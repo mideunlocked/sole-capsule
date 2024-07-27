@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -8,6 +11,7 @@ import '../../models/box.dart';
 import '../../provider/ble_provider.dart';
 import '../../provider/box_provider.dart';
 import '../../provider/theme_mode_provider.dart';
+import '../../services/remove_bg.dart';
 
 class BoxTile extends StatelessWidget {
   const BoxTile({
@@ -30,6 +34,7 @@ class BoxTile extends StatelessWidget {
         '/BoxScreen',
         arguments: box,
       ),
+      onLongPress: () => pickPodImage(context),
       child: Consumer<BleProvider>(builder: (context, blePvr, child) {
         return Stack(
           alignment: Alignment.topRight,
@@ -52,11 +57,18 @@ class BoxTile extends StatelessWidget {
                 children: [
                   Hero(
                     tag: box.id,
-                    child: SvgPicture.asset(
-                      isLightMode
-                          ? 'assets/images/box.svg'
-                          : 'assets/images/box2.svg',
-                    ),
+                    child: box.imagePath.isNotEmpty
+                        ? Image.file(
+                            File(box.imagePath),
+                            height: 10.h,
+                            width: 30.w,
+                            fit: BoxFit.cover,
+                          )
+                        : SvgPicture.asset(
+                            isLightMode
+                                ? 'assets/images/box.svg'
+                                : 'assets/images/box2.svg',
+                          ),
                   ),
                   SizedBox(height: 3.h),
                   Row(
@@ -107,6 +119,28 @@ class BoxTile extends StatelessWidget {
           ],
         );
       }),
+    );
+  }
+
+  void pickPodImage(BuildContext context) async {
+    var boxPvr = Provider.of<BoxProvider>(context, listen: false);
+
+    File file = File('');
+    XFile? pickedImage;
+
+    pickedImage = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
+
+    if (pickedImage != null) {
+      file = File(pickedImage.path);
+    }
+
+    File fileRemoveBg = await RemoveBackground.getSavedFilePath(file);
+
+    await boxPvr.updatePodImage(
+      imagePath: fileRemoveBg.path,
+      id: box.id,
     );
   }
 }

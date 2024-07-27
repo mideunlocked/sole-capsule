@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -123,14 +125,21 @@ class _BoxScreenState extends State<BoxScreen> {
                             ),
                             Hero(
                               tag: box.id,
-                              child: SvgPicture.asset(
-                                isLightMode
-                                    ? 'assets/images/box.svg'
-                                    : 'assets/images/box2.svg',
-                                height: 30.h,
-                                width: 30.w,
-                                fit: BoxFit.cover,
-                              ),
+                              child: box.imagePath.isNotEmpty
+                                  ? Image.file(
+                                      File(box.imagePath),
+                                      height: 10.h,
+                                      width: 30.w,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : SvgPicture.asset(
+                                      isLightMode
+                                          ? 'assets/images/box.svg'
+                                          : 'assets/images/box2.svg',
+                                      height: 30.h,
+                                      width: 30.w,
+                                      fit: BoxFit.cover,
+                                    ),
                             ),
                           ],
                         ),

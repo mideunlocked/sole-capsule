@@ -199,11 +199,12 @@ class BoxProvider with ChangeNotifier {
     await updateBox(id: id);
   }
 
-  void editBoxName(
-      {required String id,
-      required String newName,
-      required BuildContext context,
-      required GlobalKey<ScaffoldMessengerState> scaffoldKey}) async {
+  void editBoxName({
+    required String id,
+    required String newName,
+    required BuildContext context,
+    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+  }) async {
     Box box = _boxes.firstWhere((box) => box.id == id);
 
     box.changeBoxName(newName);
@@ -237,5 +238,17 @@ class BoxProvider with ChangeNotifier {
     await getBoxes();
 
     notifyListeners();
+  }
+
+  Future<void> updatePodImage({
+    required String imagePath,
+    required String id,
+  }) async {
+    Box box = _boxes.firstWhere((box) => box.id == id);
+
+    box.updatePodImage(imagePath);
+
+    notifyListeners();
+    await updateBox(id: id);
   }
 }
