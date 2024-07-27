@@ -25,9 +25,9 @@ dependencies:
   flutter_dotenv: ^5.1.0
   http: ^1.2.1
   flutter_colorpicker: ^1.1.0
-  wifi_scan: ^0.4.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  wifi_iot: ^0.3.19
 
   #state management
   provider: ^6.1.1
@@ -40,6 +40,7 @@ dependencies:
   cloud_firestore: ^4.14.0
   google_sign_in: ^6.1.5
   firebase_app_check: ^0.2.1
+  permission_handler: ^11.3.1
 
 dev_dependencies:
   flutter_test:

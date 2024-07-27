@@ -66,8 +66,7 @@ class _ConnectWifiScreenState extends State<ConnectWifiScreen> {
                   title: 'Connect Wi-Fi',
                 ),
                 Expanded(
-                  child:
-                      Consumer<WifiProvider>(builder: (context, wifiPvr, _) {
+                  child: Consumer<WifiProvider>(builder: (context, wifiPvr, _) {
                     return Stepper(
                       // margin: EdgeInsets.only(bottom: 10.h),
                       controlsBuilder: (context, details) =>
@@ -89,7 +88,7 @@ class _ConnectWifiScreenState extends State<ConnectWifiScreen> {
                       ),
                       connectorColor:
                           const WidgetStatePropertyAll(AppColors.primary),
-          
+
                       steps: [
                         Step(
                           title: const Text('Scan'),
@@ -142,13 +141,13 @@ class _ConnectWifiScreenState extends State<ConnectWifiScreen> {
                                         children: [
                                           InkWell(
                                             onTap: () {
-                                              getWifiId(e.ssid);
+                                              getWifiId(e.ssid ?? '');
                                               wifiPvr.next();
                                             },
                                             child: Padding(
                                               padding: EdgeInsets.symmetric(
                                                   vertical: 2.h),
-                                              child: Text(e.ssid),
+                                              child: Text(e.ssid ?? ''),
                                             ),
                                           ),
                                           const Divider(),
@@ -263,8 +262,10 @@ class _ConnectWifiScreenState extends State<ConnectWifiScreen> {
   void scanAvailableWifi() async {
     var wifiPvr = Provider.of<WifiProvider>(context, listen: false);
 
-    await wifiPvr.startWifiScan();
-    await wifiPvr.getScannedWifi();
+    await wifiPvr.loadWifiList(
+      context: context,
+      scaffoldKey: _scaffoldKey,
+    );
   }
 
   void resetStepper() {

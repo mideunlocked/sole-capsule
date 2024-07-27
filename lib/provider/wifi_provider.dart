@@ -1,14 +1,16 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:wifi_scan/wifi_scan.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:sole_capsule/helpers/scaffold_messenger_helper.dart';
+import 'package:wifi_iot/wifi_iot.dart';
 
 class WifiProvider with ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  final List<WiFiAccessPoint> _wifiList = [];
-  List<WiFiAccessPoint> get wifiList => _wifiList;
+  List<WifiNetwork> _wifiList = [];
+  List<WifiNetwork> get wifiList => _wifiList;
 
   int _currentStep = 0;
   int get currentStep => _currentStep;
@@ -42,42 +44,51 @@ class WifiProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> startWifiScan() async {
-    _loading();
-
-    final can = await WiFiScan.instance.canStartScan(askPermissions: true);
-
-    print('Wifi scan status: $can');
-
-    switch (can) {
-      case CanStartScan.yes:
-        await WiFiScan.instance.startScan();
-
-        next();
-        _loaded();
-      default:
-        _loaded();
+  Future<void> _requestPermissions() async {
+    var status = await Permission.location.status;
+    if (!status.isGranted) {
+      await Permission.location.request();
     }
+
+    print('Location status: $status');
   }
 
-  Future<void> getScannedWifi() async {
-    final can =
-        await WiFiScan.instance.canGetScannedResults(askPermissions: true);
-    switch (can) {
-      case CanGetScannedResults.yes:
-        final accessPoints = await WiFiScan.instance.getScannedResults();
+  Future<void> loadWifiList({
+    required BuildContext context,
+    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+  }) async {
+    try {
+      await _requestPermissions();
 
-        if (accessPoints.isNotEmpty) {
-          for (WiFiAccessPoint wAP in accessPoints) {
-            _wifiList.add(wAP);
-          }
+      bool isConnected = await WiFiForIoTPlugin.isEnabled();
+
+      print('Wifi is enabled: $isConnected');
+
+      if (isConnected) {
+        List<WifiNetwork> wifiNetworks = await WiFiForIoTPlugin.loadWifiList();
+
+        _wifiList = wifiNetworks;
+
+        print(_wifiList);
+        notifyListeners();
+      } else {
+        if (context.mounted) {
+          showScaffoldMessenger(
+            scaffoldKey: scaffoldKey,
+            context: context,
+            textContent: 'Wifi not enabled for SOLE',
+          );
         }
-
-        _loaded();
-        break;
-      default:
-        _loaded();
-        break;
+      }
+    } catch (e) {
+      print(e);
+      if (context.mounted) {
+        showScaffoldMessenger(
+          scaffoldKey: scaffoldKey,
+          context: context,
+          textContent: 'Wifi not enabled for SOLE',
+        );
+      }
     }
   }
 }

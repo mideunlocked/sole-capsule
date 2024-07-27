@@ -32,6 +32,10 @@
 	<string>This app needs access to device photo library</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app requires access to the camera to allow users to take photos.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs access to your location to scan for Wi-Fi networks.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app requires user location for wifi access</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
