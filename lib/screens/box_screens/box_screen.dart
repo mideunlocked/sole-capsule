@@ -62,86 +62,92 @@ class _BoxScreenState extends State<BoxScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 3.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Stack(
-                                  alignment: Alignment.center,
+                        Padding(
+                          padding: EdgeInsets.only(right: 5.w),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                width: 30.w,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    SizedBox(
-                                      width: 30.w,
-                                      child: Text(
-                                        box.name,
-                                        style: titleLarge?.copyWith(
-                                          color: isLightMode
-                                              ? Colors.grey.shade300
-                                              : Colors.white24,
-                                          fontSize: 30.sp,
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 5.w),
-                                      child: SizedBox(
-                                        width: 30.w,
-                                        child: Text(
-                                          box.name.splitMapJoin(
-                                            ' ',
-                                            onMatch: (p0) => '\n',
+                                    Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width: 30.w,
+                                          child: Text(
+                                            box.name,
+                                            style: titleLarge?.copyWith(
+                                              color: isLightMode
+                                                  ? Colors.grey.shade300
+                                                  : Colors.white24,
+                                              fontSize: 30.sp,
+                                            ),
                                           ),
-                                          style: textTheme.titleSmall,
-                                          softWrap: true,
-                                          overflow: TextOverflow.clip,
                                         ),
-                                      ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 5.w),
+                                          child: SizedBox(
+                                            width: 30.w,
+                                            child: Text(
+                                              box.name.splitMapJoin(
+                                                ' ',
+                                                onMatch: (p0) => '\n',
+                                              ),
+                                              style: textTheme.titleSmall,
+                                              softWrap: true,
+                                              overflow: TextOverflow.clip,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
+                                    SizedBox(height: 2.h),
+                                    Consumer<BoxProvider>(
+                                        builder: (context, boxPvr, _) {
+                                      return CupertinoSwitch(
+                                        value: box.isOpen,
+                                        activeColor: isLightMode
+                                            ? Colors.black
+                                            : Colors.white,
+                                        thumbColor: isLightMode
+                                            ? Colors.white
+                                            : Colors.black,
+                                        trackColor:
+                                            isLightMode ? null : Colors.grey,
+                                        onChanged: (_) async =>
+                                            await boxPvr.toggleBoxOpen(
+                                                id: box.id,
+                                                context: context,
+                                                scaffoldKey: _scaffoldKey,
+                                                status: box.isOpen ? 0 : 1),
+                                      );
+                                    }),
                                   ],
                                 ),
-                                SizedBox(height: 2.h),
-                                Consumer<BoxProvider>(
-                                    builder: (context, boxPvr, _) {
-                                  return CupertinoSwitch(
-                                    value: box.isOpen,
-                                    activeColor: isLightMode
-                                        ? Colors.black
-                                        : Colors.white,
-                                    thumbColor: isLightMode
-                                        ? Colors.white
-                                        : Colors.black,
-                                    trackColor:
-                                        isLightMode ? null : Colors.grey,
-                                    onChanged: (_) async =>
-                                        await boxPvr.toggleBoxOpen(
-                                            id: box.id,
-                                            context: context,
-                                            scaffoldKey: _scaffoldKey,
-                                            status: box.isOpen ? 0 : 1),
-                                  );
-                                }),
-                              ],
-                            ),
-                            Hero(
-                              tag: box.id,
-                              child: box.imagePath.isNotEmpty
-                                  ? Image.file(
-                                      File(box.imagePath),
-                                      height: 10.h,
-                                      width: 30.w,
-                                      fit: BoxFit.cover,
-                                    )
-                                  : SvgPicture.asset(
-                                      isLightMode
-                                          ? 'assets/images/box.svg'
-                                          : 'assets/images/box2.svg',
-                                      height: 30.h,
-                                      width: 30.w,
-                                      fit: BoxFit.cover,
-                                    ),
-                            ),
-                          ],
+                              ),
+                              Hero(
+                                tag: box.id,
+                                child: box.imagePath.isNotEmpty
+                                    ? Image.file(
+                                        File(box.imagePath),
+                                        height: 20.h,
+                                        width: 30.w,
+                                        fit: BoxFit.scaleDown,
+                                      )
+                                    : SvgPicture.asset(
+                                        isLightMode
+                                            ? 'assets/images/box.svg'
+                                            : 'assets/images/box2.svg',
+                                        height: 25.h,
+                                        width: 30.w,
+                                        fit: BoxFit.cover,
+                                      ),
+                              ),
+                            ],
+                          ),
                         ),
                         SizedBox(height: 5.h),
                         PaddedScreenWidget(

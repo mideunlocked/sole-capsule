@@ -65,9 +65,19 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
                     SizedBox(height: 4.h),
                     CustomTextField(
                       controller: boxNameCtr,
-                      title: 'Box Name',
+                      title: 'Pod Name',
                       hint: 'Box 1',
                       inputAction: TextInputAction.done,
+                    ),
+                    SizedBox(height: 1.5.h),
+                    InkWell(
+                      onTap: () {},
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text('Select pod font'),
+                        ],
+                      ),
                     ),
                     SizedBox(height: 3.h),
                     ConnectBlueButton(
