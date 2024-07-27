@@ -9,6 +9,7 @@ import '../../widgets/box_widgets/add_box_tile.dart';
 import '../../widgets/box_widgets/box_tile.dart';
 import '../../widgets/general_widgets/custom_progress_inidicator.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
+import '../../widgets/general_widgets/sole_app_icon.dart';
 import '../notification_screen.dart';
 
 class HomeSceen extends StatefulWidget {
@@ -72,6 +73,7 @@ class _HomeSceenState extends State<HomeSceen> {
                     })
                   ],
                 ),
+                const SoleAppIcon(),
                 IconButton(
                   icon: const Icon(
                     Icons.notifications_none_rounded,

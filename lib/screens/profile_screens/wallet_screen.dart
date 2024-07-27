@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../provider/theme_mode_provider.dart';
-import '../../widgets/general_widgets/custom_back_button.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
 
 class WalletScreen extends StatelessWidget {
@@ -216,9 +215,9 @@ class WalletAppBar extends StatelessWidget {
             children: [
               const Row(
                 children: [
-                  CustomBackButton(
-                    isLight: true,
-                  ),
+                  // CustomBackButton(
+                  //   isLight: true,
+                  // ),
                 ],
               ),
               Text(

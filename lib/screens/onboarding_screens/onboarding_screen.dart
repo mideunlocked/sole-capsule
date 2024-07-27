@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../helpers/onboarding_data.dart';
+import '../../provider/theme_mode_provider.dart';
 import '../../widgets/general_widgets/app_name.dart';
 import '../../widgets/general_widgets/custom_button.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
@@ -21,6 +23,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   int currentIndex = 0;
 
   final pageController = PageController(initialPage: 0);
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(Duration.zero, resetThemeMode);
+  }
 
   @override
   void dispose() {
@@ -45,8 +54,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Expanded(
               child: PageView.builder(
                 controller: pageController,
-                onPageChanged: (value) =>
-                    setState(() => currentIndex = value),
+                onPageChanged: (value) => setState(() => currentIndex = value),
                 itemCount: onboardingData.length,
                 itemBuilder: (ctx, index) => OnboardingWidget(
                   onboarding: onboardingData[index],
@@ -62,7 +70,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 itemCount: 3,
                 itemBuilder: (ctx, index) {
                   bool isCurrent = index == currentIndex;
-      
+
                   return OnboardingIndicator(isCurrent: isCurrent);
                 },
               ),
@@ -86,5 +94,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         ),
       ),
     );
+  }
+
+  void resetThemeMode() {
+    var thmPvr = Provider.of<ThemeModeProvider>(context, listen: false);
+
+    thmPvr.resetThemeMode();
   }
 }

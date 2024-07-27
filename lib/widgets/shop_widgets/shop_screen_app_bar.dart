@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 
+import '../general_widgets/sole_app_icon.dart';
+
 class ShoppingScreenAppBar extends StatelessWidget {
   const ShoppingScreenAppBar({
     super.key,
@@ -21,6 +23,7 @@ class ShoppingScreenAppBar extends StatelessWidget {
           'Shop',
           style: bodyLarge,
         ),
+        const SoleAppIcon(),
         InkWell(
           onTap: () => Navigator.pushNamed(
             context,
