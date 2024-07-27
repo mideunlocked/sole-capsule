@@ -64,8 +64,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
               ),
               Expanded(
                 child: PaddedScreenWidget(
-                  child: Consumer<OrderProvider>(
-                      builder: (context, orderPvr, _) {
+                  padTop: false,
+                  child:
+                      Consumer<OrderProvider>(builder: (context, orderPvr, _) {
                     return ListView(
                       children: currentTab == 0
                           ? orderPvr.orders
@@ -100,6 +101,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
   void getOrders() async {
     var orderPvr = Provider.of<OrderProvider>(context, listen: false);
 
-    await orderPvr.getOrders(scaffoldKey: _scaffoldKey, context: context,);
+    await orderPvr.getOrders(
+      scaffoldKey: _scaffoldKey,
+      context: context,
+    );
   }
 }

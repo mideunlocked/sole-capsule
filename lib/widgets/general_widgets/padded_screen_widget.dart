@@ -19,7 +19,7 @@ class PaddedScreenWidget extends StatelessWidget {
       padding: EdgeInsets.only(
         left: horizontal,
         right: horizontal,
-        top: padTop ? 4.h : 0,
+        top: padTop == true ? 4.h : 0,
       ),
       child: child,
     );
