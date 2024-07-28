@@ -8,26 +8,7 @@ import '../services/hive_service.dart';
 import 'ble_provider.dart';
 
 class BoxProvider with ChangeNotifier {
-  final List<Box> _boxes = [
-    // Box(
-    //   id: '0',
-    //   name: 'Nike Box',
-    //   isOpen: false,
-    //   isLightOn: false,
-    //   lightIntensity: 50,
-    //   isConnected: false,
-    //   lightColor: Colors.orange.value,
-    // ),
-    // Box(
-    //   id: '1',
-    //   name: 'Balenciaga Tripple S',
-    //   isOpen: false,
-    //   isLightOn: false,
-    //   lightIntensity: 50,
-    //   isConnected: false,
-    //   lightColor: Colors.white.value,
-    // ),
-  ];
+  final List<Box> _boxes = [];
 
   List<Box> get boxes => [..._boxes];
 
