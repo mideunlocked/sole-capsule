@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -27,6 +28,7 @@ class BoxTile extends StatelessWidget {
   Widget build(BuildContext context) {
     var tmPvr = Provider.of<ThemeModeProvider>(context, listen: false);
     bool isLightMode = tmPvr.isLight;
+    var borderRadius = BorderRadius.circular(20);
 
     return InkWell(
       onTap: () => Navigator.pushNamed(
@@ -35,6 +37,7 @@ class BoxTile extends StatelessWidget {
         arguments: box,
       ),
       onLongPress: () => pickPodImage(context),
+      borderRadius: borderRadius,
       child: Consumer<BleProvider>(builder: (context, blePvr, child) {
         return Stack(
           alignment: Alignment.topRight,
@@ -46,7 +49,7 @@ class BoxTile extends StatelessWidget {
                         color: const Color(0xFFE4E4E4),
                       )
                     : null,
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: borderRadius,
                 color: isLightMode
                     ? const Color(0xFFF9F9F9)
                     : const Color(0xFF14191D),
@@ -80,6 +83,7 @@ class BoxTile extends StatelessWidget {
                           box.name,
                           softWrap: true,
                           overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.getFont(box.fontFamily),
                         ),
                       ),
                       Consumer<BoxProvider>(
@@ -113,6 +117,28 @@ class BoxTile extends StatelessWidget {
                 child: const Icon(
                   Icons.bluetooth_connected_rounded,
                   color: Colors.blue,
+                ),
+              ),
+            ),
+            Visibility(
+              visible: box.isLightOn == true,
+              replacement: const SizedBox.expand(),
+              child: Container(
+                height: 100.h,
+                width: 100.w,
+                decoration: BoxDecoration(
+                  borderRadius: borderRadius,
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    stops: const [0.0, 0.3],
+                    colors: [
+                      isLightMode ? Colors.amber : Colors.amber.shade100,
+                      isLightMode
+                          ? const Color(0xFFF9F9F9).withOpacity(0.1)
+                          : Colors.transparent,
+                    ],
+                  ),
                 ),
               ),
             ),

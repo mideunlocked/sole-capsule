@@ -22,6 +22,7 @@ class BoxAdapter extends TypeAdapter<Box> {
       isOpen: fields[2] as bool,
       imagePath: fields[7] as String,
       isLightOn: fields[3] as bool,
+      fontFamily: fields[8] as String,
       lightColor: fields[6] as int,
       isConnected: fields[4] as bool,
       lightIntensity: fields[5] as double,
@@ -31,7 +32,7 @@ class BoxAdapter extends TypeAdapter<Box> {
   @override
   void write(BinaryWriter writer, Box obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -47,7 +48,9 @@ class BoxAdapter extends TypeAdapter<Box> {
       ..writeByte(6)
       ..write(obj.lightColor)
       ..writeByte(7)
-      ..write(obj.imagePath);
+      ..write(obj.imagePath)
+      ..writeByte(8)
+      ..write(obj.fontFamily);
   }
 
   @override

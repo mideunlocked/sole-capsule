@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../helpers/auth_helper.dart';
+import '../../services/vibrate.dart';
 import '../../widgets/general_widgets/app_name.dart';
 import '../app.dart';
 import 'onboarding_screen.dart';
@@ -19,6 +20,8 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+
+    Vibrate.vibrate(duration: 3);
 
     navigateToNextScreen();
   }

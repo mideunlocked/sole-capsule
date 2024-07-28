@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:google_fonts/google_fonts.dart';
 
+import '../../helpers/fonts_helper.dart';
 import '../../models/box.dart';
 import '../../provider/ble_provider.dart';
 import '../../provider/box_provider.dart';
@@ -35,6 +37,7 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
     lightIntensity: 50,
     isConnected: false,
     imagePath: '',
+    fontFamily: '',
     lightColor: Colors.white.value,
   );
 
@@ -47,6 +50,9 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
 
   final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
       GlobalKey<ScaffoldMessengerState>();
+
+  String fontFamily = '';
+  void getFontFamily(String newFont) => setState(() => fontFamily = newFont);
 
   @override
   Widget build(BuildContext context) {
@@ -70,14 +76,15 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
                       inputAction: TextInputAction.done,
                     ),
                     SizedBox(height: 1.5.h),
-                    InkWell(
-                      onTap: () {},
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text('Select pod font'),
-                        ],
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        InkWell(
+                          onTap: fontFamilySelector,
+                          borderRadius: BorderRadius.circular(10),
+                          child: const Text('Select pod font'),
+                        ),
+                      ],
                     ),
                     SizedBox(height: 3.h),
                     ConnectBlueButton(
@@ -121,6 +128,27 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
     );
   }
 
+  void fontFamilySelector() {
+    var tmPvr = Provider.of<ThemeModeProvider>(context, listen: false);
+    bool isLight = tmPvr.isLight;
+    Color bgColor = isLight
+        ? Theme.of(context).scaffoldBackgroundColor
+        : const Color(0xFF101417);
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: bgColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      builder: (ctx) => FontsDisplaySheet(
+        name: boxNameCtr.text.trim(),
+        fontFamily: fontFamily,
+        getFont: getFontFamily,
+      ),
+    );
+  }
+
   void scanBluetoothDevices() async {
     var bleProvider = Provider.of<BleProvider>(context, listen: false);
 
@@ -152,12 +180,82 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
       isLightOn: false,
       lightIntensity: 50,
       imagePath: '',
+      fontFamily: fontFamily,
       isConnected: bleProvider.currentDevice != null,
       lightColor: Colors.white.value,
     );
 
     boxProvider.addNewBox(
       box: box,
+    );
+  }
+}
+
+class FontsDisplaySheet extends StatelessWidget {
+  const FontsDisplaySheet({
+    super.key,
+    required this.name,
+    required this.getFont,
+    required this.fontFamily,
+  });
+
+  final String name;
+  final String fontFamily;
+  final Function(String) getFont;
+
+  @override
+  Widget build(BuildContext context) {
+    var tmPvr = Provider.of<ThemeModeProvider>(context, listen: false);
+    bool isLight = tmPvr.isLight;
+    Color textColor = isLight ? Colors.black : Colors.white;
+
+    return SizedBox.expand(
+      child: PaddedScreenWidget(
+        padTop: false,
+        child: Column(
+          children: [
+            SizedBox(height: 2.h),
+            Text(
+              'Choose Font',
+              style: TextStyle(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            SizedBox(height: 1.h),
+            const Divider(),
+            Expanded(
+              child: ListView(
+                children: FontsHelper.titleFonts
+                    .map(
+                      (e) => Padding(
+                        padding: EdgeInsets.symmetric(vertical: 1.h),
+                        child: InkWell(
+                          onTap: () {
+                            getFont(e);
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            name.isEmpty ? 'Pod name' : name,
+                            style: GoogleFonts.getFont(
+                              e,
+                              color: fontFamily.isEmpty
+                                  ? textColor
+                                  : fontFamily == e
+                                      ? textColor
+                                      : textColor.withOpacity(0.3),
+                              fontSize: fontFamily == e ? 17.sp : 14.sp,
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
