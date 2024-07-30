@@ -83,7 +83,9 @@ class BoxTile extends StatelessWidget {
                           box.name,
                           softWrap: true,
                           overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.getFont(box.fontFamily),
+                          style: box.fontFamily.isEmpty
+                              ? null
+                              : GoogleFonts.getFont(box.fontFamily),
                         ),
                       ),
                       Consumer<BoxProvider>(

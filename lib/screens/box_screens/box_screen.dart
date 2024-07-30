@@ -77,6 +77,8 @@ class _BoxScreenState extends State<BoxScreen> {
                     builder: (context, tmPvr, child) {
                   bool isLightMode = tmPvr.isLight;
 
+                  bool noCustomFont = box.fontFamily.isEmpty;
+
                   return Column(
                     children: [
                       SizedBox(height: 2.h),
@@ -111,14 +113,24 @@ class _BoxScreenState extends State<BoxScreen> {
                                                 width: 30.w,
                                                 child: Text(
                                                   box.name,
-                                                  style: GoogleFonts.getFont(
-                                                          box.fontFamily)
-                                                      .copyWith(
-                                                    color: isLightMode
-                                                        ? Colors.grey.shade300
-                                                        : Colors.white24,
-                                                    fontSize: 30.sp,
-                                                  ),
+                                                  style: noCustomFont
+                                                      ? textTheme.titleLarge
+                                                          ?.copyWith(
+                                                          color: isLightMode
+                                                              ? Colors
+                                                                  .grey.shade300
+                                                              : Colors.white24,
+                                                          fontSize: 30.sp,
+                                                        )
+                                                      : GoogleFonts.getFont(
+                                                              box.fontFamily)
+                                                          .copyWith(
+                                                          color: isLightMode
+                                                              ? Colors
+                                                                  .grey.shade300
+                                                              : Colors.white24,
+                                                          fontSize: 30.sp,
+                                                        ),
                                                 ),
                                               ),
                                               Padding(
@@ -131,14 +143,16 @@ class _BoxScreenState extends State<BoxScreen> {
                                                       ' ',
                                                       onMatch: (p0) => '\n',
                                                     ),
-                                                    style: GoogleFonts.getFont(
-                                                            box.fontFamily)
-                                                        .copyWith(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 20.sp,
-                                                      // color: Colors.black,
-                                                    ),
+                                                    style: noCustomFont
+                                                        ? textTheme.titleSmall
+                                                        : GoogleFonts.getFont(
+                                                                box.fontFamily)
+                                                            .copyWith(
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontSize: 20.sp,
+                                                            // color: Colors.black,
+                                                          ),
                                                     softWrap: true,
                                                     overflow: TextOverflow.clip,
                                                   ),

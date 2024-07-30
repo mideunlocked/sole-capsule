@@ -85,7 +85,7 @@ class _HomeSceenState extends State<HomeSceen> {
                 ),
               ],
             ),
-            // SizedBox(height: 2.h),
+            SizedBox(height: 3.h),
             Expanded(
               child: isLoading == true
                   ? const Center(child: CustomProgressIndicator())
@@ -97,6 +97,7 @@ class _HomeSceenState extends State<HomeSceen> {
                         crossAxisSpacing: 5.w,
                         childAspectRatio: 0.9,
                       ),
+                      padding: EdgeInsets.zero,
                       itemCount: boxProvider.boxes.length + 1,
                       itemBuilder: (ctx, index) =>
                           index == boxProvider.boxes.length
