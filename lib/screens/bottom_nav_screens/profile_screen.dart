@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../models/user_details.dart';
 import '../../models/users.dart';
+import '../../provider/biometrics_provider.dart';
 import '../../provider/theme_mode_provider.dart';
 import '../../provider/user_provider.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
@@ -30,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
     return Consumer<UserProvider>(builder: (context, user, child) {
       Users userData = user.user;
       UserDetails userDetails = userData.userDetails;
-    
+
       return Column(
         children: [
           SizedBox(height: 2.h),
@@ -56,7 +57,7 @@ class ProfileScreen extends StatelessWidget {
                         Consumer<ThemeModeProvider>(
                             builder: (context, tmPvr, child) {
                           bool isLightMode = tmPvr.isLight;
-            
+
                           return Text(
                             userDetails.email,
                             style: bodySmall?.copyWith(
@@ -72,7 +73,7 @@ class ProfileScreen extends StatelessWidget {
                   Consumer<ThemeModeProvider>(
                     builder: (context, tmPvr, child) {
                       bool isLightMode = tmPvr.isLight;
-            
+
                       return Container(
                         width: 100.w,
                         padding: EdgeInsets.symmetric(
@@ -107,7 +108,8 @@ class ProfileScreen extends StatelessWidget {
                     title: 'Wallet',
                     routeName: WalletScreen.routeName,
                     listTileStyle: listTileStyle,
-                  ),ProfileRouteListTile(
+                  ),
+                  ProfileRouteListTile(
                     icon: 'orders',
                     title: 'My Orders',
                     routeName: OrdersScreen.routeName,
@@ -121,7 +123,7 @@ class ProfileScreen extends StatelessWidget {
                     trailing: Consumer<ThemeModeProvider>(
                         builder: (context, tmPvr, child) {
                       bool isLightMode = tmPvr.isLight;
-            
+
                       return CupertinoSwitch(
                         value: !isLightMode,
                         onChanged: (value) => tmPvr.toggleThemeMode(),
@@ -131,10 +133,38 @@ class ProfileScreen extends StatelessWidget {
                       );
                     }),
                     contentPadding: EdgeInsets.symmetric(
-                      vertical: 1.5.h,
+                      vertical: 1.h,
                       horizontal: 5.w,
                     ),
                   ),
+                  ListTile(
+                    title: Text(
+                      'Biometrics',
+                      style: listTileStyle,
+                    ),
+                    trailing: Consumer<ThemeModeProvider>(
+                        builder: (context, tmPvr, child) {
+                      bool isLightMode = tmPvr.isLight;
+
+                      var bioPvr = Provider.of<BiometricsProvider>(context,
+                          listen: false);
+
+                      return CupertinoSwitch(
+                        value: bioPvr.bioEnabled,
+                        onChanged: (value) async {
+                          await bioPvr.setBioAuthStatus();
+                        },
+                        activeColor: isLightMode ? Colors.black : Colors.white,
+                        thumbColor: isLightMode ? Colors.white : Colors.black,
+                        trackColor: isLightMode ? null : Colors.grey,
+                      );
+                    }),
+                    contentPadding: EdgeInsets.symmetric(
+                      vertical: 1.h,
+                      horizontal: 5.w,
+                    ),
+                  ),
+                  SizedBox(height: 5.h),
                 ],
               ),
             ),

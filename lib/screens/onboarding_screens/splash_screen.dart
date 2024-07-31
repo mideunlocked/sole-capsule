@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../helpers/auth_helper.dart';
+import '../../provider/biometrics_provider.dart';
 import '../../services/vibrate.dart';
 import '../../widgets/general_widgets/app_name.dart';
 import '../app.dart';
+import '../auth_screens/bio_pass_screen.dart';
 import 'onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,10 +26,21 @@ class SplashScreenState extends State<SplashScreen> {
 
     Vibrate.vibrate(duration: 3);
 
+    Future.delayed(Duration.zero, () async {
+      var bioPvr = Provider.of<BiometricsProvider>(context, listen: false);
+
+      bioPvr.checkLocalAuthSupported();
+      await bioPvr.checkBiometric();
+      await bioPvr.checkAvailableBiometrics();
+      await bioPvr.getBioStatus();
+    });
+
     navigateToNextScreen();
   }
 
   void navigateToNextScreen() async {
+    var bioPvr = Provider.of<BiometricsProvider>(context, listen: false);
+
     await Future.delayed(
       const Duration(seconds: 3),
       () {
@@ -35,7 +49,11 @@ class SplashScreenState extends State<SplashScreen> {
 
         Navigator.pushNamedAndRemoveUntil(
             context,
-            isLogged ? App.rouetName : OnboardingScreen.routeName,
+            isLogged
+                ? bioPvr.bioEnabled
+                    ? BioPassScreen.routeName
+                    : App.rouetName
+                : OnboardingScreen.routeName,
             (route) => false);
       },
     );

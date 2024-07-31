@@ -36,6 +36,8 @@
 	<string>This app needs access to your location to scan for Wi-Fi networks.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>This app requires user location for wifi access</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>This app requires biometrics for further security on the app.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import 'firebase_options.dart';
+import 'provider/biometrics_provider.dart';
 import 'services/firebase_api.dart';
 import 'helpers/routes.dart';
 import 'services/hive_service.dart';
@@ -33,7 +34,7 @@ Future<void> main() async {
 
   await FirebaseApi().initNotification();
 
-  await SaveSharedPref().initSharedPref();
+  await SaveSharedPref.initSharedPref();
 
   await dotenv.load(fileName: 'assets/.env');
   Stripe.publishableKey = dotenv.env['STRIPE_PUBLIC_KEY'] ?? '';
@@ -70,6 +71,7 @@ class MainApp extends StatelessWidget {
           ChangeNotifierProvider(create: (ctx) => NotificationProvider()),
           ChangeNotifierProvider(create: (ctx) => BleProvider()),
           ChangeNotifierProvider(create: (ctx) => WifiProvider()),
+          ChangeNotifierProvider(create: (ctx) => BiometricsProvider()),
         ],
         child: Consumer<ThemeModeProvider>(builder: (context, tmPvr, child) {
           tmPvr.setInitThemeMode();

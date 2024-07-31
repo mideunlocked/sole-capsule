@@ -1,11 +1,23 @@
-import 'box.dart';
+import 'package:hive/hive.dart';
+
+import 'box.dart' as box;
 import 'delivery_details.dart';
 import 'user_details.dart';
 
+part 'users.g.dart';
+
+@HiveType(typeId: 1)
 class Users {
+  @HiveField(0)
   final String id;
-  final List<Box> boxes;
+
+  @HiveField(1)
+  final List<box.Box> boxes;
+
+  @HiveField(2)
   final UserDetails userDetails;
+
+  @HiveField(3)
   final DeliveryDetails deliveryDetails;
 
   const Users({
@@ -17,9 +29,9 @@ class Users {
 
   factory Users.fromJson({required Map<String, dynamic> json}) {
     List<dynamic> parsedBoxes = json['boxes'] as List<dynamic>;
-    List<Box> boxes = parsedBoxes
+    List<box.Box> boxes = parsedBoxes
         .map(
-          (e) => Box.fromJson(json: e),
+          (e) => box.Box.fromJson(json: e),
         )
         .toList();
 

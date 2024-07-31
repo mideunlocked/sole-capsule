@@ -11,9 +11,7 @@ class ThemeModeProvider with ChangeNotifier {
   ThemeData get themeMode => _themeMode;
 
   void setInitThemeMode() async {
-    SaveSharedPref sharedPref = SaveSharedPref();
-
-    _isLight = await sharedPref.getThemeMode();
+    _isLight = await SaveSharedPref.getThemeMode();
 
     if (_isLight == true) {
       _themeMode = AppThemes.lightMode;
@@ -29,15 +27,13 @@ class ThemeModeProvider with ChangeNotifier {
 
     notifyListeners();
 
-    SaveSharedPref sharedPref = SaveSharedPref();
-
     if (_isLight == true) {
       _themeMode = AppThemes.lightMode;
-      await sharedPref.setThemeMode(true);
+      await SaveSharedPref.setThemeMode(true);
       setInitThemeMode();
     } else {
       _themeMode = AppThemes.darkMode;
-      await sharedPref.setThemeMode(false);
+      await SaveSharedPref.setThemeMode(false);
       setInitThemeMode();
     }
 
@@ -48,9 +44,7 @@ class ThemeModeProvider with ChangeNotifier {
     _isLight = true;
     _themeMode = AppThemes.lightMode;
 
-    SaveSharedPref sharedPref = SaveSharedPref();
-
-    await sharedPref.setThemeMode(true);
+    await SaveSharedPref.setThemeMode(true);
     setInitThemeMode();
 
     notifyListeners();

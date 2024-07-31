@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../screens/auth_screens/bio_pass_screen.dart';
 import '../screens/auth_screens/create_account_screen.dart';
 import '../screens/auth_screens/forgot_password_screen.dart';
 import '../screens/auth_screens/login_screen.dart';
@@ -48,4 +49,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   NotificationScreen.routeName: (ctx) => const NotificationScreen(),
   OrderDetailsScreen.routeName: (ctx) => const OrderDetailsScreen(),
   ConnectWifiScreen.routeName: (ctx) => const ConnectWifiScreen(),
+  BioPassScreen.routeName: (ctx) => const BioPassScreen(),
 };

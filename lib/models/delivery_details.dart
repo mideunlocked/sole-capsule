@@ -1,11 +1,31 @@
+import 'package:hive/hive.dart';
+
+part 'delivery_details.g.dart';
+
+@HiveType(typeId: 3)
 class DeliveryDetails {
+  @HiveField(0)
   final String name;
+
+  @HiveField(1)
   final String city;
+
+  @HiveField(2)
   final String state;
+
+  @HiveField(3)
   final String email;
+
+  @HiveField(4)
   final String number;
+
+  @HiveField(5)
   final String country;
+
+  @HiveField(6)
   final String pinCode;
+
+  @HiveField(7)
   final String address;
 
   const DeliveryDetails({
