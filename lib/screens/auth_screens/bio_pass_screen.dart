@@ -81,6 +81,10 @@ class _BioPassScreenState extends State<BioPassScreen> {
   void authenticate() async {
     var bioPvr = Provider.of<BiometricsProvider>(context, listen: false);
 
+    await bioPvr.checkBiometric();
+    await bioPvr.checkAvailableBiometrics();
+    await bioPvr.getBioStatus();
+
     availableBiometrics = bioPvr.biometricsTypes;
 
     switch (availableBiometrics?.first) {
