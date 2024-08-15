@@ -10,5 +10,5 @@ class AppConstants {
   static const String personIcon = 'assets/icons/person.svg';
 
   // api keys
-  static const String removeBgKey = 'AUox8wCUfNeujeg57iLnS52Y';
+  static const String removeBgKey = '6ZQYrLayTvcSEEPEHuvfSRad';
 }
