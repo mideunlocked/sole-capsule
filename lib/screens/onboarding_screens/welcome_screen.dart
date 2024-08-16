@@ -64,7 +64,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 1.h),
                   const Text(
-                    'It\'s time to simplify and enhance your home automation experience.',
+                    'It\'s time to put your favorite Pair on Display',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black54,
