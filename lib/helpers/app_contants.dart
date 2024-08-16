@@ -1,8 +1,8 @@
 class AppConstants {
   //onboarding constants
-  static const String onboarding1 = 'assets/images/1.svg';
-  static const String onboarding2 = 'assets/images/2.svg';
-  static const String onboarding3 = 'assets/images/3.svg';
+  static const String onboarding1 = 'assets/images/0.svg';
+  static const String onboarding2 = 'assets/images/onboarding/onboard.svg';
+  static const String onboarding3 = 'assets/images/onboarding/onboard2.svg';
   static const String onboarding4 = 'assets/images/4.svg';
 
   // icons

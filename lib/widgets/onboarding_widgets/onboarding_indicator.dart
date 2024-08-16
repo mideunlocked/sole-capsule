@@ -1,25 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../helpers/app_colors.dart';
-
 class OnboardingIndicator extends StatelessWidget {
   const OnboardingIndicator({
     super.key,
-    required this.isCurrent,
+    required this.index,
+    required this.currentIndex,
   });
 
-  final bool isCurrent;
+  final int index;
+  final int currentIndex;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 0.5.h,
-      width: 12.w,
-      margin: EdgeInsets.only(right: 1.w),
-      decoration: BoxDecoration(
-        color: isCurrent ? AppColors.primary : const Color(0xFFE3E3E3),
-        borderRadius: BorderRadius.circular(5),
+    bool isCurrent = index == currentIndex;
+
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 1.5.w),
+      child: Icon(
+        Icons.circle_rounded,
+        color: index == 0 && isCurrent
+            ? isCurrent
+                ? Colors.white
+                : Colors.white60
+            : isCurrent
+                ? Colors.black
+                : Colors.black38,
+        size: 10.sp,
       ),
     );
   }

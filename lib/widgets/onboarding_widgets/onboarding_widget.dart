@@ -9,35 +9,49 @@ class OnboardingWidget extends StatelessWidget {
   const OnboardingWidget({
     super.key,
     required this.onboarding,
+    required this.isColorOpposite,
   });
 
   final Onboarding onboarding;
+  final bool isColorOpposite;
 
   @override
   Widget build(BuildContext context) {
     var of = Theme.of(context);
     var textTheme = of.textTheme;
     var titleMedium = textTheme.titleMedium;
-    var sizedBox = SizedBox(height: 5.h);
 
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SvgPicture.asset(onboarding.illustration),
-        sizedBox,
-        SizedBox(height: 3.h),
+        SizedBox(height: 8.h),
+        SizedBox(
+          height: 35.h,
+          child: onboarding.illustration.contains('0')
+              ? SizedBox(
+                  height: 30.h,
+                )
+              : Center(
+                  child: SvgPicture.asset(
+                  onboarding.illustration,
+                  fit: BoxFit.cover,
+                )),
+        ),
+        SizedBox(height: 10.h),
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               onboarding.title.first,
               style: titleMedium?.copyWith(
-                color: AppColors.primary,
+                color: isColorOpposite ? Colors.white : AppColors.primary,
               ),
             ),
             Text(
               onboarding.title.last,
               style: titleMedium?.copyWith(
                 fontWeight: FontWeight.w500,
-                color: Colors.black,
+                color: isColorOpposite ? Colors.white60 : Colors.black,
               ),
             ),
           ],
@@ -45,8 +59,9 @@ class OnboardingWidget extends StatelessWidget {
         SizedBox(height: 1.h),
         Text(
           onboarding.subtitle,
-          style: const TextStyle(
-            color: Colors.black54,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: isColorOpposite ? Colors.white60 : Colors.black54,
           ),
         ),
       ],
