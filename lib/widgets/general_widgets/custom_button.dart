@@ -14,18 +14,26 @@ class CustomButton extends StatelessWidget {
     this.isLoading = false,
     this.icon,
     this.customWidget,
+    this.isBoxed = false,
+    this.width,
+    this.isBordered,
+    this.fontBold,
   });
 
+  final bool? isBordered;
+  final bool? fontBold;
   final Widget? customWidget;
   final Function()? onTap;
   final bool isLoading;
   final IconData? icon;
   final String? label;
+  final bool? isBoxed;
   final Color color;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
-    var borderRadius = BorderRadius.circular(30);
+    var borderRadius = BorderRadius.circular(isBoxed != null ? 10 : 30);
     bool isNull = onTap == null;
 
     return Consumer<ThemeModeProvider>(
@@ -33,9 +41,12 @@ class CustomButton extends StatelessWidget {
         bool isLightMode = tmPvr.isLight;
 
         return Container(
-          width: 100.w,
+          width: width ?? 100.w,
           height: 6.h,
           decoration: BoxDecoration(
+            border: isBordered == true
+                ? Border.all(color: Colors.black, width: 2)
+                : null,
             borderRadius: borderRadius,
             color: isLightMode
                 ? color.withOpacity(isNull ? 0.2 : 1)
@@ -78,10 +89,11 @@ class CustomButton extends StatelessWidget {
                           Text(
                             label ?? '',
                             style: TextStyle(
-                              color: color == const Color(0xFF000218)
-                                  ? Colors.white
-                                  : null,
-                            ),
+                                color: color == const Color(0xFF000218)
+                                    ? Colors.white
+                                    : null,
+                                fontWeight:
+                                    fontBold == true ? FontWeight.w600 : null),
                           ),
                         ],
                       ),

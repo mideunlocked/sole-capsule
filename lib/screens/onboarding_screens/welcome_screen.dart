@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sizer/sizer.dart';
+import 'package:sole_capsule/widgets/general_widgets/padded_screen_widget.dart';
 
-import '../../helpers/app_colors.dart';
-import '../../helpers/app_contants.dart';
-import '../../widgets/general_widgets/app_name.dart';
 import '../../widgets/general_widgets/custom_button.dart';
-import '../../widgets/general_widgets/padded_screen_widget.dart';
+import '../auth_screens/create_account_screen.dart';
+import '../auth_screens/login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   static const routeName = '/WelcomeScreen';
@@ -15,69 +13,93 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var sizedBox = SizedBox(height: 5.h);
     var of = Theme.of(context);
     var textTheme = of.textTheme;
     var titleMedium = textTheme.titleMedium;
 
     return Scaffold(
-      body: PaddedScreenWidget(
-        child: Column(
-          children: [
-            sizedBox,
-            AppName(
-              size: 20.sp,
+      backgroundColor: Colors.white,
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          SizedBox(
+            height: 100.h,
+            width: 100.w,
+            child: Image.asset(
+              'assets/images/onboarding/sole_frame.png',
             ),
-            sizedBox,
-            sizedBox,
-            SvgPicture.asset(AppConstants.onboarding4),
-            sizedBox,
-            SizedBox(height: 3.h),
-            Row(
-              children: [
-                Text(
-                  'Welcome to ',
-                  style: titleMedium?.copyWith(
-                    color: AppColors.primary,
-                    fontSize: 21.sp,
-                  ),
-                ),
-                Text(
-                  'SoleCapsule',
-                  style: titleMedium?.copyWith(
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                    fontSize: 21.sp,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 1.h),
-            const Text(
-              'It\'s time to simplify and enhance your home automation experience.',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.black54,
+          ),
+          Container(
+            width: 100.w,
+            height: 35.h,
+            decoration: const BoxDecoration(
+              color: Color(0xFFF1F1F1),
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(20),
               ),
             ),
-            sizedBox,
-            CustomButton(
-              onTap: () => Navigator.pushNamed(
-                context,
-                '/CreateAccountScreen',
+            child: PaddedScreenWidget(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Welcome to ',
+                        style: titleMedium?.copyWith(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                          fontSize: 21.sp,
+                        ),
+                      ),
+                      Text(
+                        'SoleCapsule',
+                        style: titleMedium?.copyWith(
+                          color: Colors.black,
+                          fontSize: 21.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 1.h),
+                  const Text(
+                    'It\'s time to simplify and enhance your home automation experience.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.black54,
+                    ),
+                  ),
+                  SizedBox(height: 5.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomButton(
+                        onTap: () =>
+                            Navigator.pushNamed(context, LoginScreen.routeName),
+                        isBoxed: true,
+                        width: 42.w,
+                        label: 'Log In',
+                        fontBold: true,
+                      ),
+                      CustomButton(
+                        onTap: () => Navigator.pushNamed(
+                            context, CreateAccountScreen.routeName),
+                        isBoxed: true,
+                        width: 42.w,
+                        label: 'Sign Up',
+                        color: const Color(0xFFF1F1F1),
+                        isBordered: true,
+                        fontBold: true,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 5.h),
+                ],
               ),
-              label: 'Get Started',
             ),
-            SizedBox(height: 1.h),
-            CustomButton(
-              onTap: () {
-                Navigator.pushNamed(context, '/LoginScreen');
-              },
-              label: 'Sign in',
-              color: AppColors.primary,
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
