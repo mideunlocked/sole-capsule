@@ -221,6 +221,15 @@ class BleProvider with ChangeNotifier {
           );
         }
       }
+    } else {
+      _selectedDevice = null;
+      _currentDevice = null;
+      disconnectDevice(
+        context: context,
+        scaffoldKey: scaffoldKey,
+      );
+
+      notifyListeners();
     }
   }
 
