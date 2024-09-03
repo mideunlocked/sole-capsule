@@ -57,7 +57,11 @@ class BleProvider with ChangeNotifier {
       if (await FlutterBluePlus.isSupported == false) {
         if (context.mounted) {
           _showMessage(
-              scaffoldKey, "Bluetooth not supported by this device", context);
+            scaffoldKey,
+            "Bluetooth not supported by this device",
+            context,
+            isHigherMargin: true,
+          );
         }
         return;
       }
@@ -71,7 +75,11 @@ class BleProvider with ChangeNotifier {
         } else {
           _isOn = false;
           _showMessage(
-              scaffoldKey, "Error switching on Bluetooth on device", context);
+            scaffoldKey,
+            "Error switching on Bluetooth on device",
+            context,
+            isHigherMargin: true,
+          );
         }
         notifyListeners();
       });
@@ -86,7 +94,11 @@ class BleProvider with ChangeNotifier {
       _isOn = false;
       if (context.mounted) {
         _showMessage(
-            scaffoldKey, "Error switching on Bluetooth on device", context);
+          scaffoldKey,
+          "Error switching on Bluetooth on device",
+          context,
+          isHigherMargin: true,
+        );
       }
       notifyListeners();
     }
@@ -109,7 +121,12 @@ class BleProvider with ChangeNotifier {
           notifyListeners();
         }, onError: (e) {
           print('Error scanning devices: $e');
-          _showMessage(scaffoldKey, "Error scanning devices", context);
+          _showMessage(
+            scaffoldKey,
+            "Error scanning devices",
+            context,
+            isHigherMargin: true,
+          );
         });
 
         await FlutterBluePlus.startScan(
@@ -122,14 +139,21 @@ class BleProvider with ChangeNotifier {
         await FlutterBluePlus.isScanning.where((val) => val == false).first;
       } else {
         _showMessage(
-            scaffoldKey,
-            "Bluetooth is inactive, kindly switch on Bluetooth on device",
-            context);
+          scaffoldKey,
+          "Bluetooth is inactive, kindly switch on Bluetooth on device",
+          context,
+          isHigherMargin: true,
+        );
       }
     } catch (e) {
       print('Error scanning devices: $e');
       if (context.mounted) {
-        _showMessage(scaffoldKey, "Error scanning devices", context);
+        _showMessage(
+          scaffoldKey,
+          "Error scanning devices",
+          context,
+          isHigherMargin: true,
+        );
       }
     }
   }
@@ -166,23 +190,35 @@ class BleProvider with ChangeNotifier {
             _loaded();
             print('Error connecting to device: $e');
             _showMessage(
-                scaffoldKey, "Error connecting to Bluetooth device", context);
+              scaffoldKey,
+              "Error connecting to Bluetooth device",
+              context,
+              isHigherMargin: true,
+            );
           });
         } else {
           _selectedDevice = null;
           _loaded();
           _showMessage(
-              scaffoldKey,
-              "Bluetooth is inactive, kindly switch on Bluetooth on device",
-              context);
+            scaffoldKey,
+            "Bluetooth is inactive, kindly switch on Bluetooth on device",
+            context,
+            isHigherMargin: true,
+          );
         }
       } catch (e) {
         _selectedDevice = null;
         _loaded();
-        print('Error connecting to device: $e');
+        print(
+          'Error connecting to device: $e',
+        );
         if (context.mounted) {
           _showMessage(
-              scaffoldKey, "Error connecting to Bluetooth device", context);
+            scaffoldKey,
+            "Error connecting to Bluetooth device",
+            context,
+            isHigherMargin: true,
+          );
         }
       }
     }
@@ -190,12 +226,13 @@ class BleProvider with ChangeNotifier {
 
   Future<void> disconnectDevice({
     required BuildContext context,
-    required BluetoothDevice device,
     required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     try {
-      if (_isOn) {
-        await device.disconnect();
+      bool isCurrent = _currentDevice?.remoteId == _currentDevice?.remoteId;
+
+      if (_isOn && isCurrent) {
+        await _currentDevice?.disconnect();
         _currentDevice = null;
         notifyListeners();
       } else {
@@ -213,18 +250,27 @@ class BleProvider with ChangeNotifier {
     }
   }
 
-  void _showMessage(GlobalKey<ScaffoldMessengerState> scaffoldKey,
-      String message, BuildContext context,
-      {Color? color}) {
+  void _showMessage(
+    GlobalKey<ScaffoldMessengerState> scaffoldKey,
+    String message,
+    BuildContext context, {
+    Color? color,
+    bool isHigherMargin = false,
+  }) {
     if (context.mounted) {
       color != null
           ? showScaffoldMessenger(
               context: context,
               scaffoldKey: scaffoldKey,
               textContent: message,
-              bkgColor: color)
+              bkgColor: color,
+              isHigherMargin: isHigherMargin)
           : showScaffoldMessenger(
-              context: context, scaffoldKey: scaffoldKey, textContent: message);
+              context: context,
+              scaffoldKey: scaffoldKey,
+              textContent: message,
+              isHigherMargin: isHigherMargin,
+            );
     }
   }
 

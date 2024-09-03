@@ -4,7 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../provider/biometrics_provider.dart';
-import '../../widgets/general_widgets/custom_button.dart';
+import '../../widgets/bio_pass_widgets/custom_passcode_widge.dart';
+// import '../../widgets/general_widgets/custom_button.dart';
 import '../../widgets/general_widgets/padded_screen_widget.dart';
 
 class BioPassScreen extends StatefulWidget {
@@ -21,12 +22,45 @@ class _BioPassScreenState extends State<BioPassScreen> {
 
   List<BiometricType>? availableBiometrics;
 
+  String passcode = '';
+
+  var passcodeController = TextEditingController();
+
+  String? errorText;
+
+  @override
+  void initState() {
+    super.initState();
+
+    passcodeController.addListener(_listenToController);
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
     authenticate();
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    passcodeController.dispose();
+  }
+
+  void _listenToController() {
+    if (passcodeController.text.length == 6) {
+      if (passcodeController.text.trim() == passcode) {
+        authenticate();
+      } else {
+        setState(() => errorText = 'Invalid passcode');
+      }
+    }
+  }
+
+  void getPassCode(String passcode) =>
+      setState(() => passcodeController.text = passcode);
 
   final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
       GlobalKey<ScaffoldMessengerState>();
@@ -42,7 +76,7 @@ class _BioPassScreenState extends State<BioPassScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: 3.h),
+                SizedBox(height: 0.5.h),
                 CircleAvatar(
                   backgroundColor: Colors.grey.shade300,
                   radius: 40.sp,
@@ -58,18 +92,24 @@ class _BioPassScreenState extends State<BioPassScreen> {
                   style: textTheme.titleMedium,
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 0.5.h),
-                Text(
-                  'Unlock with $type to Open Sole',
-                  textAlign: TextAlign.center,
-                  style: textTheme.bodyMedium?.copyWith(fontSize: 13.sp),
+                // SizedBox(height: 0.5.h),
+                // Text(
+                //   'Unlock with $type to Open Sole',
+                //   textAlign: TextAlign.center,
+                //   style: textTheme.bodyMedium?.copyWith(fontSize: 13.sp),
+                // ),
+                SizedBox(height: 3.h),
+                CustomPasscodeWidget(
+                  getPassCode: getPassCode,
+                  errorText: errorText,
+                  additionalButtonFunction: authenticate,
                 ),
-                const Spacer(),
-                CustomButton(
-                  onTap: authenticate,
-                  label: 'Use Biometrics',
-                ),
-                SizedBox(height: 2.h),
+                SizedBox(height: 3.h),
+                // CustomButton(
+                //   onTap: authenticate,
+                //   label: 'Use Biometrics',
+                // ),
+                // SizedBox(height: 2.h),
               ],
             ),
           ),

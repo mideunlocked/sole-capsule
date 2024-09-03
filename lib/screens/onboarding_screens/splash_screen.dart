@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:video_player/video_player.dart';
 
 import '../../helpers/auth_helper.dart';
 import '../../provider/biometrics_provider.dart';
 import '../../services/vibrate.dart';
-import '../../widgets/general_widgets/app_name.dart';
+// import '../../widgets/general_widgets/app_name.dart';
 import '../app.dart';
 import '../auth_screens/bio_pass_screen.dart';
 import 'onboarding_screen.dart';
@@ -20,6 +21,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class SplashScreenState extends State<SplashScreen> {
+  late VideoPlayerController _controller;
+
   @override
   void initState() {
     super.initState();
@@ -35,7 +38,22 @@ class SplashScreenState extends State<SplashScreen> {
       await bioPvr.getBioStatus();
     });
 
+    initVideoPlayer();
+
     navigateToNextScreen();
+  }
+
+  void initVideoPlayer() async {
+    String videoUrl = 'assets/videos/SCBOX2_UI.mp4';
+
+    _controller = VideoPlayerController.asset(videoUrl);
+
+    await _controller.initialize().then((_) {
+      setState(() {});
+      _controller.play();
+      _controller.setLooping(true);
+      _controller.setVolume(0);
+    });
   }
 
   void navigateToNextScreen() async {
@@ -50,9 +68,10 @@ class SplashScreenState extends State<SplashScreen> {
         Navigator.pushNamedAndRemoveUntil(
             context,
             isLogged
-                ? bioPvr.bioEnabled
-                    ? BioPassScreen.routeName
-                    : App.rouetName
+                ?
+                // bioPvr.bioEnabled
+                //     ? BioPassScreen.routeName
+                App.rouetName
                 : OnboardingScreen.routeName,
             (route) => false);
       },
@@ -62,14 +81,12 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AppName(
-              size: 22.sp,
-            ),
-          ],
+      body: SizedBox(
+        height: 100.h,
+        width: 100.w,
+        child: AspectRatio(
+          aspectRatio: 16 / 9,
+          child: VideoPlayer(_controller),
         ),
       ),
     );

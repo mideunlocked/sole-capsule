@@ -7,9 +7,11 @@ class DeleteBoxButton extends StatelessWidget {
   const DeleteBoxButton({
     super.key,
     required this.boxId,
+    required this.scaffoldKey,
   });
 
   final String boxId;
+  final GlobalKey<ScaffoldMessengerState> scaffoldKey;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class DeleteBoxButton extends StatelessWidget {
         onPressed: () => showDeleteBoxSheet(
           context: context,
           boxId: boxId,
+          scaffoldKey: scaffoldKey,
         ),
       ),
     );

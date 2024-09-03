@@ -195,6 +195,7 @@ class BoxProvider with ChangeNotifier {
       textContent: 'Box name changed.',
       context: context,
       bkgColor: Colors.green,
+      isHigherMargin: true,
     );
 
     notifyListeners();
@@ -203,8 +204,19 @@ class BoxProvider with ChangeNotifier {
 
   void deleteBox({
     required String id,
+    required BuildContext context,
+    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     int index = _boxes.indexWhere((e) => e.id == id);
+
+    if (_boxes[index].isConnected) {
+      var blePvr = Provider.of<BleProvider>(context, listen: false);
+
+      await blePvr.disconnectDevice(
+        context: context,
+        scaffoldKey: scaffoldKey,
+      );
+    }
 
     HiveService.deletePod(index);
 

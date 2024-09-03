@@ -1,9 +1,10 @@
-// ignore_for_file: avoid_print, deprecated_member_use
+// ignore_for_file: avoid_print, deprecated_member_use, unused_element
 
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:sole_capsule/helpers/scaffold_messenger_helper.dart';
 import 'package:wifi_iot/wifi_iot.dart';
+
+import '../helpers/scaffold_messenger_helper.dart';
 
 class WifiProvider with ChangeNotifier {
   bool _isLoading = false;

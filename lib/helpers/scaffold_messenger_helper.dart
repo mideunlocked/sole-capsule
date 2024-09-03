@@ -7,6 +7,7 @@ void showScaffoldMessenger({
   required String textContent,
   Color bkgColor = Colors.red,
   SnackBarAction? snackBarAction,
+  bool isHigherMargin = false,
 }) {
   final scaffoldMessenger = ScaffoldMessenger.of(context);
 
@@ -17,7 +18,7 @@ void showScaffoldMessenger({
       duration: const Duration(seconds: 5),
       margin: EdgeInsets.symmetric(
         horizontal: 5.w,
-        vertical: 2.h,
+        vertical: isHigherMargin ? 8.h : 2.h,
       ),
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(

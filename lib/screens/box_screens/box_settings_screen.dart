@@ -70,6 +70,7 @@ class _BoxSettingsScreenState extends State<BoxSettingsScreen> {
                 SizedBox(height: 3.h),
                 DeleteBoxButton(
                   boxId: args['id'],
+                  scaffoldKey: _scaffoldKey,
                 ),
                 const Spacer(),
                 CustomButton(

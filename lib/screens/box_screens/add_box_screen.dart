@@ -1,15 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import '../../helpers/fonts_helper.dart';
 import '../../models/box.dart';
 import '../../provider/ble_provider.dart';
 import '../../provider/box_provider.dart';
 import '../../provider/theme_mode_provider.dart';
 import '../../widgets/add_box_widgets/connect_blue_button.dart';
+import '../../widgets/box_widgets/bluetooth_deviceies_dialog.dart';
+import '../../widgets/box_widgets/fonts_display_sheet.dart';
 import '../../widgets/general_widgets/custom_app_bar.dart';
 import '../../widgets/general_widgets/custom_button.dart';
 import '../../widgets/general_widgets/custom_text_field.dart';
@@ -187,193 +186,6 @@ class _AddBoxScreenState extends State<AddBoxScreen> {
 
     boxProvider.addNewBox(
       box: box,
-    );
-  }
-}
-
-class FontsDisplaySheet extends StatelessWidget {
-  const FontsDisplaySheet({
-    super.key,
-    required this.name,
-    required this.getFont,
-    required this.fontFamily,
-  });
-
-  final String name;
-  final String fontFamily;
-  final Function(String) getFont;
-
-  @override
-  Widget build(BuildContext context) {
-    var tmPvr = Provider.of<ThemeModeProvider>(context, listen: false);
-    bool isLight = tmPvr.isLight;
-    Color textColor = isLight ? Colors.black : Colors.white;
-
-    return SizedBox.expand(
-      child: PaddedScreenWidget(
-        padTop: false,
-        child: Column(
-          children: [
-            SizedBox(height: 2.h),
-            Text(
-              'Choose Font',
-              style: TextStyle(
-                fontSize: 13.sp,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            SizedBox(height: 1.h),
-            const Divider(),
-            Expanded(
-              child: ListView(
-                children: FontsHelper.titleFonts
-                    .map(
-                      (e) => Padding(
-                        padding: EdgeInsets.symmetric(vertical: 1.h),
-                        child: InkWell(
-                          onTap: () {
-                            getFont(e);
-                            Navigator.pop(context);
-                          },
-                          child: Text(
-                            name.isEmpty ? 'Pod name' : name,
-                            style: GoogleFonts.getFont(
-                              e,
-                              color: fontFamily.isEmpty
-                                  ? textColor
-                                  : fontFamily == e
-                                      ? textColor
-                                      : textColor.withOpacity(0.3),
-                              fontSize: fontFamily == e ? 17.sp : 14.sp,
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                    .toList(),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class BluetoothDeviciesDialog extends StatelessWidget {
-  const BluetoothDeviciesDialog({
-    super.key,
-    required this.scaffoldKey,
-  });
-
-  final GlobalKey<ScaffoldMessengerState> scaffoldKey;
-
-  @override
-  Widget build(BuildContext context) {
-    bool isLightMode =
-        Provider.of<ThemeModeProvider>(context, listen: false).isLight;
-
-    var of = Theme.of(context);
-    var textTheme = of.textTheme;
-    return Dialog(
-      backgroundColor:
-          isLightMode ? const Color(0xFFEEF5FB) : const Color(0xFF14191D),
-      insetPadding: EdgeInsets.symmetric(
-        vertical: 20.h,
-        horizontal: 10.w,
-      ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30),
-      ),
-      insetAnimationCurve: Curves.bounceIn,
-      insetAnimationDuration: const Duration(seconds: 5),
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 2.h),
-        child: Column(
-          children: [
-            Text(
-              'Available devices',
-              style: textTheme.bodyLarge?.copyWith(fontSize: 12.sp),
-            ),
-            SizedBox(height: 1.h),
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: of.scaffoldBackgroundColor,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Consumer<BleProvider>(builder: (context, blePvr, _) {
-                  return ListView(
-                    physics: const BouncingScrollPhysics(),
-                    children: blePvr.bleDevices
-                        .map(
-                          (e) => BleDeviceTile(
-                            name: e.platformName,
-                            isSelected: e == blePvr.selectedDevice,
-                            isCurrent: e == blePvr.currentDevice,
-                            onTap: () => blePvr.connectToDevice(
-                              context: context,
-                              device: e,
-                              scaffoldKey: scaffoldKey,
-                            ),
-                          ),
-                        )
-                        .toList(),
-                  );
-                }),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class BleDeviceTile extends StatelessWidget {
-  const BleDeviceTile({
-    super.key,
-    required this.name,
-    required this.isSelected,
-    this.onTap,
-    this.isCurrent,
-  });
-
-  final String name;
-  final bool? isSelected;
-  final bool? isCurrent;
-  final Function()? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 3.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  name,
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                  ),
-                ),
-                isCurrent ?? false
-                    ? const Icon(Icons.check_rounded)
-                    : Visibility(
-                        visible: isSelected ?? false,
-                        child: const CupertinoActivityIndicator(),
-                      ),
-              ],
-            ),
-          ),
-          const Divider(),
-        ],
-      ),
     );
   }
 }

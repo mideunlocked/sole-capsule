@@ -9,6 +9,7 @@ import '../general_widgets/padded_screen_widget.dart';
 import 'delete_box_sheet_button.dart';
 
 void showDeleteBoxSheet({
+  required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   required BuildContext context,
   required String boxId,
 }) async {
@@ -20,6 +21,7 @@ void showDeleteBoxSheet({
     backgroundColor: Colors.transparent,
     builder: (ctx) => DeleteBoxSheet(
       boxId: boxId,
+      scaffoldKey: scaffoldKey,
     ),
   );
 }
@@ -28,9 +30,11 @@ class DeleteBoxSheet extends StatelessWidget {
   const DeleteBoxSheet({
     super.key,
     required this.boxId,
+    required this.scaffoldKey,
   });
 
   final String boxId;
+  final GlobalKey<ScaffoldMessengerState> scaffoldKey;
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +83,11 @@ class DeleteBoxSheet extends StatelessWidget {
                           label: 'Delete',
                           isInverted: true,
                           onTap: () {
-                            boxPvr.deleteBox(id: boxId);
+                            boxPvr.deleteBox(
+                              id: boxId,
+                              context: context,
+                              scaffoldKey: scaffoldKey,
+                            );
                             Navigator.pushNamedAndRemoveUntil(
                               context,
                               '/',
