@@ -5,10 +5,11 @@ import 'package:video_player/video_player.dart';
 
 import '../../helpers/auth_helper.dart';
 import '../../provider/biometrics_provider.dart';
+import '../../provider/theme_mode_provider.dart';
 import '../../services/vibrate.dart';
 // import '../../widgets/general_widgets/app_name.dart';
 import '../app.dart';
-import '../auth_screens/bio_pass_screen.dart';
+// import '../auth_screens/bio_pass_screen.dart';
 import 'onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -36,6 +37,8 @@ class SplashScreenState extends State<SplashScreen> {
       await bioPvr.checkBiometric();
       await bioPvr.checkAvailableBiometrics();
       await bioPvr.getBioStatus();
+
+      initVideoPlayer();
     });
 
     initVideoPlayer();
@@ -44,7 +47,11 @@ class SplashScreenState extends State<SplashScreen> {
   }
 
   void initVideoPlayer() async {
-    String videoUrl = 'assets/videos/SCBOX2_UI.mp4';
+    var themePvr = Provider.of<ThemeModeProvider>(context, listen: false);
+    bool isLight = themePvr.isLight;
+
+    String videoUrl =
+        isLight ? 'assets/videos/SCBOX2_UI.mp4' : 'assets/videos/SC_UI(B).mp4';
 
     _controller = VideoPlayerController.asset(videoUrl);
 
@@ -57,7 +64,7 @@ class SplashScreenState extends State<SplashScreen> {
   }
 
   void navigateToNextScreen() async {
-    var bioPvr = Provider.of<BiometricsProvider>(context, listen: false);
+    // var bioPvr = Provider.of<BiometricsProvider>(context, listen: false);
 
     await Future.delayed(
       const Duration(seconds: 3),
