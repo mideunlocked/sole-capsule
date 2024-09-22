@@ -1,7 +1,10 @@
+# Uncomment this line to define a global platform for your project
+platform :ios, '13.0'
+
+# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 
 project 'Runner', {
-
   'Debug' => :debug,
   'Profile' => :release,
   'Release' => :release,
@@ -28,16 +31,25 @@ target 'Runner' do
   use_frameworks!
   use_modular_headers!
 
-
-
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+  
+  # Uncomment if you have RunnerTests
+  # target 'RunnerTests' do
+  #   inherit! :search_paths
+  # end
 end
 
+# Combine both post_install blocks into one
 post_install do |installer|
   installer.pods_project.targets.each do |target|
-    flutter_additional_ios_build_settings(target)
+    # Remove this unless it's specifically required
+    # flutter_additional_ios_build_settings(target) 
+
     target.build_configurations.each do |config|
-      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+      xcconfig_path = config.base_configuration_reference.real_path
+      xcconfig = File.read(xcconfig_path)
+      xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
+      File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
     end
   end
 end
