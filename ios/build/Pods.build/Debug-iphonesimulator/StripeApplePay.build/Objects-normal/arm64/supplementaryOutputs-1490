@@ -1,0 +1,18 @@
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeApplePay/StripeApplePay/StripeApplePay/Source/PaymentsCore/Analytics/STPAnalyticsClient+Payments.swift":
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/STPAnalyticsClient+Payments.o"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/STPAnalyticsClient+Payments.d"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/STPAnalyticsClient+Payments.swiftdeps"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/STPAnalyticsClient+Payments.dia"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/STPAnalyticsClient+Payments.swiftconstvalues"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeApplePay/StripeApplePay/StripeApplePay/Source/PaymentsCore/Analytics/STPAnalyticsClient+PaymentsAPI.swift":
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/STPAnalyticsClient+PaymentsAPI.dia"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/STPAnalyticsClient+PaymentsAPI.d"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/STPAnalyticsClient+PaymentsAPI.swiftconstvalues"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/STPAnalyticsClient+PaymentsAPI.o"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/STPAnalyticsClient+PaymentsAPI.swiftdeps"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeApplePay/StripeApplePay/StripeApplePay/Source/ApplePayContext/STPAPIClient+ApplePay.swift":
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/STPAPIClient+ApplePay.d"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/STPAPIClient+ApplePay.o"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/STPAPIClient+ApplePay.swiftdeps"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/STPAPIClient+ApplePay.dia"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/STPAPIClient+ApplePay.swiftconstvalues"

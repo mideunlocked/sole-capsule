@@ -1,0 +1,18 @@
+"/Users/ariyo/.pub-cache/hosted/pub.dev/stripe_ios-10.2.0/ios/Classes/StripePlugin+PayPlugin.swift":
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripePlugin+PayPlugin.swiftdeps"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripePlugin+PayPlugin.d"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripePlugin+PayPlugin.swiftconstvalues"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripePlugin+PayPlugin.dia"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripePlugin+PayPlugin.o"
+"/Users/ariyo/.pub-cache/hosted/pub.dev/stripe_ios-10.2.0/ios/Classes/StripePlugin.swift":
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripePlugin.dia"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripePlugin.swiftdeps"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripePlugin.swiftconstvalues"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripePlugin.o"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripePlugin.d"
+"/Users/ariyo/.pub-cache/hosted/pub.dev/stripe_ios-10.2.0/ios/Classes/Stripe Sdk/StripeSdk.swift":
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripeSdk.o"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripeSdk.d"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripeSdk.swiftconstvalues"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripeSdk.swiftdeps"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripeSdk.dia"

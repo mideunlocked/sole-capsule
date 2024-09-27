@@ -1,0 +1,18 @@
+"/Users/ariyo/.pub-cache/hosted/pub.dev/stripe_ios-10.2.0/ios/Classes/Stripe Sdk/StripeSdk+CustomerSheet.swift":
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripeSdk+CustomerSheet.d"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripeSdk+CustomerSheet.swiftdeps"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripeSdk+CustomerSheet.dia"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripeSdk+CustomerSheet.o"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripeSdk+CustomerSheet.swiftconstvalues"
+"/Users/ariyo/.pub-cache/hosted/pub.dev/stripe_ios-10.2.0/ios/Classes/Stripe Sdk/StripeSdk+PaymentSheet.swift":
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripeSdk+PaymentSheet.swiftconstvalues"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripeSdk+PaymentSheet.swiftdeps"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripeSdk+PaymentSheet.d"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripeSdk+PaymentSheet.o"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/StripeSdk+PaymentSheet.dia"
+"/Users/ariyo/.pub-cache/hosted/pub.dev/stripe_ios-10.2.0/ios/Classes/Stripe Sdk/UIColorExtension.swift":
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/UIColorExtension.dia"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/UIColorExtension.o"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/UIColorExtension.swiftconstvalues"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/UIColorExtension.swiftdeps"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/UIColorExtension.d"

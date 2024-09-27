@@ -1,0 +1,18 @@
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeApplePay/StripeApplePay/StripeApplePay/Source/StripeCore+Import.swift":
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/StripeCore+Import.swiftconstvalues"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/StripeCore+Import.swiftdeps"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/StripeCore+Import.o"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/StripeCore+Import.dia"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/StripeCore+Import.d"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeApplePay/StripeApplePay/StripeApplePay/Source/PaymentsCore/API/Models/Token.swift":
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/Token.dia"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/Token.swiftconstvalues"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/Token.d"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/Token.o"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/Token.swiftdeps"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeApplePay/StripeApplePay/StripeApplePay/Source/PaymentsCore/API/Token+API.swift":
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/Token+API.dia"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/Token+API.swiftdeps"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/Token+API.swiftconstvalues"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/Token+API.d"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeApplePay.build/Objects-normal/arm64/Token+API.o"

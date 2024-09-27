@@ -1,0 +1,42 @@
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentsUI/StripePaymentsUI/StripePaymentsUI/Source/Internal/UI/Views/STPValidatedTextField.swift":
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/STPValidatedTextField.d"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/STPValidatedTextField.swiftdeps"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/STPValidatedTextField.dia"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/STPValidatedTextField.o"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/STPValidatedTextField.swiftconstvalues"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentsUI/StripePaymentsUI/StripePaymentsUI/Source/Helpers/StripePaymentsBundleLocator.swift":
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/StripePaymentsBundleLocator.dia"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/StripePaymentsBundleLocator.swiftconstvalues"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/StripePaymentsBundleLocator.o"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/StripePaymentsBundleLocator.d"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/StripePaymentsBundleLocator.swiftdeps"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentsUI/StripePaymentsUI/StripePaymentsUI/Source/Helpers/StripePayments+Export.swift":
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/StripePayments+Export.d"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/StripePayments+Export.o"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/StripePayments+Export.swiftconstvalues"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/StripePayments+Export.swiftdeps"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/StripePayments+Export.dia"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentsUI/StripePaymentsUI/StripePaymentsUI/Source/Helpers/String+Localized.swift":
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/String+Localized.swiftconstvalues"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/String+Localized.dia"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/String+Localized.d"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/String+Localized.swiftdeps"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/String+Localized.o"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentsUI/StripePaymentsUI/StripePaymentsUI/Source/Internal/Categories/UIButton+Stripe.swift":
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/UIButton+Stripe.swiftdeps"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/UIButton+Stripe.dia"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/UIButton+Stripe.swiftconstvalues"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/UIButton+Stripe.o"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/UIButton+Stripe.d"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentsUI/StripePaymentsUI/StripePaymentsUI/Source/Internal/UI/Views/STPViewWithSeparator.swift":
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/STPViewWithSeparator.swiftconstvalues"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/STPViewWithSeparator.dia"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/STPViewWithSeparator.d"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/STPViewWithSeparator.o"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/STPViewWithSeparator.swiftdeps"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentsUI/StripePaymentsUI/StripePaymentsUI/Source/Helpers/STPStringUtils.swift":
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/STPStringUtils.swiftconstvalues"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/STPStringUtils.dia"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/STPStringUtils.swiftdeps"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/STPStringUtils.d"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentsUI.build/Objects-normal/arm64/STPStringUtils.o"

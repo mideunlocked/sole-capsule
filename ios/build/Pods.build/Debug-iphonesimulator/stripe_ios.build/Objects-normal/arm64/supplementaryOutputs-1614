@@ -1,0 +1,24 @@
+"/Users/ariyo/.pub-cache/hosted/pub.dev/stripe_ios-10.2.0/ios/Classes/ApplePayButtonView.swift":
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/ApplePayButtonView.d"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/ApplePayButtonView.dia"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/ApplePayButtonView.o"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/ApplePayButtonView.swiftconstvalues"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/ApplePayButtonView.swiftdeps"
+"/Users/ariyo/.pub-cache/hosted/pub.dev/stripe_ios-10.2.0/ios/Classes/Stripe Sdk/ApplePayViewController.swift":
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/ApplePayViewController.dia"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/ApplePayViewController.o"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/ApplePayViewController.swiftconstvalues"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/ApplePayViewController.d"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/ApplePayViewController.swiftdeps"
+"/Users/ariyo/.pub-cache/hosted/pub.dev/stripe_ios-10.2.0/ios/Classes/AuBECSDebitFormFactory.swift":
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/AuBECSDebitFormFactory.d"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/AuBECSDebitFormFactory.swiftconstvalues"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/AuBECSDebitFormFactory.dia"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/AuBECSDebitFormFactory.swiftdeps"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/AuBECSDebitFormFactory.o"
+"/Users/ariyo/.pub-cache/hosted/pub.dev/stripe_ios-10.2.0/ios/Classes/Stripe Sdk/ApplePayUtils.swift":
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/ApplePayUtils.o"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/ApplePayUtils.d"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/ApplePayUtils.swiftconstvalues"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/ApplePayUtils.dia"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/stripe_ios.build/Objects-normal/arm64/ApplePayUtils.swiftdeps"

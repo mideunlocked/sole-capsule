@@ -1,0 +1,48 @@
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/STPDispatchFunctions.swift":
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPDispatchFunctions.dia"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPDispatchFunctions.o"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPDispatchFunctions.d"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPDispatchFunctions.swiftdeps"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPDispatchFunctions.swiftconstvalues"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/API Bindings/STPAppInfo.swift":
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPAppInfo.dia"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPAppInfo.swiftdeps"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPAppInfo.o"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPAppInfo.d"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPAppInfo.swiftconstvalues"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/STPError.swift":
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPError.swiftdeps"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPError.dia"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPError.swiftconstvalues"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPError.o"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPError.d"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/STPAssert.swift":
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPAssert.d"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPAssert.swiftconstvalues"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPAssert.dia"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPAssert.swiftdeps"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPAssert.o"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Localization/STPLocalizedString.swift":
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPLocalizedString.swiftconstvalues"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPLocalizedString.dia"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPLocalizedString.o"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPLocalizedString.d"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPLocalizedString.swiftdeps"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/STPDeviceUtils.swift":
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPDeviceUtils.swiftconstvalues"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPDeviceUtils.d"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPDeviceUtils.swiftdeps"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPDeviceUtils.dia"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPDeviceUtils.o"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/API Bindings/STPMultipartFormDataEncoder.swift":
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPMultipartFormDataEncoder.d"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPMultipartFormDataEncoder.o"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPMultipartFormDataEncoder.swiftconstvalues"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPMultipartFormDataEncoder.swiftdeps"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPMultipartFormDataEncoder.dia"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Localization/STPLocalizationUtils.swift":
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPLocalizationUtils.dia"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPLocalizationUtils.swiftdeps"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPLocalizationUtils.o"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPLocalizationUtils.d"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPLocalizationUtils.swiftconstvalues"

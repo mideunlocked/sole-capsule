@@ -1,0 +1,18 @@
+{
+  "" : {
+    "diagnostics" : "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/wifi_iot.build/Objects-normal/arm64/wifi_iot-master.dia",
+    "emit-module-dependencies" : "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/wifi_iot.build/Objects-normal/arm64/wifi_iot-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/wifi_iot.build/Objects-normal/arm64/wifi_iot-master-emit-module.dia",
+    "swift-dependencies" : "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/wifi_iot.build/Objects-normal/arm64/wifi_iot-master.swiftdeps"
+  },
+  "/Users/ariyo/.pub-cache/hosted/pub.dev/wifi_iot-0.3.19+1/ios/Classes/SwiftWifiIotPlugin.swift" : {
+    "const-values" : "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/wifi_iot.build/Objects-normal/arm64/SwiftWifiIotPlugin.swiftconstvalues",
+    "dependencies" : "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/wifi_iot.build/Objects-normal/arm64/SwiftWifiIotPlugin.d",
+    "diagnostics" : "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/wifi_iot.build/Objects-normal/arm64/SwiftWifiIotPlugin.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/wifi_iot.build/Objects-normal/arm64/SwiftWifiIotPlugin.o",
+    "llvm-bc" : "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/wifi_iot.build/Objects-normal/arm64/SwiftWifiIotPlugin.bc",
+    "object" : "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/wifi_iot.build/Objects-normal/arm64/SwiftWifiIotPlugin.o",
+    "swift-dependencies" : "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/wifi_iot.build/Objects-normal/arm64/SwiftWifiIotPlugin.swiftdeps",
+    "swiftmodule" : "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/wifi_iot.build/Objects-normal/arm64/SwiftWifiIotPlugin~partial.swiftmodule"
+  }
+}

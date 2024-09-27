@@ -1,0 +1,48 @@
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Categories/String+StripeCore.swift":
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/String+StripeCore.swiftconstvalues"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/String+StripeCore.o"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/String+StripeCore.swiftdeps"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/String+StripeCore.d"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/String+StripeCore.dia"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/API Bindings/StripeAPI.swift":
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/StripeAPI.o"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/StripeAPI.d"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/StripeAPI.dia"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/StripeAPI.swiftdeps"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/StripeAPI.swiftconstvalues"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/STPNumericStringValidator.swift":
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPNumericStringValidator.swiftdeps"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPNumericStringValidator.dia"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPNumericStringValidator.o"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPNumericStringValidator.d"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPNumericStringValidator.swiftconstvalues"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/API Bindings/StripeAPIConfiguration.swift":
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/StripeAPIConfiguration.swiftdeps"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/StripeAPIConfiguration.d"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/StripeAPIConfiguration.swiftconstvalues"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/StripeAPIConfiguration.dia"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/StripeAPIConfiguration.o"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/STPURLCallbackHandler.swift":
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPURLCallbackHandler.swiftconstvalues"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPURLCallbackHandler.swiftdeps"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPURLCallbackHandler.dia"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPURLCallbackHandler.d"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPURLCallbackHandler.o"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Localization/String+Localized.swift":
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/String+Localized.swiftconstvalues"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/String+Localized.d"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/String+Localized.swiftdeps"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/String+Localized.o"
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/String+Localized.dia"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/API Bindings/STPMultipartFormDataPart.swift":
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPMultipartFormDataPart.dia"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPMultipartFormDataPart.d"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPMultipartFormDataPart.swiftdeps"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPMultipartFormDataPart.swiftconstvalues"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPMultipartFormDataPart.o"
+"/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Telemetry/STPTelemetryClient.swift":
+  diagnostics: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPTelemetryClient.dia"
+  dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPTelemetryClient.d"
+  const-values: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPTelemetryClient.swiftconstvalues"
+  object: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPTelemetryClient.o"
+  swift-dependencies: "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripeCore.build/Objects-normal/arm64/STPTelemetryClient.swiftdeps"

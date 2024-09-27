@@ -1,0 +1,68 @@
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Analytics/Analytic.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Analytics/AnalyticLoggableError.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Analytics/AnalyticLoggableErrorV2.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Analytics/AnalyticsClientV2.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Analytics/AnalyticsHelper.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/Async.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/BundleLocatorProtocol.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Categories/Decimal+StripeCore.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Categories/Dictionary+Stripe.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/API\ Bindings/Models/EmptyResponse.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Categories/Enums+CustomStringConvertible.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/FileDownloader.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Connections\ Bindings/FinancialConnectionsEvent.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Connections\ Bindings/FinancialConnectionsLinkedBank.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Connections\ Bindings/FinancialConnectionsSDKInterface.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Connections\ Bindings/FinancialConnectionsSDKResult.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Telemetry/FraudDetectionData.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/InstallMethod.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Connections\ Bindings/InstantDebitsLinkedBank.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Categories/Locale+StripeCore.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Analytics/NetworkDetector.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Categories/NSArray+Stripe.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Categories/NSBundle+Stripe_AppName.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Categories/NSCharacterSet+StripeCore.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Categories/NSError+Stripe.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Categories/NSError+StripeCore.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Categories/NSMutableURLRequest+Stripe.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Categories/NSURLComponents+Stripe.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/PaymentsSDKVariant.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Analytics/PluginDetector.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/ServerErrorMapper.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Analytics/STPAnalyticEvent.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Analytics/STPAnalyticsClient.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Analytics/STPAnalyticsClient+Error.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/API\ Bindings/STPAPIClient.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/API\ Bindings/STPAPIClient+FileUpload.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/API\ Bindings/STPAppInfo.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/STPAssert.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/STPDeviceUtils.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/STPDispatchFunctions.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/STPError.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Localization/STPLocalizationUtils.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Localization/STPLocalizedString.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/API\ Bindings/STPMultipartFormDataEncoder.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/API\ Bindings/STPMultipartFormDataPart.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/STPNumericStringValidator.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Telemetry/STPTelemetryClient.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/STPURLCallbackHandler.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Localization/String+Localized.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Categories/String+StripeCore.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/API\ Bindings/StripeAPI.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/API\ Bindings/StripeAPIConfiguration.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/API\ Bindings/StripeAPIConfiguration+Version.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Coder/StripeCodable.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/StripeCoreBundleLocator.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/API\ Bindings/StripeError.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/API\ Bindings/Models/StripeFile.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Coder/StripeJSONDecoder.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Coder/StripeJSONEncoder.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Coder/StripeJSONShared.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/API\ Bindings/StripeServiceError.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/UI/UIActivityIndicatorView+Stripe.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/UI/UIFont+Stripe.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Categories/UIImage+StripeCore.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Coder/UnknownFields.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/URLEncoder.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Helpers/URLSession+Retry.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripeCore/StripeCore/StripeCore/Source/Telemetry/UserDefaults+PaymentsCore.swift

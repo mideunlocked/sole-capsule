@@ -1,0 +1,23 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/ariyo/Documents/flutter-projects/sole_capsule/build/ios/Debug-iphonesimulator/StripePaymentSheet/StripePaymentSheet.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentSheet.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/ariyo/Documents/flutter-projects/sole_capsule/build/ios/Debug-iphonesimulator/StripePaymentSheet/StripePaymentSheet.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "StripePaymentSheet-Swift.h",
+      'external-contents': "/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/build/Pods.build/Debug-iphonesimulator/StripePaymentSheet.build/unextended-interface-header.h",
+    }]
+    }]
+}

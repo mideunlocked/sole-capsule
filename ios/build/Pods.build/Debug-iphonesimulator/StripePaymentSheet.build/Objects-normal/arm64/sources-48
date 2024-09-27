@@ -1,0 +1,177 @@
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/New Payment Method Screen/AddPaymentMethodViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/ViewControllers/AutoComplete/AddressSearchResult.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/AddressViewController/AddressViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/AddressViewController/AddressViewController+Configuration.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/AffirmCopyLabel.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/AfterpayPriceBreakdownView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/Appearance+FontScaling.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/AUBECSMandate.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/ViewControllers/AutoComplete/AutoCompleteViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/BacsDDMandateView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/USBankAccount/BankAccountInfoView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Helpers/BoolReference.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/ViewControllers/BottomSheet3DS2ViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/BottomSheet/BottomSheetPresentable.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/BottomSheet/BottomSheetPresentationAnimator.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/BottomSheet/BottomSheetPresentationController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/BottomSheet/BottomSheetTransitioningDelegate.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/ViewControllers/BottomSheetViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/API Bindings/VO/CardExpiryDate.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/CardScanButton.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/CardScanningView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Elements/CardSectionWithScanner/CardSectionWithScannerElement.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Elements/CardSectionWithScanner/CardSectionWithScannerView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/CircularButton.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/ConfirmButton.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Elements/ConnectionsElement.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/API Bindings/Link/ConsumerSession.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/API Bindings/Link/ConsumerSession+LookupResponse.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/API Bindings/Link/ConsumerSession+PublishableKey.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/CustomerAdapter/CustomerAdapter.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/CustomerSheet/CustomerAddPaymentMethodViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/CustomerAdapter/CustomerPaymentOption.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/CustomerSheet/CustomerSavedPaymentMethodsCollectionViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/CustomerSheet/CustomerSavedPaymentMethodsViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/API Bindings/v1-elements-sessions/CustomerSession.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/CustomerSessionAdapter/CustomerSessionAdapter.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/CustomerSheet/CustomerSheet.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/CustomerSheet/CustomerSheet+API.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/CustomerSheet/CustomerSheet+PaymentMethodAvailability.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/CustomerSheet/CustomerSheet+SwiftUI.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/CustomerSheet/CustomerSheetConfiguration.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/CustomerSheet/CustomerSheetDataSource.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/CustomerSheet/CustomerSheetError.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/CVCPaymentMethodInformationView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Elements/CardSectionWithScanner/CVCRecollectionElement.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/CVCRecollectionView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/ViewControllers/CVCReconfirmationViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Categories/Data+SHA256.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Helpers/DownloadManager.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/API Bindings/v1-elements-sessions/ElementsCustomer.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Error+PaymentSheet.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/API Bindings/v1-elements-sessions/ExternalPaymentMethod.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/Extensions/FormElement+Link.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Vertical Main Screen/FormHeaderView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheetFormFactory/FormSpec/FormSpec.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheetFormFactory/FormSpec/FormSpecProvider.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Elements/CardSectionWithScanner/HostedSurface.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Helpers/Images.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/ACH/InstantDebitsOnlyFinancialConnectionsAuthManager.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/USBankAccount/InstantDebitsPaymentMethodElement.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Intent.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/Extensions/Intent+Link.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/IntentConfirmParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Helpers/IntentStatusPoller.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/Verification/LinkAccountContext.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/Services/LinkAccountService.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/Verification/LinkCookieKey.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/Elements/LinkEmailElement.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Elements/LinkEnabledPaymentMethodElement.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/Elements/InlineSignup/LinkInlineSignupElement.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/Elements/InlineSignup/LinkInlineSignupView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/Elements/InlineSignup/LinkInlineSignupView-CheckboxElement.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/ViewModels/LinkInlineSignupViewModel.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/Views/LinkLegalTermsView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/Views/LinkMoreInfoView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Link/LinkPaymentController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/Utils/LinkPopupURLParser.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/LinkUI.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/Utils/LinkURLGenerator.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/ViewControllers/LoadingViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/Utils/Locale+Link.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/ManualEntryButton.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Categories/NSAttributedString+Stripe.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/Utils/OperationDebouncer.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/API Bindings/Link/PaymentDetails.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/API Bindings/Link/PaymentDetailsShareResponse.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Elements/PaymentMethodElement/PaymentMethodElement.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Elements/PaymentMethodElement/PaymentMethodElementWrapper.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/ViewControllers/PaymentMethodFormViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Saved Payment Method Screen/Vertical Saved Payment Method Screen/PaymentMethodRowButton.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentMethodType.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/New Payment Method Screen/PaymentMethodTypeCollectionView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/PaymentMethodTypeImageView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentOption+Images.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheet.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheet+API.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheet+DeferredAPI.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheet+PaymentMethodAvailability.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheet+SwiftUI.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Link/PaymentSheet-LinkConfirmOption.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheetAppearance.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheetConfiguration.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheetDeferredValidator.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheetError.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheetFlowController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/ViewControllers/PaymentSheetFlowControllerViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheetFormFactory/PaymentSheetFormFactory.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheetFormFactory/PaymentSheetFormFactory+BLIK.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheetFormFactory/PaymentSheetFormFactory+Boleto.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheetFormFactory/PaymentSheetFormFactory+Card.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheetFormFactory/PaymentSheetFormFactory+FormSpec.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheetFormFactory/PaymentSheetFormFactory+Mandates.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheetFormFactory/PaymentSheetFormFactory+OXXO.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheetFormFactory/PaymentSheetFormFactory+UPI.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheetFormFactory/PaymentSheetFormFactoryConfig.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheetIntentConfiguration.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Helpers/PaymentSheetLinkAccount.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/PaymentSheetLoader.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/PaymentSheetUIKitAdditions.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/ViewControllers/PaymentSheetVerticalViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/ViewControllers/PaymentSheetViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/PayWithLinkButton.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Link/PayWithLinkController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/Controllers/PayWithLinkWebController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/ViewControllers/PollingViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/ViewControllers/PollingViewModel.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/ViewControllers/PreConfirmationViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Vertical Main Screen/RightAccessoryButton.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/RotatingCardBrandsView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Vertical Main Screen/RowButton.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Saved Payment Method Screen/SavedPaymentMethodCollectionView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Helpers/SavedPaymentMethodManager.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Saved Payment Method Screen/SavedPaymentOptionsViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/ViewControllers/SepaMandateViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Basic UI/SeparatorLabel.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/ShadowedRoundedRectangleView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/SheetNavigationBar.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/SheetNavigationButton.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Elements/SimpleMandateElement.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/SimpleMandateTextView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Analytics/STPAnalyticsClient+Address.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Analytics/STPAnalyticsClient+CustomerSheet.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/Extensions/STPAnalyticsClient+Link.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Analytics/STPAnalyticsClient+LUXE.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/STPAnalyticsClient+PaymentSheet.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/API Bindings/Link/STPAPIClient+Link.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/API Bindings/STPAPIClient+PaymentSheet.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/STPApplePayContext+PaymentSheet.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Helpers/STPCameraView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/API Bindings/v1-elements-sessions/STPCardBrandChoice.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Helpers/STPCardScanner.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/API Bindings/v1-elements-sessions/STPElementsSession.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Helpers/STPImageLibrary.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Helpers/STPLocalizedString.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/STPPaymentIntentShippingDetailsParams+PaymentSheet.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Categories/STPPaymentMethod+PaymentSheet.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Categories/STPPaymentMethodParams+PaymentSheet.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Helpers/STPStringUtils.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/ViewControllers/AutoComplete/String+AutoComplete.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Categories/String+Localized.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Categories/String+StripePaymentSheet.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Helpers/StripePaymentSheet+Exports.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Helpers/StripePaymentSheetBundleLocator.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Views/TestModeView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Elements/TextField/TextFieldElement+Card.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Elements/TextField/TextFieldElement+IBAN.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Categories/UIApplication+StripePaymentSheet.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/Link/Extensions/UIColor+Link.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/BottomSheet/UIViewController+BottomSheet.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/ViewControllers/UpdateCardViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/USBankAccount/USBankAccountPaymentMethodElement.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/CustomerAdapter/UserDefaults+StripePaymentSheet.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/Internal/API Bindings/Link/VerificationSession.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Vertical Main Screen/VerticalMandateView.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Vertical Main Screen/VerticalPaymentMethodListViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/Saved Payment Method Screen/Vertical Saved Payment Method Screen/VerticalSavedPaymentMethodsViewController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePaymentSheet/StripePaymentSheet/StripePaymentSheet/Source/PaymentSheet/New Payment Method Screen/WalletHeaderView.swift

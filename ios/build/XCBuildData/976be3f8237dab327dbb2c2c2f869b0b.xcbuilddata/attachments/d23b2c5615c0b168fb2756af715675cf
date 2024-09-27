@@ -1,0 +1,214 @@
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Internal/Analytics/Analytic+Payments.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Internal/API\ Bindings/APIRequest.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Internal/Helpers/ConnectionsSDKAvailability.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Captcha/DispatchQueue+Throttle.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Categories/Enums+CustomStringConvertible.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Captcha/HCaptcha.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Captcha/HCaptchaConfig.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Captcha/HCaptchaDebugInfo.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Captcha/HCaptchaDecoder.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Captcha/HCaptchaError.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Captcha/HCaptchaEvent.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Captcha/HCaptchaHtml.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Captcha/HCaptchaLog.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Captcha/HCaptchaResult.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Captcha/HCaptchaURLOpener.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Captcha/HCaptchaWebViewManager.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Captcha/HCaptchaWebViewManager+WKNavigationDelegate.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/ACH/LinkAccountSession.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Shared/LinkSettings.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Internal/Categories/NSArray+Stripe.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Internal/Categories/NSDecimalNumber+Stripe_Currency.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Internal/Categories/NSDictionary+Stripe.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Internal/Categories/NSString+Stripe.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Internal/API\ Bindings/STP3DS2AuthenticateResponse.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/STPAddress.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Internal/Analytics/STPAnalyticsClient+Payments.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/PaymentHandler/STPAnalyticsClient+STPPaymentHandler.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/STPAPIClient+ApplePay.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/STPAPIClient+LinkAccountSession.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/STPAPIClient+Payments.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Internal/Categories/STPAPIClient+PaymentsCore.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/STPAPIClient+Radar.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/STPAPIResponseDecodable.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/PaymentHandler/STPAuthenticationContext.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Sources/Types/STPBankAccount.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Helpers/STPBankAccountCollector.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Sources/Types/STPBankAccountParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Helpers/STPBINController.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Helpers/STPBlocks.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Sources/Types/STPCard.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/STPCardBrand.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Sources/Types/STPCardParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Helpers/STPCardValidator.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/ACH/STPCollectBankAccountParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPConfirmAlipayOptions.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPConfirmBLIKOptions.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPConfirmCardOptions.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPConfirmKonbiniOptions.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPConfirmPaymentMethodOptions.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPConfirmUSBankAccountOptions.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPConfirmWeChatPayOptions.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/STPConnectAccountAddress.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/STPConnectAccountCompanyParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/STPConnectAccountIndividualParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/STPConnectAccountParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/STPContactField.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/STPCustomer.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Internal/API\ Bindings/STPEmptyStripeResponse.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/STPFile.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/STPFormEncodable.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Internal/API\ Bindings/STPFormEncoder.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/STPFPXBankBrand.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/STPiDEALBank.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Shared/STPIntentAction.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Shared/STPIntentActionAlipayHandleRedirect.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Shared/STPIntentActionBoletoDisplayDetails.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Shared/STPIntentActionCashAppRedirectToApp.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Shared/STPIntentActionKonbiniDisplayDetails.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Shared/STPIntentActionMultibancoDisplayDetails.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Shared/STPIntentActionOXXODisplayDetails.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Shared/STPIntentActionPayNowDisplayQrCode.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Shared/STPIntentActionPromptPayDisplayQrCode.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Shared/STPIntentActionRedirectToURL.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Shared/STPIntentActionSwishHandleRedirect.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Internal/API\ Bindings/STPIntentActionUseStripeSDK.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Shared/STPIntentActionVerifyWithMicrodeposits.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Shared/STPIntentActionWeChatPayRedirectToApp.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Internal/API\ Bindings/STPInternalAPIResponseDecodable.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/STPIssuingCardPin.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Sources/Types/STPKlarnaLineItem.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Helpers/STPLocalizedString.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Shared/STPMandateCustomerAcceptanceParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Shared/STPMandateDataParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Shared/STPMandateOnlineParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Helpers/STPPaymentConfirmation+SwiftUI.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/PaymentHandler/STPPaymentHandler.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Internal/STPPaymentHandlerActionParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPPaymentIntent.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPPaymentIntentAction.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPPaymentIntentActionRedirectToURL.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPPaymentIntentEnums.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPPaymentIntentLastPaymentError.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPPaymentIntentParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPPaymentIntentShippingDetails.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPPaymentIntentShippingDetailsAddress.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPPaymentIntentShippingDetailsAddressParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPPaymentIntentShippingDetailsParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPPaymentIntentSourceAction.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentIntents/STPPaymentIntentSourceActionAuthorizeWithURL.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/STPPaymentMethod.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/STPPaymentMethodAddress.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodAffirm.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodAffirmParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodAfterpayClearpay.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodAfterpayClearpayParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodAlipay.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodAlipayParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/STPPaymentMethodAllowRedisplay.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodAlma.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodAlmaParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodAmazonPay.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodAmazonPayParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodAUBECSDebit.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodAUBECSDebitParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodBacsDebit.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodBacsDebitParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodBancontact.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodBancontactParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/STPPaymentMethodBillingDetails.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodBLIK.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodBLIKParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodBoleto.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodBoletoParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodCard.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodCardChecks.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodCardNetworks.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodCardNetworksParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodCardParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodCardPresent.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodCardWallet.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodCardWalletMasterpass.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodCardWalletVisaCheckout.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodCashApp.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodCashAppParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/STPPaymentMethodEnums.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodEPS.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodEPSParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodFPX.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodFPXParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodGiropay.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodGiropayParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodGrabPay.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodGrabPayParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodiDEAL.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodiDEALParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodKlarna.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodKlarnaParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodLink.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodLinkParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Internal/API\ Bindings/STPPaymentMethodListDeserializer.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodMobilePay.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodMobilePayParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodMultibanco.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodMultibancoParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodNetBanking.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodNetBankingParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Shared/STPPaymentMethodOptions.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodOXXO.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodOXXOParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/STPPaymentMethodParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodPayPal.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodPayPalParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodPrzelewy24.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodPrzelewy24Params.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodRevolutPay.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodRevolutPayParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodSEPADebit.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodSEPADebitParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodSofort.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodSofortParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodSwish.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodSwishParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodThreeDSecureUsage.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/STPPaymentMethodUpdateParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodUPI.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodUPIParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodUSBankAccount.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodUSBankAccountParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodWeChatPay.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/PaymentMethods/Types/STPPaymentMethodWeChatPayParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/STPRadarSession.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/STPRedirectContext.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/SetupIntents/STPSetupIntent.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/SetupIntents/STPSetupIntentConfirmParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/SetupIntents/STPSetupIntentEnums.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/SetupIntents/STPSetupIntentLastSetupError.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Sources/STPSource.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Sources/Types/STPSourceCardDetails.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Sources/STPSourceEnums.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Sources/Types/STPSourceKlarnaDetails.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Sources/STPSourceOwner.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Sources/STPSourceParams.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Internal/API\ Bindings/STPSourcePoller.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Sources/STPSourceProtocol.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Sources/STPSourceReceiver.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Sources/STPSourceRedirect.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Sources/Types/STPSourceSEPADebitDetails.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Sources/STPSourceVerification.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/Sources/Types/STPSourceWeChatPayDetails.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/PaymentHandler/STPThreeDSButtonCustomization.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/PaymentHandler/STPThreeDSCustomizationSettings.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/PaymentHandler/STPThreeDSFooterCustomization.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/PaymentHandler/STPThreeDSLabelCustomization.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/PaymentHandler/STPThreeDSNavigationBarCustomization.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/PaymentHandler/STPThreeDSSelectionCustomization.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/PaymentHandler/STPThreeDSTextFieldCustomization.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/PaymentHandler/STPThreeDSUICustomization.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Models/STPToken.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Captcha/String+Dict.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Legacy\ Compatability/StripeAPI+Deprecated.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Legacy\ Compatability/StripeApplePay+Import.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/API\ Bindings/Legacy\ Compatability/StripeCore+Import.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Helpers/StripePayments+Export.swift
+/Users/ariyo/Documents/flutter-projects/sole_capsule/ios/Pods/StripePayments/StripePayments/StripePayments/Source/Helpers/StripePaymentsBundleLocator.swift
